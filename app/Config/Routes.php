@@ -24,6 +24,7 @@ $routes->group('user', ['filter' => 'auth'], function($routes) {
 // Admin Dashboard
 $routes->group('admin', ['filter' => 'admin'], function ($routes) {
     $routes->get('dashboard', 'Admin\Dashboard::index');
+    $routes->get('audit-logs', 'Admin\Dashboard::auditLogs');
     
     // User Management CRUD
     $routes->group('users', function ($routes) {

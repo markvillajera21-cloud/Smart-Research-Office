@@ -19,6 +19,11 @@
             <i class="bi bi-journal-text"></i> Projects
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link <?= (url_is('admin/audit-logs') ? 'active' : '') ?>" href="<?= base_url('admin/audit-logs') ?>">
+            <i class="bi bi-shield-check"></i> Audit Trail
+        </a>
+    </li>
     <?php endif; ?>
 
     <li class="nav-item">

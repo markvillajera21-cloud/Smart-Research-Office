@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 
 use App\Models\User;
+use App\Models\AuditLogModel;
 
 class Auth extends BaseController
 {
@@ -35,9 +36,12 @@ class Auth extends BaseController
                 'isLoggedIn' => true
             ]);
 
+            AuditLogModel::log('LOGIN', 'users', $user['id'], ['status' => 'success']);
+
             return $this->redirectDashboard();
         }
 
+        AuditLogModel::log('LOGIN_FAILED', 'users', null, ['email' => $email]);
         return redirect()->back()->with('error', 'Invalid login credentials');
     }
 
@@ -69,6 +73,8 @@ class Auth extends BaseController
         ];
 
         if ($userModel->save($data)) {
+            $newUserId = $userModel->getInsertID();
+            AuditLogModel::log('REGISTER', 'users', $newUserId, ['username' => $data['username']]);
             return redirect()->to('/login')->with('success', 'Registration successful! Please login.');
         }
 
@@ -77,6 +83,7 @@ class Auth extends BaseController
 
     public function logout()
     {
+        AuditLogModel::log('LOGOUT', 'users', session()->get('user_id'));
         session()->destroy();
         return redirect()->to('/login');
     }
