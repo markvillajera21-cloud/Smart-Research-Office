@@ -30,6 +30,8 @@
             background-color: var(--sidebar-bg);
             border-right: 1px solid #e2e8f0;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             transition: all 0.3s;
         }
 
@@ -136,6 +138,20 @@
 
                 <!-- Page Content -->
                 <main class="p-4">
+                    <?php if (session()->getFlashdata('success')): ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?= session()->getFlashdata('success') ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (session()->getFlashdata('error')): ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?= session()->getFlashdata('error') ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php endif; ?>
+
                     <?= $this->renderSection('content') ?>
                 </main>
             </div>

@@ -1,4 +1,4 @@
-<ul class="nav flex-column">
+<ul class="nav flex-column flex-grow-1">
     <li class="nav-item">
         <a class="nav-link <?= (url_is('admin/dashboard') ? 'active' : '') ?>" href="<?= base_url('admin/dashboard') ?>">
             <i class="bi bi-grid-1x2-fill"></i> Overview
@@ -11,7 +11,12 @@
     </li>
     <li class="nav-item">
         <a class="nav-link <?= (url_is('admin/users*') ? 'active' : '') ?>" href="<?= base_url('admin/users') ?>">
-            <i class="bi bi-people-fill"></i> Users
+            <i class="bi bi-person-badge-fill"></i> Users
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <?= (url_is('admin/researchers*') ? 'active' : '') ?>" href="<?= base_url('admin/researchers') ?>">
+            <i class="bi bi-people-fill"></i> Researchers List
         </a>
     </li>
     <li class="nav-item">
@@ -22,6 +27,11 @@
     <li class="nav-item">
         <a class="nav-link <?= (url_is('admin/audit-logs') ? 'active' : '') ?>" href="<?= base_url('admin/audit-logs') ?>">
             <i class="bi bi-shield-check"></i> Audit Trail
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <?= (url_is('admin/history*') ? 'active' : '') ?>" href="<?= base_url('admin/history') ?>">
+            <i class="bi bi-mortarboard-fill"></i> Researchers History
         </a>
     </li>
     <?php endif; ?>
@@ -40,3 +50,10 @@
         </a>
     </li>
 </ul>
+
+<div class="nav-item mt-auto border-top p-4">
+    <a href="<?= base_url('logout') ?>" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center gap-2 py-2 shadow-sm">
+        <i class="bi bi-box-arrow-right"></i>
+        <span class="fw-semibold">Sign Out</span>
+    </a>
+</div>

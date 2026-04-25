@@ -16,15 +16,25 @@ $routes->get('logout', 'Auth::logout');
 
 // User Dashboard
 $routes->group('user', ['filter' => 'auth'], function($routes) {
-    $routes->get('dashboard', function() {
-        return view('user/dashboard');
-    });
+    $routes->get('dashboard', 'User\Dashboard::index');
 });
 
 // Admin Dashboard
 $routes->group('admin', ['filter' => 'admin'], function ($routes) {
     $routes->get('dashboard', 'Admin\Dashboard::index');
     $routes->get('audit-logs', 'Admin\Dashboard::auditLogs');
+    $routes->get('history', 'Admin\History::index');
+    
+    // Researchers List CRUD
+    $routes->group('researchers', function ($routes) {
+        $routes->get('/', 'Admin\Researchers::index');
+        $routes->get('create', 'Admin\Researchers::create');
+        $routes->post('store', 'Admin\Researchers::store');
+        $routes->get('edit/(:num)', 'Admin\Researchers::edit/$1');
+        $routes->post('update/(:num)', 'Admin\Researchers::update/$1');
+        $routes->get('delete/(:num)', 'Admin\Researchers::delete/$1');
+        $routes->post('add-category', 'Admin\Researchers::addCategory');
+    });
     
     // User Management CRUD
     $routes->group('users', function ($routes) {
