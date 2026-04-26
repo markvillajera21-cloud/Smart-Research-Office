@@ -20,6 +20,7 @@ class Researchers extends BaseController
     public function index()
     {
         $categoryFilter = $this->request->getGet('category');
+        $search = $this->request->getGet('search');
         
         $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name')
                                      ->join('users', 'users.id = researchers.user_id')
@@ -29,12 +30,23 @@ class Researchers extends BaseController
             $query->where('researchers.category_id', $categoryFilter);
         }
 
+        if ($search) {
+            $query->groupStart()
+                  ->like('researchers.fullname', $search)
+                  ->orLike('researchers.institutional_id', $search)
+                  ->orLike('users.username', $search)
+                  ->orLike('users.email', $search)
+                  ->orLike('researchers.expertise', $search)
+                  ->groupEnd();
+        }
+
         $data = [
             'title' => 'Researchers Directory',
             'page_title' => 'Researchers List',
-            'researchers' => $query->findAll(),
+            'researchers' => $query->orderBy('researchers.created_at', 'DESC')->findAll(),
             'categories' => $this->categoryModel->findAll(),
-            'selectedCategory' => $categoryFilter
+            'selectedCategory' => $categoryFilter,
+            'search' => $search
         ];
 
         return view('admin/researchers/index', $data);

@@ -1,28 +1,48 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
-<div class="card p-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h5 class="mb-1">Institutional Researchers Directory</h5>
-            <p class="text-muted small mb-0">Manage researcher profiles, institutional IDs, and academic categories.</p>
-        </div>
-        <div class="d-flex gap-2">
-            <a href="<?= base_url('admin/researchers/create') ?>" class="btn btn-sm btn-primary">
-                <i class="bi bi-plus-lg me-2"></i> Add Researcher
-            </a>
-            <form action="<?= base_url('admin/researchers') ?>" method="get" class="d-flex gap-2">
-                <select name="category" class="form-select form-select-sm" onchange="this.form.submit()">
-                    <option value="">All Categories</option>
-                    <?php foreach ($categories as $cat): ?>
-                        <option value="<?= $cat['id'] ?>" <?= $selectedCategory == $cat['id'] ? 'selected' : '' ?>><?= $cat['name'] ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </form>
-            <button class="btn btn-sm btn-outline-primary" onclick="window.print()">
-                <i class="bi bi-printer me-2"></i> Print List
-            </button>
-        </div>
+<!-- Top Action Bar -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <a href="<?= base_url('admin/researchers/create') ?>" class="btn btn-primary shadow-sm d-flex align-items-center px-3 py-2">
+            <i class="bi bi-plus-lg me-2"></i> Add Researcher
+        </a>
+    </div>
+    
+    <div class="d-flex flex-grow-1 justify-content-center mx-3">
+        <form action="<?= base_url('admin/researchers') ?>" method="get" class="d-flex gap-2 w-100" style="max-width: 650px;">
+            <div class="input-group shadow-sm border rounded">
+                <span class="input-group-text bg-white border-0">
+                    <i class="bi bi-search text-muted"></i>
+                </span>
+                <input type="text" name="search" class="form-control border-0 ps-0" placeholder="Search by name, ID, or expertise..." value="<?= $search ?? '' ?>">
+            </div>
+            <select name="category" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 220px;">
+                <option value="">All Categories</option>
+                <?php foreach ($categories as $cat): ?>
+                    <option value="<?= $cat['id'] ?>" <?= $selectedCategory == $cat['id'] ? 'selected' : '' ?>><?= $cat['name'] ?></option>
+                <?php endforeach; ?>
+            </select>
+            <?php if ($selectedCategory || ($search ?? '')): ?>
+                <a href="<?= base_url('admin/researchers') ?>" class="btn btn-light border shadow-sm d-flex align-items-center" title="Clear Filters">
+                    <i class="bi bi-x-lg"></i>
+                </a>
+            <?php endif; ?>
+        </form>
+    </div>
+
+    <div>
+        <button class="btn btn-outline-primary shadow-sm d-flex align-items-center px-3 py-2" onclick="window.print()">
+            <i class="bi bi-printer me-2"></i> Print List
+        </button>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm p-4">
+    <!-- Directory Header -->
+    <div class="mb-4">
+        <h4 class="mb-1 fw-bold text-dark">Institutional Researchers Directory</h4>
+        <p class="text-muted mb-0">Manage researcher profiles, institutional IDs, and academic categories.</p>
     </div>
 
     <div class="table-responsive">
@@ -82,9 +102,9 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="6" class="text-center py-5 text-muted">
-                            <i class="bi bi-people fs-1 d-block mb-3"></i>
-                            No researchers found in this category.
+                        <td colspan="7" class="text-center py-5 text-muted">
+                            <i class="bi bi-search fs-1 d-block mb-3"></i>
+                            No researchers found matching your criteria.
                         </td>
                     </tr>
                 <?php endif; ?>
