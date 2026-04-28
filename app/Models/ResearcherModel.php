@@ -17,7 +17,7 @@ class ResearcherModel extends Model
         'fullname',
         'institutional_id', 
         'category_id', 
-        'expertise', 
+        'expertise',
         'bio', 
         'joined_at'
     ];

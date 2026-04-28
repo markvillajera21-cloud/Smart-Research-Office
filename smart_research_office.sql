@@ -94,7 +94,6 @@ CREATE TABLE `researchers` (
   `fullname` varchar(255) DEFAULT NULL,
   `institutional_id` varchar(50) NOT NULL,
   `category_id` int(11) UNSIGNED DEFAULT NULL,
-  `expertise` varchar(255) DEFAULT NULL,
   `bio` text DEFAULT NULL,
   `joined_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,

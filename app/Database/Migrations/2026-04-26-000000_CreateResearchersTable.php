@@ -31,11 +31,6 @@ class CreateResearchersTable extends Migration
                 'constraint' => ['STEM', 'Social Sciences', 'Humanities', 'Health & Medicine', 'Technology', 'Other'],
                 'default'    => 'Other',
             ],
-            'expertise' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
-                'null'       => true,
-            ],
             'bio' => [
                 'type' => 'TEXT',
                 'null' => true,

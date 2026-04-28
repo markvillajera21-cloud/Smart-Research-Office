@@ -49,14 +49,14 @@
         <table class="table table-hover align-middle">
             <thead>
                 <tr>
-                    <th>Institutional ID</th>
-                    <th>Full Name</th>
-                    <th>Username</th>
-                    <th>Category</th>
-                    <th>Expertise</th>
-                    <th>Joined</th>
-                    <th>Actions</th>
-                </tr>
+                        <th class="ps-4" style="width: 150px;">INSTITUTIONAL ID</th>
+                        <th>FULL NAME</th>
+                        <th>USERNAME</th>
+                        <th>CATEGORY</th>
+                        <th>EXPERTISE</th>
+                        <th>JOINED</th>
+                        <th class="text-end pe-4" style="width: 120px;">ACTIONS</th>
+                    </tr>
             </thead>
             <tbody>
                 <?php if (!empty($researchers)): ?>

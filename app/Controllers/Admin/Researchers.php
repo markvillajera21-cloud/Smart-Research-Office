@@ -36,7 +36,6 @@ class Researchers extends BaseController
                   ->orLike('researchers.institutional_id', $search)
                   ->orLike('users.username', $search)
                   ->orLike('users.email', $search)
-                  ->orLike('researchers.expertise', $search)
                   ->groupEnd();
         }
 
@@ -78,7 +77,6 @@ class Researchers extends BaseController
             'fullname'         => 'required|min_length[3]',
             'institutional_id' => 'required|is_unique[researchers.institutional_id]',
             'category_id'      => 'required',
-            'expertise'        => 'permit_empty|string',
             'joined_at'        => 'required|valid_date'
         ];
 
@@ -91,7 +89,6 @@ class Researchers extends BaseController
             'fullname'         => $this->request->getPost('fullname'),
             'institutional_id' => $this->request->getPost('institutional_id'),
             'category_id'      => $this->request->getPost('category_id'),
-            'expertise'        => $this->request->getPost('expertise'),
             'bio'              => $this->request->getPost('bio'),
             'joined_at'        => $this->request->getPost('joined_at'),
         ];
@@ -134,7 +131,6 @@ class Researchers extends BaseController
             'fullname'         => 'required|min_length[3]',
             'institutional_id' => "required|is_unique[researchers.institutional_id,id,{$id}]",
             'category_id'      => 'required',
-            'expertise'        => 'permit_empty|string',
             'joined_at'        => 'required|valid_date'
         ];
 
