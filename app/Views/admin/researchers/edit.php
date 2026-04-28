@@ -5,7 +5,7 @@
     <div class="col-md-8">
         <div class="card shadow-sm">
             <div class="card-header bg-white py-3">
-                <h5 class="mb-0 fw-bold">Edit Researcher Profile: <?= $researcher['username'] ?></h5>
+                <h5 class="mb-0 fw-bold">Edit Researcher Profile</h5>
             </div>
             <div class="card-body p-4">
                 <?php if (session()->getFlashdata('errors')): ?>
@@ -23,8 +23,7 @@
 
                     <div class="mb-3">
                         <label class="form-label fw-medium">User Account</label>
-                        <input type="text" class="form-control bg-light" value="<?= $researcher['username'] ?>" disabled>
-                        <div class="form-text text-muted small">The linked user account cannot be changed.</div>
+                        <input type="text" class="form-control" value="<?= $researcher['username'] ?>" disabled>
                     </div>
 
                     <div class="mb-3">
@@ -38,6 +37,13 @@
                             <input type="text" name="institutional_id" class="form-control" value="<?= old('institutional_id', $researcher['institutional_id']) ?>" required>
                         </div>
                         <div class="col-md-6 mb-3">
+                            <label class="form-label fw-medium">School Year</label>
+                            <input type="text" name="school_year" class="form-control" value="<?= old('school_year', $researcher['school_year']) ?>" placeholder="e.g. 2023-2024">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
                             <label class="form-label fw-medium d-flex justify-content-between">
                                 Category
                                 <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
@@ -45,21 +51,31 @@
                                 </button>
                             </label>
                             <select name="category_id" id="category_id" class="form-select" required>
+                                <option value="">Select Category</option>
                                 <?php foreach ($categories as $cat): ?>
                                     <option value="<?= $cat['id'] ?>" <?= old('category_id', $researcher['category_id']) == $cat['id'] ? 'selected' : '' ?>><?= $cat['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-medium">Area of Expertise</label>
+                            <input type="text" name="expertise" class="form-control" value="<?= old('expertise', $researcher['expertise']) ?>" placeholder="e.g. Artificial Intelligence, Molecular Biology">
+                        </div>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-medium">Area of Expertise</label>
-                        <input type="text" name="expertise" class="form-control" value="<?= old('expertise', $researcher['expertise']) ?>" placeholder="e.g. Artificial Intelligence, Molecular Biology">
+                        <label class="form-label fw-medium">Strand/Degree Program</label>
+                        <input type="text" name="strand_degree_program" class="form-control" value="<?= old('strand_degree_program', $researcher['strand_degree_program']) ?>" placeholder="e.g. STEM, BS Computer Science">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-medium">Approved Research Title</label>
+                        <textarea name="approved_research_title" class="form-control" rows="3" placeholder="Enter the approved research title"><?= old('approved_research_title', $researcher['approved_research_title']) ?></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label fw-medium">Joining Date</label>
-                        <input type="date" name="joined_at" class="form-control" value="<?= old('joined_at', date('Y-m-d', strtotime($researcher['joined_at']))) ?>" required>
+                        <input type="date" name="joined_at" class="form-control" value="<?= old('joined_at', $researcher['joined_at']) ?>" required>
                     </div>
 
                     <div class="mb-4">
@@ -126,7 +142,6 @@ document.getElementById('saveCategoryBtn').addEventListener('click', function() 
             const select = document.getElementById('category_id');
             const option = new Option(data.name, data.id);
             select.add(option);
-            select.value = data.id;
             
             // Close modal
             const modal = bootstrap.Modal.getInstance(document.getElementById('addCategoryModal'));

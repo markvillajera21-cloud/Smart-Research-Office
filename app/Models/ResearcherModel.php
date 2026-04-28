@@ -19,7 +19,10 @@ class ResearcherModel extends Model
         'category_id', 
         'expertise',
         'bio', 
-        'joined_at'
+        'joined_at',
+        'approved_research_title',
+        'strand_degree_program',
+        'school_year'
     ];
 
     protected $useTimestamps = true;

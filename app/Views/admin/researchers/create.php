@@ -45,6 +45,13 @@
                             <input type="text" name="institutional_id" class="form-control" value="<?= old('institutional_id', 'SRO-' . date('Y') . '-') ?>" required>
                         </div>
                         <div class="col-md-6 mb-3">
+                            <label class="form-label fw-medium">School Year</label>
+                            <input type="text" name="school_year" class="form-control" value="<?= old('school_year') ?>" placeholder="e.g. 2023-2024">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
                             <label class="form-label fw-medium d-flex justify-content-between">
                                 Category
                                 <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
@@ -58,11 +65,20 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-medium">Area of Expertise</label>
+                            <input type="text" name="expertise" class="form-control" value="<?= old('expertise') ?>" placeholder="e.g. Artificial Intelligence, Molecular Biology">
+                        </div>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-medium">Area of Expertise</label>
-                        <input type="text" name="expertise" class="form-control" value="<?= old('expertise') ?>" placeholder="e.g. Artificial Intelligence, Molecular Biology">
+                        <label class="form-label fw-medium">Strand/Degree Program</label>
+                        <input type="text" name="strand_degree_program" class="form-control" value="<?= old('strand_degree_program') ?>" placeholder="e.g. STEM, BS Computer Science">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-medium">Approved Research Title</label>
+                        <textarea name="approved_research_title" class="form-control" rows="3" placeholder="Enter the approved research title"><?= old('approved_research_title') ?></textarea>
                     </div>
 
                     <div class="mb-3">

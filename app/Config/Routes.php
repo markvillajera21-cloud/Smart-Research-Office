@@ -28,6 +28,8 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
     // Researchers List CRUD
     $routes->group('researchers', function ($routes) {
         $routes->get('/', 'Admin\Researchers::index');
+        $routes->get('high-school', 'Admin\Researchers::highSchool');
+        $routes->get('college', 'Admin\Researchers::college');
         $routes->get('create', 'Admin\Researchers::create');
         $routes->post('store', 'Admin\Researchers::store');
         $routes->get('edit/(:num)', 'Admin\Researchers::edit/$1');

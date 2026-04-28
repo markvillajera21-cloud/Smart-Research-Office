@@ -85,12 +85,16 @@ class Researchers extends BaseController
         }
 
         $data = [
-            'user_id'          => $this->request->getPost('user_id'),
-            'fullname'         => $this->request->getPost('fullname'),
-            'institutional_id' => $this->request->getPost('institutional_id'),
-            'category_id'      => $this->request->getPost('category_id'),
-            'bio'              => $this->request->getPost('bio'),
-            'joined_at'        => $this->request->getPost('joined_at'),
+            'user_id'                   => $this->request->getPost('user_id'),
+            'fullname'                  => $this->request->getPost('fullname'),
+            'institutional_id'          => $this->request->getPost('institutional_id'),
+            'school_year'               => $this->request->getPost('school_year'),
+            'category_id'               => $this->request->getPost('category_id'),
+            'expertise'                 => $this->request->getPost('expertise'),
+            'strand_degree_program'     => $this->request->getPost('strand_degree_program'),
+            'approved_research_title'   => $this->request->getPost('approved_research_title'),
+            'bio'                       => $this->request->getPost('bio'),
+            'joined_at'                 => $this->request->getPost('joined_at'),
         ];
 
         if ($this->researcherModel->insert($data)) {
@@ -139,12 +143,15 @@ class Researchers extends BaseController
         }
 
         $data = [
-            'fullname'         => $this->request->getPost('fullname'),
-            'institutional_id' => $this->request->getPost('institutional_id'),
-            'category_id'      => $this->request->getPost('category_id'),
-            'expertise'        => $this->request->getPost('expertise'),
-            'bio'              => $this->request->getPost('bio'),
-            'joined_at'        => $this->request->getPost('joined_at'),
+            'fullname'                  => $this->request->getPost('fullname'),
+            'institutional_id'          => $this->request->getPost('institutional_id'),
+            'school_year'               => $this->request->getPost('school_year'),
+            'category_id'               => $this->request->getPost('category_id'),
+            'expertise'                 => $this->request->getPost('expertise'),
+            'strand_degree_program'     => $this->request->getPost('strand_degree_program'),
+            'approved_research_title'   => $this->request->getPost('approved_research_title'),
+            'bio'                       => $this->request->getPost('bio'),
+            'joined_at'                 => $this->request->getPost('joined_at'),
         ];
 
         if ($this->researcherModel->update($id, $data)) {
@@ -187,5 +194,63 @@ class Researchers extends BaseController
             return redirect()->to('admin/researchers')->with('success', 'Researcher profile deleted successfully.');
         }
         return redirect()->to('admin/researchers')->with('error', 'Failed to delete researcher profile.');
+    }
+
+    public function highSchool()
+    {
+        $search = $this->request->getGet('search');
+        
+        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name')
+                                     ->join('users', 'users.id = researchers.user_id')
+                                     ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
+                                     ->where('research_categories.name', 'High School Department');
+
+        if ($search) {
+            $query->groupStart()
+                  ->like('researchers.fullname', $search)
+                  ->orLike('researchers.institutional_id', $search)
+                  ->orLike('users.username', $search)
+                  ->orLike('users.email', $search)
+                  ->groupEnd();
+        }
+
+        $data = [
+            'title' => 'High School Department',
+            'page_title' => 'High School Department Researchers',
+            'researchers' => $query->orderBy('researchers.created_at', 'DESC')->findAll(),
+            'categories' => $this->categoryModel->findAll(),
+            'search' => $search
+        ];
+
+        return view('admin/researchers/high_school', $data);
+    }
+
+    public function college()
+    {
+        $search = $this->request->getGet('search');
+        
+        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name')
+                                     ->join('users', 'users.id = researchers.user_id')
+                                     ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
+                                     ->where('research_categories.name', 'College Department');
+
+        if ($search) {
+            $query->groupStart()
+                  ->like('researchers.fullname', $search)
+                  ->orLike('researchers.institutional_id', $search)
+                  ->orLike('users.username', $search)
+                  ->orLike('users.email', $search)
+                  ->groupEnd();
+        }
+
+        $data = [
+            'title' => 'College Department',
+            'page_title' => 'College Department Researchers',
+            'researchers' => $query->orderBy('researchers.created_at', 'DESC')->findAll(),
+            'categories' => $this->categoryModel->findAll(),
+            'search' => $search
+        ];
+
+        return view('admin/researchers/college', $data);
     }
 }
