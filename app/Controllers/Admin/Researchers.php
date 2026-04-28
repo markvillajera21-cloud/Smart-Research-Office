@@ -58,6 +58,7 @@ class Researchers extends BaseController
         $existingUserIds = $this->researcherModel->findColumn('user_id') ?: [0];
         $availableUsers = $userModel->whereNotIn('id', $existingUserIds)
                                    ->where('role', 'user')
+                                   ->orderBy('username', 'ASC')
                                    ->findAll();
 
         $data = [

@@ -8,6 +8,8 @@
                 <h5 class="mb-0 fw-bold">Assign Researcher Profile</h5>
             </div>
             <div class="card-body p-4">
+                <?php $hasAvailableUsers = !empty($users); ?>
+
                 <?php if (session()->getFlashdata('errors')): ?>
                     <div class="alert alert-danger">
                         <ul class="mb-0">
@@ -23,7 +25,7 @@
 
                     <div class="mb-3">
                         <label class="form-label fw-medium">Select User Account</label>
-                        <select name="user_id" class="form-select" required>
+                        <select name="user_id" class="form-select" required <?= $hasAvailableUsers ? '' : 'disabled' ?>>
                             <option value="">Choose a user...</option>
                             <?php foreach ($users as $user): ?>
                                 <option value="<?= $user['id'] ?>" <?= old('user_id') == $user['id'] ? 'selected' : '' ?>>
@@ -31,7 +33,9 @@
                                 </option>
                             <?php endforeach; ?>
                         </select>
-                        <div class="form-text text-muted small">Only users without an existing researcher profile are listed.</div>
+                        <div class="form-text text-muted small">
+                            Only users without an existing researcher profile are listed.
+                        </div>
                     </div>
 
                     <div class="mb-3">
@@ -97,7 +101,7 @@
 
                     <div class="d-flex justify-content-end gap-2">
                         <a href="<?= base_url('admin/researchers') ?>" class="btn btn-light px-4">Cancel</a>
-                        <button type="submit" class="btn btn-primary px-4">Create Profile</button>
+                        <button type="submit" class="btn btn-primary px-4" <?= $hasAvailableUsers ? '' : 'disabled' ?>>Create Profile</button>
                     </div>
                 </form>
             </div>
