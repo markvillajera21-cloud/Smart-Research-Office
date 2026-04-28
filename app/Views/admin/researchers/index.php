@@ -5,7 +5,7 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
         <a href="<?= base_url('admin/researchers/create') ?>" class="btn btn-primary shadow-sm d-flex align-items-center px-3 py-2">
-            <i class="bi bi-plus-lg me-2"></i> Add Researcher
+            <i class="bi bi-plus-lg me-2"></i> Add Research
         </a>
     </div>
     

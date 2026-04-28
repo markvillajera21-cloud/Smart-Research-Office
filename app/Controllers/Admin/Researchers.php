@@ -214,10 +214,14 @@ class Researchers extends BaseController
                   ->groupEnd();
         }
 
+        $pager = \Config\Services::pager();
+        $researchers = $query->orderBy('researchers.created_at', 'DESC')->paginate(10, 'highSchool');
+
         $data = [
             'title' => 'High School Department',
             'page_title' => 'High School Department Researchers',
-            'researchers' => $query->orderBy('researchers.created_at', 'DESC')->findAll(),
+            'researchers' => $researchers,
+            'pager' => $pager,
             'categories' => $this->categoryModel->findAll(),
             'search' => $search
         ];
@@ -243,10 +247,14 @@ class Researchers extends BaseController
                   ->groupEnd();
         }
 
+        $pager = \Config\Services::pager();
+        $researchers = $query->orderBy('researchers.created_at', 'DESC')->paginate(10, 'college');
+
         $data = [
             'title' => 'College Department',
             'page_title' => 'College Department Researchers',
-            'researchers' => $query->orderBy('researchers.created_at', 'DESC')->findAll(),
+            'researchers' => $researchers,
+            'pager' => $pager,
             'categories' => $this->categoryModel->findAll(),
             'search' => $search
         ];

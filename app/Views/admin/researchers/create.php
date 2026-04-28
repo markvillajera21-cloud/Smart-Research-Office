@@ -73,7 +73,11 @@
 
                     <div class="mb-3">
                         <label class="form-label fw-medium">Strand/Degree Program</label>
-                        <input type="text" name="strand_degree_program" class="form-control" value="<?= old('strand_degree_program') ?>" placeholder="e.g. STEM, BS Computer Science">
+                        <select name="strand_degree_program" class="form-select">
+                            <option value="">Select...</option>
+                            <option value="Senior" <?= old('strand_degree_program') == 'Senior' ? 'selected' : '' ?>>Senior</option>
+                            <option value="Faculty" <?= old('strand_degree_program') == 'Faculty' ? 'selected' : '' ?>>Faculty</option>
+                        </select>
                     </div>
 
                     <div class="mb-3">

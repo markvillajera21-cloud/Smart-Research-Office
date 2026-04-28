@@ -25,7 +25,7 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
     $routes->get('audit-logs', 'Admin\Dashboard::auditLogs');
     $routes->get('history', 'Admin\History::index');
     
-    // Researchers List CRUD
+    // Research CRUD
     $routes->group('researchers', function ($routes) {
         $routes->get('/', 'Admin\Researchers::index');
         $routes->get('high-school', 'Admin\Researchers::highSchool');

@@ -5,17 +5,17 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
         <a href="<?= base_url('admin/researchers/create') ?>" class="btn btn-primary shadow-sm d-flex align-items-center px-3 py-2">
-            <i class="bi bi-plus-lg me-2"></i> Add Researcher
+            <i class="bi bi-plus-lg me-2"></i> Add Research
         </a>
     </div>
     
-    <div class="d-flex flex-grow-1 justify-content-center mx-3">
-        <form action="<?= base_url('admin/researchers/college') ?>" method="get" class="d-flex gap-2 w-100" style="max-width: 650px;">
-            <div class="input-group shadow-sm border rounded">
+    <div class="d-flex gap-3">
+        <form action="<?= base_url('admin/researchers/college') ?>" method="get" class="d-flex gap-2">
+            <div class="input-group shadow-sm border rounded" style="width: 350px;">
                 <span class="input-group-text bg-white border-0">
                     <i class="bi bi-search text-muted"></i>
                 </span>
-                <input type="text" name="search" class="form-control border-0 ps-0" placeholder="Search by name, ID, or expertise..." value="<?= $search ?? '' ?>">
+                <input type="text" name="search" class="form-control border-0 ps-0" placeholder="Search..." value="<?= $search ?? '' ?>">
             </div>
             <?php if ($search ?? ''): ?>
                 <a href="<?= base_url('admin/researchers/college') ?>" class="btn btn-light border shadow-sm d-flex align-items-center" title="Clear Filters">
@@ -23,9 +23,6 @@
                 </a>
             <?php endif; ?>
         </form>
-    </div>
-
-    <div>
         <button class="btn btn-outline-primary shadow-sm d-flex align-items-center px-3 py-2" onclick="window.print()">
             <i class="bi bi-printer me-2"></i> Print List
         </button>
@@ -92,6 +89,12 @@
                 <?php endif; ?>
             </tbody>
         </table>
+        
+        <?php if ($pager): ?>
+            <div class="d-flex justify-content-center mt-4">
+                <?= $pager->links('college', 'default_full') ?>
+            </div>
+        <?php endif; ?>
     </div>
 </div>
 <?= $this->endSection() ?>
