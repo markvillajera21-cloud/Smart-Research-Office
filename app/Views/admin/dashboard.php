@@ -107,12 +107,12 @@
                 <a href="<?= base_url('admin/users/create') ?>" class="btn btn-light text-primary fw-semibold py-3 text-start px-4">
                     <i class="bi bi-person-plus-fill me-2"></i> Add New Researcher
                 </a>
-                <button class="btn btn-primary border border-white fw-semibold py-3 text-start px-4">
+                <a href="<?= base_url('admin/projects/create') ?>" class="btn btn-primary border border-white fw-semibold py-3 text-start px-4">
                     <i class="bi bi-journal-plus me-2"></i> Create Project
-                </button>
-                <button class="btn btn-primary border border-white fw-semibold py-3 text-start px-4">
+                </a>
+                <a href="<?= base_url('admin/uploads') ?>" class="btn btn-primary border border-white fw-semibold py-3 text-start px-4">
                     <i class="bi bi-cloud-arrow-up me-2"></i> Upload Data
-                </button>
+                </a>
             </div>
             <div class="mt-auto pt-4">
                 <div class="p-3 rounded-3 bg-white bg-opacity-10">

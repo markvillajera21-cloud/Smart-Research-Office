@@ -38,6 +38,7 @@
 
                                 <form action="<?= base_url('admin/users/store') ?>" method="post">
                                     <?= csrf_field() ?>
+                                    <input type="hidden" name="redirect_to" value="<?= esc($redirectTo ?? old('redirect_to') ?? '') ?>">
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Username</label>
                                         <input type="text" class="form-control" id="username" name="username" value="<?= old('username') ?>" required>

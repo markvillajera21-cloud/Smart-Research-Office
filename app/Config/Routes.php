@@ -24,6 +24,12 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
     $routes->get('dashboard', 'Admin\Dashboard::index');
     $routes->get('audit-logs', 'Admin\Dashboard::auditLogs');
     $routes->get('history', 'Admin\History::index');
+    $routes->get('projects', 'Admin\Projects::index');
+    $routes->get('projects/create', 'Admin\Projects::create');
+    $routes->post('projects/store', 'Admin\Projects::store');
+    $routes->get('uploads', 'Admin\Uploads::index');
+    $routes->post('uploads/store', 'Admin\Uploads::store');
+    $routes->post('uploads/delete', 'Admin\Uploads::delete');
     
     // Research CRUD
     $routes->group('researchers', function ($routes) {

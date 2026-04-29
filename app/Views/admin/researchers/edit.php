@@ -67,8 +67,9 @@
                         <label class="form-label fw-medium">Strand/Degree Program</label>
                         <select name="strand_degree_program" class="form-select">
                             <option value="">Select...</option>
-                            <option value="Senior" <?= old('strand_degree_program', $researcher['strand_degree_program']) == 'Senior' ? 'selected' : '' ?>>Senior</option>
-                            <option value="Faculty" <?= old('strand_degree_program', $researcher['strand_degree_program']) == 'Faculty' ? 'selected' : '' ?>>Faculty</option>
+                            <option value="HUMSS" <?= old('strand_degree_program', $researcher['strand_degree_program']) === 'HUMSS' ? 'selected' : '' ?>>HUMSS</option>
+                            <option value="STEM" <?= old('strand_degree_program', $researcher['strand_degree_program']) === 'STEM' ? 'selected' : '' ?>>STEM</option>
+                            <option value="ABM" <?= old('strand_degree_program', $researcher['strand_degree_program']) === 'ABM' ? 'selected' : '' ?>>ABM</option>
                         </select>
                     </div>
 

@@ -24,7 +24,12 @@
                     <?= csrf_field() ?>
 
                     <div class="mb-3">
-                        <label class="form-label fw-medium">Select User Account</label>
+                        <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                            Select User Account
+                            <a class="btn btn-link p-0 text-decoration-none small" href="<?= base_url('admin/users/create?redirect=admin/researchers/create') ?>">
+                                <i class="bi bi-person-plus me-1"></i>Create User
+                            </a>
+                        </label>
                         <select name="user_id" class="form-select" required <?= $hasAvailableUsers ? '' : 'disabled' ?>>
                             <option value="">Choose a user...</option>
                             <?php foreach ($users as $user): ?>
@@ -36,6 +41,11 @@
                         <div class="form-text text-muted small">
                             Only users without an existing researcher profile are listed.
                         </div>
+                        <?php if (!$hasAvailableUsers): ?>
+                            <div class="alert alert-warning mt-3 mb-0">
+                                No available user accounts to assign. Create a new user first, then come back here.
+                            </div>
+                        <?php endif; ?>
                     </div>
 
                     <div class="mb-3">
@@ -46,7 +56,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label fw-medium">Institutional ID</label>
-                            <input type="text" name="institutional_id" class="form-control" value="<?= old('institutional_id', 'SRO-' . date('Y') . '-') ?>" required>
+                            <input type="text" name="institutional_id" class="form-control" value="<?= old('institutional_id', $suggestedInstitutionalId ?? ('SRO-' . date('Y') . '-0001')) ?>" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label fw-medium">School Year</label>
@@ -79,8 +89,9 @@
                         <label class="form-label fw-medium">Strand/Degree Program</label>
                         <select name="strand_degree_program" class="form-select">
                             <option value="">Select...</option>
-                            <option value="Senior" <?= old('strand_degree_program') == 'Senior' ? 'selected' : '' ?>>Senior</option>
-                            <option value="Faculty" <?= old('strand_degree_program') == 'Faculty' ? 'selected' : '' ?>>Faculty</option>
+                            <option value="HUMSS" <?= old('strand_degree_program') === 'HUMSS' ? 'selected' : '' ?>>HUMSS</option>
+                            <option value="STEM" <?= old('strand_degree_program') === 'STEM' ? 'selected' : '' ?>>STEM</option>
+                            <option value="ABM" <?= old('strand_degree_program') === 'ABM' ? 'selected' : '' ?>>ABM</option>
                         </select>
                     </div>
 

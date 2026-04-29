@@ -24,7 +24,8 @@ class Users extends BaseController
 
     public function create()
     {
-        return view('admin/users/create');
+        $redirectTo = $this->request->getGet('redirect');
+        return view('admin/users/create', ['redirectTo' => $redirectTo]);
     }
 
     public function store()
@@ -37,6 +38,14 @@ class Users extends BaseController
         ];
 
         if ($this->userModel->save($data)) {
+            $redirectTo = (string) $this->request->getPost('redirect_to');
+            $redirectTo = trim($redirectTo);
+
+            // Only allow safe internal redirects (e.g. "admin/researchers/create")
+            if ($redirectTo !== '' && preg_match('/\A[a-zA-Z0-9\/\-_]+\z/', $redirectTo) === 1) {
+                return redirect()->to('/' . ltrim($redirectTo, '/'))->with('success', 'User created successfully');
+            }
+
             return redirect()->to('/admin/users')->with('success', 'User created successfully');
         }
 

@@ -11,13 +11,19 @@
     
     <div class="d-flex gap-3">
         <form action="<?= base_url('admin/researchers/college') ?>" method="get" class="d-flex gap-2">
+            <select name="strand" class="form-select shadow-sm" style="width: 170px;">
+                <option value="">All Programs</option>
+                <option value="HUMSS" <?= ($strand ?? '') === 'HUMSS' ? 'selected' : '' ?>>HUMSS</option>
+                <option value="STEM" <?= ($strand ?? '') === 'STEM' ? 'selected' : '' ?>>STEM</option>
+                <option value="ABM" <?= ($strand ?? '') === 'ABM' ? 'selected' : '' ?>>ABM</option>
+            </select>
             <div class="input-group shadow-sm border rounded" style="width: 350px;">
                 <span class="input-group-text bg-white border-0">
                     <i class="bi bi-search text-muted"></i>
                 </span>
                 <input type="text" name="search" class="form-control border-0 ps-0" placeholder="Search..." value="<?= $search ?? '' ?>">
             </div>
-            <?php if ($search ?? ''): ?>
+            <?php if (($search ?? '') || ($strand ?? '')): ?>
                 <a href="<?= base_url('admin/researchers/college') ?>" class="btn btn-light border shadow-sm d-flex align-items-center" title="Clear Filters">
                     <i class="bi bi-x-lg"></i>
                 </a>

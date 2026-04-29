@@ -30,8 +30,13 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link <?= (url_is('admin/projects*') ? 'active' : '') ?>" href="<?= base_url('admin/projects') ?>">
             <i class="bi bi-journal-text"></i> Projects
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <?= (url_is('admin/uploads*') ? 'active' : '') ?>" href="<?= base_url('admin/uploads') ?>">
+            <i class="bi bi-cloud-arrow-up"></i> Upload Data
         </a>
     </li>
     <li class="nav-item">

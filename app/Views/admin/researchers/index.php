@@ -48,14 +48,15 @@
     <div class="table-responsive">
         <table class="table table-hover align-middle">
             <thead>
-                <tr>
-                        <th class="ps-4" style="width: 150px;">INSTITUTIONAL ID</th>
-                        <th>FULL NAME</th>
-                        <th>USERNAME</th>
-                        <th>CATEGORY</th>
-                        <th>EXPERTISE</th>
-                        <th>JOINED</th>
-                        <th class="text-end pe-4" style="width: 120px;">ACTIONS</th>
+                <tr class="text-uppercase text-muted small">
+                        <th class="ps-4 fw-semibold" style="width: 150px; white-space: nowrap;">Institutional ID</th>
+                        <th class="fw-semibold" style="min-width: 220px;">Approved Research Title</th>
+                        <th class="fw-semibold" style="min-width: 190px;">Strand/Degree Program</th>
+                        <th class="fw-semibold" style="white-space: nowrap;">Full Name</th>
+                        <th class="fw-semibold" style="white-space: nowrap;">Username</th>
+                        <th class="fw-semibold" style="white-space: nowrap;">Category</th>
+                        <th class="fw-semibold" style="white-space: nowrap;">Joined</th>
+                        <th class="text-end pe-4 fw-semibold" style="width: 120px; white-space: nowrap;">Actions</th>
                     </tr>
             </thead>
             <tbody>
@@ -64,6 +65,20 @@
                         <tr>
                             <td>
                                 <span class="badge bg-light text-dark border font-monospace"><?= $r['institutional_id'] ?></span>
+                            </td>
+                            <td>
+                                <div class="small text-muted" style="max-width: 280px;">
+                                    <?php if (!empty($r['approved_research_title'])): ?>
+                                        <?= (strlen($r['approved_research_title']) > 80) ? substr($r['approved_research_title'], 0, 80) . '...' : $r['approved_research_title'] ?>
+                                    <?php else: ?>
+                                        <span class="text-muted">N/A</span>
+                                    <?php endif; ?>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 small">
+                                    <?= $r['strand_degree_program'] ?? 'N/A' ?>
+                                </span>
                             </td>
                             <td>
                                 <div class="fw-bold small"><?= $r['fullname'] ?? '<span class="text-muted">N/A</span>' ?></div>
@@ -84,11 +99,6 @@
                                     <?= $r['category_name'] ?? 'Other' ?>
                                 </span>
                             </td>
-                            <td>
-                                <div class="small text-truncate" style="max-width: 200px;" title="<?= $r['expertise'] ?>">
-                                    <?= $r['expertise'] ?? '<span class="text-muted italic">Not specified</span>' ?>
-                                </div>
-                            </td>
                             <td class="small text-muted">
                                 <?= $r['joined_at'] ? date('M d, Y', strtotime($r['joined_at'])) : '-' ?>
                             </td>
@@ -102,7 +112,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="7" class="text-center py-5 text-muted">
+                        <td colspan="8" class="text-center py-5 text-muted">
                             <i class="bi bi-search fs-1 d-block mb-3"></i>
                             No researchers found matching your criteria.
                         </td>

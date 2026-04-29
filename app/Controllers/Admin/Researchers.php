@@ -65,19 +65,54 @@ class Researchers extends BaseController
             'title' => 'Add New Researcher',
             'page_title' => 'Assign Researcher Profile',
             'users' => $availableUsers,
-            'categories' => $this->categoryModel->orderBy('name', 'ASC')->findAll()
+            'categories' => $this->categoryModel->orderBy('name', 'ASC')->findAll(),
+            'suggestedInstitutionalId' => $this->generateNextInstitutionalId(),
         ];
 
         return view('admin/researchers/create', $data);
     }
 
+    private function generateNextInstitutionalId(): string
+    {
+        $year = date('Y');
+        $prefix = "SRO-{$year}-";
+
+        $last = $this->researcherModel
+            ->select('institutional_id')
+            ->like('institutional_id', $prefix, 'after')
+            ->orderBy('institutional_id', 'DESC')
+            ->first();
+
+        $lastNumber = 0;
+        if (is_array($last) && isset($last['institutional_id'])) {
+            if (preg_match('/\A' . preg_quote($prefix, '/') . '(\d{4})\z/', $last['institutional_id'], $m)) {
+                $lastNumber = (int) $m[1];
+            }
+        }
+
+        return $prefix . str_pad((string) ($lastNumber + 1), 4, '0', STR_PAD_LEFT);
+    }
+
     public function store()
     {
+        $institutionalId = (string) $this->request->getPost('institutional_id');
+        $institutionalId = trim($institutionalId);
+
+        // If user left the default prefix, generate a real unique ID.
+        if ($institutionalId === '' || preg_match('/\ASRO-\d{4}-\z/', $institutionalId) === 1) {
+            $institutionalId = $this->generateNextInstitutionalId();
+            // Ensure the validator sees the generated value.
+            $this->request->setGlobal('post', array_merge($this->request->getPost(), [
+                'institutional_id' => $institutionalId,
+            ]));
+        }
+
         $rules = [
             'user_id'          => 'required|is_unique[researchers.user_id]',
             'fullname'         => 'required|min_length[3]',
             'institutional_id' => 'required|is_unique[researchers.institutional_id]',
             'category_id'      => 'required',
+            'strand_degree_program' => 'permit_empty|in_list[HUMSS,STEM,ABM]',
             'joined_at'        => 'required|valid_date'
         ];
 
@@ -88,7 +123,7 @@ class Researchers extends BaseController
         $data = [
             'user_id'                   => $this->request->getPost('user_id'),
             'fullname'                  => $this->request->getPost('fullname'),
-            'institutional_id'          => $this->request->getPost('institutional_id'),
+            'institutional_id'          => $institutionalId,
             'school_year'               => $this->request->getPost('school_year'),
             'category_id'               => $this->request->getPost('category_id'),
             'expertise'                 => $this->request->getPost('expertise'),
@@ -136,6 +171,7 @@ class Researchers extends BaseController
             'fullname'         => 'required|min_length[3]',
             'institutional_id' => "required|is_unique[researchers.institutional_id,id,{$id}]",
             'category_id'      => 'required',
+            'strand_degree_program' => 'permit_empty|in_list[HUMSS,STEM,ABM]',
             'joined_at'        => 'required|valid_date'
         ];
 
@@ -200,11 +236,16 @@ class Researchers extends BaseController
     public function highSchool()
     {
         $search = $this->request->getGet('search');
+        $strand = $this->request->getGet('strand');
         
         $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name')
                                      ->join('users', 'users.id = researchers.user_id')
                                      ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
                                      ->where('research_categories.name', 'High School Department');
+
+        if ($strand && in_array($strand, ['HUMSS', 'STEM', 'ABM'], true)) {
+            $query->where('researchers.strand_degree_program', $strand);
+        }
 
         if ($search) {
             $query->groupStart()
@@ -224,7 +265,8 @@ class Researchers extends BaseController
             'researchers' => $researchers,
             'pager' => $pager,
             'categories' => $this->categoryModel->findAll(),
-            'search' => $search
+            'search' => $search,
+            'strand' => $strand
         ];
 
         return view('admin/researchers/high_school', $data);
@@ -233,11 +275,16 @@ class Researchers extends BaseController
     public function college()
     {
         $search = $this->request->getGet('search');
+        $strand = $this->request->getGet('strand');
         
         $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name')
                                      ->join('users', 'users.id = researchers.user_id')
                                      ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
                                      ->where('research_categories.name', 'College Department');
+
+        if ($strand && in_array($strand, ['HUMSS', 'STEM', 'ABM'], true)) {
+            $query->where('researchers.strand_degree_program', $strand);
+        }
 
         if ($search) {
             $query->groupStart()
@@ -257,7 +304,8 @@ class Researchers extends BaseController
             'researchers' => $researchers,
             'pager' => $pager,
             'categories' => $this->categoryModel->findAll(),
-            'search' => $search
+            'search' => $search,
+            'strand' => $strand
         ];
 
         return view('admin/researchers/college', $data);
