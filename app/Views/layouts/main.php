@@ -22,7 +22,6 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--main-bg);
             color: #1e293b;
         }
 
@@ -47,7 +46,6 @@
         }
 
         .nav-link:hover {
-            background-color: #f1f5f9;
             color: var(--primary-color);
         }
 

@@ -15,14 +15,20 @@ class ResearcherModel extends Model
     protected $allowedFields    = [
         'user_id', 
         'fullname',
-        'institutional_id', 
+        'surname',
+        'first_name',
+        'middle_initial',
+        'designation_id',
+        'school_year_id',
+        'strand_id',
         'category_id', 
         'expertise',
         'bio', 
         'joined_at',
         'approved_research_title',
         'strand_degree_program',
-        'school_year'
+        'school_year',
+        'status'
     ];
 
     protected $useTimestamps = true;

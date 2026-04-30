@@ -16,19 +16,15 @@
     </li>
     <li class="nav-item">
         <a class="nav-link <?= (url_is('admin/researchers') ? 'active' : '') ?>" href="<?= base_url('admin/researchers') ?>">
-            <i class="bi bi-people-fill"></i> Researchers List
+            <i class="bi bi-people-fill"></i> Research List
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link <?= (url_is('admin/researchers/high-school') ? 'active' : '') ?>" href="<?= base_url('admin/researchers/high-school') ?>">
-            <i class="bi bi-mortarboard"></i> High School Department
+        <a class="nav-link" href="<?= base_url('admin/researchers') ?>">
+            <i class="bi bi-arrow-repeat"></i> Update Status
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link <?= (url_is('admin/researchers/college') ? 'active' : '') ?>" href="<?= base_url('admin/researchers/college') ?>">
-            <i class="bi bi-building"></i> College Department
-        </a>
-    </li>
+
     <li class="nav-item">
         <a class="nav-link <?= (url_is('admin/projects*') ? 'active' : '') ?>" href="<?= base_url('admin/projects') ?>">
             <i class="bi bi-journal-text"></i> Projects

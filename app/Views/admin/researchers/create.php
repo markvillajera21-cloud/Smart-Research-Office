@@ -5,10 +5,9 @@
     <div class="col-md-8">
         <div class="card shadow-sm">
             <div class="card-header bg-white py-3">
-                <h5 class="mb-0 fw-bold">Assign Researcher Profile</h5>
+                <h5 class="mb-0 fw-bold">Create Researcher Profile</h5>
             </div>
             <div class="card-body p-4">
-                <?php $hasAvailableUsers = !empty($users); ?>
 
                 <?php if (session()->getFlashdata('errors')): ?>
                     <div class="alert alert-danger">
@@ -23,54 +22,65 @@
                 <form action="<?= base_url('admin/researchers/store') ?>" method="post">
                     <?= csrf_field() ?>
 
-                    <div class="mb-3">
-                        <label class="form-label fw-medium d-flex justify-content-between align-items-center">
-                            Select User Account
-                            <a class="btn btn-link p-0 text-decoration-none small" href="<?= base_url('admin/users/create?redirect=admin/researchers/create') ?>">
-                                <i class="bi bi-person-plus me-1"></i>Create User
-                            </a>
-                        </label>
-                        <select name="user_id" class="form-select" required <?= $hasAvailableUsers ? '' : 'disabled' ?>>
-                            <option value="">Choose a user...</option>
-                            <?php foreach ($users as $user): ?>
-                                <option value="<?= $user['id'] ?>" <?= old('user_id') == $user['id'] ? 'selected' : '' ?>>
-                                    <?= $user['username'] ?> (<?= $user['email'] ?>)
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                        <div class="form-text text-muted small">
-                            Only users without an existing researcher profile are listed.
-                        </div>
-                        <?php if (!$hasAvailableUsers): ?>
-                            <div class="alert alert-warning mt-3 mb-0">
-                                No available user accounts to assign. Create a new user first, then come back here.
-                            </div>
-                        <?php endif; ?>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-medium">Full Name</label>
-                        <input type="text" name="fullname" class="form-control" value="<?= old('fullname') ?>" placeholder="Enter researcher's full name" required>
-                    </div>
-
                     <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium">Institutional ID</label>
-                            <input type="text" name="institutional_id" class="form-control" value="<?= old('institutional_id', $suggestedInstitutionalId ?? ('SRO-' . date('Y') . '-0001')) ?>" required>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-medium">Surname</label>
+                            <input type="text" name="surname" class="form-control" value="<?= old('surname') ?>" placeholder="Enter surname" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium">School Year</label>
-                            <input type="text" name="school_year" class="form-control" value="<?= old('school_year') ?>" placeholder="e.g. 2023-2024">
+                            <label class="form-label fw-medium">First Name</label>
+                            <input type="text" name="first_name" class="form-control" value="<?= old('first_name') ?>" placeholder="Enter first name" required>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label class="form-label fw-medium">Middle Initial</label>
+                            <input type="text" name="middle_initial" class="form-control" value="<?= old('middle_initial') ?>" placeholder="e.g. A">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium d-flex justify-content-between">
+                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                                Designation
+                                <div class="d-flex gap-1">
+                                    <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addDesignationModal" title="Manage">
+                                        <i class="bi bi-gear text-primary"></i>
+                                    </button>
+                                </div>
+                            </label>
+                            <select name="designation_id" id="designation_id" class="form-select">
+                                <option value="">Select Designation</option>
+                                <?php foreach ($designations as $d): ?>
+                                    <option value="<?= $d['id'] ?>" <?= old('designation_id') == $d['id'] ? 'selected' : '' ?>><?= $d['name'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                                School Year
+                                <div class="d-flex gap-1">
+                                    <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addSchoolYearModal" title="Manage">
+                                        <i class="bi bi-gear text-primary"></i>
+                                    </button>
+                                </div>
+                            </label>
+                            <select name="school_year_id" id="school_year_id" class="form-select">
+                                <option value="">Select School Year</option>
+                                <?php foreach ($schoolYears as $sy): ?>
+                                    <option value="<?= $sy['id'] ?>" <?= old('school_year_id') == $sy['id'] ? 'selected' : '' ?>><?= $sy['name'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
                                 Category
-                                <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
-                                    <i class="bi bi-plus-circle me-1"></i>Add New
-                                </button>
+                                <div class="d-flex gap-1">
+                                    <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addCategoryModal" title="Manage">
+                                        <i class="bi bi-gear text-primary"></i>
+                                    </button>
+                                </div>
                             </label>
                             <select name="category_id" id="category_id" class="form-select" required>
                                 <option value="">Select Category</option>
@@ -80,24 +90,36 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium">Area of Expertise</label>
-                            <input type="text" name="expertise" class="form-control" value="<?= old('expertise') ?>" placeholder="e.g. Artificial Intelligence, Molecular Biology">
+                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                                Strand/Degree Program
+                                <div class="d-flex gap-1">
+                                    <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addStrandModal" title="Manage">
+                                        <i class="bi bi-gear text-primary"></i>
+                                    </button>
+                                </div>
+                            </label>
+                            <select name="strand_id" id="strand_id" class="form-select">
+                                <option value="">Select Strand</option>
+                                <?php foreach ($strands as $s): ?>
+                                    <option value="<?= $s['id'] ?>" <?= old('strand_id') == $s['id'] ? 'selected' : '' ?>><?= $s['name'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-medium">Strand/Degree Program</label>
-                        <select name="strand_degree_program" class="form-select">
-                            <option value="">Select...</option>
-                            <option value="HUMSS" <?= old('strand_degree_program') === 'HUMSS' ? 'selected' : '' ?>>HUMSS</option>
-                            <option value="STEM" <?= old('strand_degree_program') === 'STEM' ? 'selected' : '' ?>>STEM</option>
-                            <option value="ABM" <?= old('strand_degree_program') === 'ABM' ? 'selected' : '' ?>>ABM</option>
-                        </select>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label fw-medium">Approved Research Title</label>
                         <textarea name="approved_research_title" class="form-control" rows="3" placeholder="Enter the approved research title"><?= old('approved_research_title') ?></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-medium">Status</label>
+                        <select name="status" class="form-select">
+                            <option value="active" <?= old('status') === 'active' || old('status') === null ? 'selected' : '' ?>>Active</option>
+                            <option value="inactive" <?= old('status') === 'inactive' ? 'selected' : '' ?>>Inactive</option>
+                            <option value="on_leave" <?= old('status') === 'on_leave' ? 'selected' : '' ?>>On Leave</option>
+                            <option value="completed" <?= old('status') === 'completed' ? 'selected' : '' ?>>Completed</option>
+                        </select>
                     </div>
 
                     <div class="mb-3">
@@ -112,7 +134,7 @@
 
                     <div class="d-flex justify-content-end gap-2">
                         <a href="<?= base_url('admin/researchers') ?>" class="btn btn-light px-4">Cancel</a>
-                        <button type="submit" class="btn btn-primary px-4" <?= $hasAvailableUsers ? '' : 'disabled' ?>>Create Profile</button>
+                        <button type="submit" class="btn btn-primary px-4">Create Profile</button>
                     </div>
                 </form>
             </div>
@@ -120,41 +142,254 @@
     </div>
 </div>
 
-<!-- Add Category Modal -->
-<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+<!-- Designation Modal -->
+<div class="modal fade" id="addDesignationModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fw-bold">Add New Research Category</h5>
+                <h5 class="modal-title fw-bold">Manage Designations</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="designationError" class="alert alert-danger d-none"></div>
+                <div id="designationSuccess" class="alert alert-success d-none"></div>
+                
+                <!-- Add New -->
+                <div class="mb-4">
+                    <label class="form-label fw-medium">Add New</label>
+                    <div class="d-flex gap-2">
+                        <input type="text" id="newDesignationName" class="form-control" placeholder="e.g. Professor">
+                        <button type="button" id="saveDesignationBtn" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+                
+                <!-- List -->
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Existing</label>
+                    <div id="designationList" class="list-group">
+                        <?php foreach ($designations as $d): ?>
+                            <div class="list-group-item d-flex justify-content-between align-items-center" data-id="<?= $d['id'] ?>">
+                                <span class="designation-name"><?= $d['name'] ?></span>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-id="<?= $d['id'] ?>" data-name="<?= $d['name'] ?>">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="<?= $d['id'] ?>">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- School Year Modal -->
+<div class="modal fade" id="addSchoolYearModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Manage School Years</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="schoolYearError" class="alert alert-danger d-none"></div>
+                <div id="schoolYearSuccess" class="alert alert-success d-none"></div>
+                
+                <!-- Add New -->
+                <div class="mb-4">
+                    <label class="form-label fw-medium">Add New</label>
+                    <div class="d-flex gap-2">
+                        <input type="text" id="newSchoolYearName" class="form-control" placeholder="e.g. 2024-2025">
+                        <button type="button" id="saveSchoolYearBtn" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+                
+                <!-- List -->
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Existing</label>
+                    <div id="schoolYearList" class="list-group">
+                        <?php foreach ($schoolYears as $sy): ?>
+                            <div class="list-group-item d-flex justify-content-between align-items-center" data-id="<?= $sy['id'] ?>">
+                                <span class="schoolYear-name"><?= $sy['name'] ?></span>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-id="<?= $sy['id'] ?>" data-name="<?= $sy['name'] ?>">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="<?= $sy['id'] ?>">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Category Modal -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Manage Categories</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div id="categoryError" class="alert alert-danger d-none"></div>
+                <div id="categorySuccess" class="alert alert-success d-none"></div>
+                
+                <!-- Add New -->
+                <div class="mb-4">
+                    <label class="form-label fw-medium">Add New</label>
+                    <div class="d-flex gap-2">
+                        <input type="text" id="newCategoryName" class="form-control" placeholder="e.g. College Department">
+                        <button type="button" id="saveCategoryBtn" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+                
+                <!-- List -->
                 <div class="mb-3">
-                    <label class="form-label fw-medium">Category Name</label>
-                    <input type="text" id="newCategoryName" class="form-control" placeholder="e.g. Artificial Intelligence">
+                    <label class="form-label fw-medium">Existing</label>
+                    <div id="categoryList" class="list-group">
+                        <?php foreach ($categories as $cat): ?>
+                            <div class="list-group-item d-flex justify-content-between align-items-center" data-id="<?= $cat['id'] ?>">
+                                <span class="category-name"><?= $cat['name'] ?></span>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-id="<?= $cat['id'] ?>" data-name="<?= $cat['name'] ?>">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="<?= $cat['id'] ?>">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" id="saveCategoryBtn" class="btn btn-primary px-4">Save Category</button>
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Strand Modal -->
+<div class="modal fade" id="addStrandModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Manage Strand/Degree Programs</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="strandError" class="alert alert-danger d-none"></div>
+                <div id="strandSuccess" class="alert alert-success d-none"></div>
+                
+                <!-- Add New -->
+                <div class="mb-4">
+                    <label class="form-label fw-medium">Add New</label>
+                    <div class="d-flex gap-2">
+                        <input type="text" id="newStrandName" class="form-control" placeholder="e.g. STEM">
+                        <button type="button" id="saveStrandBtn" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+                
+                <!-- List -->
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Existing</label>
+                    <div id="strandList" class="list-group">
+                        <?php foreach ($strands as $s): ?>
+                            <div class="list-group-item d-flex justify-content-between align-items-center" data-id="<?= $s['id'] ?>">
+                                <span class="strand-name"><?= $s['name'] ?></span>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-id="<?= $s['id'] ?>" data-name="<?= $s['name'] ?>">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="<?= $s['id'] ?>">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
+document.getElementById('saveDesignationBtn').addEventListener('click', function() {
+    saveEntity('designation');
+});
+
+document.getElementById('saveSchoolYearBtn').addEventListener('click', function() {
+    saveEntity('schoolYear');
+});
+
 document.getElementById('saveCategoryBtn').addEventListener('click', function() {
-    const name = document.getElementById('newCategoryName').value;
-    const errorDiv = document.getElementById('categoryError');
+    saveEntity('category');
+});
+
+document.getElementById('saveStrandBtn').addEventListener('click', function() {
+    saveEntity('strand');
+});
+
+// Event delegation for edit/delete buttons
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.edit-btn')) {
+        const btn = e.target.closest('.edit-btn');
+        const id = btn.dataset.id;
+        const name = btn.dataset.name;
+        const type = getTypeFromBtn(btn);
+        editEntity(type, id, name);
+    }
+    
+    if (e.target.closest('.delete-btn')) {
+        const btn = e.target.closest('.delete-btn');
+        const id = btn.dataset.id;
+        const type = getTypeFromBtn(btn);
+        deleteEntity(type, id);
+    }
+});
+
+function getTypeFromBtn(btn) {
+    if (btn.closest('#designationList')) return 'designation';
+    if (btn.closest('#schoolYearList')) return 'schoolYear';
+    if (btn.closest('#categoryList')) return 'category';
+    if (btn.closest('#strandList')) return 'strand';
+}
+
+function saveEntity(type) {
+    const nameInput = document.getElementById('new' + type.charAt(0).toUpperCase() + type.slice(1) + 'Name');
+    const errorDiv = document.getElementById(type + 'Error');
+    const successDiv = document.getElementById(type + 'Success');
+    const name = nameInput.value;
     
     if (!name) {
-        errorDiv.textContent = 'Category name is required';
+        errorDiv.textContent = 'Name is required';
         errorDiv.classList.remove('d-none');
+        successDiv.classList.add('d-none');
         return;
     }
 
-    fetch('<?= base_url('admin/researchers/add-category') ?>', {
+    fetch('<?= base_url('admin/researchers/add-') ?>' + type, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -165,29 +400,134 @@ document.getElementById('saveCategoryBtn').addEventListener('click', function() 
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            // Add to dropdown
-            const select = document.getElementById('category_id');
+            const select = document.getElementById(type + '_id');
             const option = new Option(data.name, data.id);
             select.add(option);
             select.value = data.id;
             
-            // Close modal
-            const modal = bootstrap.Modal.getInstance(document.getElementById('addCategoryModal'));
-            modal.hide();
+            // Add to list
+            const list = document.getElementById(type + 'List');
+            const item = document.createElement('div');
+            item.className = 'list-group-item d-flex justify-content-between align-items-center';
+            item.dataset.id = data.id;
+            item.innerHTML = `
+                <span class="${type}-name">${data.name}</span>
+                <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-id="${data.id}" data-name="${data.name}">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="${data.id}">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            `;
+            list.appendChild(item);
             
-            // Clear input
-            document.getElementById('newCategoryName').value = '';
+            successDiv.textContent = 'Added successfully!';
+            successDiv.classList.remove('d-none');
             errorDiv.classList.add('d-none');
+            nameInput.value = '';
         } else {
-            errorDiv.textContent = data.error || 'Failed to save category';
+            errorDiv.textContent = data.error || 'Failed to save';
             errorDiv.classList.remove('d-none');
+            successDiv.classList.add('d-none');
         }
     })
     .catch(error => {
         console.error('Error:', error);
         errorDiv.textContent = 'An unexpected error occurred';
         errorDiv.classList.remove('d-none');
+        successDiv.classList.add('d-none');
     });
-});
+}
+
+function editEntity(type, id, currentName) {
+    const newName = prompt('Enter new name:', currentName);
+    if (!newName || newName.trim() === '') return;
+    
+    const errorDiv = document.getElementById(type + 'Error');
+    const successDiv = document.getElementById(type + 'Success');
+    
+    fetch('<?= base_url('admin/researchers/edit-') ?>' + type, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: 'id=' + id + '&name=' + encodeURIComponent(newName.trim()) + '&<?= csrf_token() ?>=<?= csrf_hash() ?>'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Update select
+            const select = document.getElementById(type + '_id');
+            const option = select.querySelector('option[value="' + id + '"]');
+            if (option) option.textContent = data.name;
+            
+            // Update list
+            const listItem = document.getElementById(type + 'List').querySelector('[data-id="' + id + '"]');
+            if (listItem) {
+                listItem.querySelector('.' + type + '-name').textContent = data.name;
+                listItem.querySelector('.edit-btn').dataset.name = data.name;
+            }
+            
+            successDiv.textContent = 'Updated successfully!';
+            successDiv.classList.remove('d-none');
+            errorDiv.classList.add('d-none');
+        } else {
+            errorDiv.textContent = data.error || 'Failed to update';
+            errorDiv.classList.remove('d-none');
+            successDiv.classList.add('d-none');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        errorDiv.textContent = 'An unexpected error occurred';
+        errorDiv.classList.remove('d-none');
+        successDiv.classList.add('d-none');
+    });
+}
+
+function deleteEntity(type, id) {
+    if (!confirm('Are you sure you want to delete this?')) return;
+    
+    const errorDiv = document.getElementById(type + 'Error');
+    const successDiv = document.getElementById(type + 'Success');
+    
+    fetch('<?= base_url('admin/researchers/delete-') ?>' + type + '/' + id, {
+        method: 'POST',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: '<?= csrf_token() ?>=<?= csrf_hash() ?>'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Remove from select
+            const select = document.getElementById(type + '_id');
+            const option = select.querySelector('option[value="' + id + '"]');
+            if (option) option.remove();
+            
+            // Remove from list
+            const listItem = document.getElementById(type + 'List').querySelector('[data-id="' + id + '"]');
+            if (listItem) listItem.remove();
+            
+            successDiv.textContent = 'Deleted successfully!';
+            successDiv.classList.remove('d-none');
+            errorDiv.classList.add('d-none');
+        } else {
+            errorDiv.textContent = data.error || 'Failed to delete';
+            errorDiv.classList.remove('d-none');
+            successDiv.classList.add('d-none');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        errorDiv.textContent = 'An unexpected error occurred';
+        errorDiv.classList.remove('d-none');
+        successDiv.classList.add('d-none');
+    });
+}
 </script>
 <?= $this->endSection() ?>

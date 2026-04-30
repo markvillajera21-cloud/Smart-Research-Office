@@ -40,8 +40,20 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
         $routes->post('store', 'Admin\Researchers::store');
         $routes->get('edit/(:num)', 'Admin\Researchers::edit/$1');
         $routes->post('update/(:num)', 'Admin\Researchers::update/$1');
+        $routes->post('update-status/(:num)', 'Admin\Researchers::updateStatus/$1');
         $routes->get('delete/(:num)', 'Admin\Researchers::delete/$1');
         $routes->post('add-category', 'Admin\Researchers::addCategory');
+        $routes->post('edit-category', 'Admin\Researchers::editCategory');
+        $routes->post('delete-category/(:num)', 'Admin\Researchers::deleteCategory/$1');
+        $routes->post('add-designation', 'Admin\Researchers::addDesignation');
+        $routes->post('edit-designation', 'Admin\Researchers::editDesignation');
+        $routes->post('delete-designation/(:num)', 'Admin\Researchers::deleteDesignation/$1');
+        $routes->post('add-schoolYear', 'Admin\Researchers::addSchoolYear');
+        $routes->post('edit-schoolYear', 'Admin\Researchers::editSchoolYear');
+        $routes->post('delete-schoolYear/(:num)', 'Admin\Researchers::deleteSchoolYear/$1');
+        $routes->post('add-strand', 'Admin\Researchers::addStrand');
+        $routes->post('edit-strand', 'Admin\Researchers::editStrand');
+        $routes->post('delete-strand/(:num)', 'Admin\Researchers::deleteStrand/$1');
     });
     
     // User Management CRUD
