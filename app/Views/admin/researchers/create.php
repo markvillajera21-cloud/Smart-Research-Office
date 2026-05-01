@@ -107,18 +107,119 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                                Course
+                                <div class="d-flex gap-1">
+                                    <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addCourseModal" title="Manage">
+                                        <i class="bi bi-gear text-primary"></i>
+                                    </button>
+                                </div>
+                            </label>
+                            <select name="course_id" id="course_id" class="form-select">
+                                <option value="">Select Course</option>
+                                <?php foreach ($courses as $c): ?>
+                                    <option value="<?= $c['id'] ?>" <?= old('course_id') == $c['id'] ? 'selected' : '' ?>><?= $c['name'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="mb-3">
                         <label class="form-label fw-medium">Approved Research Title</label>
                         <textarea name="approved_research_title" class="form-control" rows="3" placeholder="Enter the approved research title"><?= old('approved_research_title') ?></textarea>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-medium">Status</label>
-                        <select name="status" class="form-select">
-                            <option value="active" <?= old('status') === 'active' || old('status') === null ? 'selected' : '' ?>>Active</option>
-                            <option value="inactive" <?= old('status') === 'inactive' ? 'selected' : '' ?>>Inactive</option>
-                            <option value="on_leave" <?= old('status') === 'on_leave' ? 'selected' : '' ?>>On Leave</option>
-                            <option value="completed" <?= old('status') === 'completed' ? 'selected' : '' ?>>Completed</option>
+                        <label class="form-label fw-medium">Approved Date</label>
+                        <input type="date" name="approved_date" class="form-control" value="<?= old('approved_date') ?>">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                                Adviser
+                                <div class="d-flex gap-1">
+                                    <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addAdviserModal" title="Manage">
+                                        <i class="bi bi-gear text-primary"></i>
+                                    </button>
+                                </div>
+                            </label>
+                            <select name="adviser_id" id="adviser_id" class="form-select">
+                                <option value="">Select Adviser</option>
+                                <?php foreach ($advisers as $a): ?>
+                                    <option value="<?= $a['id'] ?>" <?= old('adviser_id') == $a['id'] ? 'selected' : '' ?>><?= $a['name'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                                Grammarian
+                                <div class="d-flex gap-1">
+                                    <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addGrammarianModal" title="Manage">
+                                        <i class="bi bi-gear text-primary"></i>
+                                    </button>
+                                </div>
+                            </label>
+                            <select name="grammarian_id" id="grammarian_id" class="form-select">
+                                <option value="">Select Grammarian</option>
+                                <?php foreach ($grammarians as $g): ?>
+                                    <option value="<?= $g['id'] ?>" <?= old('grammarian_id') == $g['id'] ? 'selected' : '' ?>><?= $g['name'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                                Remarks
+                                <div class="d-flex gap-1">
+                                    <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addRemarkModal" title="Manage">
+                                        <i class="bi bi-gear text-primary"></i>
+                                    </button>
+                                </div>
+                            </label>
+                            <select name="remark_id" id="remark_id" class="form-select">
+                                <option value="">Select Remarks</option>
+                                <?php foreach ($remarks as $r): ?>
+                                    <option value="<?= $r['id'] ?>" <?= old('remark_id') == $r['id'] ? 'selected' : '' ?>><?= $r['name'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                                Abstract
+                                <div class="d-flex gap-1">
+                                    <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addAbstractModal" title="Manage">
+                                        <i class="bi bi-gear text-primary"></i>
+                                    </button>
+                                </div>
+                            </label>
+                            <select name="abstract_id" id="abstract_id" class="form-select">
+                                <option value="">Select Abstract</option>
+                                <?php foreach ($abstracts as $ab): ?>
+                                    <option value="<?= $ab['id'] ?>" <?= old('abstract_id') == $ab['id'] ? 'selected' : '' ?>><?= $ab['name'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                            Status
+                            <div class="d-flex gap-1">
+                                <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addStatusModal" title="Manage">
+                                    <i class="bi bi-gear text-primary"></i>
+                                </button>
+                            </div>
+                        </label>
+                        <select name="status_id" id="status_id" class="form-select">
+                            <option value="">Select Status</option>
+                            <?php foreach ($statuses as $s): ?>
+                                <option value="<?= $s['id'] ?>" <?= old('status_id') == $s['id'] ? 'selected' : '' ?>><?= $s['name'] ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
 
@@ -158,7 +259,7 @@
                 <div class="mb-4">
                     <label class="form-label fw-medium">Add New</label>
                     <div class="d-flex gap-2">
-                        <input type="text" id="newDesignationName" class="form-control" placeholder="e.g. Professor">
+                        <input type="text" id="newDesignationName" class="form-control" placeholder="e.g. Teaching Personnel">
                         <button type="button" id="saveDesignationBtn" class="btn btn-primary">Add</button>
                     </div>
                 </div>
@@ -175,6 +276,54 @@
                                         <i class="bi bi-pencil"></i>
                                     </button>
                                     <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="<?= $d['id'] ?>">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Course Modal -->
+<div class="modal fade" id="addCourseModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Manage Courses</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="courseError" class="alert alert-danger d-none"></div>
+                <div id="courseSuccess" class="alert alert-success d-none"></div>
+                
+                <!-- Add New -->
+                <div class="mb-4">
+                    <label class="form-label fw-medium">Add New</label>
+                    <div class="d-flex gap-2">
+                        <input type="text" id="newCourseName" class="form-control" placeholder="e.g. Bachelor of Science in Information Technology">
+                        <button type="button" id="saveCourseBtn" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+                
+                <!-- List -->
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Existing</label>
+                    <div id="courseList" class="list-group">
+                        <?php foreach ($courses as $c): ?>
+                            <div class="list-group-item d-flex justify-content-between align-items-center" data-id="<?= $c['id'] ?>">
+                                <span class="course-name"><?= $c['name'] ?></span>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-id="<?= $c['id'] ?>" data-name="<?= $c['name'] ?>">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="<?= $c['id'] ?>">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </div>
@@ -334,9 +483,253 @@
     </div>
 </div>
 
+<!-- Status Modal -->
+<div class="modal fade" id="addStatusModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Manage Statuses</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="statusError" class="alert alert-danger d-none"></div>
+                <div id="statusSuccess" class="alert alert-success d-none"></div>
+                
+                <!-- Add New -->
+                <div class="mb-4">
+                    <label class="form-label fw-medium">Add New</label>
+                    <div class="d-flex gap-2">
+                        <input type="text" id="newStatusName" class="form-control" placeholder="e.g. Active">
+                        <button type="button" id="saveStatusBtn" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+                
+                <!-- List -->
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Existing</label>
+                    <div id="statusList" class="list-group">
+                        <?php foreach ($statuses as $s): ?>
+                            <div class="list-group-item d-flex justify-content-between align-items-center" data-id="<?= $s['id'] ?>">
+                                <span class="status-name"><?= $s['name'] ?></span>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-id="<?= $s['id'] ?>" data-name="<?= $s['name'] ?>">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="<?= $s['id'] ?>">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Adviser Modal -->
+<div class="modal fade" id="addAdviserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Manage Advisers</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="adviserError" class="alert alert-danger d-none"></div>
+                <div id="adviserSuccess" class="alert alert-success d-none"></div>
+                
+                <!-- Add New -->
+                <div class="mb-4">
+                    <label class="form-label fw-medium">Add New</label>
+                    <div class="d-flex gap-2">
+                        <input type="text" id="newAdviserName" class="form-control" placeholder="e.g. Dr. Smith">
+                        <button type="button" id="saveAdviserBtn" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+                
+                <!-- List -->
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Existing</label>
+                    <div id="adviserList" class="list-group">
+                        <?php foreach ($advisers as $a): ?>
+                            <div class="list-group-item d-flex justify-content-between align-items-center" data-id="<?= $a['id'] ?>">
+                                <span class="adviser-name"><?= $a['name'] ?></span>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-id="<?= $a['id'] ?>" data-name="<?= $a['name'] ?>">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="<?= $a['id'] ?>">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Grammarian Modal -->
+<div class="modal fade" id="addGrammarianModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Manage Grammarians</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="grammarianError" class="alert alert-danger d-none"></div>
+                <div id="grammarianSuccess" class="alert alert-success d-none"></div>
+                
+                <!-- Add New -->
+                <div class="mb-4">
+                    <label class="form-label fw-medium">Add New</label>
+                    <div class="d-flex gap-2">
+                        <input type="text" id="newGrammarianName" class="form-control" placeholder="e.g. Prof. Johnson">
+                        <button type="button" id="saveGrammarianBtn" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+                
+                <!-- List -->
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Existing</label>
+                    <div id="grammarianList" class="list-group">
+                        <?php foreach ($grammarians as $g): ?>
+                            <div class="list-group-item d-flex justify-content-between align-items-center" data-id="<?= $g['id'] ?>">
+                                <span class="grammarian-name"><?= $g['name'] ?></span>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-id="<?= $g['id'] ?>" data-name="<?= $g['name'] ?>">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="<?= $g['id'] ?>">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Remark Modal -->
+<div class="modal fade" id="addRemarkModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Manage Remarks</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="remarkError" class="alert alert-danger d-none"></div>
+                <div id="remarkSuccess" class="alert alert-success d-none"></div>
+                
+                <!-- Add New -->
+                <div class="mb-4">
+                    <label class="form-label fw-medium">Add New</label>
+                    <div class="d-flex gap-2">
+                        <input type="text" id="newRemarkName" class="form-control" placeholder="e.g. Excellent">
+                        <button type="button" id="saveRemarkBtn" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+                
+                <!-- List -->
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Existing</label>
+                    <div id="remarkList" class="list-group">
+                        <?php foreach ($remarks as $r): ?>
+                            <div class="list-group-item d-flex justify-content-between align-items-center" data-id="<?= $r['id'] ?>">
+                                <span class="remark-name"><?= $r['name'] ?></span>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-id="<?= $r['id'] ?>" data-name="<?= $r['name'] ?>">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="<?= $r['id'] ?>">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Abstract Modal -->
+<div class="modal fade" id="addAbstractModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Manage Abstracts</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="abstractError" class="alert alert-danger d-none"></div>
+                <div id="abstractSuccess" class="alert alert-success d-none"></div>
+                
+                <!-- Add New -->
+                <div class="mb-4">
+                    <label class="form-label fw-medium">Add New</label>
+                    <div class="d-flex gap-2">
+                        <input type="text" id="newAbstractName" class="form-control" placeholder="e.g. Complete">
+                        <button type="button" id="saveAbstractBtn" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+                
+                <!-- List -->
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Existing</label>
+                    <div id="abstractList" class="list-group">
+                        <?php foreach ($abstracts as $ab): ?>
+                            <div class="list-group-item d-flex justify-content-between align-items-center" data-id="<?= $ab['id'] ?>">
+                                <span class="abstract-name"><?= $ab['name'] ?></span>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-id="<?= $ab['id'] ?>" data-name="<?= $ab['name'] ?>">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="<?= $ab['id'] ?>">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 document.getElementById('saveDesignationBtn').addEventListener('click', function() {
     saveEntity('designation');
+});
+
+document.getElementById('saveCourseBtn').addEventListener('click', function() {
+    saveEntity('course');
 });
 
 document.getElementById('saveSchoolYearBtn').addEventListener('click', function() {
@@ -349,6 +742,26 @@ document.getElementById('saveCategoryBtn').addEventListener('click', function() 
 
 document.getElementById('saveStrandBtn').addEventListener('click', function() {
     saveEntity('strand');
+});
+
+document.getElementById('saveStatusBtn').addEventListener('click', function() {
+    saveEntity('status');
+});
+
+document.getElementById('saveAdviserBtn').addEventListener('click', function() {
+    saveEntity('adviser');
+});
+
+document.getElementById('saveGrammarianBtn').addEventListener('click', function() {
+    saveEntity('grammarian');
+});
+
+document.getElementById('saveRemarkBtn').addEventListener('click', function() {
+    saveEntity('remark');
+});
+
+document.getElementById('saveAbstractBtn').addEventListener('click', function() {
+    saveEntity('abstract');
 });
 
 // Event delegation for edit/delete buttons
@@ -371,9 +784,15 @@ document.addEventListener('click', function(e) {
 
 function getTypeFromBtn(btn) {
     if (btn.closest('#designationList')) return 'designation';
+    if (btn.closest('#courseList')) return 'course';
     if (btn.closest('#schoolYearList')) return 'schoolYear';
     if (btn.closest('#categoryList')) return 'category';
     if (btn.closest('#strandList')) return 'strand';
+    if (btn.closest('#statusList')) return 'status';
+    if (btn.closest('#adviserList')) return 'adviser';
+    if (btn.closest('#grammarianList')) return 'grammarian';
+    if (btn.closest('#remarkList')) return 'remark';
+    if (btn.closest('#abstractList')) return 'abstract';
 }
 
 function saveEntity(type) {

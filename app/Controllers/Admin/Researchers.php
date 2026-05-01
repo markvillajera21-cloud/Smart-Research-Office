@@ -8,6 +8,12 @@ use App\Models\ResearchCategoryModel;
 use App\Models\DesignationModel;
 use App\Models\SchoolYearModel;
 use App\Models\StrandModel;
+use App\Models\CourseModel;
+use App\Models\StatusModel;
+use App\Models\AdviserModel;
+use App\Models\GrammarianModel;
+use App\Models\RemarkModel;
+use App\Models\AbstractModel;
 
 class Researchers extends BaseController
 {
@@ -16,6 +22,12 @@ class Researchers extends BaseController
     protected $designationModel;
     protected $schoolYearModel;
     protected $strandModel;
+    protected $courseModel;
+    protected $statusModel;
+    protected $adviserModel;
+    protected $grammarianModel;
+    protected $remarkModel;
+    protected $abstractModel;
 
     public function __construct()
     {
@@ -24,6 +36,12 @@ class Researchers extends BaseController
         $this->designationModel = new DesignationModel();
         $this->schoolYearModel = new SchoolYearModel();
         $this->strandModel = new StrandModel();
+        $this->courseModel = new CourseModel();
+        $this->statusModel = new StatusModel();
+        $this->adviserModel = new AdviserModel();
+        $this->grammarianModel = new GrammarianModel();
+        $this->remarkModel = new RemarkModel();
+        $this->abstractModel = new AbstractModel();
     }
 
     public function index()
@@ -71,6 +89,12 @@ class Researchers extends BaseController
             'designations' => $this->designationModel->orderBy('name', 'ASC')->findAll(),
             'schoolYears' => $this->schoolYearModel->orderBy('name', 'ASC')->findAll(),
             'strands' => $this->strandModel->orderBy('name', 'ASC')->findAll(),
+            'courses' => $this->courseModel->orderBy('name', 'ASC')->findAll(),
+            'statuses' => $this->statusModel->orderBy('name', 'ASC')->findAll(),
+            'advisers' => $this->adviserModel->orderBy('name', 'ASC')->findAll(),
+            'grammarians' => $this->grammarianModel->orderBy('name', 'ASC')->findAll(),
+            'remarks' => $this->remarkModel->orderBy('name', 'ASC')->findAll(),
+            'abstracts' => $this->abstractModel->orderBy('name', 'ASC')->findAll(),
         ];
 
         return view('admin/researchers/create', $data);
@@ -107,8 +131,15 @@ class Researchers extends BaseController
             'designation_id'            => $this->request->getPost('designation_id') ?: null,
             'school_year_id'            => $this->request->getPost('school_year_id') ?: null,
             'strand_id'                 => $this->request->getPost('strand_id') ?: null,
+            'course_id'                 => $this->request->getPost('course_id') ?: null,
+            'status_id'                 => $this->request->getPost('status_id') ?: null,
+            'adviser_id'                => $this->request->getPost('adviser_id') ?: null,
+            'grammarian_id'             => $this->request->getPost('grammarian_id') ?: null,
+            'remark_id'                 => $this->request->getPost('remark_id') ?: null,
+            'abstract_id'               => $this->request->getPost('abstract_id') ?: null,
             'category_id'               => $this->request->getPost('category_id'),
             'approved_research_title'   => $this->request->getPost('approved_research_title'),
+            'approved_date'             => $this->request->getPost('approved_date') ?: null,
             'bio'                       => $this->request->getPost('bio'),
             'joined_at'                 => $this->request->getPost('joined_at'),
             'status'                    => $this->request->getPost('status') ?? 'active'
@@ -139,6 +170,12 @@ class Researchers extends BaseController
             'designations' => $this->designationModel->orderBy('name', 'ASC')->findAll(),
             'schoolYears' => $this->schoolYearModel->orderBy('name', 'ASC')->findAll(),
             'strands' => $this->strandModel->orderBy('name', 'ASC')->findAll(),
+            'courses' => $this->courseModel->orderBy('name', 'ASC')->findAll(),
+            'statuses' => $this->statusModel->orderBy('name', 'ASC')->findAll(),
+            'advisers' => $this->adviserModel->orderBy('name', 'ASC')->findAll(),
+            'grammarians' => $this->grammarianModel->orderBy('name', 'ASC')->findAll(),
+            'remarks' => $this->remarkModel->orderBy('name', 'ASC')->findAll(),
+            'abstracts' => $this->abstractModel->orderBy('name', 'ASC')->findAll(),
         ];
 
         return view('admin/researchers/edit', $data);
@@ -180,8 +217,15 @@ class Researchers extends BaseController
             'designation_id'            => $this->request->getPost('designation_id') ?: null,
             'school_year_id'            => $this->request->getPost('school_year_id') ?: null,
             'strand_id'                 => $this->request->getPost('strand_id') ?: null,
+            'course_id'                 => $this->request->getPost('course_id') ?: null,
+            'status_id'                 => $this->request->getPost('status_id') ?: null,
+            'adviser_id'                => $this->request->getPost('adviser_id') ?: null,
+            'grammarian_id'             => $this->request->getPost('grammarian_id') ?: null,
+            'remark_id'                 => $this->request->getPost('remark_id') ?: null,
+            'abstract_id'               => $this->request->getPost('abstract_id') ?: null,
             'category_id'               => $this->request->getPost('category_id'),
             'approved_research_title'   => $this->request->getPost('approved_research_title'),
+            'approved_date'             => $this->request->getPost('approved_date') ?: null,
             'bio'                       => $this->request->getPost('bio'),
             'joined_at'                 => $this->request->getPost('joined_at'),
             'status'                    => $this->request->getPost('status') ?? 'active'
@@ -252,6 +296,96 @@ class Researchers extends BaseController
     public function deleteStrand($id)
     {
         return $this->deleteEntity($this->strandModel, $id);
+    }
+
+    public function addCourse()
+    {
+        return $this->addEntity($this->courseModel);
+    }
+
+    public function editCourse()
+    {
+        return $this->editEntity($this->courseModel);
+    }
+
+    public function deleteCourse($id)
+    {
+        return $this->deleteEntity($this->courseModel, $id);
+    }
+
+    public function addStatus()
+    {
+        return $this->addEntity($this->statusModel);
+    }
+
+    public function editStatus()
+    {
+        return $this->editEntity($this->statusModel);
+    }
+
+    public function deleteStatus($id)
+    {
+        return $this->deleteEntity($this->statusModel, $id);
+    }
+
+    public function addAdviser()
+    {
+        return $this->addEntity($this->adviserModel);
+    }
+
+    public function editAdviser()
+    {
+        return $this->editEntity($this->adviserModel);
+    }
+
+    public function deleteAdviser($id)
+    {
+        return $this->deleteEntity($this->adviserModel, $id);
+    }
+
+    public function addGrammarian()
+    {
+        return $this->addEntity($this->grammarianModel);
+    }
+
+    public function editGrammarian()
+    {
+        return $this->editEntity($this->grammarianModel);
+    }
+
+    public function deleteGrammarian($id)
+    {
+        return $this->deleteEntity($this->grammarianModel, $id);
+    }
+
+    public function addRemark()
+    {
+        return $this->addEntity($this->remarkModel);
+    }
+
+    public function editRemark()
+    {
+        return $this->editEntity($this->remarkModel);
+    }
+
+    public function deleteRemark($id)
+    {
+        return $this->deleteEntity($this->remarkModel, $id);
+    }
+
+    public function addAbstract()
+    {
+        return $this->addEntity($this->abstractModel);
+    }
+
+    public function editAbstract()
+    {
+        return $this->editEntity($this->abstractModel);
+    }
+
+    public function deleteAbstract($id)
+    {
+        return $this->deleteEntity($this->abstractModel, $id);
     }
 
     private function addEntity($model)

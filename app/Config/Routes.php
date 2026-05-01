@@ -41,6 +41,7 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
         $routes->get('edit/(:num)', 'Admin\Researchers::edit/$1');
         $routes->post('update/(:num)', 'Admin\Researchers::update/$1');
         $routes->post('update-status/(:num)', 'Admin\Researchers::updateStatus/$1');
+
         $routes->get('delete/(:num)', 'Admin\Researchers::delete/$1');
         $routes->post('add-category', 'Admin\Researchers::addCategory');
         $routes->post('edit-category', 'Admin\Researchers::editCategory');
@@ -54,6 +55,9 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
         $routes->post('add-strand', 'Admin\Researchers::addStrand');
         $routes->post('edit-strand', 'Admin\Researchers::editStrand');
         $routes->post('delete-strand/(:num)', 'Admin\Researchers::deleteStrand/$1');
+        $routes->post('add-course', 'Admin\Researchers::addCourse');
+        $routes->post('edit-course', 'Admin\Researchers::editCourse');
+        $routes->post('delete-course/(:num)', 'Admin\Researchers::deleteCourse/$1');
     });
     
     // User Management CRUD
