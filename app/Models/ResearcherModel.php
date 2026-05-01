@@ -26,7 +26,7 @@ class ResearcherModel extends Model
         'adviser_id',
         'grammarian_id',
         'remark_id',
-        'abstract_id',
+        'abstract',
         'category_id', 
         'expertise',
         'bio', 

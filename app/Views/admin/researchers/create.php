@@ -24,22 +24,22 @@
 
                     <div class="row">
                         <div class="col-md-4 mb-3">
-                            <label class="form-label fw-medium">Surname</label>
+                            <label class="form-label">Surname</label>
                             <input type="text" name="surname" class="form-control" value="<?= old('surname') ?>" placeholder="Enter surname" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium">First Name</label>
+                            <label class="form-label">First Name</label>
                             <input type="text" name="first_name" class="form-control" value="<?= old('first_name') ?>" placeholder="Enter first name" required>
                         </div>
                         <div class="col-md-2 mb-3">
-                            <label class="form-label fw-medium">Middle Initial</label>
+                            <label class="form-label">Middle Initial</label>
                             <input type="text" name="middle_initial" class="form-control" value="<?= old('middle_initial') ?>" placeholder="e.g. A">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                            <label class="form-label d-flex justify-content-between align-items-center">
                                 Designation
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addDesignationModal" title="Manage">
@@ -55,7 +55,7 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                            <label class="form-label d-flex justify-content-between align-items-center">
                                 School Year
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addSchoolYearModal" title="Manage">
@@ -74,7 +74,7 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                            <label class="form-label d-flex justify-content-between align-items-center">
                                 Category
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addCategoryModal" title="Manage">
@@ -90,7 +90,7 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                            <label class="form-label d-flex justify-content-between align-items-center">
                                 Strand/Degree Program
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addStrandModal" title="Manage">
@@ -109,7 +109,7 @@
 
                     <div class="row">
                         <div class="col-md-12 mb-3">
-                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                            <label class="form-label d-flex justify-content-between align-items-center">
                                 Course
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addCourseModal" title="Manage">
@@ -127,18 +127,18 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-medium">Approved Research Title</label>
+                        <label class="form-label">Approved Research Title</label>
                         <textarea name="approved_research_title" class="form-control" rows="3" placeholder="Enter the approved research title"><?= old('approved_research_title') ?></textarea>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-medium">Approved Date</label>
+                        <label class="form-label">Approved Date</label>
                         <input type="date" name="approved_date" class="form-control" value="<?= old('approved_date') ?>">
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                            <label class="form-label d-flex justify-content-between align-items-center">
                                 Adviser
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addAdviserModal" title="Manage">
@@ -154,7 +154,7 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                            <label class="form-label d-flex justify-content-between align-items-center">
                                 Grammarian
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addGrammarianModal" title="Manage">
@@ -173,7 +173,7 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                            <label class="form-label d-flex justify-content-between align-items-center">
                                 Remarks
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addRemarkModal" title="Manage">
@@ -189,25 +189,13 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium d-flex justify-content-between align-items-center">
-                                Abstract
-                                <div class="d-flex gap-1">
-                                    <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addAbstractModal" title="Manage">
-                                        <i class="bi bi-gear text-primary"></i>
-                                    </button>
-                                </div>
-                            </label>
-                            <select name="abstract_id" id="abstract_id" class="form-select">
-                                <option value="">Select Abstract</option>
-                                <?php foreach ($abstracts as $ab): ?>
-                                    <option value="<?= $ab['id'] ?>" <?= old('abstract_id') == $ab['id'] ? 'selected' : '' ?>><?= $ab['name'] ?></option>
-                                <?php endforeach; ?>
-                            </select>
+                            <label class="form-label">Abstract</label>
+                            <textarea name="abstract" class="form-control" rows="3" placeholder="Enter the abstract"><?= old('abstract') ?></textarea>
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-medium d-flex justify-content-between align-items-center">
+                        <label class="form-label d-flex justify-content-between align-items-center">
                             Status
                             <div class="d-flex gap-1">
                                 <button type="button" class="btn btn-link p-0 text-decoration-none small" data-bs-toggle="modal" data-bs-target="#addStatusModal" title="Manage">
@@ -224,12 +212,12 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-medium">Joining Date</label>
+                        <label class="form-label">Joining Date</label>
                         <input type="date" name="joined_at" class="form-control" value="<?= old('joined_at', date('Y-m-d')) ?>" required>
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label fw-medium">Short Bio</label>
+                        <label class="form-label">Short Bio</label>
                         <textarea name="bio" class="form-control" rows="3"><?= old('bio') ?></textarea>
                     </div>
 

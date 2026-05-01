@@ -48,13 +48,18 @@ class Researchers extends BaseController
     {
         $categoryFilter = $this->request->getGet('category');
         $search = $this->request->getGet('search');
+        $sort = $this->request->getGet('sort');
         
-        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, designations.name as designation_name, school_years.name as school_year_name, strands.name as strand_name')
+        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, designations.name as designation_name, school_years.name as school_year_name, strands.name as strand_name, courses.name as course_name, advisers.name as adviser_name, grammarians.name as grammarian_name, remarks.name as remark_name')
                                      ->join('users', 'users.id = researchers.user_id', 'left')
                                      ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
                                      ->join('designations', 'designations.id = researchers.designation_id', 'left')
                                      ->join('school_years', 'school_years.id = researchers.school_year_id', 'left')
-                                     ->join('strands', 'strands.id = researchers.strand_id', 'left');
+                                     ->join('strands', 'strands.id = researchers.strand_id', 'left')
+                                     ->join('courses', 'courses.id = researchers.course_id', 'left')
+                                     ->join('advisers', 'advisers.id = researchers.adviser_id', 'left')
+                                     ->join('grammarians', 'grammarians.id = researchers.grammarian_id', 'left')
+                                     ->join('remarks', 'remarks.id = researchers.remark_id', 'left');
 
         if ($categoryFilter) {
             $query->where('researchers.category_id', $categoryFilter);
@@ -68,13 +73,73 @@ class Researchers extends BaseController
                   ->groupEnd();
         }
 
+        switch ($sort) {
+            case 'name':
+                $query->orderBy('researchers.fullname', 'ASC');
+                break;
+            case 'designation':
+                $query->orderBy('designation_name', 'ASC');
+                break;
+            case 'category':
+                $query->orderBy('category_name', 'ASC');
+                break;
+            case 'course':
+                $query->orderBy('course_name', 'ASC');
+                break;
+            case 'approved_title':
+                $query->orderBy('researchers.approved_research_title', 'ASC');
+                break;
+            case 'approved_date':
+                $query->orderBy('researchers.approved_date', 'ASC');
+                break;
+            case 'remarks':
+                $query->orderBy('researchers.remark_id', 'ASC');
+                break;
+            case 'abstract':
+                $query->orderBy('researchers.abstract', 'ASC');
+                break;
+            case 'status':
+                $query->orderBy('researchers.status', 'ASC');
+                break;
+            case 'joining_date':
+                $query->orderBy('researchers.joined_at', 'ASC');
+                break;
+            case 'bio':
+                $query->orderBy('researchers.bio', 'ASC');
+                break;
+            case 'department':
+                $query->orderBy('category_name', 'ASC');
+                break;
+            case 'adviser':
+                $query->orderBy('adviser_name', 'ASC');
+                break;
+            case 'grammarian':
+                $query->orderBy('grammarian_name', 'ASC');
+                break;
+            case 'degree':
+                $query->orderBy('strand_name', 'ASC');
+                break;
+            case 'school_year':
+                $query->orderBy('school_year_name', 'ASC');
+                break;
+            case 'date':
+                $query->orderBy('researchers.created_at', 'ASC');
+                break;
+            default:
+                $query->orderBy('researchers.created_at', 'DESC');
+        }
+
         $data = [
             'title' => 'Research Directory',
             'page_title' => 'Research List',
-            'researchers' => $query->orderBy('researchers.created_at', 'DESC')->findAll(),
+            'researchers' => $query->findAll(),
             'categories' => $this->categoryModel->findAll(),
+            'advisers' => $this->adviserModel->findAll(),
+            'grammarians' => $this->grammarianModel->findAll(),
+            'strands' => $this->strandModel->findAll(),
             'selectedCategory' => $categoryFilter,
-            'search' => $search
+            'search' => $search,
+            'sort' => $sort
         ];
 
         return view('admin/researchers/index', $data);
@@ -136,7 +201,7 @@ class Researchers extends BaseController
             'adviser_id'                => $this->request->getPost('adviser_id') ?: null,
             'grammarian_id'             => $this->request->getPost('grammarian_id') ?: null,
             'remark_id'                 => $this->request->getPost('remark_id') ?: null,
-            'abstract_id'               => $this->request->getPost('abstract_id') ?: null,
+            'abstract'                  => $this->request->getPost('abstract') ?: null,
             'category_id'               => $this->request->getPost('category_id'),
             'approved_research_title'   => $this->request->getPost('approved_research_title'),
             'approved_date'             => $this->request->getPost('approved_date') ?: null,
@@ -222,7 +287,7 @@ class Researchers extends BaseController
             'adviser_id'                => $this->request->getPost('adviser_id') ?: null,
             'grammarian_id'             => $this->request->getPost('grammarian_id') ?: null,
             'remark_id'                 => $this->request->getPost('remark_id') ?: null,
-            'abstract_id'               => $this->request->getPost('abstract_id') ?: null,
+            'abstract'                  => $this->request->getPost('abstract') ?: null,
             'category_id'               => $this->request->getPost('category_id'),
             'approved_research_title'   => $this->request->getPost('approved_research_title'),
             'approved_date'             => $this->request->getPost('approved_date') ?: null,

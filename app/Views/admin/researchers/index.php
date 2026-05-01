@@ -10,7 +10,7 @@
     </div>
     
     <div class="d-flex flex-grow-1 justify-content-center mx-3">
-        <form action="<?= base_url('admin/researchers') ?>" method="get" class="d-flex gap-2 w-100" style="max-width: 650px;">
+        <form action="<?= base_url('admin/researchers') ?>" method="get" class="d-flex gap-2 w-100" style="max-width: 850px;">
             <div class="input-group shadow-sm border rounded">
                 <span class="input-group-text bg-white border-0">
                     <i class="bi bi-search text-muted"></i>
@@ -23,7 +23,27 @@
                     <option value="<?= $cat['id'] ?>" <?= $selectedCategory == $cat['id'] ? 'selected' : '' ?>><?= $cat['name'] ?></option>
                 <?php endforeach; ?>
             </select>
-            <?php if ($selectedCategory || ($search ?? '')): ?>
+            <select name="sort" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 200px;">
+                <option value="">Sorting</option>
+                <option value="name" <?= ($sort ?? '') == 'name' ? 'selected' : '' ?>>Name</option>
+                <option value="designation" <?= ($sort ?? '') == 'designation' ? 'selected' : '' ?>>Designation</option>
+                <option value="category" <?= ($sort ?? '') == 'category' ? 'selected' : '' ?>>Category</option>
+                <option value="course" <?= ($sort ?? '') == 'course' ? 'selected' : '' ?>>Course</option>
+                <option value="approved_title" <?= ($sort ?? '') == 'approved_title' ? 'selected' : '' ?>>Approve Research Title</option>
+                <option value="approved_date" <?= ($sort ?? '') == 'approved_date' ? 'selected' : '' ?>>Approve Date</option>
+                <option value="remarks" <?= ($sort ?? '') == 'remarks' ? 'selected' : '' ?>>Remarks</option>
+                <option value="abstract" <?= ($sort ?? '') == 'abstract' ? 'selected' : '' ?>>Abstract</option>
+                <option value="status" <?= ($sort ?? '') == 'status' ? 'selected' : '' ?>>Status</option>
+                <option value="joining_date" <?= ($sort ?? '') == 'joining_date' ? 'selected' : '' ?>>Joining Date</option>
+                <option value="bio" <?= ($sort ?? '') == 'bio' ? 'selected' : '' ?>>Short Bio</option>
+                <option value="department" <?= ($sort ?? '') == 'department' ? 'selected' : '' ?>>Department</option>
+                <option value="adviser" <?= ($sort ?? '') == 'adviser' ? 'selected' : '' ?>>Adviser</option>
+                <option value="grammarian" <?= ($sort ?? '') == 'grammarian' ? 'selected' : '' ?>>Grammarian</option>
+                <option value="degree" <?= ($sort ?? '') == 'degree' ? 'selected' : '' ?>>Degree/Program</option>
+                <option value="school_year" <?= ($sort ?? '') == 'school_year' ? 'selected' : '' ?>>School Year</option>
+                <option value="date" <?= ($sort ?? '') == 'date' ? 'selected' : '' ?>>Date</option>
+            </select>
+            <?php if ($selectedCategory || ($search ?? '') || ($sort ?? '')): ?>
                 <a href="<?= base_url('admin/researchers') ?>" class="btn btn-light border shadow-sm d-flex align-items-center" title="Clear Filters">
                     <i class="bi bi-x-lg"></i>
                 </a>
@@ -52,8 +72,9 @@
                         <th class="fw-semibold" style="min-width: 220px;">Approved Research Title</th>
                         <th class="fw-semibold" style="min-width: 150px;">Strand/Degree Program</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Full Name</th>
+                        <th class="fw-semibold" style="white-space: nowrap;">User</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Category</th>
-                        <th class="text-end pe-4 fw-semibold" style="width: 120px; white-space: nowrap;">Remarks</th>
+                        <th class="text-end pe-4 fw-semibold" style="width: 120px; white-space: nowrap;">Actions</th>
                     </tr>
             </thead>
             <tbody>
@@ -111,8 +132,6 @@
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li><a class="dropdown-item" href="<?= base_url('admin/researchers/create') ?>"><i class="bi bi-plus-lg me-2"></i> Add</a></li>
                                             <li><hr class="dropdown-divider"></li>
-                                            <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#statusModal<?= $r['id'] ?>"><i class="bi bi-arrow-repeat me-2"></i> Update Status</button></li>
-                                            <li><hr class="dropdown-divider"></li>
                                             <li><a class="dropdown-item" href="<?= base_url('admin/researchers/edit/' . $r['id']) ?>"><i class="bi bi-pencil me-2"></i> Edit</a></li>
                                             <li><hr class="dropdown-divider"></li>
                                             <li><a class="dropdown-item text-danger" href="<?= base_url('admin/researchers/delete/' . $r['id']) ?>" onclick="return confirm('Are you sure you want to delete this research profile?')"><i class="bi bi-trash me-2"></i> Delete</a></li>
@@ -122,34 +141,7 @@
                             </td>
                         </tr>
 
-                        <!-- Status Update Modal -->
-                        <div class="modal fade" id="statusModal<?= $r['id'] ?>" tabindex="-1" aria-labelledby="statusModalLabel<?= $r['id'] ?>" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <form action="<?= base_url('admin/researchers/update-status/' . $r['id']) ?>" method="post">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="statusModalLabel<?= $r['id'] ?>">Update Status - <?= $r['fullname'] ?></h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <label for="status<?= $r['id'] ?>" class="form-label fw-semibold">Select New Status</label>
-                                                <select class="form-select" id="status<?= $r['id'] ?>" name="status" required>
-                                                    <option value="active" <?= ($r['status'] ?? 'active') === 'active' ? 'selected' : '' ?>>Active</option>
-                                                    <option value="inactive" <?= ($r['status'] ?? '') === 'inactive' ? 'selected' : '' ?>>Inactive</option>
-                                                    <option value="on_leave" <?= ($r['status'] ?? '') === 'on_leave' ? 'selected' : '' ?>>On Leave</option>
-                                                    <option value="completed" <?= ($r['status'] ?? '') === 'completed' ? 'selected' : '' ?>>Completed</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-primary">Update Status</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
@@ -163,4 +155,216 @@
         </table>
     </div>
 </div>
+
+<!-- Sorting Management Modal -->
+<div class="modal fade" id="sortingManagementModal" tabindex="-1" aria-labelledby="sortingManagementModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sortingManagementModalLabel">Manage Entities</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <h6 class="mb-3 fw-semibold">Departments / Categories</h6>
+                        <form action="<?= base_url('admin/researchers/add-category') ?>" method="post" class="mb-3">
+                            <div class="input-group">
+                                <input type="text" name="name" class="form-control" placeholder="e.g. Senior High" required>
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </div>
+                        </form>
+                        <ul class="list-group">
+                            <?php foreach ($categories as $cat): ?>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><?= $cat['name'] ?></span>
+                                    <div class="d-flex gap-1">
+                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editCategoryModal<?= $cat['id'] ?>">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                        <a href="<?= base_url('admin/researchers/delete-category/' . $cat['id']) ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="mb-3 fw-semibold">Advisers</h6>
+                        <form action="<?= base_url('admin/researchers/add-adviser') ?>" method="post" class="mb-3">
+                            <div class="input-group">
+                                <input type="text" name="name" class="form-control" placeholder="e.g. Dr. Smith" required>
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </div>
+                        </form>
+                        <ul class="list-group">
+                            <?php foreach ($advisers as $adv): ?>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><?= $adv['name'] ?></span>
+                                    <div class="d-flex gap-1">
+                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editAdviserModal<?= $adv['id'] ?>">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                        <a href="<?= base_url('admin/researchers/delete-adviser/' . $adv['id']) ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="mb-3 fw-semibold">Grammarians</h6>
+                        <form action="<?= base_url('admin/researchers/add-grammarian') ?>" method="post" class="mb-3">
+                            <div class="input-group">
+                                <input type="text" name="name" class="form-control" placeholder="e.g. Ms. Johnson" required>
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </div>
+                        </form>
+                        <ul class="list-group">
+                            <?php foreach ($grammarians as $gram): ?>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><?= $gram['name'] ?></span>
+                                    <div class="d-flex gap-1">
+                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editGrammarianModal<?= $gram['id'] ?>">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                        <a href="<?= base_url('admin/researchers/delete-grammarian/' . $gram['id']) ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="mb-3 fw-semibold">Strands / Degree Programs</h6>
+                        <form action="<?= base_url('admin/researchers/add-strand') ?>" method="post" class="mb-3">
+                            <div class="input-group">
+                                <input type="text" name="name" class="form-control" placeholder="e.g. STEM" required>
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </div>
+                        </form>
+                        <ul class="list-group">
+                            <?php foreach ($strands as $strand): ?>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><?= $strand['name'] ?></span>
+                                    <div class="d-flex gap-1">
+                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editStrandModal<?= $strand['id'] ?>">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                        <a href="<?= base_url('admin/researchers/delete-strand/' . $strand['id']) ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Category Modals -->
+<?php foreach ($categories as $cat): ?>
+<div class="modal fade" id="editCategoryModal<?= $cat['id'] ?>" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="<?= base_url('admin/researchers/edit-category') ?>" method="post">
+                <input type="hidden" name="id" value="<?= $cat['id'] ?>">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Department/Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" name="name" class="form-control" value="<?= $cat['name'] ?>" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php endforeach; ?>
+
+<!-- Edit Adviser Modals -->
+<?php foreach ($advisers as $adv): ?>
+<div class="modal fade" id="editAdviserModal<?= $adv['id'] ?>" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="<?= base_url('admin/researchers/edit-adviser') ?>" method="post">
+                <input type="hidden" name="id" value="<?= $adv['id'] ?>">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Adviser</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" name="name" class="form-control" value="<?= $adv['name'] ?>" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php endforeach; ?>
+
+<!-- Edit Grammarian Modals -->
+<?php foreach ($grammarians as $gram): ?>
+<div class="modal fade" id="editGrammarianModal<?= $gram['id'] ?>" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="<?= base_url('admin/researchers/edit-grammarian') ?>" method="post">
+                <input type="hidden" name="id" value="<?= $gram['id'] ?>">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Grammarian</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" name="name" class="form-control" value="<?= $gram['name'] ?>" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php endforeach; ?>
+
+<!-- Edit Strand Modals -->
+<?php foreach ($strands as $strand): ?>
+<div class="modal fade" id="editStrandModal<?= $strand['id'] ?>" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="<?= base_url('admin/researchers/edit-strand') ?>" method="post">
+                <input type="hidden" name="id" value="<?= $strand['id'] ?>">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Strand/Degree Program</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" name="name" class="form-control" value="<?= $strand['name'] ?>" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php endforeach; ?>
+
 <?= $this->endSection() ?>

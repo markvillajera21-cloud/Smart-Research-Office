@@ -94,6 +94,13 @@
             border-radius: 0.375rem;
             font-weight: 500;
         }
+
+        .form-label {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+            font-size: 0.925rem;
+        }
     </style>
 </head>
 <body>

@@ -58,6 +58,21 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
         $routes->post('add-course', 'Admin\Researchers::addCourse');
         $routes->post('edit-course', 'Admin\Researchers::editCourse');
         $routes->post('delete-course/(:num)', 'Admin\Researchers::deleteCourse/$1');
+        $routes->post('add-status', 'Admin\Researchers::addStatus');
+        $routes->post('edit-status', 'Admin\Researchers::editStatus');
+        $routes->post('delete-status/(:num)', 'Admin\Researchers::deleteStatus/$1');
+        $routes->post('add-adviser', 'Admin\Researchers::addAdviser');
+        $routes->post('edit-adviser', 'Admin\Researchers::editAdviser');
+        $routes->post('delete-adviser/(:num)', 'Admin\Researchers::deleteAdviser/$1');
+        $routes->post('add-grammarian', 'Admin\Researchers::addGrammarian');
+        $routes->post('edit-grammarian', 'Admin\Researchers::editGrammarian');
+        $routes->post('delete-grammarian/(:num)', 'Admin\Researchers::deleteGrammarian/$1');
+        $routes->post('add-remark', 'Admin\Researchers::addRemark');
+        $routes->post('edit-remark', 'Admin\Researchers::editRemark');
+        $routes->post('delete-remark/(:num)', 'Admin\Researchers::deleteRemark/$1');
+        $routes->post('add-abstract', 'Admin\Researchers::addAbstract');
+        $routes->post('edit-abstract', 'Admin\Researchers::editAbstract');
+        $routes->post('delete-abstract/(:num)', 'Admin\Researchers::deleteAbstract/$1');
     });
     
     // User Management CRUD
