@@ -13,6 +13,9 @@ class StatusesSeeder extends Seeder
             ['name' => 'Inactive'],
             ['name' => 'On Leave'],
             ['name' => 'Completed'],
+            ['name' => 'Title Defense'],
+            ['name' => 'Pre Oral Defense'],
+            ['name' => 'Final Defense'],
         ];
 
         $this->db->table('statuses')->insertBatch($data);

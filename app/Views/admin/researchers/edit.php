@@ -33,13 +33,17 @@
                             <label class="form-label">Surname</label>
                             <input type="text" name="surname" class="form-control" value="<?= old('surname', $researcher['surname']) ?>" placeholder="Enter surname" required>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-4 mb-3">
                             <label class="form-label">First Name</label>
                             <input type="text" name="first_name" class="form-control" value="<?= old('first_name', $researcher['first_name']) ?>" placeholder="Enter first name" required>
                         </div>
                         <div class="col-md-2 mb-3">
                             <label class="form-label">Middle Initial</label>
                             <input type="text" name="middle_initial" class="form-control" value="<?= old('middle_initial', $researcher['middle_initial']) ?>" placeholder="e.g. A">
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label class="form-label">Ext Name</label>
+                            <input type="text" name="ext_name" class="form-control" value="<?= old('ext_name', $researcher['ext_name']) ?>" placeholder="e.g. Jr., Sr., III">
                         </div>
                     </div>
 

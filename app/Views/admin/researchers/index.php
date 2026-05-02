@@ -72,7 +72,6 @@
                         <th class="fw-semibold" style="min-width: 220px;">Approved Research Title</th>
                         <th class="fw-semibold" style="min-width: 150px;">Strand/Degree Program</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Full Name</th>
-                        <th class="fw-semibold" style="white-space: nowrap;">User</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Category</th>
                         <th class="text-end pe-4 fw-semibold" style="width: 120px; white-space: nowrap;">Actions</th>
                     </tr>
@@ -97,26 +96,6 @@
                             </td>
                             <td>
                                 <div class="fw-bold small"><?= $r['fullname'] ?? '<span class="text-muted">N/A</span>' ?></div>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center gap-2">
-                                    <?php if (!empty($r['username'])): ?>
-                                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; font-size: 0.8rem;">
-                                            <?= strtoupper(substr($r['username'], 0, 1)) ?>
-                                        </div>
-                                        <div>
-                                            <div class="small text-muted"><?= $r['username'] ?></div>
-                                            <div class="text-muted small" style="font-size: 0.7rem;"><?= $r['email'] ?></div>
-                                        </div>
-                                    <?php else: ?>
-                                        <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; font-size: 0.8rem;">
-                                            <i class="bi bi-person"></i>
-                                        </div>
-                                        <div>
-                                            <div class="small text-muted">No user</div>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
                             </td>
                             <td>
                                 <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 small">
@@ -145,7 +124,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="6" class="text-center py-5 text-muted">
+                        <td colspan="5" class="text-center py-5 text-muted">
                             <i class="bi bi-search fs-1 d-block mb-3"></i>
                             No researchers found matching your criteria.
                         </td>

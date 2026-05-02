@@ -181,10 +181,14 @@ class Researchers extends BaseController
         $surname = $this->request->getPost('surname');
         $firstName = $this->request->getPost('first_name');
         $middleInitial = $this->request->getPost('middle_initial');
+        $extName = $this->request->getPost('ext_name');
         
         $fullnameParts = [$surname, $firstName];
         if ($middleInitial) {
             $fullnameParts[] = $middleInitial . '.';
+        }
+        if ($extName) {
+            $fullnameParts[] = $extName;
         }
         $fullname = implode(' ', $fullnameParts);
 
@@ -193,6 +197,7 @@ class Researchers extends BaseController
             'surname'                   => $surname,
             'first_name'                => $firstName,
             'middle_initial'            => $middleInitial,
+            'ext_name'                  => $extName,
             'designation_id'            => $this->request->getPost('designation_id') ?: null,
             'school_year_id'            => $this->request->getPost('school_year_id') ?: null,
             'strand_id'                 => $this->request->getPost('strand_id') ?: null,
@@ -267,10 +272,14 @@ class Researchers extends BaseController
         $surname = $this->request->getPost('surname');
         $firstName = $this->request->getPost('first_name');
         $middleInitial = $this->request->getPost('middle_initial');
+        $extName = $this->request->getPost('ext_name');
         
         $fullnameParts = [$surname, $firstName];
         if ($middleInitial) {
             $fullnameParts[] = $middleInitial . '.';
+        }
+        if ($extName) {
+            $fullnameParts[] = $extName;
         }
         $fullname = implode(' ', $fullnameParts);
 
@@ -279,6 +288,7 @@ class Researchers extends BaseController
             'surname'                   => $surname,
             'first_name'                => $firstName,
             'middle_initial'            => $middleInitial,
+            'ext_name'                  => $extName,
             'designation_id'            => $this->request->getPost('designation_id') ?: null,
             'school_year_id'            => $this->request->getPost('school_year_id') ?: null,
             'strand_id'                 => $this->request->getPost('strand_id') ?: null,
@@ -625,6 +635,55 @@ class Researchers extends BaseController
 
         if ($this->researcherModel->update($id, ['status' => $status])) {
             return redirect()->to('admin/researchers')->with('success', 'Status updated successfully.');
+        }
+
+        return redirect()->back()->with('error', 'Failed to update status.');
+    }
+
+    public function updateStatusPage()
+    {
+        $categoryFilter = $this->request->getGet('category');
+        $search = $this->request->getGet('search');
+        
+        $query = $this->researcherModel->select('researchers.*, research_categories.name as category_name, statuses.name as status_name')
+                                     ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
+                                     ->join('statuses', 'statuses.id = researchers.status_id', 'left');
+
+        if ($categoryFilter) {
+            $query->where('researchers.category_id', $categoryFilter);
+        }
+
+        if ($search) {
+            $query->groupStart()
+                  ->like('researchers.fullname', $search)
+                  ->orLike('researchers.approved_research_title', $search)
+                  ->groupEnd();
+        }
+
+        $data = [
+            'title' => 'Update Status',
+            'page_title' => 'Update Researcher Status',
+            'researchers' => $query->orderBy('researchers.fullname', 'ASC')->findAll(),
+            'categories' => $this->categoryModel->findAll(),
+            'statuses' => $this->statusModel->findAll(),
+            'selectedCategory' => $categoryFilter,
+            'search' => $search
+        ];
+
+        return view('admin/researchers/update_status', $data);
+    }
+
+    public function saveStatus($id)
+    {
+        $researcher = $this->researcherModel->find($id);
+        if (!$researcher) {
+            return redirect()->to('admin/researchers/update-status')->with('error', 'Researcher not found.');
+        }
+
+        $statusId = $this->request->getPost('status_id');
+
+        if ($this->researcherModel->update($id, ['status_id' => $statusId])) {
+            return redirect()->to('admin/researchers/update-status')->with('success', 'Status updated successfully.');
         }
 
         return redirect()->back()->with('error', 'Failed to update status.');

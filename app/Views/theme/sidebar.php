@@ -20,14 +20,8 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('admin/researchers') ?>">
+        <a class="nav-link <?= (url_is('admin/researchers/update-status') ? 'active' : '') ?>" href="<?= base_url('admin/researchers/update-status') ?>">
             <i class="bi bi-arrow-repeat"></i> Update Status
-        </a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link <?= (url_is('admin/projects*') ? 'active' : '') ?>" href="<?= base_url('admin/projects') ?>">
-            <i class="bi bi-journal-text"></i> Projects
         </a>
     </li>
     <li class="nav-item">
@@ -35,31 +29,7 @@
             <i class="bi bi-cloud-arrow-up"></i> Upload Data
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link <?= (url_is('admin/audit-logs') ? 'active' : '') ?>" href="<?= base_url('admin/audit-logs') ?>">
-            <i class="bi bi-shield-check"></i> Audit Trail
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link <?= (url_is('admin/history*') ? 'active' : '') ?>" href="<?= base_url('admin/history') ?>">
-            <i class="bi bi-mortarboard-fill"></i> Researchers History
-        </a>
-    </li>
     <?php endif; ?>
-
-    <li class="nav-item">
-        <div class="px-4 py-2 mt-3 mb-1 text-uppercase text-muted fw-bold small" style="letter-spacing: 0.1em;">Personal</div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="bi bi-file-earmark-bar-graph"></i> My Reports
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="bi bi-bell"></i> Notifications
-        </a>
-    </li>
 </ul>
 
 <div class="nav-item mt-auto border-top p-4">

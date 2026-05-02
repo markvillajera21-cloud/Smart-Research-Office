@@ -41,6 +41,8 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
         $routes->get('edit/(:num)', 'Admin\Researchers::edit/$1');
         $routes->post('update/(:num)', 'Admin\Researchers::update/$1');
         $routes->post('update-status/(:num)', 'Admin\Researchers::updateStatus/$1');
+        $routes->get('update-status', 'Admin\Researchers::updateStatusPage');
+        $routes->post('save-status/(:num)', 'Admin\Researchers::saveStatus/$1');
 
         $routes->get('delete/(:num)', 'Admin\Researchers::delete/$1');
         $routes->post('add-category', 'Admin\Researchers::addCategory');

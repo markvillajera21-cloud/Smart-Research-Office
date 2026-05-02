@@ -18,6 +18,7 @@ class ResearcherModel extends Model
         'surname',
         'first_name',
         'middle_initial',
+        'ext_name',
         'designation_id',
         'school_year_id',
         'strand_id',
