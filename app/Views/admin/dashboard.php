@@ -10,7 +10,7 @@
                 </div>
                 <div>
                     <h6 class="text-muted mb-1">Total Users</h6>
-                    <h4 class="mb-0">12</h4>
+                    <h4 class="mb-0"><?= $totalUsers ?></h4>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
                 </div>
                 <div>
                     <h6 class="text-muted mb-1">Active Projects</h6>
-                    <h4 class="mb-0">8</h4>
+                    <h4 class="mb-0"><?= $activeProjects ?></h4>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                 </div>
                 <div>
                     <h6 class="text-muted mb-1">Pending Reviews</h6>
-                    <h4 class="mb-0">5</h4>
+                    <h4 class="mb-0"><?= $pendingReviews ?></h4>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
                 </div>
                 <div>
                     <h6 class="text-muted mb-1">System Health</h6>
-                    <h4 class="mb-0">98%</h4>
+                    <h4 class="mb-0"><?= $systemHealth ?>%</h4>
                 </div>
             </div>
         </div>
@@ -106,9 +106,6 @@
             <div class="d-grid gap-3">
                 <a href="<?= base_url('admin/users/create') ?>" class="btn btn-light text-primary fw-semibold py-3 text-start px-4">
                     <i class="bi bi-person-plus-fill me-2"></i> Add New Researcher
-                </a>
-                <a href="<?= base_url('admin/projects/create') ?>" class="btn btn-primary border border-white fw-semibold py-3 text-start px-4">
-                    <i class="bi bi-journal-plus me-2"></i> Create Project
                 </a>
                 <a href="<?= base_url('admin/uploads') ?>" class="btn btn-primary border border-white fw-semibold py-3 text-start px-4">
                     <i class="bi bi-cloud-arrow-up me-2"></i> Upload Data

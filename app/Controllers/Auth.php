@@ -87,4 +87,101 @@ class Auth extends BaseController
         session()->destroy();
         return redirect()->to('/login');
     }
+
+    public function forgotPassword()
+    {
+        if (session()->get('isLoggedIn')) {
+            return $this->redirectDashboard();
+        }
+        return view('auth/forgot_password');
+    }
+
+    public function doForgotPassword()
+    {
+        $userModel = new User();
+        $email = $this->request->getPost('email');
+
+        $user = $userModel->where('email', $email)->first();
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'No account found with that email address.');
+        }
+
+        $db = \Config\Database::connect();
+        $token = bin2hex(random_bytes(32));
+
+        $db->table('password_resets')->where('email', $email)->delete();
+
+        $db->table('password_resets')->insert([
+            'email' => $email,
+            'token' => $token,
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
+
+        $resetLink = base_url('reset-password/' . $token);
+
+        AuditLogModel::log('PASSWORD_RESET_REQUEST', 'users', $user['id'], ['email' => $email]);
+
+        return redirect()->to('/forgot-password')->with('success', 'Password reset link has been generated! ' . $resetLink);
+    }
+
+    public function resetPassword($token)
+    {
+        if (session()->get('isLoggedIn')) {
+            return $this->redirectDashboard();
+        }
+
+        $db = \Config\Database::connect();
+        $reset = $db->table('password_resets')->where('token', $token)->first();
+
+        if (!$reset) {
+            return redirect()->to('/forgot-password')->with('error', 'Invalid or expired password reset token.');
+        }
+
+        $expires = strtotime($reset->created_at . ' + 1 hour');
+        if (time() > $expires) {
+            $db->table('password_resets')->where('token', $token)->delete();
+            return redirect()->to('/forgot-password')->with('error', 'Password reset token has expired.');
+        }
+
+        return view('auth/reset_password', ['token' => $token]);
+    }
+
+    public function doResetPassword()
+    {
+        $userModel = new User();
+        $db = \Config\Database::connect();
+
+        $token = $this->request->getPost('token');
+        $password = $this->request->getPost('password');
+        $confirmPassword = $this->request->getPost('confirm_password');
+
+        $reset = $db->table('password_resets')->where('token', $token)->first();
+
+        if (!$reset) {
+            return redirect()->to('/forgot-password')->with('error', 'Invalid or expired password reset token.');
+        }
+
+        if ($password !== $confirmPassword) {
+            return redirect()->back()->with('error', 'Passwords do not match.');
+        }
+
+        if (strlen($password) < 6) {
+            return redirect()->back()->with('error', 'Password must be at least 6 characters.');
+        }
+
+        $user = $userModel->where('email', $reset->email)->first();
+
+        if (!$user) {
+            return redirect()->to('/forgot-password')->with('error', 'No account found.');
+        }
+
+        $userModel->update($user['id'], ['password' => $password]);
+
+        $db->table('password_resets')->where('token', $token)->delete();
+
+        AuditLogModel::log('PASSWORD_RESET', 'users', $user['id'], ['email' => $reset->email]);
+
+        return redirect()->to('/login')->with('success', 'Password has been reset successfully! Please login.');
+    }
 }

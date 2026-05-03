@@ -47,6 +47,8 @@ class Researchers extends BaseController
     public function index()
     {
         $categoryFilter = $this->request->getGet('category');
+        $schoolYearFilter = $this->request->getGet('school_year');
+        $strandFilter = $this->request->getGet('strand');
         $search = $this->request->getGet('search');
         $sort = $this->request->getGet('sort');
         
@@ -63,6 +65,14 @@ class Researchers extends BaseController
 
         if ($categoryFilter) {
             $query->where('researchers.category_id', $categoryFilter);
+        }
+
+        if ($schoolYearFilter) {
+            $query->where('researchers.school_year_id', $schoolYearFilter);
+        }
+
+        if ($strandFilter) {
+            $query->where('researchers.strand_id', $strandFilter);
         }
 
         if ($search) {
@@ -134,10 +144,13 @@ class Researchers extends BaseController
             'page_title' => 'Research List',
             'researchers' => $query->findAll(),
             'categories' => $this->categoryModel->findAll(),
+            'schoolYears' => $this->schoolYearModel->findAll(),
             'advisers' => $this->adviserModel->findAll(),
             'grammarians' => $this->grammarianModel->findAll(),
             'strands' => $this->strandModel->findAll(),
             'selectedCategory' => $categoryFilter,
+            'selectedSchoolYear' => $schoolYearFilter,
+            'selectedStrand' => $strandFilter,
             'search' => $search,
             'sort' => $sort
         ];
@@ -192,6 +205,15 @@ class Researchers extends BaseController
         }
         $fullname = implode(' ', $fullnameParts);
 
+        $strandId = $this->request->getPost('strand_id');
+        $strandName = null;
+        if ($strandId) {
+            $strand = $this->strandModel->find($strandId);
+            if ($strand) {
+                $strandName = $strand['name'];
+            }
+        }
+
         $data = [
             'fullname'                  => $fullname,
             'surname'                   => $surname,
@@ -200,7 +222,8 @@ class Researchers extends BaseController
             'ext_name'                  => $extName,
             'designation_id'            => $this->request->getPost('designation_id') ?: null,
             'school_year_id'            => $this->request->getPost('school_year_id') ?: null,
-            'strand_id'                 => $this->request->getPost('strand_id') ?: null,
+            'strand_id'                 => $strandId ?: null,
+            'strand_degree_program'     => $strandName,
             'course_id'                 => $this->request->getPost('course_id') ?: null,
             'status_id'                 => $this->request->getPost('status_id') ?: null,
             'adviser_id'                => $this->request->getPost('adviser_id') ?: null,
@@ -283,6 +306,15 @@ class Researchers extends BaseController
         }
         $fullname = implode(' ', $fullnameParts);
 
+        $strandId = $this->request->getPost('strand_id');
+        $strandName = null;
+        if ($strandId) {
+            $strand = $this->strandModel->find($strandId);
+            if ($strand) {
+                $strandName = $strand['name'];
+            }
+        }
+
         $data = [
             'fullname'                  => $fullname,
             'surname'                   => $surname,
@@ -291,7 +323,8 @@ class Researchers extends BaseController
             'ext_name'                  => $extName,
             'designation_id'            => $this->request->getPost('designation_id') ?: null,
             'school_year_id'            => $this->request->getPost('school_year_id') ?: null,
-            'strand_id'                 => $this->request->getPost('strand_id') ?: null,
+            'strand_id'                 => $strandId ?: null,
+            'strand_degree_program'     => $strandName,
             'course_id'                 => $this->request->getPost('course_id') ?: null,
             'status_id'                 => $this->request->getPost('status_id') ?: null,
             'adviser_id'                => $this->request->getPost('adviser_id') ?: null,

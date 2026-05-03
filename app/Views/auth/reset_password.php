@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Smart Research Office</title>
+    <title>Reset Password - Smart Research Office</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -93,8 +93,8 @@
         
         <div class="login-body">
             <div class="mb-4">
-                <h4 class="fw-bold text-dark mb-1">Welcome Back</h4>
-                <p class="text-muted small">Enter your credentials to access your office.</p>
+                <h4 class="fw-bold text-dark mb-1">Set New Password</h4>
+                <p class="text-muted small">Enter your new password below.</p>
             </div>
 
             <?php if (session()->getFlashdata('error')): ?>
@@ -103,28 +103,12 @@
                 </div>
             <?php endif; ?>
 
-            <?php if (session()->getFlashdata('success')): ?>
-                <div class="alert alert-success border-0 small mb-4">
-                    <i class="bi bi-check-circle me-2"></i> <?= session()->getFlashdata('success') ?>
-                </div>
-            <?php endif; ?>
-
-            <form action="<?= base_url('login') ?>" method="post">
+            <form action="<?= base_url('reset-password') ?>" method="post">
                 <?= csrf_field() ?>
+                <input type="hidden" name="token" value="<?= $token ?>">
+                
                 <div class="mb-3">
-                    <label class="form-label small fw-semibold text-muted">Email Address</label>
-                    <div class="input-group">
-                        <input type="email" name="email" id="email" class="form-control has-toggle" placeholder="name@company.com" required>
-                        <span class="input-group-text" onclick="clearInput('email')">
-                            <i class="bi bi-x-circle"></i>
-                        </span>
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <div class="d-flex justify-content-between">
-                        <label class="form-label small fw-semibold text-muted">Password</label>
-                        <a href="<?= base_url('forgot-password') ?>" class="small text-decoration-none">Forgot?</a>
-                    </div>
+                    <label class="form-label small fw-semibold text-muted">New Password</label>
                     <div class="input-group">
                         <input type="password" name="password" id="password" class="form-control has-toggle" placeholder="••••••••" required>
                         <span class="input-group-text" onclick="togglePassword('password', this)">
@@ -132,12 +116,24 @@
                         </span>
                     </div>
                 </div>
+                
+                <div class="mb-4">
+                    <label class="form-label small fw-semibold text-muted">Confirm Password</label>
+                    <div class="input-group">
+                        <input type="password" name="confirm_password" id="confirm_password" class="form-control has-toggle" placeholder="••••••••" required>
+                        <span class="input-group-text" onclick="togglePassword('confirm_password', this)">
+                            <i class="bi bi-eye"></i>
+                        </span>
+                    </div>
+                </div>
+                
                 <div class="d-grid mb-4">
-                    <button type="submit" class="btn btn-primary shadow-sm">Sign In</button>
+                    <button type="submit" class="btn btn-primary shadow-sm">Reset Password</button>
                 </div>
                 <div class="text-center">
-                    <span class="text-muted small">New to SRO?</span>
-                    <a href="<?= base_url('register') ?>" class="small text-decoration-none fw-semibold">Create Account</a>
+                    <a href="<?= base_url('login') ?>" class="small text-decoration-none">
+                        <i class="bi bi-arrow-left me-1"></i> Back to Login
+                    </a>
                 </div>
             </form>
         </div>
@@ -155,11 +151,6 @@
                 input.type = 'password';
                 icon.classList.replace('bi-eye-slash', 'bi-eye');
             }
-        }
-
-        function clearInput(inputId) {
-            document.getElementById(inputId).value = '';
-            document.getElementById(inputId).focus();
         }
     </script>
 </body>

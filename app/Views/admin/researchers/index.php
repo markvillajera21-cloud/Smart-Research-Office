@@ -10,20 +10,32 @@
     </div>
     
     <div class="d-flex flex-grow-1 justify-content-center mx-3">
-        <form action="<?= base_url('admin/researchers') ?>" method="get" class="d-flex gap-2 w-100" style="max-width: 850px;">
+        <form action="<?= base_url('admin/researchers') ?>" method="get" class="d-flex gap-2 w-100" style="max-width: 1100px;">
             <div class="input-group shadow-sm border rounded">
                 <span class="input-group-text bg-white border-0">
                     <i class="bi bi-search text-muted"></i>
                 </span>
                 <input type="text" name="search" class="form-control border-0 ps-0" placeholder="Search by name, ID, or expertise..." value="<?= $search ?? '' ?>">
             </div>
-            <select name="category" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 220px;">
-                <option value="">All Categories</option>
-                <?php foreach ($categories as $cat): ?>
-                    <option value="<?= $cat['id'] ?>" <?= $selectedCategory == $cat['id'] ? 'selected' : '' ?>><?= $cat['name'] ?></option>
+            <select name="school_year" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 180px;">
+                <option value="">School Year</option>
+                <?php foreach ($schoolYears as $sy): ?>
+                    <option value="<?= $sy['id'] ?>" <?= ($selectedSchoolYear ?? '') == $sy['id'] ? 'selected' : '' ?>><?= $sy['name'] ?></option>
                 <?php endforeach; ?>
             </select>
-            <select name="sort" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 200px;">
+            <select name="category" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 180px;">
+                <option value="">Department</option>
+                <?php foreach ($categories as $cat): ?>
+                    <option value="<?= $cat['id'] ?>" <?= ($selectedCategory ?? '') == $cat['id'] ? 'selected' : '' ?>><?= $cat['name'] ?></option>
+                <?php endforeach; ?>
+            </select>
+            <select name="strand" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 220px;">
+                <option value="">Program/Career Pathways</option>
+                <?php foreach ($strands as $s): ?>
+                    <option value="<?= $s['id'] ?>" <?= ($selectedStrand ?? '') == $s['id'] ? 'selected' : '' ?>><?= $s['name'] ?></option>
+                <?php endforeach; ?>
+            </select>
+            <select name="sort" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 180px;">
                 <option value="">Sorting</option>
                 <option value="name" <?= ($sort ?? '') == 'name' ? 'selected' : '' ?>>Name</option>
                 <option value="designation" <?= ($sort ?? '') == 'designation' ? 'selected' : '' ?>>Designation</option>
@@ -39,22 +51,16 @@
                 <option value="department" <?= ($sort ?? '') == 'department' ? 'selected' : '' ?>>Department</option>
                 <option value="adviser" <?= ($sort ?? '') == 'adviser' ? 'selected' : '' ?>>Adviser</option>
                 <option value="grammarian" <?= ($sort ?? '') == 'grammarian' ? 'selected' : '' ?>>Grammarian</option>
-                <option value="degree" <?= ($sort ?? '') == 'degree' ? 'selected' : '' ?>>Degree/Program</option>
+                <option value="degree" <?= ($sort ?? '') == 'degree' ? 'selected' : '' ?>>Program/Career Pathways</option>
                 <option value="school_year" <?= ($sort ?? '') == 'school_year' ? 'selected' : '' ?>>School Year</option>
                 <option value="date" <?= ($sort ?? '') == 'date' ? 'selected' : '' ?>>Date</option>
             </select>
-            <?php if ($selectedCategory || ($search ?? '') || ($sort ?? '')): ?>
+            <?php if ($selectedCategory || ($selectedSchoolYear ?? '') || ($selectedStrand ?? '') || ($search ?? '') || ($sort ?? '')): ?>
                 <a href="<?= base_url('admin/researchers') ?>" class="btn btn-light border shadow-sm d-flex align-items-center" title="Clear Filters">
                     <i class="bi bi-x-lg"></i>
                 </a>
             <?php endif; ?>
         </form>
-    </div>
-
-    <div>
-        <button class="btn btn-outline-primary shadow-sm d-flex align-items-center px-3 py-2" onclick="window.print()">
-            <i class="bi bi-printer me-2"></i> Print List
-        </button>
     </div>
 </div>
 
@@ -70,10 +76,11 @@
             <thead>
                 <tr class="text-uppercase text-muted small">
                         <th class="fw-semibold" style="min-width: 220px;">Approved Research Title</th>
-                        <th class="fw-semibold" style="min-width: 150px;">Strand/Degree Program</th>
+                        <th class="fw-semibold" style="min-width: 150px;">Program/Career Pathways</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Full Name</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Category</th>
-                        <th class="text-end pe-4 fw-semibold" style="width: 120px; white-space: nowrap;">Actions</th>
+                        <th class="fw-semibold" style="white-space: nowrap;">Current Status</th>
+                        <th class="text-end fw-semibold" style="width: 120px; white-space: nowrap;">Remarks</th>
                     </tr>
             </thead>
             <tbody>
@@ -91,7 +98,7 @@
                             </td>
                             <td>
                                 <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 small">
-                                    <?= $r['strand_degree_program'] ?? 'N/A' ?>
+                                    <?= $r['strand_name'] ?? $r['strand_degree_program'] ?? 'N/A' ?>
                                 </span>
                             </td>
                             <td>
@@ -103,19 +110,22 @@
                                 </span>
                             </td>
                             <td>
-                                <div class="d-flex justify-content-end">
-                                    <div class="dropdown">
-                                        <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="bi bi-three-dots-vertical"></i>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-end">
-                                            <li><a class="dropdown-item" href="<?= base_url('admin/researchers/create') ?>"><i class="bi bi-plus-lg me-2"></i> Add</a></li>
-                                            <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item" href="<?= base_url('admin/researchers/edit/' . $r['id']) ?>"><i class="bi bi-pencil me-2"></i> Edit</a></li>
-                                            <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item text-danger" href="<?= base_url('admin/researchers/delete/' . $r['id']) ?>" onclick="return confirm('Are you sure you want to delete this research profile?')"><i class="bi bi-trash me-2"></i> Delete</a></li>
-                                        </ul>
-                                    </div>
+                                <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 small">
+                                    <?= $r['status_name'] ?? 'Not Set' ?>
+                                </span>
+                            </td>
+                            <td class="text-end">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" href="<?= base_url('admin/researchers/create') ?>"><i class="bi bi-plus-lg me-2"></i> Add</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="<?= base_url('admin/researchers/edit/' . $r['id']) ?>"><i class="bi bi-pencil me-2"></i> Edit</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item text-danger" href="<?= base_url('admin/researchers/delete/' . $r['id']) ?>" onclick="return confirm('Are you sure you want to delete this research profile?')"><i class="bi bi-trash me-2"></i> Delete</a></li>
+                                    </ul>
                                 </div>
                             </td>
                         </tr>
@@ -124,7 +134,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="5" class="text-center py-5 text-muted">
+                        <td colspan="6" class="text-center py-5 text-muted">
                             <i class="bi bi-search fs-1 d-block mb-3"></i>
                             No researchers found matching your criteria.
                         </td>
@@ -132,6 +142,11 @@
                 <?php endif; ?>
             </tbody>
         </table>
+    </div>
+    <div class="mt-4 d-flex justify-content-end">
+        <button class="btn btn-outline-primary shadow-sm d-flex align-items-center px-3 py-2" onclick="window.print()">
+            <i class="bi bi-printer me-2"></i> Print List
+        </button>
     </div>
 </div>
 
@@ -218,7 +233,7 @@
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <h6 class="mb-3 fw-semibold">Strands / Degree Programs</h6>
+                        <h6 class="mb-3 fw-semibold">Program/Career Pathways</h6>
                         <form action="<?= base_url('admin/researchers/add-strand') ?>" method="post" class="mb-3">
                             <div class="input-group">
                                 <input type="text" name="name" class="form-control" placeholder="e.g. STEM" required>
@@ -330,7 +345,7 @@
             <form action="<?= base_url('admin/researchers/edit-strand') ?>" method="post">
                 <input type="hidden" name="id" value="<?= $strand['id'] ?>">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Strand/Degree Program</h5>
+                    <h5 class="modal-title">Edit Program/Career Pathways</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">

@@ -13,6 +13,10 @@ $routes->post('login', 'Auth::doLogin');
 $routes->get('register', 'Auth::register');
 $routes->post('register', 'Auth::doRegister');
 $routes->get('logout', 'Auth::logout');
+$routes->get('forgot-password', 'Auth::forgotPassword');
+$routes->post('forgot-password', 'Auth::doForgotPassword');
+$routes->get('reset-password/(:any)', 'Auth::resetPassword/$1');
+$routes->post('reset-password', 'Auth::doResetPassword');
 
 // User Dashboard
 $routes->group('user', ['filter' => 'auth'], function($routes) {
