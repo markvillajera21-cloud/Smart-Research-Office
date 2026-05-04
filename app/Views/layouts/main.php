@@ -131,8 +131,8 @@
                                     <span class="d-none d-sm-inline fw-medium"><?= session()->get('username') ?></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-3">
-                                    <li><a class="dropdown-item py-2" href="#"><i class="bi bi-person me-2"></i> Profile</a></li>
-                                    <li><a class="dropdown-item py-2" href="#"><i class="bi bi-gear me-2"></i> Settings</a></li>
+                                    <li><a class="dropdown-item py-2" href="<?= base_url(session()->get('role') === 'admin' ? 'admin/profile' : 'user/profile') ?>"><i class="bi bi-person me-2"></i> Profile</a></li>
+                                    <li><a class="dropdown-item py-2" href="<?= base_url(session()->get('role') === 'admin' ? 'admin/settings' : 'user/settings') ?>"><i class="bi bi-gear me-2"></i> Settings</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item py-2 text-danger" href="<?= base_url('logout') ?>"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
                                 </ul>

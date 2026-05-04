@@ -100,6 +100,8 @@ class Auth extends BaseController
     {
         $userModel = new User();
         $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+        $confirmPassword = $this->request->getPost('confirm_password');
 
         $user = $userModel->where('email', $email)->first();
 
@@ -107,22 +109,19 @@ class Auth extends BaseController
             return redirect()->back()->with('error', 'No account found with that email address.');
         }
 
-        $db = \Config\Database::connect();
-        $token = bin2hex(random_bytes(32));
+        if ($password !== $confirmPassword) {
+            return redirect()->back()->with('error', 'Passwords do not match.');
+        }
 
-        $db->table('password_resets')->where('email', $email)->delete();
+        if (strlen($password) < 6) {
+            return redirect()->back()->with('error', 'Password must be at least 6 characters.');
+        }
 
-        $db->table('password_resets')->insert([
-            'email' => $email,
-            'token' => $token,
-            'created_at' => date('Y-m-d H:i:s')
-        ]);
+        $userModel->update($user['id'], ['password' => $password]);
 
-        $resetLink = base_url('reset-password/' . $token);
+        AuditLogModel::log('PASSWORD_RESET', 'users', $user['id'], ['email' => $email]);
 
-        AuditLogModel::log('PASSWORD_RESET_REQUEST', 'users', $user['id'], ['email' => $email]);
-
-        return redirect()->to('/forgot-password')->with('success', 'Password reset link has been generated! ' . $resetLink);
+        return redirect()->to('/login')->with('success', 'Password has been reset successfully! Please login.');
     }
 
     public function resetPassword($token)

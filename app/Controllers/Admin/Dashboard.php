@@ -48,4 +48,35 @@ class Dashboard extends BaseController
         ];
         return view('admin/audit_logs', $data);
     }
+
+    public function profile()
+    {
+        $userModel = new User();
+        $userId = session()->get('user_id');
+        $user = $userModel->find($userId);
+        
+        $session = session();
+        $session->remove('error');
+
+        $data = [
+            'title' => 'Profile',
+            'page_title' => 'My Profile',
+            'user' => $user
+        ];
+        
+        return view('admin/profile', $data);
+    }
+
+    public function settings()
+    {
+        $session = session();
+        $session->remove('error');
+
+        $data = [
+            'title' => 'Settings',
+            'page_title' => 'Settings'
+        ];
+        
+        return view('admin/settings', $data);
+    }
 }

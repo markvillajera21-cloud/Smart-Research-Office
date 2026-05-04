@@ -51,7 +51,7 @@
                         <th>FULL NAME</th>
                         <th style="width: 150px;">SCHOOL YEAR</th>
                         <th>JOINED</th>
-                        <th class="text-end pe-4" style="width: 120px;">ACTIONS</th>
+                        <th class="text-end pe-4" style="width: 120px;">Remarks</th>
                     </tr>
             </thead>
             <tbody>
@@ -77,10 +77,17 @@
                             <td class="small text-muted">
                                 <?= $r['joined_at'] ? date('M d, Y', strtotime($r['joined_at'])) : '-' ?>
                             </td>
-                            <td>
-                                <div class="btn-group btn-group-sm">
-                                    <a href="<?= base_url('admin/researchers/edit/' . $r['id']) ?>" class="btn btn-outline-secondary"><i class="bi bi-pencil"></i></a>
-                                    <a href="<?= base_url('admin/researchers/delete/' . $r['id']) ?>" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete this researcher profile?')"><i class="bi bi-trash"></i></a>
+                            <td class="text-end">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" href="<?= base_url('admin/researchers/create') ?>"><i class="bi bi-plus-lg me-2"></i> Add</a></li>
+                                        <li><a class="dropdown-item" href="<?= base_url('admin/researchers/edit/' . $r['id']) ?>"><i class="bi bi-pencil me-2"></i> Edit</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item text-danger" href="<?= base_url('admin/researchers/delete/' . $r['id']) ?>" onclick="return confirm('Are you sure you want to delete this researcher profile?')"><i class="bi bi-trash me-2"></i> Delete</a></li>
+                                    </ul>
                                 </div>
                             </td>
                         </tr>

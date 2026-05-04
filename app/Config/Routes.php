@@ -21,11 +21,15 @@ $routes->post('reset-password', 'Auth::doResetPassword');
 // User Dashboard
 $routes->group('user', ['filter' => 'auth'], function($routes) {
     $routes->get('dashboard', 'User\Dashboard::index');
+    $routes->get('profile', 'User\Dashboard::profile');
+    $routes->get('settings', 'User\Dashboard::settings');
 });
 
 // Admin Dashboard
 $routes->group('admin', ['filter' => 'admin'], function ($routes) {
     $routes->get('dashboard', 'Admin\Dashboard::index');
+    $routes->get('profile', 'Admin\Dashboard::profile');
+    $routes->get('settings', 'Admin\Dashboard::settings');
     $routes->get('audit-logs', 'Admin\Dashboard::auditLogs');
     $routes->get('history', 'Admin\History::index');
     $routes->get('projects', 'Admin\Projects::index');

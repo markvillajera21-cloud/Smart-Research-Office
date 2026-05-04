@@ -132,8 +132,8 @@
                     <p class="text-muted small"><?= session()->get('email') ?></p>
                 </div>
                 <div class="d-grid gap-2">
-                    <button class="btn btn-light btn-sm text-start"><i class="bi bi-pencil-square me-2"></i> Edit Profile</button>
-                    <button class="btn btn-light btn-sm text-start"><i class="bi bi-shield-lock me-2"></i> Account Security</button>
+                    <a href="<?= base_url('user/profile') ?>" class="btn btn-light btn-sm text-start"><i class="bi bi-pencil-square me-2"></i> Edit Profile</a>
+                    <a href="<?= base_url('user/settings') ?>" class="btn btn-light btn-sm text-start"><i class="bi bi-shield-lock me-2"></i> Account Settings</a>
                 </div>
             </div>
         </div>

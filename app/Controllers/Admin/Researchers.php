@@ -583,9 +583,10 @@ class Researchers extends BaseController
         $search = $this->request->getGet('search');
         $strand = $this->request->getGet('strand');
         
-        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name')
+        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, remarks.name as remark_name')
                                      ->join('users', 'users.id = researchers.user_id', 'left')
                                      ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
+                                     ->join('remarks', 'remarks.id = researchers.remark_id', 'left')
                                      ->where('research_categories.name', 'High School Department');
 
         if ($strand && in_array($strand, ['HUMSS', 'STEM', 'ABM'], true)) {
@@ -621,9 +622,10 @@ class Researchers extends BaseController
         $search = $this->request->getGet('search');
         $strand = $this->request->getGet('strand');
         
-        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name')
+        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, remarks.name as remark_name')
                                      ->join('users', 'users.id = researchers.user_id', 'left')
                                      ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
+                                     ->join('remarks', 'remarks.id = researchers.remark_id', 'left')
                                      ->where('research_categories.name', 'College Department');
 
         if ($strand && in_array($strand, ['HUMSS', 'STEM', 'ABM'], true)) {

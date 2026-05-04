@@ -93,8 +93,8 @@
         
         <div class="login-body">
             <div class="mb-4">
-                <h4 class="fw-bold text-dark mb-1">Reset Password</h4>
-                <p class="text-muted small">Enter your email to receive a password reset link.</p>
+                <h4 class="fw-bold text-dark mb-1">Forgot Password</h4>
+                <p class="text-muted small">Enter your email and new password below.</p>
             </div>
 
             <?php if (session()->getFlashdata('error')): ?>
@@ -111,7 +111,7 @@
 
             <form action="<?= base_url('forgot-password') ?>" method="post">
                 <?= csrf_field() ?>
-                <div class="mb-4">
+                <div class="mb-3">
                     <label class="form-label small fw-semibold text-muted">Email Address</label>
                     <div class="input-group">
                         <input type="email" name="email" id="email" class="form-control has-toggle" placeholder="name@company.com" required>
@@ -120,8 +120,26 @@
                         </span>
                     </div>
                 </div>
+                <div class="mb-3">
+                    <label class="form-label small fw-semibold text-muted">New Password</label>
+                    <div class="input-group">
+                        <input type="password" name="password" id="password" class="form-control has-toggle" placeholder="••••••••" required>
+                        <span class="input-group-text" onclick="togglePassword('password', this)">
+                            <i class="bi bi-eye"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label small fw-semibold text-muted">Confirm New Password</label>
+                    <div class="input-group">
+                        <input type="password" name="confirm_password" id="confirm_password" class="form-control has-toggle" placeholder="••••••••" required>
+                        <span class="input-group-text" onclick="togglePassword('confirm_password', this)">
+                            <i class="bi bi-eye"></i>
+                        </span>
+                    </div>
+                </div>
                 <div class="d-grid mb-4">
-                    <button type="submit" class="btn btn-primary shadow-sm">Send Reset Link</button>
+                    <button type="submit" class="btn btn-primary shadow-sm">Reset Password</button>
                 </div>
                 <div class="text-center">
                     <a href="<?= base_url('login') ?>" class="small text-decoration-none">
@@ -136,6 +154,18 @@
         function clearInput(inputId) {
             document.getElementById(inputId).value = '';
             document.getElementById(inputId).focus();
+        }
+        function togglePassword(inputId, iconElement) {
+            const input = document.getElementById(inputId);
+            const icon = iconElement.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('bi-eye', 'bi-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('bi-eye-slash', 'bi-eye');
+            }
         }
     </script>
 </body>
