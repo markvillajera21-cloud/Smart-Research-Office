@@ -28,6 +28,11 @@
             <i class="bi bi-cloud-arrow-up"></i> Upload Data
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link <?= (url_is('admin/audit-logs') ? 'active' : '') ?>" href="<?= base_url('admin/audit-logs') ?>">
+            <i class="bi bi-clock-history"></i> Audit Trail
+        </a>
+    </li>
     <?php else: ?>
     <li class="nav-item">
         <a class="nav-link <?= (url_is('user/dashboard') ? 'active' : '') ?>" href="<?= base_url('user/dashboard') ?>">

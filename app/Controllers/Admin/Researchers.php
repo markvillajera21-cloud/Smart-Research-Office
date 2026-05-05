@@ -49,8 +49,8 @@ class Researchers extends BaseController
         $categoryFilter = $this->request->getGet('category');
         $schoolYearFilter = $this->request->getGet('school_year');
         $strandFilter = $this->request->getGet('strand');
+        $courseFilter = $this->request->getGet('course');
         $search = $this->request->getGet('search');
-        $sort = $this->request->getGet('sort');
         
         $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, designations.name as designation_name, school_years.name as school_year_name, strands.name as strand_name, courses.name as course_name, advisers.name as adviser_name, grammarians.name as grammarian_name, remarks.name as remark_name')
                                      ->join('users', 'users.id = researchers.user_id', 'left')
@@ -75,6 +75,10 @@ class Researchers extends BaseController
             $query->where('researchers.strand_id', $strandFilter);
         }
 
+        if ($courseFilter) {
+            $query->where('researchers.course_id', $courseFilter);
+        }
+
         if ($search) {
             $query->groupStart()
                   ->like('researchers.fullname', $search)
@@ -83,61 +87,7 @@ class Researchers extends BaseController
                   ->groupEnd();
         }
 
-        switch ($sort) {
-            case 'name':
-                $query->orderBy('researchers.fullname', 'ASC');
-                break;
-            case 'designation':
-                $query->orderBy('designation_name', 'ASC');
-                break;
-            case 'category':
-                $query->orderBy('category_name', 'ASC');
-                break;
-            case 'course':
-                $query->orderBy('course_name', 'ASC');
-                break;
-            case 'approved_title':
-                $query->orderBy('researchers.approved_research_title', 'ASC');
-                break;
-            case 'approved_date':
-                $query->orderBy('researchers.approved_date', 'ASC');
-                break;
-            case 'remarks':
-                $query->orderBy('researchers.remark_id', 'ASC');
-                break;
-            case 'abstract':
-                $query->orderBy('researchers.abstract', 'ASC');
-                break;
-            case 'status':
-                $query->orderBy('researchers.status', 'ASC');
-                break;
-            case 'joining_date':
-                $query->orderBy('researchers.joined_at', 'ASC');
-                break;
-            case 'bio':
-                $query->orderBy('researchers.bio', 'ASC');
-                break;
-            case 'department':
-                $query->orderBy('category_name', 'ASC');
-                break;
-            case 'adviser':
-                $query->orderBy('adviser_name', 'ASC');
-                break;
-            case 'grammarian':
-                $query->orderBy('grammarian_name', 'ASC');
-                break;
-            case 'degree':
-                $query->orderBy('strand_name', 'ASC');
-                break;
-            case 'school_year':
-                $query->orderBy('school_year_name', 'ASC');
-                break;
-            case 'date':
-                $query->orderBy('researchers.created_at', 'ASC');
-                break;
-            default:
-                $query->orderBy('researchers.created_at', 'DESC');
-        }
+        $query->orderBy('researchers.created_at', 'DESC');
 
         $data = [
             'title' => 'Research Directory',
@@ -148,11 +98,12 @@ class Researchers extends BaseController
             'advisers' => $this->adviserModel->findAll(),
             'grammarians' => $this->grammarianModel->findAll(),
             'strands' => $this->strandModel->findAll(),
+            'courses' => $this->courseModel->findAll(),
             'selectedCategory' => $categoryFilter,
             'selectedSchoolYear' => $schoolYearFilter,
             'selectedStrand' => $strandFilter,
-            'search' => $search,
-            'sort' => $sort
+            'selectedCourse' => $courseFilter,
+            'search' => $search
         ];
 
         return view('admin/researchers/index', $data);
@@ -498,76 +449,97 @@ class Researchers extends BaseController
 
     private function addEntity($model)
     {
-        if (!$this->request->isAJAX()) {
-            return $this->response->setStatusCode(403)->setJSON(['error' => 'Forbidden']);
-        }
-
         $name = $this->request->getPost('name');
         if (empty($name)) {
-            return $this->response->setJSON(['error' => 'Name is required']);
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON(['error' => 'Name is required']);
+            }
+            return redirect()->back()->withInput()->with('error', 'Name is required');
         }
 
         if ($model->where('name', $name)->first()) {
-            return $this->response->setJSON(['error' => 'Already exists']);
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON(['error' => 'Already exists']);
+            }
+            return redirect()->back()->withInput()->with('error', 'Already exists');
         }
 
         $id = $model->insert(['name' => $name]);
         if ($id) {
-            return $this->response->setJSON([
-                'success' => true,
-                'id' => $id,
-                'name' => $name
-            ]);
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON([
+                    'success' => true,
+                    'id' => $id,
+                    'name' => $name
+                ]);
+            }
+            return redirect()->back()->with('success', 'Added successfully');
         }
 
-        return $this->response->setJSON(['error' => 'Failed to save']);
+        if ($this->request->isAJAX()) {
+            return $this->response->setJSON(['error' => 'Failed to save']);
+        }
+        return redirect()->back()->withInput()->with('error', 'Failed to save');
     }
 
     private function editEntity($model)
     {
-        if (!$this->request->isAJAX()) {
-            return $this->response->setStatusCode(403)->setJSON(['error' => 'Forbidden']);
-        }
-
         $id = $this->request->getPost('id');
         $name = $this->request->getPost('name');
         
         if (empty($id) || empty($name)) {
-            return $this->response->setJSON(['error' => 'ID and name are required']);
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON(['error' => 'ID and name are required']);
+            }
+            return redirect()->back()->withInput()->with('error', 'ID and name are required');
         }
 
         $entity = $model->find($id);
         if (!$entity) {
-            return $this->response->setJSON(['error' => 'Not found']);
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON(['error' => 'Not found']);
+            }
+            return redirect()->back()->with('error', 'Not found');
         }
 
         $existing = $model->where('name', $name)->where('id !=', $id)->first();
         if ($existing) {
-            return $this->response->setJSON(['error' => 'Already exists']);
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON(['error' => 'Already exists']);
+            }
+            return redirect()->back()->withInput()->with('error', 'Already exists');
         }
 
         if ($model->update($id, ['name' => $name])) {
-            return $this->response->setJSON([
-                'success' => true,
-                'id' => $id,
-                'name' => $name
-            ]);
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON([
+                    'success' => true,
+                    'id' => $id,
+                    'name' => $name
+                ]);
+            }
+            return redirect()->back()->with('success', 'Updated successfully');
         }
 
-        return $this->response->setJSON(['error' => 'Failed to update']);
+        if ($this->request->isAJAX()) {
+            return $this->response->setJSON(['error' => 'Failed to update']);
+        }
+        return redirect()->back()->withInput()->with('error', 'Failed to update');
     }
 
     private function deleteEntity($model, $id)
     {
-        if (!$this->request->isAJAX()) {
-            return $this->response->setStatusCode(403)->setJSON(['error' => 'Forbidden']);
-        }
-
         if ($model->delete($id)) {
-            return $this->response->setJSON(['success' => true]);
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON(['success' => true]);
+            }
+            return redirect()->back()->with('success', 'Deleted successfully');
         }
 
-        return $this->response->setJSON(['error' => 'Failed to delete']);
+        if ($this->request->isAJAX()) {
+            return $this->response->setJSON(['error' => 'Failed to delete']);
+        }
+        return redirect()->back()->with('error', 'Failed to delete');
     }
 
     public function delete($id)
