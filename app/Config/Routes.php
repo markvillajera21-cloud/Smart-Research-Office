@@ -80,6 +80,9 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
         $routes->post('add-remark', 'Admin\Researchers::addRemark');
         $routes->post('edit-remark', 'Admin\Researchers::editRemark');
         $routes->post('delete-remark/(:num)', 'Admin\Researchers::deleteRemark/$1');
+        $routes->post('add-researchTeacher', 'Admin\Researchers::addResearchTeacher');
+        $routes->post('edit-researchTeacher', 'Admin\Researchers::editResearchTeacher');
+        $routes->post('delete-researchTeacher/(:num)', 'Admin\Researchers::deleteResearchTeacher/$1');
         $routes->post('add-abstract', 'Admin\Researchers::addAbstract');
         $routes->post('edit-abstract', 'Admin\Researchers::editAbstract');
         $routes->post('delete-abstract/(:num)', 'Admin\Researchers::deleteAbstract/$1');

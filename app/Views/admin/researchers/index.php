@@ -29,19 +29,14 @@
                     <option value="<?= $cat['id'] ?>" <?= ($selectedCategory ?? '') == $cat['id'] ? 'selected' : '' ?>><?= $cat['name'] ?></option>
                 <?php endforeach; ?>
             </select>
-            <select name="course" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 180px;">
-                <option value="">Course</option>
-                <?php foreach ($courses as $c): ?>
-                    <option value="<?= $c['id'] ?>" <?= ($selectedCourse ?? '') == $c['id'] ? 'selected' : '' ?>><?= $c['name'] ?></option>
-                <?php endforeach; ?>
-            </select>
+
             <select name="strand" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 220px;">
                 <option value="">Program/Career Pathways</option>
                 <?php foreach ($strands as $s): ?>
                     <option value="<?= $s['id'] ?>" <?= ($selectedStrand ?? '') == $s['id'] ? 'selected' : '' ?>><?= $s['name'] ?></option>
                 <?php endforeach; ?>
             </select>
-            <?php if ($selectedCategory || ($selectedSchoolYear ?? '') || ($selectedStrand ?? '') || ($selectedCourse ?? '') || ($search ?? '')): ?>
+            <?php if ($selectedCategory || ($selectedSchoolYear ?? '') || ($selectedStrand ?? '') || ($search ?? '')): ?>
                 <a href="<?= base_url('admin/researchers') ?>" class="btn btn-light border shadow-sm d-flex align-items-center" title="Clear Filters">
                     <i class="bi bi-x-lg"></i>
                 </a>
@@ -62,7 +57,6 @@
             <thead>
                 <tr class="text-uppercase text-muted small">
                         <th class="fw-semibold" style="min-width: 220px;">Approved Research Title</th>
-                        <th class="fw-semibold" style="min-width: 150px;">Course</th>
                         <th class="fw-semibold" style="min-width: 150px;">Program/Career Pathways</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Full Name</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Category</th>
@@ -81,11 +75,6 @@
                                         <span class="text-muted">N/A</span>
                                     <?php endif; ?>
                                 </div>
-                            </td>
-                            <td>
-                                <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 small">
-                                    <?= $r['course_name'] ?? 'N/A' ?>
-                                </span>
                             </td>
                             <td>
                                 <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 small">
@@ -119,7 +108,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="6" class="text-center py-5 text-muted">
+                        <td colspan="5" class="text-center py-5 text-muted">
                             <i class="bi bi-search fs-1 d-block mb-3"></i>
                             No researchers found matching your criteria.
                         </td>
@@ -241,30 +230,6 @@
                             <?php endforeach; ?>
                         </ul>
                     </div>
-                    <div class="col-md-6">
-                        <h6 class="mb-3 fw-semibold">Courses</h6>
-                        <form action="<?= base_url('admin/researchers/add-course') ?>" method="post" class="mb-3">
-                            <div class="input-group">
-                                <input type="text" name="name" class="form-control" placeholder="e.g. Bachelor of Science in Information Technology" required>
-                                <button type="submit" class="btn btn-primary">Add</button>
-                            </div>
-                        </form>
-                        <ul class="list-group">
-                            <?php foreach ($courses as $course): ?>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span><?= $course['name'] ?></span>
-                                    <div class="d-flex gap-1">
-                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editCourseModal<?= $course['id'] ?>">
-                                            <i class="bi bi-pencil"></i>
-                                        </button>
-                                        <a href="<?= base_url('admin/researchers/delete-course/' . $course['id']) ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -359,30 +324,6 @@
                 </div>
                 <div class="modal-body">
                     <input type="text" name="name" class="form-control" value="<?= $strand['name'] ?>" required>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<?php endforeach; ?>
-
-<!-- Edit Course Modals -->
-<?php foreach ($courses as $course): ?>
-<div class="modal fade" id="editCourseModal<?= $course['id'] ?>" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form action="<?= base_url('admin/researchers/edit-course') ?>" method="post">
-                <input type="hidden" name="id" value="<?= $course['id'] ?>">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Course</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="text" name="name" class="form-control" value="<?= $course['name'] ?>" required>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>

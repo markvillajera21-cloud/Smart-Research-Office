@@ -14,6 +14,7 @@ use App\Models\AdviserModel;
 use App\Models\GrammarianModel;
 use App\Models\RemarkModel;
 use App\Models\AbstractModel;
+use App\Models\ResearchTeacherModel;
 
 class Researchers extends BaseController
 {
@@ -26,8 +27,9 @@ class Researchers extends BaseController
     protected $statusModel;
     protected $adviserModel;
     protected $grammarianModel;
-    protected $remarkModel;
+    protected $statisticianModel;
     protected $abstractModel;
+    protected $researchTeacherModel;
 
     public function __construct()
     {
@@ -40,8 +42,9 @@ class Researchers extends BaseController
         $this->statusModel = new StatusModel();
         $this->adviserModel = new AdviserModel();
         $this->grammarianModel = new GrammarianModel();
-        $this->remarkModel = new RemarkModel();
+        $this->statisticianModel = new RemarkModel();
         $this->abstractModel = new AbstractModel();
+        $this->researchTeacherModel = new ResearchTeacherModel();
     }
 
     public function index()
@@ -49,19 +52,18 @@ class Researchers extends BaseController
         $categoryFilter = $this->request->getGet('category');
         $schoolYearFilter = $this->request->getGet('school_year');
         $strandFilter = $this->request->getGet('strand');
-        $courseFilter = $this->request->getGet('course');
         $search = $this->request->getGet('search');
         
-        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, designations.name as designation_name, school_years.name as school_year_name, strands.name as strand_name, courses.name as course_name, advisers.name as adviser_name, grammarians.name as grammarian_name, remarks.name as remark_name')
+        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, designations.name as designation_name, school_years.name as school_year_name, strands.name as strand_name, advisers.name as adviser_name, grammarians.name as grammarian_name, remarks.name as statistician_name, research_teachers.name as research_teacher_name')
                                      ->join('users', 'users.id = researchers.user_id', 'left')
                                      ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
                                      ->join('designations', 'designations.id = researchers.designation_id', 'left')
                                      ->join('school_years', 'school_years.id = researchers.school_year_id', 'left')
                                      ->join('strands', 'strands.id = researchers.strand_id', 'left')
-                                     ->join('courses', 'courses.id = researchers.course_id', 'left')
                                      ->join('advisers', 'advisers.id = researchers.adviser_id', 'left')
                                      ->join('grammarians', 'grammarians.id = researchers.grammarian_id', 'left')
-                                     ->join('remarks', 'remarks.id = researchers.remark_id', 'left');
+                                     ->join('remarks', 'remarks.id = researchers.remark_id', 'left')
+                                     ->join('research_teachers', 'research_teachers.id = researchers.research_teacher_id', 'left');
 
         if ($categoryFilter) {
             $query->where('researchers.category_id', $categoryFilter);
@@ -73,10 +75,6 @@ class Researchers extends BaseController
 
         if ($strandFilter) {
             $query->where('researchers.strand_id', $strandFilter);
-        }
-
-        if ($courseFilter) {
-            $query->where('researchers.course_id', $courseFilter);
         }
 
         if ($search) {
@@ -98,11 +96,9 @@ class Researchers extends BaseController
             'advisers' => $this->adviserModel->findAll(),
             'grammarians' => $this->grammarianModel->findAll(),
             'strands' => $this->strandModel->findAll(),
-            'courses' => $this->courseModel->findAll(),
             'selectedCategory' => $categoryFilter,
             'selectedSchoolYear' => $schoolYearFilter,
             'selectedStrand' => $strandFilter,
-            'selectedCourse' => $courseFilter,
             'search' => $search
         ];
 
@@ -118,11 +114,11 @@ class Researchers extends BaseController
             'designations' => $this->designationModel->orderBy('name', 'ASC')->findAll(),
             'schoolYears' => $this->schoolYearModel->orderBy('name', 'ASC')->findAll(),
             'strands' => $this->strandModel->orderBy('name', 'ASC')->findAll(),
-            'courses' => $this->courseModel->orderBy('name', 'ASC')->findAll(),
             'statuses' => $this->statusModel->orderBy('name', 'ASC')->findAll(),
             'advisers' => $this->adviserModel->orderBy('name', 'ASC')->findAll(),
             'grammarians' => $this->grammarianModel->orderBy('name', 'ASC')->findAll(),
-            'remarks' => $this->remarkModel->orderBy('name', 'ASC')->findAll(),
+            'statisticians' => $this->statisticianModel->orderBy('name', 'ASC')->findAll(),
+            'researchTeachers' => $this->researchTeacherModel->orderBy('name', 'ASC')->findAll(),
             'abstracts' => $this->abstractModel->orderBy('name', 'ASC')->findAll(),
         ];
 
@@ -134,8 +130,7 @@ class Researchers extends BaseController
         $rules = [
             'surname'         => 'required|min_length[2]',
             'first_name'      => 'required|min_length[2]',
-            'category_id'     => 'required',
-            'joined_at'       => 'required|valid_date'
+            'category_id'     => 'required'
         ];
 
         if (!$this->validate($rules)) {
@@ -175,17 +170,16 @@ class Researchers extends BaseController
             'school_year_id'            => $this->request->getPost('school_year_id') ?: null,
             'strand_id'                 => $strandId ?: null,
             'strand_degree_program'     => $strandName,
-            'course_id'                 => $this->request->getPost('course_id') ?: null,
             'status_id'                 => $this->request->getPost('status_id') ?: null,
             'adviser_id'                => $this->request->getPost('adviser_id') ?: null,
             'grammarian_id'             => $this->request->getPost('grammarian_id') ?: null,
             'remark_id'                 => $this->request->getPost('remark_id') ?: null,
+            'research_teacher_id'       => $this->request->getPost('research_teacher_id') ?: null,
             'abstract'                  => $this->request->getPost('abstract') ?: null,
             'category_id'               => $this->request->getPost('category_id'),
             'approved_research_title'   => $this->request->getPost('approved_research_title'),
             'approved_date'             => $this->request->getPost('approved_date') ?: null,
-            'bio'                       => $this->request->getPost('bio'),
-            'joined_at'                 => $this->request->getPost('joined_at'),
+            'remarks'                   => $this->request->getPost('remarks'),
             'status'                    => $this->request->getPost('status') ?? 'active'
         ];
 
@@ -214,11 +208,11 @@ class Researchers extends BaseController
             'designations' => $this->designationModel->orderBy('name', 'ASC')->findAll(),
             'schoolYears' => $this->schoolYearModel->orderBy('name', 'ASC')->findAll(),
             'strands' => $this->strandModel->orderBy('name', 'ASC')->findAll(),
-            'courses' => $this->courseModel->orderBy('name', 'ASC')->findAll(),
             'statuses' => $this->statusModel->orderBy('name', 'ASC')->findAll(),
             'advisers' => $this->adviserModel->orderBy('name', 'ASC')->findAll(),
             'grammarians' => $this->grammarianModel->orderBy('name', 'ASC')->findAll(),
-            'remarks' => $this->remarkModel->orderBy('name', 'ASC')->findAll(),
+            'statisticians' => $this->statisticianModel->orderBy('name', 'ASC')->findAll(),
+            'researchTeachers' => $this->researchTeacherModel->orderBy('name', 'ASC')->findAll(),
             'abstracts' => $this->abstractModel->orderBy('name', 'ASC')->findAll(),
         ];
 
@@ -235,8 +229,7 @@ class Researchers extends BaseController
         $rules = [
             'surname'         => 'required|min_length[2]',
             'first_name'      => 'required|min_length[2]',
-            'category_id'     => 'required',
-            'joined_at'       => 'required|valid_date'
+            'category_id'     => 'required'
         ];
 
         if (!$this->validate($rules)) {
@@ -276,17 +269,16 @@ class Researchers extends BaseController
             'school_year_id'            => $this->request->getPost('school_year_id') ?: null,
             'strand_id'                 => $strandId ?: null,
             'strand_degree_program'     => $strandName,
-            'course_id'                 => $this->request->getPost('course_id') ?: null,
             'status_id'                 => $this->request->getPost('status_id') ?: null,
             'adviser_id'                => $this->request->getPost('adviser_id') ?: null,
             'grammarian_id'             => $this->request->getPost('grammarian_id') ?: null,
             'remark_id'                 => $this->request->getPost('remark_id') ?: null,
+            'research_teacher_id'       => $this->request->getPost('research_teacher_id') ?: null,
             'abstract'                  => $this->request->getPost('abstract') ?: null,
             'category_id'               => $this->request->getPost('category_id'),
             'approved_research_title'   => $this->request->getPost('approved_research_title'),
             'approved_date'             => $this->request->getPost('approved_date') ?: null,
-            'bio'                       => $this->request->getPost('bio'),
-            'joined_at'                 => $this->request->getPost('joined_at'),
+            'remarks'                   => $this->request->getPost('remarks'),
             'status'                    => $this->request->getPost('status') ?? 'active'
         ];
 
@@ -419,17 +411,32 @@ class Researchers extends BaseController
 
     public function addRemark()
     {
-        return $this->addEntity($this->remarkModel);
+        return $this->addEntity($this->statisticianModel);
     }
 
     public function editRemark()
     {
-        return $this->editEntity($this->remarkModel);
+        return $this->editEntity($this->statisticianModel);
     }
 
     public function deleteRemark($id)
     {
-        return $this->deleteEntity($this->remarkModel, $id);
+        return $this->deleteEntity($this->statisticianModel, $id);
+    }
+
+    public function addResearchTeacher()
+    {
+        return $this->addEntity($this->researchTeacherModel);
+    }
+
+    public function editResearchTeacher()
+    {
+        return $this->editEntity($this->researchTeacherModel);
+    }
+
+    public function deleteResearchTeacher($id)
+    {
+        return $this->deleteEntity($this->researchTeacherModel, $id);
     }
 
     public function addAbstract()
@@ -555,7 +562,7 @@ class Researchers extends BaseController
         $search = $this->request->getGet('search');
         $strand = $this->request->getGet('strand');
         
-        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, remarks.name as remark_name')
+        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, remarks.name as statistician_name')
                                      ->join('users', 'users.id = researchers.user_id', 'left')
                                      ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
                                      ->join('remarks', 'remarks.id = researchers.remark_id', 'left')
@@ -594,7 +601,7 @@ class Researchers extends BaseController
         $search = $this->request->getGet('search');
         $strand = $this->request->getGet('strand');
         
-        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, remarks.name as remark_name')
+        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, remarks.name as statistician_name')
                                      ->join('users', 'users.id = researchers.user_id', 'left')
                                      ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
                                      ->join('remarks', 'remarks.id = researchers.remark_id', 'left')
