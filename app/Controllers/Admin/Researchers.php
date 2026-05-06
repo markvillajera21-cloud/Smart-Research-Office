@@ -52,6 +52,10 @@ class Researchers extends BaseController
         $categoryFilter = $this->request->getGet('category');
         $schoolYearFilter = $this->request->getGet('school_year');
         $strandFilter = $this->request->getGet('strand');
+        $adviserFilter = $this->request->getGet('adviser');
+        $grammarianFilter = $this->request->getGet('grammarian');
+        $statisticianFilter = $this->request->getGet('statistician');
+        $researchTeacherFilter = $this->request->getGet('research_teacher');
         $search = $this->request->getGet('search');
         
         $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, designations.name as designation_name, school_years.name as school_year_name, strands.name as strand_name, advisers.name as adviser_name, grammarians.name as grammarian_name, remarks.name as statistician_name, research_teachers.name as research_teacher_name')
@@ -76,6 +80,22 @@ class Researchers extends BaseController
         if ($strandFilter) {
             $query->where('researchers.strand_id', $strandFilter);
         }
+        
+        if ($adviserFilter) {
+            $query->where('researchers.adviser_id', $adviserFilter);
+        }
+        
+        if ($grammarianFilter) {
+            $query->where('researchers.grammarian_id', $grammarianFilter);
+        }
+        
+        if ($statisticianFilter) {
+            $query->where('researchers.remark_id', $statisticianFilter);
+        }
+        
+        if ($researchTeacherFilter) {
+            $query->where('researchers.research_teacher_id', $researchTeacherFilter);
+        }
 
         if ($search) {
             $query->groupStart()
@@ -95,10 +115,16 @@ class Researchers extends BaseController
             'schoolYears' => $this->schoolYearModel->findAll(),
             'advisers' => $this->adviserModel->findAll(),
             'grammarians' => $this->grammarianModel->findAll(),
+            'statisticians' => $this->statisticianModel->findAll(),
+            'researchTeachers' => $this->researchTeacherModel->findAll(),
             'strands' => $this->strandModel->findAll(),
             'selectedCategory' => $categoryFilter,
             'selectedSchoolYear' => $schoolYearFilter,
             'selectedStrand' => $strandFilter,
+            'selectedAdviser' => $adviserFilter,
+            'selectedGrammarian' => $grammarianFilter,
+            'selectedStatistician' => $statisticianFilter,
+            'selectedResearchTeacher' => $researchTeacherFilter,
             'search' => $search
         ];
 

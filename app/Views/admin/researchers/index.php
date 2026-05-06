@@ -10,33 +10,62 @@
     </div>
     
     <div class="d-flex flex-grow-1 justify-content-center mx-3">
-        <form action="<?= base_url('admin/researchers') ?>" method="get" class="d-flex gap-2 w-100" style="max-width: 1100px;">
-            <div class="input-group shadow-sm border rounded">
+        <form action="<?= base_url('admin/researchers') ?>" method="get" class="d-flex gap-2 w-100 flex-wrap" style="max-width: 1600px;">
+            <div class="input-group shadow-sm border rounded" style="min-width: 300px;">
                 <span class="input-group-text bg-white border-0">
                     <i class="bi bi-search text-muted"></i>
                 </span>
                 <input type="text" name="search" class="form-control border-0 ps-0" placeholder="Search by name, ID, or expertise..." value="<?= $search ?? '' ?>">
             </div>
-            <select name="school_year" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 180px;">
+            <select name="school_year" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 150px;">
                 <option value="">School Year</option>
                 <?php foreach ($schoolYears as $sy): ?>
                     <option value="<?= $sy['id'] ?>" <?= ($selectedSchoolYear ?? '') == $sy['id'] ? 'selected' : '' ?>><?= $sy['name'] ?></option>
                 <?php endforeach; ?>
             </select>
-            <select name="category" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 180px;">
+            <select name="category" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 150px;">
                 <option value="">Department</option>
                 <?php foreach ($categories as $cat): ?>
                     <option value="<?= $cat['id'] ?>" <?= ($selectedCategory ?? '') == $cat['id'] ? 'selected' : '' ?>><?= $cat['name'] ?></option>
                 <?php endforeach; ?>
             </select>
 
-            <select name="strand" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 220px;">
+            <select name="strand" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 180px;">
                 <option value="">Program/Career Pathways</option>
                 <?php foreach ($strands as $s): ?>
                     <option value="<?= $s['id'] ?>" <?= ($selectedStrand ?? '') == $s['id'] ? 'selected' : '' ?>><?= $s['name'] ?></option>
                 <?php endforeach; ?>
             </select>
-            <?php if ($selectedCategory || ($selectedSchoolYear ?? '') || ($selectedStrand ?? '') || ($search ?? '')): ?>
+            
+            <select name="adviser" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 150px;">
+                <option value="">Adviser</option>
+                <?php foreach ($advisers as $a): ?>
+                    <option value="<?= $a['id'] ?>" <?= ($selectedAdviser ?? '') == $a['id'] ? 'selected' : '' ?>><?= $a['name'] ?></option>
+                <?php endforeach; ?>
+            </select>
+            
+            <select name="grammarian" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 150px;">
+                <option value="">Grammarian</option>
+                <?php foreach ($grammarians as $g): ?>
+                    <option value="<?= $g['id'] ?>" <?= ($selectedGrammarian ?? '') == $g['id'] ? 'selected' : '' ?>><?= $g['name'] ?></option>
+                <?php endforeach; ?>
+            </select>
+            
+            <select name="statistician" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 150px;">
+                <option value="">Statisticians</option>
+                <?php foreach ($statisticians as $s): ?>
+                    <option value="<?= $s['id'] ?>" <?= ($selectedStatistician ?? '') == $s['id'] ? 'selected' : '' ?>><?= $s['name'] ?></option>
+                <?php endforeach; ?>
+            </select>
+            
+            <select name="research_teacher" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 150px;">
+                <option value="">Research Teacher</option>
+                <?php foreach ($researchTeachers as $rt): ?>
+                    <option value="<?= $rt['id'] ?>" <?= ($selectedResearchTeacher ?? '') == $rt['id'] ? 'selected' : '' ?>><?= $rt['name'] ?></option>
+                <?php endforeach; ?>
+            </select>
+            
+            <?php if ($selectedCategory || ($selectedSchoolYear ?? '') || ($selectedStrand ?? '') || ($search ?? '') || ($selectedAdviser ?? '') || ($selectedGrammarian ?? '') || ($selectedStatistician ?? '') || ($selectedResearchTeacher ?? '')): ?>
                 <a href="<?= base_url('admin/researchers') ?>" class="btn btn-light border shadow-sm d-flex align-items-center" title="Clear Filters">
                     <i class="bi bi-x-lg"></i>
                 </a>
@@ -59,6 +88,10 @@
                         <th class="fw-semibold" style="min-width: 220px;">Approved Research Title</th>
                         <th class="fw-semibold" style="min-width: 150px;">Program/Career Pathways</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Full Name</th>
+                        <th class="fw-semibold" style="white-space: nowrap;">Adviser</th>
+                        <th class="fw-semibold" style="white-space: nowrap;">Grammarian</th>
+                        <th class="fw-semibold" style="white-space: nowrap;">Statisticians</th>
+                        <th class="fw-semibold" style="white-space: nowrap;">Research Teacher</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Category</th>
                         <th class="text-end fw-semibold" style="width: 120px; white-space: nowrap;">Remarks</th>
                     </tr>
@@ -85,6 +118,26 @@
                                 <div class="fw-bold small"><?= $r['fullname'] ?? '<span class="text-muted">N/A</span>' ?></div>
                             </td>
                             <td>
+                                <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 small">
+                                    <?= $r['adviser_name'] ?? 'N/A' ?>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 small">
+                                    <?= $r['grammarian_name'] ?? 'N/A' ?>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 small">
+                                    <?= $r['statistician_name'] ?? 'N/A' ?>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25 small">
+                                    <?= $r['research_teacher_name'] ?? 'N/A' ?>
+                                </span>
+                            </td>
+                            <td>
                                 <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 small">
                                     <?= $r['category_name'] ?? 'Other' ?>
                                 </span>
@@ -108,7 +161,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="5" class="text-center py-5 text-muted">
+                        <td colspan="9" class="text-center py-5 text-muted">
                             <i class="bi bi-search fs-1 d-block mb-3"></i>
                             No researchers found matching your criteria.
                         </td>

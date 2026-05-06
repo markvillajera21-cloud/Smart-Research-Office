@@ -25,19 +25,19 @@
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Surname</label>
-                            <input type="text" name="surname" class="form-control" value="<?= old('surname') ?>" placeholder="Enter surname" required>
+                            <textarea name="surname" class="form-control" rows="3" placeholder="Enter surname" required><?= old('surname') ?></textarea>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label class="form-label">First Name</label>
-                            <input type="text" name="first_name" class="form-control" value="<?= old('first_name') ?>" placeholder="Enter first name" required>
+                            <textarea name="first_name" class="form-control" rows="3" placeholder="Enter first name" required><?= old('first_name') ?></textarea>
                         </div>
                         <div class="col-md-2 mb-3">
                             <label class="form-label">Middle Initial</label>
-                            <input type="text" name="middle_initial" class="form-control" value="<?= old('middle_initial') ?>" placeholder="e.g. A">
+                            <textarea name="middle_initial" class="form-control" rows="3" placeholder="e.g. A"><?= old('middle_initial') ?></textarea>
                         </div>
                         <div class="col-md-2 mb-3">
                             <label class="form-label">Ext Name</label>
-                            <input type="text" name="ext_name" class="form-control" value="<?= old('ext_name') ?>" placeholder="e.g. Jr., Sr., III">
+                            <textarea name="ext_name" class="form-control" rows="3" placeholder="e.g. Jr., Sr., III"><?= old('ext_name') ?></textarea>
                         </div>
                     </div>
 
@@ -47,7 +47,7 @@
                                 Designation
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addDesignationModal" title="Manage">
-                                        <i class="bi bi-gear"></i> Manage
+                                        <i class="bi bi-gear"></i>
                                     </button>
                                 </div>
                             </label>
@@ -63,7 +63,7 @@
                                 School Year
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addSchoolYearModal" title="Manage">
-                                        <i class="bi bi-gear"></i> Manage
+                                        <i class="bi bi-gear"></i>
                                     </button>
                                 </div>
                             </label>
@@ -82,7 +82,7 @@
                                 Category
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addCategoryModal" title="Manage">
-                                        <i class="bi bi-gear"></i> Manage
+                                        <i class="bi bi-gear"></i>
                                     </button>
                                 </div>
                             </label>
@@ -98,7 +98,7 @@
                                 Program/Career Pathways
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addStrandModal" title="Manage">
-                                        <i class="bi bi-gear"></i> Manage
+                                        <i class="bi bi-gear"></i>
                                     </button>
                                 </div>
                             </label>
@@ -127,7 +127,7 @@
                                 Adviser
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addAdviserModal" title="Manage">
-                                        <i class="bi bi-gear"></i> Manage
+                                        <i class="bi bi-gear"></i>
                                     </button>
                                 </div>
                             </label>
@@ -143,7 +143,7 @@
                                 Grammarian
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addGrammarianModal" title="Manage">
-                                        <i class="bi bi-gear"></i> Manage
+                                        <i class="bi bi-gear"></i>
                                     </button>
                                 </div>
                             </label>
@@ -162,7 +162,7 @@
                                 Statisticians
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addStatisticianModal" title="Manage">
-                                        <i class="bi bi-gear"></i> Manage
+                                        <i class="bi bi-gear"></i>
                                     </button>
                                 </div>
                             </label>
@@ -178,7 +178,7 @@
                                 Research Teacher
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addResearchTeacherModal" title="Manage">
-                                        <i class="bi bi-gear"></i> Manage
+                                        <i class="bi bi-gear"></i>
                                     </button>
                                 </div>
                             </label>
@@ -203,7 +203,7 @@
                             Status
                             <div class="d-flex gap-1">
                                 <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addStatusModal" title="Manage">
-                                    <i class="bi bi-gear"></i> Manage
+                                    <i class="bi bi-gear"></i>
                                 </button>
                             </div>
                         </label>
@@ -711,66 +711,57 @@
 </div>
 
 <script>
-document.getElementById('saveDesignationBtn').addEventListener('click', function() {
-    saveEntity('designation');
-});
-
-document.getElementById('saveCourseBtn').addEventListener('click', function() {
-    saveEntity('course');
-});
-
-document.getElementById('saveSchoolYearBtn').addEventListener('click', function() {
-    saveEntity('schoolYear');
-});
-
-document.getElementById('saveCategoryBtn').addEventListener('click', function() {
-    saveEntity('category');
-});
-
-document.getElementById('saveStrandBtn').addEventListener('click', function() {
-    saveEntity('strand');
-});
-
-document.getElementById('saveStatusBtn').addEventListener('click', function() {
-    saveEntity('status');
-});
-
-document.getElementById('saveAdviserBtn').addEventListener('click', function() {
-    saveEntity('adviser');
-});
-
-document.getElementById('saveGrammarianBtn').addEventListener('click', function() {
-    saveEntity('grammarian');
-});
-
-document.getElementById('saveStatisticianBtn').addEventListener('click', function() {
-    saveEntity('statistician');
-});
-
-document.getElementById('saveResearchTeacherBtn').addEventListener('click', function() {
-    saveEntity('researchTeacher');
-});
-
-document.getElementById('saveAbstractBtn').addEventListener('click', function() {
-    saveEntity('abstract');
-});
-
-// Event delegation for edit/delete buttons
-document.addEventListener('click', function(e) {
-    if (e.target.closest('.edit-btn')) {
-        const btn = e.target.closest('.edit-btn');
-        const id = btn.dataset.id;
-        const name = btn.dataset.name;
-        const type = getTypeFromBtn(btn);
-        editEntity(type, id, name);
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Manage functionality initialized');
     
-    if (e.target.closest('.delete-btn')) {
-        const btn = e.target.closest('.delete-btn');
-        const id = btn.dataset.id;
-        const type = getTypeFromBtn(btn);
-        deleteEntity(type, id);
-    }
+    // Attach save button listeners
+    const saveButtons = [
+        { id: 'saveDesignationBtn', type: 'designation' },
+        { id: 'saveCourseBtn', type: 'course' },
+        { id: 'saveSchoolYearBtn', type: 'schoolYear' },
+        { id: 'saveCategoryBtn', type: 'category' },
+        { id: 'saveStrandBtn', type: 'strand' },
+        { id: 'saveStatusBtn', type: 'status' },
+        { id: 'saveAdviserBtn', type: 'adviser' },
+        { id: 'saveGrammarianBtn', type: 'grammarian' },
+        { id: 'saveStatisticianBtn', type: 'statistician' },
+        { id: 'saveResearchTeacherBtn', type: 'researchTeacher' },
+        { id: 'saveAbstractBtn', type: 'abstract' }
+    ];
+    
+    saveButtons.forEach(btn => {
+        const element = document.getElementById(btn.id);
+        if (element) {
+            element.addEventListener('click', function() {
+                console.log('Save button clicked:', btn.type);
+                saveEntity(btn.type);
+            });
+        }
+    });
+    
+    // Event delegation for edit/delete buttons
+    document.addEventListener('click', function(e) {
+        const editBtn = e.target.closest('.edit-btn');
+        if (editBtn) {
+            e.preventDefault();
+            e.stopPropagation();
+            const id = editBtn.dataset.id;
+            const name = editBtn.dataset.name;
+            const type = getTypeFromBtn(editBtn);
+            console.log('Edit button clicked:', { type, id, name });
+            editEntity(type, id, name);
+        }
+        
+        const deleteBtn = e.target.closest('.delete-btn');
+        if (deleteBtn) {
+            e.preventDefault();
+            e.stopPropagation();
+            const id = deleteBtn.dataset.id;
+            const type = getTypeFromBtn(deleteBtn);
+            console.log('Delete button clicked:', { type, id });
+            deleteEntity(type, id);
+        }
+    });
 });
 
 function getTypeFromBtn(btn) {
@@ -785,81 +776,113 @@ function getTypeFromBtn(btn) {
     if (btn.closest('#statisticianList')) return 'statistician';
     if (btn.closest('#researchTeacherList')) return 'researchTeacher';
     if (btn.closest('#abstractList')) return 'abstract';
+    console.error('Could not determine type for button');
+    return null;
 }
 
 function saveEntity(type) {
+    if (!type) return;
+    
     const nameInput = document.getElementById('new' + type.charAt(0).toUpperCase() + type.slice(1) + 'Name');
     const errorDiv = document.getElementById(type + 'Error');
     const successDiv = document.getElementById(type + 'Success');
+    
+    if (!nameInput) {
+        console.error('Name input not found for type:', type);
+        return;
+    }
+    
     const name = nameInput.value;
     
-    if (!name) {
-        errorDiv.textContent = 'Name is required';
-        errorDiv.classList.remove('d-none');
-        successDiv.classList.add('d-none');
+    if (!name || name.trim() === '') {
+        if (errorDiv) {
+            errorDiv.textContent = 'Name is required';
+            errorDiv.classList.remove('d-none');
+        }
+        if (successDiv) successDiv.classList.add('d-none');
         return;
     }
 
     const selectId = type === 'researchTeacher' ? 'research_teacher_id' : type + '_id';
+    console.log('Saving entity:', { type, name, selectId });
+    
     fetch('<?= base_url('admin/researchers/add-') ?>' + type, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             'X-Requested-With': 'XMLHttpRequest'
         },
-        body: 'name=' + encodeURIComponent(name) + '&<?= csrf_token() ?>=<?= csrf_hash() ?>'
+        body: 'name=' + encodeURIComponent(name.trim()) + '&<?= csrf_token() ?>=<?= csrf_hash() ?>'
     })
-    .then(response => response.json())
+    .then(response => {
+        console.log('Save response status:', response.status);
+        return response.json();
+    })
     .then(data => {
+        console.log('Save response data:', data);
         if (data.success) {
             const select = document.getElementById(selectId);
-            const option = new Option(data.name, data.id);
-            select.add(option);
-            select.value = data.id;
+            if (select) {
+                const option = new Option(data.name, data.id);
+                select.add(option);
+                select.value = data.id;
+            }
             
             // Add to list
             const list = document.getElementById(type + 'List');
-            const item = document.createElement('div');
-            item.className = 'list-group-item d-flex justify-content-between align-items-center';
-            item.dataset.id = data.id;
-            item.innerHTML = `
-                <span class="${type}-name">${data.name}</span>
-                <div class="d-flex gap-2">
-                    <button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-id="${data.id}" data-name="${data.name}">
-                        <i class="bi bi-pencil"></i>
-                    </button>
-                    <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="${data.id}">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </div>
-            `;
-            list.appendChild(item);
+            if (list) {
+                const item = document.createElement('div');
+                item.className = 'list-group-item d-flex justify-content-between align-items-center';
+                item.dataset.id = data.id;
+                item.innerHTML = `
+                    <span class="${type}-name">${data.name}</span>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-id="${data.id}" data-name="${data.name}">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="${data.id}">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                `;
+                list.appendChild(item);
+            }
             
-            successDiv.textContent = 'Added successfully!';
-            successDiv.classList.remove('d-none');
-            errorDiv.classList.add('d-none');
+            if (successDiv) {
+                successDiv.textContent = 'Added successfully!';
+                successDiv.classList.remove('d-none');
+            }
+            if (errorDiv) errorDiv.classList.add('d-none');
             nameInput.value = '';
         } else {
-            errorDiv.textContent = data.error || 'Failed to save';
-            errorDiv.classList.remove('d-none');
-            successDiv.classList.add('d-none');
+            if (errorDiv) {
+                errorDiv.textContent = data.error || 'Failed to save';
+                errorDiv.classList.remove('d-none');
+            }
+            if (successDiv) successDiv.classList.add('d-none');
         }
     })
     .catch(error => {
-        console.error('Error:', error);
-        errorDiv.textContent = 'An unexpected error occurred';
-        errorDiv.classList.remove('d-none');
-        successDiv.classList.add('d-none');
+        console.error('Error saving entity:', error);
+        if (errorDiv) {
+            errorDiv.textContent = 'An unexpected error occurred';
+            errorDiv.classList.remove('d-none');
+        }
+        if (successDiv) successDiv.classList.add('d-none');
     });
 }
 
 function editEntity(type, id, currentName) {
+    if (!type || !id) return;
+    
     const newName = prompt('Enter new name:', currentName);
     if (!newName || newName.trim() === '') return;
     
     const errorDiv = document.getElementById(type + 'Error');
     const successDiv = document.getElementById(type + 'Success');
     const selectId = type === 'researchTeacher' ? 'research_teacher_id' : type + '_id';
+    
+    console.log('Editing entity:', { type, id, currentName, newName });
     
     fetch('<?= base_url('admin/researchers/edit-') ?>' + type, {
         method: 'POST',
@@ -869,44 +892,62 @@ function editEntity(type, id, currentName) {
         },
         body: 'id=' + id + '&name=' + encodeURIComponent(newName.trim()) + '&<?= csrf_token() ?>=<?= csrf_hash() ?>'
     })
-    .then(response => response.json())
+    .then(response => {
+        console.log('Edit response status:', response.status);
+        return response.json();
+    })
     .then(data => {
+        console.log('Edit response data:', data);
         if (data.success) {
             // Update select
             const select = document.getElementById(selectId);
-            const option = select.querySelector('option[value="' + id + '"]');
-            if (option) option.textContent = data.name;
+            if (select) {
+                const option = select.querySelector('option[value="' + id + '"]');
+                if (option) option.textContent = data.name;
+            }
             
             // Update list
             const listItem = document.getElementById(type + 'List').querySelector('[data-id="' + id + '"]');
             if (listItem) {
-                listItem.querySelector('.' + type + '-name').textContent = data.name;
-                listItem.querySelector('.edit-btn').dataset.name = data.name;
+                const nameSpan = listItem.querySelector('.' + type + '-name');
+                if (nameSpan) nameSpan.textContent = data.name;
+                const editBtn = listItem.querySelector('.edit-btn');
+                if (editBtn) editBtn.dataset.name = data.name;
             }
             
-            successDiv.textContent = 'Updated successfully!';
-            successDiv.classList.remove('d-none');
-            errorDiv.classList.add('d-none');
+            if (successDiv) {
+                successDiv.textContent = 'Updated successfully!';
+                successDiv.classList.remove('d-none');
+            }
+            if (errorDiv) errorDiv.classList.add('d-none');
         } else {
-            errorDiv.textContent = data.error || 'Failed to update';
-            errorDiv.classList.remove('d-none');
-            successDiv.classList.add('d-none');
+            if (errorDiv) {
+                errorDiv.textContent = data.error || 'Failed to update';
+                errorDiv.classList.remove('d-none');
+            }
+            if (successDiv) successDiv.classList.add('d-none');
         }
     })
     .catch(error => {
-        console.error('Error:', error);
-        errorDiv.textContent = 'An unexpected error occurred';
-        errorDiv.classList.remove('d-none');
-        successDiv.classList.add('d-none');
+        console.error('Error editing entity:', error);
+        if (errorDiv) {
+            errorDiv.textContent = 'An unexpected error occurred';
+            errorDiv.classList.remove('d-none');
+        }
+        if (successDiv) successDiv.classList.add('d-none');
     });
 }
 
 function deleteEntity(type, id) {
+    if (!type || !id) return;
+    
     if (!confirm('Are you sure you want to delete this?')) return;
     
     const errorDiv = document.getElementById(type + 'Error');
     const successDiv = document.getElementById(type + 'Success');
     const selectId = type === 'researchTeacher' ? 'research_teacher_id' : type + '_id';
+    
+    console.log('Deleting entity:', { type, id });
     
     fetch('<?= base_url('admin/researchers/delete-') ?>' + type + '/' + id, {
         method: 'POST',
@@ -915,32 +956,44 @@ function deleteEntity(type, id) {
         },
         body: '<?= csrf_token() ?>=<?= csrf_hash() ?>'
     })
-    .then(response => response.json())
+    .then(response => {
+        console.log('Delete response status:', response.status);
+        return response.json();
+    })
     .then(data => {
+        console.log('Delete response data:', data);
         if (data.success) {
             // Remove from select
             const select = document.getElementById(selectId);
-            const option = select.querySelector('option[value="' + id + '"]');
-            if (option) option.remove();
+            if (select) {
+                const option = select.querySelector('option[value="' + id + '"]');
+                if (option) option.remove();
+            }
             
             // Remove from list
             const listItem = document.getElementById(type + 'List').querySelector('[data-id="' + id + '"]');
             if (listItem) listItem.remove();
             
-            successDiv.textContent = 'Deleted successfully!';
-            successDiv.classList.remove('d-none');
-            errorDiv.classList.add('d-none');
+            if (successDiv) {
+                successDiv.textContent = 'Deleted successfully!';
+                successDiv.classList.remove('d-none');
+            }
+            if (errorDiv) errorDiv.classList.add('d-none');
         } else {
-            errorDiv.textContent = data.error || 'Failed to delete';
-            errorDiv.classList.remove('d-none');
-            successDiv.classList.add('d-none');
+            if (errorDiv) {
+                errorDiv.textContent = data.error || 'Failed to delete';
+                errorDiv.classList.remove('d-none');
+            }
+            if (successDiv) successDiv.classList.add('d-none');
         }
     })
     .catch(error => {
-        console.error('Error:', error);
-        errorDiv.textContent = 'An unexpected error occurred';
-        errorDiv.classList.remove('d-none');
-        successDiv.classList.add('d-none');
+        console.error('Error deleting entity:', error);
+        if (errorDiv) {
+            errorDiv.textContent = 'An unexpected error occurred';
+            errorDiv.classList.remove('d-none');
+        }
+        if (successDiv) successDiv.classList.add('d-none');
     });
 }
 </script>
