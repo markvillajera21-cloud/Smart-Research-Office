@@ -44,7 +44,7 @@
     <div class="col-12 col-sm-6 col-xl-3">
         <div class="card p-3">
             <div class="d-flex align-items-center gap-3">
-                <div class="bg-warning-subtle text-warning p-3 rounded-3">
+                <div class="bg-success-subtle text-success p-3 rounded-3">
                     <i class="bi bi-clock-history fs-4"></i>
                 </div>
                 <div>
@@ -101,23 +101,23 @@
         </div>
     </div>
     <div class="col-12 col-xl-4">
-        <div class="card h-100 p-4 bg-primary text-white">
+        <div class="card h-100 p-4">
             <h5 class="mb-4">Quick Actions</h5>
             <div class="d-grid gap-3">
-                <a href="<?= base_url('admin/users/create') ?>" class="btn btn-light text-primary fw-semibold py-3 text-start px-4">
+                <a href="<?= base_url('admin/users/create') ?>" class="btn btn-primary fw-semibold py-3 text-start px-4">
                     <i class="bi bi-person-plus-fill me-2"></i> Add New Researcher
                 </a>
-                <a href="<?= base_url('admin/uploads') ?>" class="btn btn-primary border border-white fw-semibold py-3 text-start px-4">
+                <a href="<?= base_url('admin/uploads') ?>" class="btn btn-outline-primary fw-semibold py-3 text-start px-4">
                     <i class="bi bi-cloud-arrow-up me-2"></i> Upload Data
                 </a>
             </div>
             <div class="mt-auto pt-4">
-                <div class="p-3 rounded-3 bg-white bg-opacity-10">
-                    <p class="small mb-0 opacity-75">Storage Used</p>
+                <div class="p-3 rounded-3 bg-light">
+                    <p class="small mb-0 text-muted">Storage Used</p>
                     <div class="progress mt-2 mb-1" style="height: 6px;">
-                        <div class="progress-bar bg-white" style="width: 65%"></div>
+                        <div class="progress-bar bg-primary" style="width: 65%"></div>
                     </div>
-                    <small class="opacity-75">12.5 GB of 20 GB</small>
+                    <small class="text-muted">12.5 GB of 20 GB</small>
                 </div>
             </div>
         </div>

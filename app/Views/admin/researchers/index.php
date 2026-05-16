@@ -85,14 +85,14 @@
         <table class="table table-hover align-middle">
             <thead>
                 <tr class="text-uppercase text-muted small">
-                        <th class="fw-semibold" style="min-width: 220px;">Approved Research Title</th>
+                        <th class="fw-semibold" style="min-width: 150px;">Category</th>
                         <th class="fw-semibold" style="min-width: 150px;">Program/Career Pathways</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Full Name</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Adviser</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Grammarian</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Statisticians</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Research Teacher</th>
-                        <th class="fw-semibold" style="white-space: nowrap;">Category</th>
+                        <th class="fw-semibold" style="min-width: 220px;">Approved Research Title</th>
                         <th class="text-end fw-semibold" style="width: 120px; white-space: nowrap;">Remarks</th>
                     </tr>
             </thead>
@@ -101,13 +101,9 @@
                     <?php foreach ($researchers as $r): ?>
                         <tr>
                             <td>
-                                <div class="small text-muted" style="max-width: 280px;">
-                                    <?php if (!empty($r['approved_research_title'])): ?>
-                                        <?= (strlen($r['approved_research_title']) > 80) ? substr($r['approved_research_title'], 0, 80) . '...' : $r['approved_research_title'] ?>
-                                    <?php else: ?>
-                                        <span class="text-muted">N/A</span>
-                                    <?php endif; ?>
-                                </div>
+                                <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 small">
+                                    <?= $r['category_name'] ?? 'Other' ?>
+                                </span>
                             </td>
                             <td>
                                 <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 small">
@@ -138,9 +134,13 @@
                                 </span>
                             </td>
                             <td>
-                                <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 small">
-                                    <?= $r['category_name'] ?? 'Other' ?>
-                                </span>
+                                <div class="small text-muted" style="max-width: 280px;">
+                                    <?php if (!empty($r['approved_research_title'])): ?>
+                                        <?= (strlen($r['approved_research_title']) > 80) ? substr($r['approved_research_title'], 0, 80) . '...' : $r['approved_research_title'] ?>
+                                    <?php else: ?>
+                                        <span class="text-muted">N/A</span>
+                                    <?php endif; ?>
+                                </div>
                             </td>
                             <td class="text-end">
                                 <div class="dropdown">

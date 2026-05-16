@@ -43,7 +43,7 @@
 </ul>
 
 <div class="nav-item mt-auto border-top p-4">
-    <a href="<?= base_url('logout') ?>" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center gap-2 py-2 shadow-sm">
+    <a href="<?= base_url('logout') ?>" class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center gap-2 py-2">
         <i class="bi bi-box-arrow-right"></i>
         <span class="fw-semibold">Sign Out</span>
     </a>

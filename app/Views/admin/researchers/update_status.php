@@ -42,8 +42,8 @@
             <thead>
                 <tr class="text-uppercase text-muted small">
                     <th class="fw-semibold">Full Name</th>
-                    <th class="fw-semibold">Approved Research Title</th>
                     <th class="fw-semibold">Category</th>
+                    <th class="fw-semibold">Approved Research Title</th>
                     <th class="fw-semibold">Current Status</th>
                     <th class="text-end fw-semibold">Remarks</th>
                 </tr>
@@ -56,6 +56,11 @@
                                 <div class="fw-bold small"><?= $r['fullname'] ?? '<span class="text-muted">N/A</span>' ?></div>
                             </td>
                             <td>
+                                <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 small">
+                                    <?= $r['category_name'] ?? 'Other' ?>
+                                </span>
+                            </td>
+                            <td>
                                 <div class="small text-muted" style="max-width: 280px;">
                                     <?php if (!empty($r['approved_research_title'])): ?>
                                         <?= (strlen($r['approved_research_title']) > 80) ? substr($r['approved_research_title'], 0, 80) . '...' : $r['approved_research_title'] ?>
@@ -63,11 +68,6 @@
                                         <span class="text-muted">N/A</span>
                                     <?php endif; ?>
                                 </div>
-                            </td>
-                            <td>
-                                <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 small">
-                                    <?= $r['category_name'] ?? 'Other' ?>
-                                </span>
                             </td>
                             <td>
                                 <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 small">
