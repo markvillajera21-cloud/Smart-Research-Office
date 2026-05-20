@@ -87,7 +87,7 @@
                 <tr class="text-uppercase text-muted small">
                         <th class="fw-semibold" style="min-width: 150px;">Category</th>
                         <th class="fw-semibold" style="min-width: 150px;">Program/Career Pathways</th>
-                        <th class="fw-semibold" style="white-space: nowrap;">Full Name</th>
+                        <th class="fw-semibold" style="white-space: nowrap;">Sure Name</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Adviser</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Grammarian</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Statisticians</th>

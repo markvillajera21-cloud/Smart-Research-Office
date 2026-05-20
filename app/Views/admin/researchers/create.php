@@ -24,7 +24,7 @@
 
                     <div class="row">
                         <div class="col-md-4 mb-3">
-                            <label class="form-label">Surname</label>
+                            <label class="form-label">Sure Name</label>
                             <textarea name="surname" class="form-control" rows="3" placeholder="Enter surname" required><?= old('surname') ?></textarea>
                         </div>
                         <div class="col-md-4 mb-3">
@@ -803,10 +803,11 @@ function saveEntity(type) {
         return;
     }
 
-    const selectId = type === 'researchTeacher' ? 'research_teacher_id' : type + '_id';
-    console.log('Saving entity:', { type, name, selectId });
+    const apiType = type === 'statistician' ? 'remark' : type;
+    const selectId = type === 'researchTeacher' ? 'research_teacher_id' : (type === 'statistician' ? 'remark_id' : type + '_id');
+    console.log('Saving entity:', { type, apiType, name, selectId });
     
-    fetch('<?= base_url('admin/researchers/add-') ?>' + type, {
+    fetch('<?= base_url('admin/researchers/add-') ?>' + apiType, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -880,11 +881,12 @@ function editEntity(type, id, currentName) {
     
     const errorDiv = document.getElementById(type + 'Error');
     const successDiv = document.getElementById(type + 'Success');
-    const selectId = type === 'researchTeacher' ? 'research_teacher_id' : type + '_id';
+    const apiType = type === 'statistician' ? 'remark' : type;
+    const selectId = type === 'researchTeacher' ? 'research_teacher_id' : (type === 'statistician' ? 'remark_id' : type + '_id');
     
-    console.log('Editing entity:', { type, id, currentName, newName });
+    console.log('Editing entity:', { type, apiType, id, currentName, newName });
     
-    fetch('<?= base_url('admin/researchers/edit-') ?>' + type, {
+    fetch('<?= base_url('admin/researchers/edit-') ?>' + apiType, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -945,11 +947,12 @@ function deleteEntity(type, id) {
     
     const errorDiv = document.getElementById(type + 'Error');
     const successDiv = document.getElementById(type + 'Success');
-    const selectId = type === 'researchTeacher' ? 'research_teacher_id' : type + '_id';
+    const apiType = type === 'statistician' ? 'remark' : type;
+    const selectId = type === 'researchTeacher' ? 'research_teacher_id' : (type === 'statistician' ? 'remark_id' : type + '_id');
     
-    console.log('Deleting entity:', { type, id });
+    console.log('Deleting entity:', { type, apiType, id });
     
-    fetch('<?= base_url('admin/researchers/delete-') ?>' + type + '/' + id, {
+    fetch('<?= base_url('admin/researchers/delete-') ?>' + apiType + '/' + id, {
         method: 'POST',
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
