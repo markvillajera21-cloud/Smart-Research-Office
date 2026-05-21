@@ -44,6 +44,8 @@
                     <th class="fw-semibold">Full Name</th>
                     <th class="fw-semibold">Category</th>
                     <th class="fw-semibold">Approved Research Title</th>
+                    <th class="fw-semibold">Pre Oral Defense</th>
+                    <th class="fw-semibold">Final Defense</th>
                     <th class="fw-semibold">Current Status</th>
                     <th class="text-end fw-semibold">Remarks</th>
                 </tr>
@@ -70,6 +72,30 @@
                                 </div>
                             </td>
                             <td>
+                                <div class="small">
+                                    <?php if ($r['pre_oral_defense_date']): ?>
+                                        <div class="text-muted"><?= date('M d, Y', strtotime($r['pre_oral_defense_date'])) ?></div>
+                                    <?php endif; ?>
+                                    <?php if ($r['pre_oral_defense_status_name']): ?>
+                                        <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 small">
+                                            <?= $r['pre_oral_defense_status_name'] ?>
+                                        </span>
+                                    <?php endif; ?>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="small">
+                                    <?php if ($r['final_defense_date']): ?>
+                                        <div class="text-muted"><?= date('M d, Y', strtotime($r['final_defense_date'])) ?></div>
+                                    <?php endif; ?>
+                                    <?php if ($r['final_defense_status_name']): ?>
+                                        <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 small">
+                                            <?= $r['final_defense_status_name'] ?>
+                                        </span>
+                                    <?php endif; ?>
+                                </div>
+                            </td>
+                            <td>
                                 <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 small">
                                     <?= $r['status_name'] ?? 'Not Set' ?>
                                 </span>
@@ -91,7 +117,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="5" class="text-center py-5 text-muted">
+                        <td colspan="7" class="text-center py-5 text-muted">
                             <i class="bi bi-search fs-1 d-block mb-3"></i>
                             No researchers found matching your criteria.
                         </td>

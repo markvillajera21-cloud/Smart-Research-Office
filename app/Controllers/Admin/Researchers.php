@@ -30,6 +30,7 @@ class Researchers extends BaseController
     protected $statisticianModel;
     protected $abstractModel;
     protected $researchTeacherModel;
+    protected $defenseStatusModel;
 
     public function __construct()
     {
@@ -45,6 +46,7 @@ class Researchers extends BaseController
         $this->statisticianModel = new RemarkModel();
         $this->abstractModel = new AbstractModel();
         $this->researchTeacherModel = new ResearchTeacherModel();
+        $this->defenseStatusModel = new \App\Models\DefenseStatusModel();
     }
 
     public function index()
@@ -146,6 +148,7 @@ class Researchers extends BaseController
             'statisticians' => $this->statisticianModel->orderBy('name', 'ASC')->findAll(),
             'researchTeachers' => $this->researchTeacherModel->orderBy('name', 'ASC')->findAll(),
             'abstracts' => $this->abstractModel->orderBy('name', 'ASC')->findAll(),
+            'defenseStatuses' => $this->defenseStatusModel->orderBy('name', 'ASC')->findAll(),
         ];
 
         return view('admin/researchers/create', $data);
@@ -205,6 +208,10 @@ class Researchers extends BaseController
             'category_id'               => $this->request->getPost('category_id'),
             'approved_research_title'   => $this->request->getPost('approved_research_title'),
             'approved_date'             => $this->request->getPost('approved_date') ?: null,
+            'pre_oral_defense_date'     => $this->request->getPost('pre_oral_defense_date') ?: null,
+            'pre_oral_defense_status_id'   => $this->request->getPost('pre_oral_defense_status_id') ?: null,
+            'final_defense_date'        => $this->request->getPost('final_defense_date') ?: null,
+            'final_defense_status_id'      => $this->request->getPost('final_defense_status_id') ?: null,
             'remarks'                   => $this->request->getPost('remarks'),
             'status'                    => $this->request->getPost('status') ?? 'active'
         ];
@@ -240,6 +247,7 @@ class Researchers extends BaseController
             'statisticians' => $this->statisticianModel->orderBy('name', 'ASC')->findAll(),
             'researchTeachers' => $this->researchTeacherModel->orderBy('name', 'ASC')->findAll(),
             'abstracts' => $this->abstractModel->orderBy('name', 'ASC')->findAll(),
+            'defenseStatuses' => $this->defenseStatusModel->orderBy('name', 'ASC')->findAll(),
         ];
 
         return view('admin/researchers/edit', $data);
@@ -304,6 +312,10 @@ class Researchers extends BaseController
             'category_id'               => $this->request->getPost('category_id'),
             'approved_research_title'   => $this->request->getPost('approved_research_title'),
             'approved_date'             => $this->request->getPost('approved_date') ?: null,
+            'pre_oral_defense_date'     => $this->request->getPost('pre_oral_defense_date') ?: null,
+            'pre_oral_defense_status_id'   => $this->request->getPost('pre_oral_defense_status_id') ?: null,
+            'final_defense_date'        => $this->request->getPost('final_defense_date') ?: null,
+            'final_defense_status_id'      => $this->request->getPost('final_defense_status_id') ?: null,
             'remarks'                   => $this->request->getPost('remarks'),
             'status'                    => $this->request->getPost('status') ?? 'active'
         ];
@@ -463,6 +475,21 @@ class Researchers extends BaseController
     public function deleteResearchTeacher($id)
     {
         return $this->deleteEntity($this->researchTeacherModel, $id);
+    }
+
+    public function addDefenseStatus()
+    {
+        return $this->addEntity($this->defenseStatusModel);
+    }
+
+    public function editDefenseStatus()
+    {
+        return $this->editEntity($this->defenseStatusModel);
+    }
+
+    public function deleteDefenseStatus($id)
+    {
+        return $this->deleteEntity($this->defenseStatusModel, $id);
     }
 
     public function addAbstract()
@@ -685,9 +712,11 @@ class Researchers extends BaseController
         $categoryFilter = $this->request->getGet('category');
         $search = $this->request->getGet('search');
         
-        $query = $this->researcherModel->select('researchers.*, research_categories.name as category_name, statuses.name as status_name')
+        $query = $this->researcherModel->select('researchers.*, research_categories.name as category_name, statuses.name as status_name, pre_oral_defense_statuses.name as pre_oral_defense_status_name, final_defense_statuses.name as final_defense_status_name')
                                      ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
-                                     ->join('statuses', 'statuses.id = researchers.status_id', 'left');
+                                     ->join('statuses', 'statuses.id = researchers.status_id', 'left')
+                                     ->join('defense_statuses as pre_oral_defense_statuses', 'pre_oral_defense_statuses.id = researchers.pre_oral_defense_status_id', 'left')
+                                     ->join('defense_statuses as final_defense_statuses', 'final_defense_statuses.id = researchers.final_defense_status_id', 'left');
 
         if ($categoryFilter) {
             $query->where('researchers.category_id', $categoryFilter);

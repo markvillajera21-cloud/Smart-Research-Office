@@ -37,7 +37,11 @@ class ResearcherModel extends Model
         'approved_date',
         'strand_degree_program',
         'school_year',
-        'status'
+        'status',
+        'pre_oral_defense_date',
+        'pre_oral_defense_status_id',
+        'final_defense_date',
+        'final_defense_status_id'
     ];
 
     protected $useTimestamps = true;

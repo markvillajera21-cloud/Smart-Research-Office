@@ -17,12 +17,13 @@
             --primary-color: #2563eb;
             --secondary-color: #64748b;
             --sidebar-bg: #ffffff;
-            --main-bg: #f8fafc;
+            --main-bg: #eff6ff;
         }
         
         body {
             font-family: 'Inter', sans-serif;
             color: #1e293b;
+            background-color: var(--main-bg);
         }
 
         .sidebar {
@@ -80,7 +81,7 @@
         }
 
         .table thead th {
-            background-color: #f8fafc;
+            background-color: #dbeafe;
             color: #64748b;
             font-weight: 600;
             text-transform: uppercase;
@@ -142,7 +143,7 @@
                 </nav>
 
                 <!-- Page Content -->
-                <main class="p-4">
+                <main class="p-4" style="background-color: var(--main-bg);">
                     <?php if (session()->getFlashdata('success')): ?>
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <?= session()->getFlashdata('success') ?>

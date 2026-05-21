@@ -3,48 +3,54 @@
 <?= $this->section('content') ?>
 <div class="row g-4 mb-4">
     <div class="col-12 col-sm-6 col-xl-3">
+        <a href="<?= base_url('admin/users') ?>" class="text-decoration-none">
+            <div class="card p-3 hover-shadow">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="bg-primary-subtle text-primary p-3 rounded-3">
+                        <i class="bi bi-people-fill fs-4"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Total Users</h6>
+                        <h4 class="mb-0"><?= $totalUsers ?></h4>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-12 col-sm-6 col-xl-3">
+        <a href="<?= base_url('admin/projects') ?>" class="text-decoration-none">
+            <div class="card p-3 hover-shadow">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="bg-primary-subtle text-primary p-3 rounded-3">
+                        <i class="bi bi-journal-check fs-4"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Active Projects</h6>
+                        <h4 class="mb-0"><?= $activeProjects ?></h4>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-12 col-sm-6 col-xl-3">
+        <a href="<?= base_url('admin/researchers/update-status') ?>" class="text-decoration-none">
+            <div class="card p-3 hover-shadow">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="bg-primary-subtle text-primary p-3 rounded-3">
+                        <i class="bi bi-file-earmark-text fs-4"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Pending Reviews</h6>
+                        <h4 class="mb-0"><?= $pendingReviews ?></h4>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-12 col-sm-6 col-xl-3">
         <div class="card p-3">
             <div class="d-flex align-items-center gap-3">
                 <div class="bg-primary-subtle text-primary p-3 rounded-3">
-                    <i class="bi bi-people-fill fs-4"></i>
-                </div>
-                <div>
-                    <h6 class="text-muted mb-1">Total Users</h6>
-                    <h4 class="mb-0"><?= $totalUsers ?></h4>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-sm-6 col-xl-3">
-        <div class="card p-3">
-            <div class="d-flex align-items-center gap-3">
-                <div class="bg-success-subtle text-success p-3 rounded-3">
-                    <i class="bi bi-journal-check fs-4"></i>
-                </div>
-                <div>
-                    <h6 class="text-muted mb-1">Active Projects</h6>
-                    <h4 class="mb-0"><?= $activeProjects ?></h4>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-sm-6 col-xl-3">
-        <div class="card p-3">
-            <div class="d-flex align-items-center gap-3">
-                <div class="bg-info-subtle text-info p-3 rounded-3">
-                    <i class="bi bi-file-earmark-text fs-4"></i>
-                </div>
-                <div>
-                    <h6 class="text-muted mb-1">Pending Reviews</h6>
-                    <h4 class="mb-0"><?= $pendingReviews ?></h4>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-sm-6 col-xl-3">
-        <div class="card p-3">
-            <div class="d-flex align-items-center gap-3">
-                <div class="bg-success-subtle text-success p-3 rounded-3">
                     <i class="bi bi-clock-history fs-4"></i>
                 </div>
                 <div>
@@ -61,7 +67,7 @@
         <div class="card h-100 p-4">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h5 class="mb-0">Recent Activities</h5>
-                <button class="btn btn-sm btn-outline-secondary">View All</button>
+                <a href="<?= base_url('admin/audit-logs') ?>" class="btn btn-sm btn-outline-secondary">View All</a>
             </div>
             <div class="list-group list-group-flush">
                 <div class="list-group-item px-0 py-3 border-0 border-bottom">

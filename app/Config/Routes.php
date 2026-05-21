@@ -86,6 +86,9 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
         $routes->post('add-abstract', 'Admin\Researchers::addAbstract');
         $routes->post('edit-abstract', 'Admin\Researchers::editAbstract');
         $routes->post('delete-abstract/(:num)', 'Admin\Researchers::deleteAbstract/$1');
+        $routes->post('add-defense-status', 'Admin\Researchers::addDefenseStatus');
+        $routes->post('edit-defense-status', 'Admin\Researchers::editDefenseStatus');
+        $routes->post('delete-defense-status/(:num)', 'Admin\Researchers::deleteDefenseStatus/$1');
     });
     
     // User Management CRUD

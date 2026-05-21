@@ -129,6 +129,52 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
+                            <label class="form-label">Pre Oral Defense Date</label>
+                            <input type="date" name="pre_oral_defense_date" class="form-control" value="<?= old('pre_oral_defense_date', $researcher['pre_oral_defense_date']) ?>">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label d-flex justify-content-between align-items-center">
+                                Pre Oral Defense Status
+                                <div class="d-flex gap-1">
+                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addDefenseStatusModal" title="Manage">
+                                        <i class="bi bi-gear"></i>
+                                    </button>
+                                </div>
+                            </label>
+                            <select name="pre_oral_defense_status_id" class="form-select">
+                                <option value="">Select Status</option>
+                                <?php foreach ($defenseStatuses as $ds): ?>
+                                    <option value="<?= $ds['id'] ?>" <?= old('pre_oral_defense_status_id', $researcher['pre_oral_defense_status_id']) == $ds['id'] ? 'selected' : '' ?>><?= $ds['name'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Final Defense Date</label>
+                            <input type="date" name="final_defense_date" class="form-control" value="<?= old('final_defense_date', $researcher['final_defense_date']) ?>">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label d-flex justify-content-between align-items-center">
+                                Final Defense Status
+                                <div class="d-flex gap-1">
+                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addDefenseStatusModal" title="Manage">
+                                        <i class="bi bi-gear"></i>
+                                    </button>
+                                </div>
+                            </label>
+                            <select name="final_defense_status_id" class="form-select">
+                                <option value="">Select Status</option>
+                                <?php foreach ($defenseStatuses as $ds): ?>
+                                    <option value="<?= $ds['id'] ?>" <?= old('final_defense_status_id', $researcher['final_defense_status_id']) == $ds['id'] ? 'selected' : '' ?>><?= $ds['name'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
                             <label class="form-label d-flex justify-content-between align-items-center">
                                 Adviser
                                 <div class="d-flex gap-1">
@@ -716,6 +762,54 @@
     </div>
 </div>
 
+<!-- Defense Status Modal -->
+<div class="modal fade" id="addDefenseStatusModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Manage Defense Statuses</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="defenseStatusError" class="alert alert-danger d-none"></div>
+                <div id="defenseStatusSuccess" class="alert alert-success d-none"></div>
+                
+                <!-- Add New -->
+                <div class="mb-4">
+                    <label class="form-label fw-medium">Add New</label>
+                    <div class="d-flex gap-2">
+                        <input type="text" id="newDefenseStatusName" class="form-control" placeholder="e.g. Pending">
+                        <button type="button" id="saveDefenseStatusBtn" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+                
+                <!-- List -->
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Existing</label>
+                    <div id="defenseStatusList" class="list-group">
+                        <?php foreach ($defenseStatuses as $ds): ?>
+                            <div class="list-group-item d-flex justify-content-between align-items-center" data-id="<?= $ds['id'] ?>">
+                                <span class="defenseStatus-name"><?= $ds['name'] ?></span>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-id="<?= $ds['id'] ?>" data-name="<?= $ds['name'] ?>">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="<?= $ds['id'] ?>">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Manage functionality initialized');
@@ -732,7 +826,8 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'saveGrammarianBtn', type: 'grammarian' },
         { id: 'saveStatisticianBtn', type: 'statistician' },
         { id: 'saveResearchTeacherBtn', type: 'researchTeacher' },
-        { id: 'saveAbstractBtn', type: 'abstract' }
+        { id: 'saveAbstractBtn', type: 'abstract' },
+        { id: 'saveDefenseStatusBtn', type: 'defenseStatus' }
     ];
     
     saveButtons.forEach(btn => {
@@ -782,6 +877,7 @@ function getTypeFromBtn(btn) {
     if (btn.closest('#statisticianList')) return 'statistician';
     if (btn.closest('#researchTeacherList')) return 'researchTeacher';
     if (btn.closest('#abstractList')) return 'abstract';
+    if (btn.closest('#defenseStatusList')) return 'defenseStatus';
     console.error('Could not determine type for button');
     return null;
 }
@@ -809,9 +905,14 @@ function saveEntity(type) {
         return;
     }
 
-    const apiType = type === 'statistician' ? 'remark' : type;
-    const selectId = type === 'researchTeacher' ? 'research_teacher_id' : (type === 'statistician' ? 'remark_id' : type + '_id');
-    console.log('Saving entity:', { type, apiType, name, selectId });
+    const apiType = type === 'statistician' ? 'remark' : (type === 'defenseStatus' ? 'defense-status' : type);
+    let selectIds = [];
+    if (type === 'defenseStatus') {
+        selectIds = ['pre_oral_defense_status_id', 'final_defense_status_id'];
+    } else {
+        selectIds = [type === 'researchTeacher' ? 'research_teacher_id' : (type === 'statistician' ? 'remark_id' : type + '_id')];
+    }
+    console.log('Saving entity:', { type, apiType, name, selectIds });
     
     fetch('<?= base_url('admin/researchers/add-') ?>' + apiType, {
         method: 'POST',
@@ -828,12 +929,14 @@ function saveEntity(type) {
     .then(data => {
         console.log('Save response data:', data);
         if (data.success) {
-            const select = document.getElementById(selectId);
-            if (select) {
-                const option = new Option(data.name, data.id);
-                select.add(option);
-                select.value = data.id;
-            }
+            selectIds.forEach(selectId => {
+                const select = document.getElementById(selectId);
+                if (select) {
+                    const option = new Option(data.name, data.id);
+                    select.add(option);
+                    select.value = data.id;
+                }
+            });
             
             // Add to list
             const list = document.getElementById(type + 'List');
@@ -907,12 +1010,14 @@ function editEntity(type, id, currentName) {
     .then(data => {
         console.log('Edit response data:', data);
         if (data.success) {
-            // Update select
-            const select = document.getElementById(selectId);
-            if (select) {
-                const option = select.querySelector('option[value="' + id + '"]');
-                if (option) option.textContent = data.name;
-            }
+            // Update selects
+            selectIds.forEach(selectId => {
+                const select = document.getElementById(selectId);
+                if (select) {
+                    const option = select.querySelector('option[value="' + id + '"]');
+                    if (option) option.textContent = data.name;
+                }
+            });
             
             // Update list
             const listItem = document.getElementById(type + 'List').querySelector('[data-id="' + id + '"]');
@@ -972,12 +1077,14 @@ function deleteEntity(type, id) {
     .then(data => {
         console.log('Delete response data:', data);
         if (data.success) {
-            // Remove from select
-            const select = document.getElementById(selectId);
-            if (select) {
-                const option = select.querySelector('option[value="' + id + '"]');
-                if (option) option.remove();
-            }
+            // Remove from selects
+            selectIds.forEach(selectId => {
+                const select = document.getElementById(selectId);
+                if (select) {
+                    const option = select.querySelector('option[value="' + id + '"]');
+                    if (option) option.remove();
+                }
+            });
             
             // Remove from list
             const listItem = document.getElementById(type + 'List').querySelector('[data-id="' + id + '"]');

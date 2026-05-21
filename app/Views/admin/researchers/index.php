@@ -88,6 +88,9 @@
                         <th class="fw-semibold" style="min-width: 150px;">Category</th>
                         <th class="fw-semibold" style="min-width: 150px;">Program/Career Pathways</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Sure Name</th>
+                        <th class="fw-semibold" style="white-space: nowrap;">First Name</th>
+                        <th class="fw-semibold" style="white-space: nowrap;">Middle Initial</th>
+                        <th class="fw-semibold" style="white-space: nowrap;">Ext Name</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Adviser</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Grammarian</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Statisticians</th>
@@ -111,7 +114,16 @@
                                 </span>
                             </td>
                             <td>
-                                <div class="fw-bold small"><?= $r['fullname'] ?? '<span class="text-muted">N/A</span>' ?></div>
+                                <div class="fw-bold small"><?= $r['surname'] ?? '<span class="text-muted">N/A</span>' ?></div>
+                            </td>
+                            <td>
+                                <div class="fw-bold small"><?= $r['first_name'] ?? '<span class="text-muted">N/A</span>' ?></div>
+                            </td>
+                            <td>
+                                <div class="fw-bold small"><?= $r['middle_initial'] ?? '<span class="text-muted">N/A</span>' ?></div>
+                            </td>
+                            <td>
+                                <div class="fw-bold small"><?= $r['ext_name'] ?? '<span class="text-muted">N/A</span>' ?></div>
                             </td>
                             <td>
                                 <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 small">
@@ -161,7 +173,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="9" class="text-center py-5 text-muted">
+                        <td colspan="12" class="text-center py-5 text-muted">
                             <i class="bi bi-search fs-1 d-block mb-3"></i>
                             No researchers found matching your criteria.
                         </td>
