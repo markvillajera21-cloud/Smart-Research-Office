@@ -14,7 +14,7 @@
             transition: background-color 300ms ease, color 300ms ease;
         }
         *:focus {
-            background-color: rgba(221, 72, 20, .2);
+            background-color: rgba(30, 58, 138, .2);
             outline: none;
         }
         html, body {
@@ -62,8 +62,8 @@
         }
         header li.menu-item a:hover,
         header li.menu-item a:focus {
-            background-color: rgba(221, 72, 20, .2);
-            color: rgba(221, 72, 20, 1);
+            background-color: rgba(30, 58, 138, .2);
+            color: rgba(30, 58, 138, 1);
         }
         header .logo {
             float: left;
@@ -77,7 +77,7 @@
             font-weight: bold;
         }
         header .menu-toggle button {
-            background-color: rgba(221, 72, 20, .6);
+            background-color: rgba(30, 58, 138, .8);
             border: none;
             border-radius: 3px;
             color: rgba(255, 255, 255, 1);
@@ -156,7 +156,7 @@
             stroke-width: 32px;
         }
         footer {
-            background-color: rgba(221, 72, 20, .8);
+            background-color: rgba(30, 58, 138, .9);
             text-align: center;
         }
         footer .environment {

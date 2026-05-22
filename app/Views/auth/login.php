@@ -28,7 +28,7 @@
             background: white;
         }
         .login-header {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
             color: white;
             padding: 3rem 2rem;
             text-align: center;
@@ -59,7 +59,7 @@
             transition: all 0.2s;
         }
         .input-group-text:hover {
-            color: #2563eb;
+            color: #1e3a8a;
             background-color: #e2e8f0;
         }
         .form-control.has-toggle {
@@ -67,15 +67,18 @@
         }
         .form-control:focus {
             background-color: #ffffff;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+            border-color: #1e3a8a;
+            box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.1);
         }
         .btn-primary {
             padding: 0.75rem;
             border-radius: 0.75rem;
             font-weight: 600;
-            background-color: #2563eb;
+            background-color: #1e3a8a;
             border: none;
+        }
+        .btn-primary:hover {
+            background-color: #1e40af;
         }
     </style>
 </head>

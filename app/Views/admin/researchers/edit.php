@@ -990,10 +990,15 @@ function editEntity(type, id, currentName) {
     
     const errorDiv = document.getElementById(type + 'Error');
     const successDiv = document.getElementById(type + 'Success');
-    const apiType = type === 'statistician' ? 'remark' : type;
-    const selectId = type === 'researchTeacher' ? 'research_teacher_id' : (type === 'statistician' ? 'remark_id' : type + '_id');
+    const apiType = type === 'statistician' ? 'remark' : (type === 'defenseStatus' ? 'defense-status' : type);
+    let selectIds = [];
+    if (type === 'defenseStatus') {
+        selectIds = ['pre_oral_defense_status_id', 'final_defense_status_id'];
+    } else {
+        selectIds = [type === 'researchTeacher' ? 'research_teacher_id' : (type === 'statistician' ? 'remark_id' : type + '_id')];
+    }
     
-    console.log('Editing entity:', { type, apiType, id, currentName, newName });
+    console.log('Editing entity:', { type, apiType, id, currentName, newName, selectIds });
     
     fetch('<?= base_url('admin/researchers/edit-') ?>' + apiType, {
         method: 'POST',
@@ -1058,10 +1063,15 @@ function deleteEntity(type, id) {
     
     const errorDiv = document.getElementById(type + 'Error');
     const successDiv = document.getElementById(type + 'Success');
-    const apiType = type === 'statistician' ? 'remark' : type;
-    const selectId = type === 'researchTeacher' ? 'research_teacher_id' : (type === 'statistician' ? 'remark_id' : type + '_id');
+    const apiType = type === 'statistician' ? 'remark' : (type === 'defenseStatus' ? 'defense-status' : type);
+    let selectIds = [];
+    if (type === 'defenseStatus') {
+        selectIds = ['pre_oral_defense_status_id', 'final_defense_status_id'];
+    } else {
+        selectIds = [type === 'researchTeacher' ? 'research_teacher_id' : (type === 'statistician' ? 'remark_id' : type + '_id')];
+    }
     
-    console.log('Deleting entity:', { type, apiType, id });
+    console.log('Deleting entity:', { type, apiType, id, selectIds });
     
     fetch('<?= base_url('admin/researchers/delete-') ?>' + apiType + '/' + id, {
         method: 'POST',

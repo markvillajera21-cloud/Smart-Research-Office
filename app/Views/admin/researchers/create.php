@@ -5,7 +5,7 @@
     <div class="col-md-8">
         <div class="card shadow-sm">
             <div class="card-header bg-white py-3">
-                <h5 class="mb-0 fw-bold">Create Researcher Profile</h5>
+                <h5 class="mb-0 fw-bold">Create Research Profile</h5>
             </div>
             <div class="card-body p-4">
 
@@ -24,7 +24,7 @@
 
                     <div class="row">
                         <div class="col-md-4 mb-3">
-                            <label class="form-label">Sure Name</label>
+                            <label class="form-label">Surname</label>
                             <textarea name="surname" class="form-control" rows="3" placeholder="Enter surname" required><?= old('surname') ?></textarea>
                         </div>
                         <div class="col-md-4 mb-3">
@@ -104,7 +104,7 @@
                             </label>
                             <select name="strand_id" id="strand_id" class="form-select">
                                 <option value="">Select Strand</option>
-                                <?php foreach ($strands as $s): ?>
+                                <?php foreach ($trands as $s): ?>
                                     <option value="<?= $s['id'] ?>" <?= old('strand_id') == $s['id'] ? 'selected' : '' ?>><?= $s['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -420,7 +420,6 @@
     </div>
 </div>
 
-<!-- Strand Modal -->
 <div class="modal fade" id="addStrandModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
@@ -906,7 +905,7 @@ function saveEntity(type) {
     } else {
         selectIds = [type === 'researchTeacher' ? 'research_teacher_id' : (type === 'statistician' ? 'remark_id' : type + '_id')];
     }
-    console.log('Saving entity:', { type, apiType, name, selectId });
+    console.log('Saving entity:', { type, apiType, name, selectIds });
     
     fetch('<?= base_url('admin/researchers/add-') ?>' + apiType, {
         method: 'POST',

@@ -6,7 +6,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <div class="px-4 py-2 mt-3 mb-1 text-uppercase text-muted fw-bold small" style="letter-spacing: 0.1em;">Management</div>
+        <div class="px-4 py-2 mt-3 mb-1 text-uppercase small" style="letter-spacing: 0.1em; color: rgba(226, 232, 240, 0.6); font-weight: 700;">Management</div>
     </li>
     <li class="nav-item">
         <a class="nav-link <?= (url_is('admin/users*') ? 'active' : '') ?>" href="<?= base_url('admin/users') ?>">
@@ -42,8 +42,8 @@
     <?php endif; ?>
 </ul>
 
-<div class="nav-item mt-auto border-top p-4">
-    <a href="<?= base_url('logout') ?>" class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center gap-2 py-2">
+<div class="nav-item mt-auto p-4" style="border-top: 1px solid rgba(255,255,255,0.1);">
+    <a href="<?= base_url('logout') ?>" class="btn w-100 d-flex align-items-center justify-content-center gap-2 py-2" style="background-color: rgba(255,255,255,0.1); border: none; color: white;">
         <i class="bi bi-box-arrow-right"></i>
         <span class="fw-semibold">Sign Out</span>
     </a>
