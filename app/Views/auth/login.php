@@ -87,7 +87,7 @@
         <div class="login-header">
             <div class="logo-wrapper">
                 <div class="logo-icon">
-                    <i class="bi bi-cpu-fill"></i>
+                    <img src="<?= base_url('images/logo.png') ?>" alt="SRO Logo" style="height: 65px; border-radius: 50%;">
                 </div>
             </div>
             <h3 class="fw-bold mb-2">Smart Research Office</h3>

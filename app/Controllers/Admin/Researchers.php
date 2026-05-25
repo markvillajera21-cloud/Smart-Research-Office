@@ -191,6 +191,7 @@ class Researchers extends BaseController
 
         $data = [
             'fullname'                  => $fullname,
+            'author'                    => $this->request->getPost('author') ?: null,
             'surname'                   => $surname,
             'first_name'                => $firstName,
             'middle_initial'            => $middleInitial,
@@ -295,6 +296,7 @@ class Researchers extends BaseController
 
         $data = [
             'fullname'                  => $fullname,
+            'author'                    => $this->request->getPost('author') ?: null,
             'surname'                   => $surname,
             'first_name'                => $firstName,
             'middle_initial'            => $middleInitial,

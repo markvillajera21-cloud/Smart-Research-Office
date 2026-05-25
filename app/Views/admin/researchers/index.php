@@ -87,6 +87,7 @@
                 <tr class="text-uppercase text-muted small">
                         <th class="fw-semibold" style="min-width: 150px;">Category</th>
                         <th class="fw-semibold" style="min-width: 150px;">Program/Career Pathways</th>
+                        <th class="fw-semibold" style="white-space: nowrap;">Author</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Sure Name</th>
                         <th class="fw-semibold" style="white-space: nowrap;">First Name</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Middle Initial</th>
@@ -112,6 +113,9 @@
                                 <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 small">
                                     <?= $r['strand_name'] ?? $r['strand_degree_program'] ?? 'N/A' ?>
                                 </span>
+                            </td>
+                            <td>
+                                <div class="fw-bold small"><?= $r['author'] ?? '<span class="text-muted">N/A</span>' ?></div>
                             </td>
                             <td>
                                 <div class="fw-bold small"><?= $r['surname'] ?? '<span class="text-muted">N/A</span>' ?></div>
@@ -173,7 +177,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="12" class="text-center py-5 text-muted">
+                        <td colspan="13" class="text-center py-5 text-muted">
                             <i class="bi bi-search fs-1 d-block mb-3"></i>
                             No researchers found matching your criteria.
                         </td>

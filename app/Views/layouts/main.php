@@ -174,8 +174,9 @@
             <!-- Sidebar -->
             <div class="col-md-3 col-lg-2 p-0 sidebar d-none d-md-block sticky-top">
                 <div class="p-4 border-bottom mb-4" style="border-color: rgba(250, 204, 21, 0.2);">
-                    <a class="navbar-brand fs-4" href="#" style="color: var(--sidebar-text);">
-                        <i class="bi bi-cpu me-2" style="color: var(--accent-color);"></i>SRO
+                    <a class="navbar-brand fs-4 d-flex align-items-center" href="#" style="color: var(--sidebar-text);">
+                        <img src="<?= base_url('images/logo.png') ?>" alt="SRO Logo" style="height: 45px; margin-right: 10px; border-radius: 50%;">
+                        SRO
                     </a>
                 </div>
                 <?= view('theme/sidebar') ?>

@@ -15,6 +15,7 @@ class ResearcherModel extends Model
     protected $allowedFields    = [
         'user_id', 
         'fullname',
+        'author',
         'surname',
         'first_name',
         'middle_initial',

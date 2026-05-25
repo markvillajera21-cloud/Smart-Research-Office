@@ -23,6 +23,12 @@
                     <?= csrf_field() ?>
 
                     <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label">Author</label>
+                            <textarea name="author" class="form-control" rows="3" placeholder="Enter author name"><?= old('author') ?></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Surname</label>
                             <textarea name="surname" class="form-control" rows="3" placeholder="Enter surname" required><?= old('surname') ?></textarea>
@@ -104,7 +110,7 @@
                             </label>
                             <select name="strand_id" id="strand_id" class="form-select">
                                 <option value="">Select Strand</option>
-                                <?php foreach ($trands as $s): ?>
+                                <?php foreach ($strands as $s): ?>
                                     <option value="<?= $s['id'] ?>" <?= old('strand_id') == $s['id'] ? 'selected' : '' ?>><?= $s['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -244,22 +250,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label d-flex justify-content-between align-items-center">
-                            Status
-                            <div class="d-flex gap-1">
-                                <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addStatusModal" title="Manage">
-                                    <i class="bi bi-gear"></i>
-                                </button>
-                            </div>
-                        </label>
-                        <select name="status_id" id="status_id" class="form-select">
-                            <option value="">Select Status</option>
-                            <?php foreach ($statuses as $s): ?>
-                                <option value="<?= $s['id'] ?>" <?= old('status_id') == $s['id'] ? 'selected' : '' ?>><?= $s['name'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
+
 
                     <div class="mb-4">
                         <label class="form-label">Remarks</label>
@@ -467,53 +458,7 @@
     </div>
 </div>
 
-<!-- Status Modal -->
-<div class="modal fade" id="addStatusModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold">Manage Statuses</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div id="statusError" class="alert alert-danger d-none"></div>
-                <div id="statusSuccess" class="alert alert-success d-none"></div>
-                
-                <!-- Add New -->
-                <div class="mb-4">
-                    <label class="form-label fw-medium">Add New</label>
-                    <div class="d-flex gap-2">
-                        <input type="text" id="newStatusName" class="form-control" placeholder="e.g. Active">
-                        <button type="button" id="saveStatusBtn" class="btn btn-primary">Add</button>
-                    </div>
-                </div>
-                
-                <!-- List -->
-                <div class="mb-3">
-                    <label class="form-label fw-medium">Existing</label>
-                    <div id="statusList" class="list-group">
-                        <?php foreach ($statuses as $s): ?>
-                            <div class="list-group-item d-flex justify-content-between align-items-center" data-id="<?= $s['id'] ?>">
-                                <span class="status-name"><?= $s['name'] ?></span>
-                                <div class="d-flex gap-2">
-                                    <button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-id="<?= $s['id'] ?>" data-name="<?= $s['name'] ?>">
-                                        <i class="bi bi-pencil"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="<?= $s['id'] ?>">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <!-- Adviser Modal -->
 <div class="modal fade" id="addAdviserModal" tabindex="-1" aria-hidden="true">
