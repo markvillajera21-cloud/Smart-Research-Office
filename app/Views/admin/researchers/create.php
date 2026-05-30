@@ -101,7 +101,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label d-flex justify-content-between align-items-center">
-                                Program/Career Pathways
+                                Program/Academic Track
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addStrandModal" title="Manage">
                                         <i class="bi bi-gear"></i>
@@ -415,7 +415,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fw-bold">Manage Program/Career Pathways</h5>
+                <h5 class="modal-title fw-bold">Manage Program/Academic Track</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

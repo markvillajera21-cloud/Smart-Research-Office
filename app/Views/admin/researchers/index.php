@@ -31,7 +31,7 @@
             </select>
 
             <select name="strand" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 180px;">
-                <option value="">Program/Career Pathways</option>
+                <option value="">Program/Academic Track</option>
                 <?php foreach ($strands as $s): ?>
                     <option value="<?= $s['id'] ?>" <?= ($selectedStrand ?? '') == $s['id'] ? 'selected' : '' ?>><?= $s['name'] ?></option>
                 <?php endforeach; ?>
@@ -86,9 +86,9 @@
             <thead>
                 <tr class="text-uppercase text-muted small">
                         <th class="fw-semibold" style="min-width: 150px;">Category</th>
-                        <th class="fw-semibold" style="min-width: 150px;">Program/Career Pathways</th>
+                        <th class="fw-semibold" style="min-width: 150px;">Program/Academic Track</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Author</th>
-                        <th class="fw-semibold" style="white-space: nowrap;">Sure Name</th>
+                        <th class="fw-semibold" style="white-space: nowrap;">Surname</th>
                         <th class="fw-semibold" style="white-space: nowrap;">First Name</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Middle Initial</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Ext Name</th>
@@ -276,7 +276,7 @@
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <h6 class="mb-3 fw-semibold">Program/Career Pathways</h6>
+                        <h6 class="mb-3 fw-semibold">Program/Academic Track</h6>
                         <form action="<?= base_url('admin/researchers/add-strand') ?>" method="post" class="mb-3">
                             <div class="input-group">
                                 <input type="text" name="name" class="form-control" placeholder="e.g. STEM" required>
@@ -388,7 +388,7 @@
             <form action="<?= base_url('admin/researchers/edit-strand') ?>" method="post">
                 <input type="hidden" name="id" value="<?= $strand['id'] ?>">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Program/Career Pathways</h5>
+                    <h5 class="modal-title">Edit Program/Academic Track</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">

@@ -166,6 +166,69 @@
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
         }
+
+        @media print {
+            body {
+                background: #fff !important;
+                color: #000 !important;
+            }
+
+            .no-print,
+            .sidebar,
+            .navbar,
+            .dropdown-menu,
+            .dropdown-toggle,
+            .btn,
+            .alert,
+            .breadcrumb,
+            .toolbar,
+            .toolbar * {
+                display: none !important;
+            }
+
+            .printable-area,
+            .printable-area * {
+                visibility: visible !important;
+            }
+
+            .printable-area {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                background: #fff !important;
+                color: #000 !important;
+            }
+
+            .container-fluid,
+            .row,
+            .col-md-9,
+            .col-lg-10,
+            .col-md-3,
+            .col-lg-2,
+            main {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .table {
+                width: 100% !important;
+                page-break-after: auto !important;
+            }
+
+            .table tr {
+                page-break-inside: avoid !important;
+                page-break-after: auto !important;
+            }
+
+            .table th,
+            .table td {
+                color: #000 !important;
+                border-color: #000 !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -174,9 +237,9 @@
             <!-- Sidebar -->
             <div class="col-md-3 col-lg-2 p-0 sidebar d-none d-md-block sticky-top">
                 <div class="p-4 border-bottom mb-4" style="border-color: rgba(250, 204, 21, 0.2);">
-                    <a class="navbar-brand fs-4 d-flex align-items-center" href="#" style="color: var(--sidebar-text);">
-                        <img src="<?= base_url('images/logo.png') ?>" alt="SRO Logo" style="height: 45px; margin-right: 10px; border-radius: 50%;">
-                        SRO
+                        <a class="navbar-brand fs-4" href="<?= base_url() ?>" style="color: var(--sidebar-text);">
+                        <style="color: var(--accent-color);">
+                        <img src="<?= base_url('images/logo.png') ?>" alt="ROARMS logo" style="width:42px;height:42px;"> ROARMS
                     </a>
                 </div>
                 <?= view('theme/sidebar') ?>

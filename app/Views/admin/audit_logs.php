@@ -1,13 +1,13 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
-<div class="card p-4">
+<div class="card p-4 printable-area">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h5 class="mb-1">System Audit Trail</h5>
             <p class="text-muted small mb-0">Track all administrative and user activities for compliance and security.</p>
         </div>
-        <button class="btn btn-sm btn-outline-primary" onclick="window.print()">
+        <button class="btn btn-sm btn-outline-primary no-print" onclick="window.print()">
             <i class="bi bi-printer me-2"></i> Export Report
         </button>
     </div>

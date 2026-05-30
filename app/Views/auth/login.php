@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Smart Research Office</title>
+    <title>Login - Research Office Archiving Records Management System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -87,17 +87,17 @@
         <div class="login-header">
             <div class="logo-wrapper">
                 <div class="logo-icon">
-                    <img src="<?= base_url('images/logo.png') ?>" alt="SRO Logo" style="height: 65px; border-radius: 50%;">
+                     <img src="<?= base_url('images/logo.png') ?>" alt="ROARMS logo" style="width:150px;height:150px;">
                 </div>
             </div>
-            <h3 class="fw-bold mb-2">Smart Research Office</h3>
-            <p class="opacity-75 mb-0 small">Collaborative Research & Automation</p>
+            <h3 class="fw-bold mb-2">Research Office Archiving Records Management System</h3>
+            <p class="opacity-75 mb-0 small"></p>
         </div>
         
         <div class="login-body">
             <div class="mb-4">
                 <h4 class="fw-bold text-dark mb-1">Welcome Back</h4>
-                <p class="text-muted small">Enter your credentials to access your office.</p>
+                <p class="text-muted small">Enter your Credentials to Access your Office.</p>
             </div>
 
             <?php if (session()->getFlashdata('error')): ?>
@@ -126,7 +126,6 @@
                 <div class="mb-4">
                     <div class="d-flex justify-content-between">
                         <label class="form-label small fw-semibold text-muted">Password</label>
-                        <a href="<?= base_url('forgot-password') ?>" class="small text-decoration-none">Forgot?</a>
                     </div>
                     <div class="input-group">
                         <input type="password" name="password" id="password" class="form-control has-toggle" placeholder="••••••••" required>
@@ -134,12 +133,14 @@
                             <i class="bi bi-eye"></i>
                         </span>
                     </div>
+                    <a href="<?= base_url('forgot-password') ?>" class="small text-decoration-none">Forgot Password?</a>
+                    </div>
                 </div>
                 <div class="d-grid mb-4">
-                    <button type="submit" class="btn btn-primary shadow-sm">Sign In</button>
+                    <button type="submit" class="btn btn-primary shadow-sm">Log In</button>
                 </div>
                 <div class="text-center">
-                    <span class="text-muted small">New to SRO?</span>
+                    <span class="text-muted small">New to ROARMS?</span>
                     <a href="<?= base_url('register') ?>" class="small text-decoration-none fw-semibold">Create Account</a>
                 </div>
             </form>

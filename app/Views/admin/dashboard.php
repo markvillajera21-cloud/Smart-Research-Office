@@ -11,7 +11,7 @@
                     </div>
                     <div>
                         <h6 class="mb-1" style="color: #475569; font-size: 0.875rem; font-weight: 600;">Total Users</h6>
-                        <h3 class="mb-0" style="color: #0f172a; font-weight: 700;"><?= $totalUsers ?></h3>
+                        <h3 class="mb-0" style="color: #0f172a; font-weight: 700;"></h3>
                     </div>
                 </div>
             </div>

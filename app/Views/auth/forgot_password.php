@@ -90,7 +90,7 @@
                     <i class="bi bi-cpu-fill"></i>
                 </div>
             </div>
-            <h3 class="fw-bold mb-2">Smart Research Office</h3>
+            <h3 class="fw-bold mb-2">Research Office Archiving Records Management System</h3>
             <p class="opacity-75 mb-0 small">Collaborative Research & Automation</p>
         </div>
         
