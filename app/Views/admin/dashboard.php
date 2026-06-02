@@ -10,28 +10,14 @@
                         <i class="bi bi-people-fill fs-4" style="color: #1e3a8a;"></i>
                     </div>
                     <div>
-                        <h6 class="mb-1" style="color: #475569; font-size: 0.875rem; font-weight: 600;">Total Users</h6>
+                        <h6 class="mb-1" style="color: #475569; font-size: 0.875rem; font-weight: 500;">Total Users</h6>
                         <h3 class="mb-0" style="color: #0f172a; font-weight: 700;"></h3>
                     </div>
                 </div>
             </div>
         </a>
     </div>
-    <div class="col-12 col-sm-6 col-xl-3">
-        <a href="<?= base_url('admin/projects') ?>" class="text-decoration-none">
-            <div class="card p-4">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="p-3 rounded-3" style="background: linear-gradient(135deg, #eff6ff, #dbeafe);">
-                        <i class="bi bi-journal-check fs-4" style="color: #1e40af;"></i>
-                    </div>
-                    <div>
-                        <h6 class="mb-1" style="color: #475569; font-size: 0.875rem; font-weight: 500;">Active Projects</h6>
-                        <h3 class="mb-0" style="color: #0f172a; font-weight: 700;"><?= $activeProjects ?></h3>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
+
     <div class="col-12 col-sm-6 col-xl-3">
         <a href="<?= base_url('admin/researchers/update-status') ?>" class="text-decoration-none">
             <div class="card p-4">
@@ -59,6 +45,21 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-12 col-sm-6 col-xl-3">
+        <a href="<?= base_url('admin/uploads') ?>" class="text-decoration-none">
+            <div class="card p-4">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="p-3 rounded-3" style="background: linear-gradient(135deg, #eff6ff, #dbeafe);">
+                        <i class="bi bi-cloud-arrow-up fs-4" style="color: #1e40af;"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-1" style="color: #475569; font-size: 0.875rem; font-weight: 500;">Upload Data</h6>
+                        <h3 class="mb-0" style="color: #0f172a; font-weight: 700;"><i class="bi bi-arrow-up-right-circle"></i></h3>
+                    </div>
+                </div>
+            </div>
+        </a>
     </div>
 </div>
 
@@ -111,10 +112,7 @@
             <h5 class="mb-4" style="color: #0f172a; font-weight: 700;">Quick Actions</h5>
             <div class="d-grid gap-3">
                 <a href="<?= base_url('admin/users/create') ?>" class="btn btn-primary fw-semibold py-3 text-start px-4">
-                    <i class="bi bi-person-plus-fill me-2"></i> Add New Researcher
-                </a>
-                <a href="<?= base_url('admin/uploads') ?>" class="btn fw-semibold py-3 text-start px-4" style="border: 2px solid #1e40af; color: #1e40af; background-color: transparent;">
-                    <i class="bi bi-cloud-arrow-up me-2"></i> Upload Data
+                    <i class="bi bi-person-plus-fill me-2"></i> Add Role
                 </a>
             </div>
             <div class="mt-auto pt-4">

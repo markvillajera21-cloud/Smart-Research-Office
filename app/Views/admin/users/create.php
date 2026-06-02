@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Add New User</h1>
+    <h1 class="h2">Add Role</h1>
     <a href="<?= base_url('admin/users') ?>" class="btn btn-outline-secondary">
         <i class="bi bi-arrow-left"></i> Back to List
     </a>
@@ -43,7 +43,7 @@
                         <input type="text" class="form-control" value="Administrator" disabled>
                     </div>
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Create User</button>
+                        <button type="submit" class="btn btn-primary">Create Role</button>
                     </div>
                 </form>
             </div>

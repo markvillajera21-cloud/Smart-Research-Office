@@ -4,11 +4,11 @@
 <div class="card p-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h5 class="mb-1">User Management</h5>
-            <p class="text-muted small mb-0">Manage researcher accounts and system administrators.</p>
+            <h5 class="mb-1">Role Management</h5>
+            <p class="text-muted small mb-0">Manage system roles and administrators.</p>
         </div>
         <a href="<?= base_url('admin/users/create') ?>" class="btn btn-primary">
-            <i class="bi bi-person-plus-fill me-2"></i> Add New User
+            <i class="bi bi-person-plus-fill me-2"></i> Add Role
         </a>
     </div>
 

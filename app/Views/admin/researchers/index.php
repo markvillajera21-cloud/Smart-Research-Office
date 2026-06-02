@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 <!-- Top Action Bar -->
-<div class="d-flex justify-content-between align-items-center mb-4">
+<div class="d-flex justify-content-between align-items-center mb-4 no-print">
     <div>
         <a href="<?= base_url('admin/researchers/create') ?>" class="btn btn-primary shadow-sm d-flex align-items-center px-4 py-2">
             <i class="bi bi-plus-lg me-2"></i> Add New
@@ -76,7 +76,7 @@
 
 <div class="card border-0 shadow-sm p-4">
     <!-- Directory Header -->
-    <div class="mb-4">
+    <div class="mb-4 no-print">
         <h4 class="mb-1 fw-bold text-dark">Institutional Research Directory</h4>
         <p class="text-muted mb-0">Manage research profiles, institutional IDs, and academic categories.</p>
     </div>
@@ -124,7 +124,20 @@
                                 <div class="fw-bold small"><?= $r['first_name'] ?? '<span class="text-muted">N/A</span>' ?></div>
                             </td>
                             <td>
-                                <div class="fw-bold small"><?= $r['middle_initial'] ?? '<span class="text-muted">N/A</span>' ?></div>
+                                <div class="fw-bold small">
+                                    <?php if (!empty($r['middle_initial'])): ?>
+                                        <?php 
+                                        $initials = preg_split('/[,\s]+/', trim($r['middle_initial'])); 
+                                        ?>
+                                        <?php foreach ($initials as $initial): ?>
+                                            <?php if (!empty($initial)): ?>
+                                                <?= $initial ?><br>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <span class="text-muted">N/A</span>
+                                    <?php endif; ?>
+                                </div>
                             </td>
                             <td>
                                 <div class="fw-bold small"><?= $r['ext_name'] ?? '<span class="text-muted">N/A</span>' ?></div>
@@ -186,7 +199,7 @@
             </tbody>
         </table>
     </div>
-    <div class="mt-4 d-flex justify-content-end">
+    <div class="mt-4 d-flex justify-content-end no-print">
         <button class="btn btn-outline-primary shadow-sm d-flex align-items-center px-3 py-2" onclick="window.print()">
             <i class="bi bi-printer me-2"></i> Print List
         </button>
@@ -404,4 +417,18 @@
 </div>
 <?php endforeach; ?>
 
+
+<style>
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    .table-responsive {
+        overflow-x: visible !important;
+    }
+    body {
+        overflow-x: hidden !important;
+    }
+}
+</style>
 <?= $this->endSection() ?>

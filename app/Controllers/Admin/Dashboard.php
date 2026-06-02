@@ -15,22 +15,16 @@ class Dashboard extends BaseController
     public function index()
     {
         $userModel = new User();
-        $projectModel = new ProjectModel();
         $researcherModel = new ResearcherModel();
         $statusModel = new StatusModel();
 
         $totalUsers = $userModel->countAll();
-        $totalProjects = $projectModel->countAll();
-        
-        $activeStatus = $statusModel->where('name', 'Active')->first();
-        $activeProjects = $activeStatus ? $projectModel->where('status_id', $activeStatus['id'])->countAllResults() : 0;
         
         $pendingStatus = $statusModel->where('name', 'Pending')->first();
         $pendingReviews = $pendingStatus ? $researcherModel->where('status_id', $pendingStatus['id'])->countAllResults() : 0;
 
         $data = [
             'totalUsers' => $totalUsers,
-            'activeProjects' => $activeProjects,
             'pendingReviews' => $pendingReviews,
             'systemHealth' => 98
         ];

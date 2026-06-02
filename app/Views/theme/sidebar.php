@@ -42,7 +42,7 @@
     <?php endif; ?>
 </ul>
 
-<div class="nav-item mt-auto p-4" style="border-top: 1px solid rgba(255,255,255,0.1);">
+<div class="nav-item mt-auto p-4" style="border-top: 1px solid rgba(255, 255, 255, 0);">
     <a href="<?= base_url('logout') ?>" class="btn w-100 d-flex align-items-center justify-content-center gap-2 py-2" style="background-color: rgba(255,255,255,0.1); border: none; color: white;">
         <i class="bi bi-box-arrow-right"></i>
         <span class="fw-semibold">Sign Out</span>
