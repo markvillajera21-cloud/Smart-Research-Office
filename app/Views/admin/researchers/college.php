@@ -12,7 +12,7 @@
     <div class="d-flex gap-3">
         <form action="<?= base_url('admin/researchers/college') ?>" method="get" class="d-flex gap-2">
             <select name="strand" class="form-select shadow-sm" style="width: 170px;">
-                <option value="">All Programs</option>
+                <option value="">All Program/Academic Track</option>
                 <option value="HUMSS" <?= ($strand ?? '') === 'HUMSS' ? 'selected' : '' ?>>HUMSS</option>
                 <option value="STEM" <?= ($strand ?? '') === 'STEM' ? 'selected' : '' ?>>STEM</option>
                 <option value="ABM" <?= ($strand ?? '') === 'ABM' ? 'selected' : '' ?>>ABM</option>

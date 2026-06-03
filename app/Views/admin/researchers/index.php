@@ -24,7 +24,7 @@
                 <?php endforeach; ?>
             </select>
             <select name="category" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 150px;">
-                <option value="">Department</option>
+                <option value="">Select Department</option>
                 <?php foreach ($categories as $cat): ?>
                     <option value="<?= $cat['id'] ?>" <?= ($selectedCategory ?? '') == $cat['id'] ? 'selected' : '' ?>><?= $cat['name'] ?></option>
                 <?php endforeach; ?>
@@ -80,12 +80,17 @@
         <h4 class="mb-1 fw-bold text-dark">Institutional Research Directory</h4>
         <p class="text-muted mb-0">Manage research profiles, institutional IDs, and academic categories.</p>
     </div>
+    
+    <!-- Print-only Title -->
+    <div class="mb-4 print-title" style="display: none;">
+        <h2 class="fw-bold text-center text-dark">Institutional Research Directory</h2>
+    </div>
 
     <div class="table-responsive">
         <table class="table table-hover align-middle">
             <thead>
                 <tr class="text-uppercase text-muted small">
-                        <th class="fw-semibold" style="min-width: 150px;">Category</th>
+                        <th class="fw-semibold" style="min-width: 150px;">Department</th>
                         <th class="fw-semibold" style="min-width: 150px;">Program/Academic Track</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Author</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Surname</th>
@@ -97,7 +102,7 @@
                         <th class="fw-semibold" style="white-space: nowrap;">Statisticians</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Research Teacher</th>
                         <th class="fw-semibold" style="min-width: 220px;">Approved Research Title</th>
-                        <th class="text-end fw-semibold" style="width: 120px; white-space: nowrap;">Remarks</th>
+                        <th class="text-end fw-semibold no-print" style="width: 120px; white-space: nowrap;">Remarks</th>
                     </tr>
             </thead>
             <tbody>
@@ -115,13 +120,52 @@
                                 </span>
                             </td>
                             <td>
-                                <div class="fw-bold small"><?= $r['author'] ?? '<span class="text-muted">N/A</span>' ?></div>
+                                <div class="fw-bold small">
+                                    <?php if (!empty($r['author'])): ?>
+                                        <?php 
+                                        $authors = preg_split('/[,\s]+/', trim($r['author'])); 
+                                        ?>
+                                        <?php foreach ($authors as $a): ?>
+                                            <?php if (!empty($a)): ?>
+                                                <?= $a ?><br>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <span class="text-muted">N/A</span>
+                                    <?php endif; ?>
+                                </div>
                             </td>
                             <td>
-                                <div class="fw-bold small"><?= $r['surname'] ?? '<span class="text-muted">N/A</span>' ?></div>
+                                <div class="fw-bold small">
+                                    <?php if (!empty($r['surname'])): ?>
+                                        <?php 
+                                        $surnames = preg_split('/[,\s]+/', trim($r['surname'])); 
+                                        ?>
+                                        <?php foreach ($surnames as $s): ?>
+                                            <?php if (!empty($s)): ?>
+                                                <?= $s ?><br>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <span class="text-muted">N/A</span>
+                                    <?php endif; ?>
+                                </div>
                             </td>
                             <td>
-                                <div class="fw-bold small"><?= $r['first_name'] ?? '<span class="text-muted">N/A</span>' ?></div>
+                                <div class="fw-bold small">
+                                    <?php if (!empty($r['first_name'])): ?>
+                                        <?php 
+                                        $firstNames = preg_split('/[,\s]+/', trim($r['first_name'])); 
+                                        ?>
+                                        <?php foreach ($firstNames as $fn): ?>
+                                            <?php if (!empty($fn)): ?>
+                                                <?= $fn ?><br>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <span class="text-muted">N/A</span>
+                                    <?php endif; ?>
+                                </div>
                             </td>
                             <td>
                                 <div class="fw-bold small">
@@ -140,7 +184,20 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="fw-bold small"><?= $r['ext_name'] ?? '<span class="text-muted">N/A</span>' ?></div>
+                                <div class="fw-bold small">
+                                    <?php if (!empty($r['ext_name'])): ?>
+                                        <?php 
+                                        $extNames = preg_split('/[,\s]+/', trim($r['ext_name'])); 
+                                        ?>
+                                        <?php foreach ($extNames as $ext): ?>
+                                            <?php if (!empty($ext)): ?>
+                                                <?= $ext ?><br>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <span class="text-muted">N/A</span>
+                                    <?php endif; ?>
+                                </div>
                             </td>
                             <td>
                                 <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 small">
@@ -171,7 +228,7 @@
                                     <?php endif; ?>
                                 </div>
                             </td>
-                            <td class="text-end">
+                            <td class="text-end no-print">
                                 <div class="dropdown">
                                     <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="bi bi-three-dots-vertical"></i>
@@ -190,7 +247,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="13" class="text-center py-5 text-muted">
+                        <td colspan="12" class="text-center py-5 text-muted">
                             <i class="bi bi-search fs-1 d-block mb-3"></i>
                             No researchers found matching your criteria.
                         </td>
@@ -200,9 +257,23 @@
         </table>
     </div>
     <div class="mt-4 d-flex justify-content-end no-print">
-        <button class="btn btn-outline-primary shadow-sm d-flex align-items-center px-3 py-2" onclick="window.print()">
-            <i class="bi bi-printer me-2"></i> Print List
-        </button>
+        <div class="btn-group">
+            <button class="btn btn-outline-primary shadow-sm d-flex align-items-center px-3 py-2" onclick="printWithOrientation()">
+                <i class="bi bi-printer me-2"></i> Print List
+            </button>
+            <button type="button" class="btn btn-outline-primary shadow-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#" onclick="document.getElementById('printOrientation').value='landscape'; printWithOrientation(); return false;">
+                    <i class="bi bi-file-earmark-fill me-2"></i> Landscape
+                </a></li>
+                <li><a class="dropdown-item" href="#" onclick="document.getElementById('printOrientation').value='portrait'; printWithOrientation(); return false;">
+                    <i class="bi bi-file-earmark me-2"></i> Portrait
+                </a></li>
+            </ul>
+        </div>
+        <input type="hidden" id="printOrientation" value="landscape">
     </div>
 </div>
 
@@ -217,7 +288,7 @@
             <div class="modal-body">
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <h6 class="mb-3 fw-semibold">Departments / Categories</h6>
+                        <h6 class="mb-3 fw-semibold">Departments</h6>
                         <form action="<?= base_url('admin/researchers/add-category') ?>" method="post" class="mb-3">
                             <div class="input-group">
                                 <input type="text" name="name" class="form-control" placeholder="e.g. Senior High" required>
@@ -329,7 +400,7 @@
             <form action="<?= base_url('admin/researchers/edit-category') ?>" method="post">
                 <input type="hidden" name="id" value="<?= $cat['id'] ?>">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Department/Category</h5>
+                    <h5 class="modal-title">Edit Department</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
@@ -423,12 +494,105 @@
     .no-print {
         display: none !important;
     }
+    
+    /* Remove sidebar and header for printing */
+    aside, header {
+        display: none !important;
+    }
+    
+    /* Make main content full width */
+    main, .container-fluid {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* Card styles for print */
+    .card {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+    }
+    
+    /* Table responsive for print */
     .table-responsive {
         overflow-x: visible !important;
+        overflow: visible !important;
+        width: 100% !important;
     }
+    
+    .table {
+        width: 100% !important;
+        font-size: 12px !important;
+    }
+    
+    /* Table header for print */
+    .table thead th {
+        background-color: #f8f9fa !important;
+        color: #000 !important;
+        border-bottom: 2px solid #dee2e6 !important;
+        padding: 8px !important;
+    }
+    
+    /* Table rows for print */
+    .table tbody tr {
+        page-break-inside: avoid !important;
+    }
+    
+    .table td {
+        padding: 6px !important;
+        vertical-align: top !important;
+    }
+    
+    /* Badges for print (remove background, just text) */
+    .badge {
+        background: none !important;
+        color: #000 !important;
+        border: none !important;
+        padding: 0 !important;
+        font-size: 12px !important;
+    }
+    
     body {
+        background: white !important;
+        color: black !important;
+        font-size: 12px !important;
         overflow-x: hidden !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    /* Page margins */
+    @page {
+        margin: 1cm;
+    }
+    
+    /* Show title when printing */
+    .print-title {
+        display: block !important;
+        text-align: center !important;
+        margin-bottom: 20px !important;
     }
 }
 </style>
+
+<script>
+function printWithOrientation() {
+    var orientation = document.getElementById('printOrientation').value;
+    
+    // Create a style element for page size
+    var style = document.createElement('style');
+    style.innerHTML = '@page { size: ' + orientation + '; margin: 1cm; }';
+    document.head.appendChild(style);
+    
+    // Trigger print
+    window.print();
+    
+    // Remove the style after printing to not affect normal view
+    setTimeout(function() {
+        document.head.removeChild(style);
+    }, 1000);
+}
+</script>
 <?= $this->endSection() ?>

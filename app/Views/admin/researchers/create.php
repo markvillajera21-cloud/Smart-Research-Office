@@ -31,19 +31,19 @@
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Surname</label>
-                            <textarea name="surname" class="form-control" rows="3" placeholder="Enter surname" required><?= old('surname') ?></textarea>
+                            <textarea name="surname" class="form-control" rows="5" placeholder="Enter surname" required><?= old('surname') ?></textarea>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label class="form-label">First Name</label>
-                            <textarea name="first_name" class="form-control" rows="3" placeholder="Enter first name" required><?= old('first_name') ?></textarea>
+                            <textarea name="first_name" class="form-control" rows="5" placeholder="Enter first name" required><?= old('first_name') ?></textarea>
                         </div>
                         <div class="col-md-2 mb-3">
                             <label class="form-label">Middle Initial</label>
-                            <textarea name="middle_initial" class="form-control" rows="3" placeholder="e.g. A"><?= old('middle_initial') ?></textarea>
+                            <textarea name="middle_initial" class="form-control" rows="5" placeholder="e.g. A"><?= old('middle_initial') ?></textarea>
                         </div>
                         <div class="col-md-2 mb-3">
                             <label class="form-label">Ext Name</label>
-                            <textarea name="ext_name" class="form-control" rows="3" placeholder="e.g. Jr., Sr., III"><?= old('ext_name') ?></textarea>
+                            <textarea name="ext_name" class="form-control" rows="5" placeholder="e.g. Jr., Sr., III"><?= old('ext_name') ?></textarea>
                         </div>
                     </div>
 
@@ -85,7 +85,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label d-flex justify-content-between align-items-center">
-                                Category
+                                Department
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addCategoryModal" title="Manage">
                                         <i class="bi bi-gear"></i>
@@ -93,7 +93,7 @@
                                 </div>
                             </label>
                             <select name="category_id" id="category_id" class="form-select" required>
-                                <option value="">Select Category</option>
+                                <option value="">Select Department</option>
                                 <?php foreach ($categories as $cat): ?>
                                     <option value="<?= $cat['id'] ?>" <?= old('category_id') == $cat['id'] ? 'selected' : '' ?>><?= $cat['name'] ?></option>
                                 <?php endforeach; ?>
@@ -109,7 +109,7 @@
                                 </div>
                             </label>
                             <select name="strand_id" id="strand_id" class="form-select">
-                                <option value="">Select Strand</option>
+                                <option value="">Select Program/Academic Track</option>
                                 <?php foreach ($strands as $s): ?>
                                     <option value="<?= $s['id'] ?>" <?= old('strand_id') == $s['id'] ? 'selected' : '' ?>><?= $s['name'] ?></option>
                                 <?php endforeach; ?>
@@ -368,7 +368,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fw-bold">Manage Categories</h5>
+                <h5 class="modal-title fw-bold">Manage Departments</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

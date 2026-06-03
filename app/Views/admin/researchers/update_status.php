@@ -24,7 +24,7 @@
                 <input type="text" name="search" class="form-control border-0 ps-0" placeholder="Search by name or title..." value="<?= $search ?? '' ?>">
             </div>
             <select name="category" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 220px;">
-                <option value="">All Categories</option>
+                <option value="">All Departments</option>
                 <?php foreach ($categories as $cat): ?>
                     <option value="<?= $cat['id'] ?>" <?= $selectedCategory == $cat['id'] ? 'selected' : '' ?>><?= $cat['name'] ?></option>
                 <?php endforeach; ?>
@@ -42,7 +42,7 @@
             <thead>
                 <tr class="text-uppercase text-muted small">
                     <th class="fw-semibold">Full Name</th>
-                    <th class="fw-semibold">Category</th>
+                    <th class="fw-semibold">Department</th>
                     <th class="fw-semibold">Approved Research Title</th>
                     <th class="fw-semibold">Pre Oral Defense</th>
                     <th class="fw-semibold">Final Defense</th>

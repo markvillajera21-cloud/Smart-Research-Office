@@ -112,7 +112,7 @@
                 <div class="mb-3">
                     <label class="form-label small fw-semibold text-muted">Username</label>
                     <div class="input-group">
-                        <input type="text" name="username" id="username" class="form-control has-toggle" value="<?= old('username') ?>" placeholder="johndoe" required>
+                        <input type="text" name="username" id="username" class="form-control has-toggle" value="<?= old('username') ?>" placeholder="" required>
                         <span class="input-group-text" onclick="clearInput('username')">
                             <i class="bi bi-x-circle"></i>
                         </span>
@@ -121,7 +121,7 @@
                 <div class="mb-3">
                     <label class="form-label small fw-semibold text-muted">Email Address</label>
                     <div class="input-group">
-                        <input type="email" name="email" id="email" class="form-control has-toggle" value="<?= old('email') ?>" placeholder="name@company.com" required>
+                        <input type="email" name="email" id="email" class="form-control has-toggle" value="<?= old('email') ?>" placeholder="" required>
                         <span class="input-group-text" onclick="clearInput('email')">
                             <i class="bi bi-x-circle"></i>
                         </span>
@@ -130,7 +130,7 @@
                 <div class="mb-4">
                     <label class="form-label small fw-semibold text-muted">Password</label>
                     <div class="input-group">
-                        <input type="password" name="password" id="password" class="form-control has-toggle" placeholder="••••••••" required>
+                        <input type="password" name="password" id="password" class="form-control has-toggle" placeholder="" required>
                         <span class="input-group-text" onclick="togglePassword('password', this)">
                             <i class="bi bi-eye"></i>
                         </span>
