@@ -112,5 +112,32 @@ class Uploads extends BaseController
 
         return redirect()->to('admin/uploads')->with('success', 'File deleted.');
     }
+
+    public function view($name)
+    {
+        $name = trim((string) $name);
+
+        // Prevent path traversal
+        if (preg_match('/[\/\\\\]/', $name) === 1 || str_contains($name, '..')) {
+            return redirect()->back()->with('error', 'Invalid file name.');
+        }
+
+        $uploadDir = WRITEPATH . 'uploads' . DIRECTORY_SEPARATOR;
+        $path = $uploadDir . $name;
+
+        if (! is_file($path)) {
+            return redirect()->back()->with('error', 'File not found.');
+        }
+
+        // Get mime type
+        $finfo = new \finfo(FILEINFO_MIME_TYPE);
+        $mime = $finfo->file($path);
+
+        // Serve file
+        return $this->response
+            ->setHeader('Content-Type', $mime)
+            ->setHeader('Content-Disposition', 'inline; filename="' . $name . '"')
+            ->setBody(file_get_contents($path));
+    }
 }
 

@@ -47,10 +47,18 @@
                         <?php if (!empty($files)): ?>
                             <?php foreach ($files as $f): ?>
                                 <tr>
-                                    <td class="font-monospace small"><?= esc($f['name'] ?? '') ?></td>
+                                    <td class="font-monospace small">
+                                    <a href="<?= base_url('admin/uploads/view/' . $f['name']) ?>" target="_blank" class="text-decoration-none"><?= esc($f['name'] ?? '') ?></a>
+                                </td>
                                     <td class="small text-muted"><?= number_format(($f['size'] ?? 0) / 1024, 1) ?> KB</td>
                                     <td class="small text-muted"><?= !empty($f['modified']) ? date('M d, Y h:i A', (int) $f['modified']) : '-' ?></td>
                                     <td class="text-end">
+                                        <a href="<?= base_url('admin/uploads/view/' . $f['name']) ?>" target="_blank" class="btn btn-sm btn-outline-primary me-1" title="View">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <a href="<?= base_url('admin/uploads/view/' . $f['name']) ?>" download class="btn btn-sm btn-outline-success me-1" title="Download">
+                                            <i class="bi bi-download"></i>
+                                        </a>
                                         <form action="<?= base_url('admin/uploads/delete') ?>" method="post" class="d-inline" onsubmit="return confirm('Delete this upload?');">
                                             <?= csrf_field() ?>
                                             <input type="hidden" name="name" value="<?= esc($f['name'] ?? '') ?>">

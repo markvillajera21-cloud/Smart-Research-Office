@@ -87,7 +87,7 @@
                     <i class="bi bi-person-plus-fill"></i>
                 </div>
             </div>
-            <h3 class="fw-bold mb-2">Join SRO</h3>
+            <h3 class="fw-bold mb-2">Join ROARMS</h3>
             <p class="opacity-75 mb-0 small">Create your research account</p>
         </div>
         

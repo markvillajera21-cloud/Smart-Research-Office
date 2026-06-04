@@ -10,12 +10,12 @@
 </div>
 
 <div class="card border-0 shadow-sm p-4">
-    <div class="mb-4">
+    <div class="mb-4 no-print">
         <h4 class="mb-1 fw-bold text-dark">Update Researcher Status</h4>
         <p class="text-muted mb-0">Quickly update the status of researcher profiles.</p>
     </div>
 
-    <div class="d-flex flex-grow-1 gap-2 mb-4">
+    <div class="d-flex flex-grow-1 gap-2 mb-4 no-print">
         <form action="<?= base_url('admin/researchers/update-status') ?>" method="get" class="d-flex gap-2 w-100">
             <div class="input-group shadow-sm border rounded">
                 <span class="input-group-text bg-white border-0">
@@ -47,7 +47,7 @@
                     <th class="fw-semibold">Pre Oral Defense</th>
                     <th class="fw-semibold">Final Defense</th>
                     <th class="fw-semibold">Current Status</th>
-                    <th class="text-end fw-semibold">Remarks</th>
+                    <th class="text-end fw-semibold no-print">Remarks</th>
                 </tr>
             </thead>
             <tbody>
@@ -100,7 +100,7 @@
                                     <?= $r['status_name'] ?? 'Not Set' ?>
                                 </span>
                             </td>
-                            <td class="text-end">
+                            <td class="text-end no-print">
                                 <div class="dropdown">
                                     <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="bi bi-three-dots-vertical"></i>
@@ -117,7 +117,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="7" class="text-center py-5 text-muted">
+                        <td colspan="6" class="text-center py-5 text-muted">
                             <i class="bi bi-search fs-1 d-block mb-3"></i>
                             No researchers found matching your criteria.
                         </td>
@@ -126,5 +126,128 @@
             </tbody>
         </table>
     </div>
+
+    <div class="d-flex justify-content-end gap-2 mt-4 no-print">
+        <div class="btn-group" role="group">
+            <button onclick="printWithOrientation('landscape')" class="btn btn-primary d-flex align-items-center gap-2">
+                <i class="bi bi-printer"></i> Print List
+            </button>
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#" onclick="printWithOrientation('landscape'); return false;"><i class="bi bi-file-earmark-arrow-down me-2"></i> Landscape</a></li>
+                <li><a class="dropdown-item" href="#" onclick="printWithOrientation('portrait'); return false;"><i class="bi bi-file-earmark-arrow-up me-2"></i> Portrait</a></li>
+            </ul>
+        </div>
+    </div>
 </div>
+
+<style>
+    @media print {
+        /* Hide unnecessary elements */
+        .no-print,
+        .sidebar,
+        .navbar,
+        header,
+        footer,
+        .btn,
+        .dropdown {
+            display: none !important;
+        }
+
+        /* Make content full width */
+        .container, .container-fluid {
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        /* Print-only title */
+        .print-only-title {
+            display: block !important;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Page setup will be set by JavaScript */
+        @page {
+            margin: 1cm;
+        }
+
+        /* Table styling */
+        .table {
+            width: 100% !important;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        .table thead th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+
+        /* Prevent table rows from breaking */
+        .table tr {
+            page-break-inside: avoid;
+        }
+
+        /* Badges lose color for better printing */
+        .badge {
+            border: 1px solid #000;
+            color: #000 !important;
+            background-color: transparent !important;
+            padding: 2px 6px;
+        }
+
+        /* Ensure colors are printed */
+        * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+    }
+
+    /* Hide print-only title on screen */
+    .print-only-title {
+        display: none;
+    }
+</style>
+
+<script>
+    function printWithOrientation(orientation) {
+        // Create a temporary style element
+        const style = document.createElement('style');
+        style.id = 'print-orientation-style';
+        style.innerHTML = `
+            @page {
+                size: ${orientation};
+                margin: 1cm;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Trigger print
+        window.print();
+
+        // Clean up - remove the temporary style after print
+        setTimeout(() => {
+            const existingStyle = document.getElementById('print-orientation-style');
+            if (existingStyle) {
+                existingStyle.remove();
+            }
+        }, 500);
+    }
+</script>
+
+<div class="print-only-title">Researcher Status List</div>
 <?= $this->endSection() ?>
