@@ -16,116 +16,212 @@
         :root {
             --primary-color: #1e3a8a;
             --primary-dark: #1e40af;
+            --primary-light: #3b82f6;
             --accent-color: #facc15;
             --accent-dark: #eab308;
+            --accent-light: #fef9c3;
             --secondary-color: #475569;
-            --sidebar-bg: #1e3a8a;
-            --sidebar-text: #fef9c3;
-            --sidebar-active: #1e40af;
-            --main-bg: #f1f5f9;
+            --sidebar-bg: linear-gradient(180deg, #1e3a8a 0%, #1e40af 100%);
+            --sidebar-text: #ffffff;
+            --sidebar-active: #facc15;
+            --main-bg: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
             --card-bg: #ffffff;
-            --text-primary: #0f172a;
+            --text-primary: #1e3a8a;
             --text-secondary: #64748b;
         }
         
         body {
             font-family: 'Inter', sans-serif;
             color: var(--text-primary);
-            background-color: var(--main-bg);
+            background: var(--main-bg);
+            background-attachment: fixed;
         }
 
         .sidebar {
-            background-color: var(--sidebar-bg);
+            background: var(--sidebar-bg);
             border-right: none;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             transition: all 0.3s;
+            box-shadow: 4px 0 20px rgba(15, 23, 42, 0.15);
         }
 
         .nav-link {
             color: var(--sidebar-text);
             font-weight: 600;
             padding: 0.875rem 1.25rem;
-            border-radius: 0.5rem;
+            border-radius: 0.75rem;
             margin: 0.25rem 1rem;
             display: flex;
             align-items: center;
             gap: 12px;
-            transition: all 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-link:hover {
             color: white;
-            background-color: rgba(250, 204, 21, 0.2);
+            background-color: rgba(251, 191, 36, 0.15);
+            transform: translateX(4px);
         }
 
         .nav-link.active {
-            background-color: var(--accent-color);
-            color: #1e3a8a;
-            box-shadow: 0 4px 12px rgba(250, 204, 21, 0.4);
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+            color: #0f172a;
+            box-shadow: 0 8px 24px rgba(251, 191, 36, 0.4);
         }
 
         .navbar-brand {
             color: white !important;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: -0.5px;
         }
 
         .navbar-brand .bi {
-            color: var(--primary-color);
+            color: var(--accent-color);
         }
 
         .card {
             border: 1px solid #e2e8f0;
-            border-radius: 0.875rem;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.1), 0 2px 4px -1px rgba(15, 23, 42, 0.06);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             background-color: var(--card-bg);
         }
 
         .card:hover {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
+            transform: translateY(-4px);
         }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             border: none;
-            padding: 0.625rem 1.5rem;
-            border-radius: 0.625rem;
+            padding: 0.75rem 1.75rem;
+            border-radius: 0.75rem;
             font-weight: 700;
             font-size: 0.9375rem;
             color: white;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.3), 0 2px 4px -2px rgba(30, 58, 138, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.4), 0 4px 6px -4px rgba(30, 58, 138, 0.3);
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(30, 58, 138, 0.5);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
         }
 
         .btn-primary:active {
-            transform: translateY(0);
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border: none;
+            padding: 0.75rem 1.75rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 0.9375rem;
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(30, 58, 138, 0.5);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+            border: none;
+            padding: 0.75rem 1.75rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 0.9375rem;
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
+        }
+
+        .btn-info:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(30, 58, 138, 0.5);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+            border: none;
+            padding: 0.75rem 1.75rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 0.9375rem;
+            color: var(--primary-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(250, 204, 21, 0.4);
+        }
+
+        .btn-warning:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(250, 204, 21, 0.5);
+            background: linear-gradient(135deg, var(--accent-dark), #ca8a04);
+            color: var(--primary-color);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border: none;
+            padding: 0.75rem 1.75rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 0.9375rem;
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(30, 58, 138, 0.5);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+        }
+
+        .btn-dark {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border: none;
+            padding: 0.75rem 1.75rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 0.9375rem;
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
+        }
+
+        .btn-dark:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(30, 58, 138, 0.5);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
         }
 
         .btn-outline-secondary {
             border: 2px solid var(--accent-color);
             color: var(--primary-color);
             padding: 0.625rem 1.5rem;
-            border-radius: 0.625rem;
+            border-radius: 0.75rem;
             font-weight: 700;
             font-size: 0.9375rem;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             background-color: transparent;
         }
 
         .btn-outline-secondary:hover {
             border-color: var(--accent-dark);
             color: var(--primary-dark);
-            background-color: rgba(250, 204, 21, 0.15);
+            background-color: rgba(251, 191, 36, 0.1);
             transform: translateY(-1px);
         }
 

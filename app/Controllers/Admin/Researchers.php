@@ -158,7 +158,6 @@ class Researchers extends BaseController
     {
         $rules = [
             'surname'         => 'required|min_length[2]',
-            'first_name'      => 'required|min_length[2]',
             'category_id'     => 'required'
         ];
 
@@ -166,19 +165,10 @@ class Researchers extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $surname = $this->request->getPost('surname');
-        $firstName = $this->request->getPost('first_name');
-        $middleInitial = $this->request->getPost('middle_initial');
-        $extName = $this->request->getPost('ext_name');
+        $members = $this->request->getPost('surname');
         
-        $fullnameParts = [$surname, $firstName];
-        if ($middleInitial) {
-            $fullnameParts[] = $middleInitial . '.';
-        }
-        if ($extName) {
-            $fullnameParts[] = $extName;
-        }
-        $fullname = implode(' ', $fullnameParts);
+        // Use first member as fullname for display
+        $fullname = trim(explode("\n", $members)[0]) ?? 'Member';
 
         $strandId = $this->request->getPost('strand_id');
         $strandName = null;
@@ -192,10 +182,10 @@ class Researchers extends BaseController
         $data = [
             'fullname'                  => $fullname,
             'author'                    => $this->request->getPost('author') ?: null,
-            'surname'                   => $surname,
-            'first_name'                => $firstName,
-            'middle_initial'            => $middleInitial,
-            'ext_name'                  => $extName,
+            'surname'                   => $members,
+            'first_name'                => '',
+            'middle_initial'            => '',
+            'ext_name'                  => '',
             'designation_id'            => $this->request->getPost('designation_id') ?: null,
             'school_year_id'            => $this->request->getPost('school_year_id') ?: null,
             'strand_id'                 => $strandId ?: null,
@@ -263,7 +253,6 @@ class Researchers extends BaseController
 
         $rules = [
             'surname'         => 'required|min_length[2]',
-            'first_name'      => 'required|min_length[2]',
             'category_id'     => 'required'
         ];
 
@@ -271,19 +260,10 @@ class Researchers extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $surname = $this->request->getPost('surname');
-        $firstName = $this->request->getPost('first_name');
-        $middleInitial = $this->request->getPost('middle_initial');
-        $extName = $this->request->getPost('ext_name');
+        $members = $this->request->getPost('surname');
         
-        $fullnameParts = [$surname, $firstName];
-        if ($middleInitial) {
-            $fullnameParts[] = $middleInitial . '.';
-        }
-        if ($extName) {
-            $fullnameParts[] = $extName;
-        }
-        $fullname = implode(' ', $fullnameParts);
+        // Use first member as fullname for display
+        $fullname = trim(explode("\n", $members)[0]) ?? 'Member';
 
         $strandId = $this->request->getPost('strand_id');
         $strandName = null;
@@ -297,10 +277,10 @@ class Researchers extends BaseController
         $data = [
             'fullname'                  => $fullname,
             'author'                    => $this->request->getPost('author') ?: null,
-            'surname'                   => $surname,
-            'first_name'                => $firstName,
-            'middle_initial'            => $middleInitial,
-            'ext_name'                  => $extName,
+            'surname'                   => $members,
+            'first_name'                => '',
+            'middle_initial'            => '',
+            'ext_name'                  => '',
             'designation_id'            => $this->request->getPost('designation_id') ?: null,
             'school_year_id'            => $this->request->getPost('school_year_id') ?: null,
             'strand_id'                 => $strandId ?: null,

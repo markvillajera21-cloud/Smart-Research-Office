@@ -86,17 +86,14 @@
         <h2 class="fw-bold text-center text-dark">Institutional Research Directory</h2>
     </div>
 
-    <div class="table-responsive">
-        <table class="table table-hover align-middle">
+    <div class="table-responsive" style="overflow-x: auto;">
+        <table class="table table-hover align-middle" style="width: 100%;">
             <thead>
                 <tr class="text-uppercase text-muted small">
                         <th class="fw-semibold" style="min-width: 150px;">Department</th>
                         <th class="fw-semibold" style="min-width: 150px;">Program/Academic Track</th>
-                        <th class="fw-semibold" style="white-space: nowrap;">Author</th>
-                        <th class="fw-semibold" style="white-space: nowrap;">Surname</th>
-                        <th class="fw-semibold" style="white-space: nowrap;">First Name</th>
-                        <th class="fw-semibold" style="white-space: nowrap;">Middle Initial</th>
-                        <th class="fw-semibold" style="white-space: nowrap;">Ext Name</th>
+                        <th class="fw-semibold" style="min-width: 200px;">Author</th>
+                        <th class="fw-semibold" style="min-width: 250px;">Members</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Adviser</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Grammarian</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Statisticians</th>
@@ -120,80 +117,18 @@
                                 </span>
                             </td>
                             <td>
-                                <div class="fw-bold small">
+                                <div class="fw-bold small" style="word-wrap: normal; overflow-wrap: normal;">
                                     <?php if (!empty($r['author'])): ?>
-                                        <?php 
-                                        $authors = preg_split('/[,\s]+/', trim($r['author'])); 
-                                        ?>
-                                        <?php foreach ($authors as $a): ?>
-                                            <?php if (!empty($a)): ?>
-                                                <?= $a ?><br>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
+                                        <?= nl2br(esc($r['author'])) ?>
                                     <?php else: ?>
                                         <span class="text-muted">N/A</span>
                                     <?php endif; ?>
                                 </div>
                             </td>
                             <td>
-                                <div class="fw-bold small">
+                                <div class="fw-bold small" style="word-wrap: normal; overflow-wrap: normal;">
                                     <?php if (!empty($r['surname'])): ?>
-                                        <?php 
-                                        $surnames = preg_split('/[,\s]+/', trim($r['surname'])); 
-                                        ?>
-                                        <?php foreach ($surnames as $s): ?>
-                                            <?php if (!empty($s)): ?>
-                                                <?= $s ?><br>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                    <?php else: ?>
-                                        <span class="text-muted">N/A</span>
-                                    <?php endif; ?>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="fw-bold small">
-                                    <?php if (!empty($r['first_name'])): ?>
-                                        <?php 
-                                        $firstNames = preg_split('/[,\s]+/', trim($r['first_name'])); 
-                                        ?>
-                                        <?php foreach ($firstNames as $fn): ?>
-                                            <?php if (!empty($fn)): ?>
-                                                <?= $fn ?><br>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                    <?php else: ?>
-                                        <span class="text-muted">N/A</span>
-                                    <?php endif; ?>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="fw-bold small">
-                                    <?php if (!empty($r['middle_initial'])): ?>
-                                        <?php 
-                                        $initials = preg_split('/[,\s]+/', trim($r['middle_initial'])); 
-                                        ?>
-                                        <?php foreach ($initials as $initial): ?>
-                                            <?php if (!empty($initial)): ?>
-                                                <?= $initial ?><br>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                    <?php else: ?>
-                                        <span class="text-muted">N/A</span>
-                                    <?php endif; ?>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="fw-bold small">
-                                    <?php if (!empty($r['ext_name'])): ?>
-                                        <?php 
-                                        $extNames = preg_split('/[,\s]+/', trim($r['ext_name'])); 
-                                        ?>
-                                        <?php foreach ($extNames as $ext): ?>
-                                            <?php if (!empty($ext)): ?>
-                                                <?= $ext ?><br>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
+                                        <?= nl2br(esc($r['surname'])) ?>
                                     <?php else: ?>
                                         <span class="text-muted">N/A</span>
                                     <?php endif; ?>

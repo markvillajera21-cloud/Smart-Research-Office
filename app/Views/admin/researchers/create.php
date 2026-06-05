@@ -25,25 +25,13 @@
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label class="form-label">Author</label>
-                            <textarea name="author" class="form-control" rows="3" placeholder="Enter author name"><?= old('author') ?></textarea>
+                            <textarea name="author" class="form-control" rows="3" placeholder="Enter each author on a new line"><?= old('author') ?></textarea>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">Surname</label>
-                            <textarea name="surname" class="form-control" rows="5" placeholder="Enter surname" required><?= old('surname') ?></textarea>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">First Name</label>
-                            <textarea name="first_name" class="form-control" rows="5" placeholder="Enter first name" required><?= old('first_name') ?></textarea>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                            <label class="form-label">Middle Initial</label>
-                            <textarea name="middle_initial" class="form-control" rows="5" placeholder="e.g. A"><?= old('middle_initial') ?></textarea>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                            <label class="form-label">Ext Name</label>
-                            <textarea name="ext_name" class="form-control" rows="5" placeholder="e.g. Jr., Sr., III"><?= old('ext_name') ?></textarea>
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label">Members</label>
+                            <textarea name="surname" class="form-control" rows="5" placeholder="Enter each member on a new line" required><?= old('surname') ?></textarea>
                         </div>
                     </div>
 
