@@ -136,6 +136,14 @@
                         </span>
                     </div>
                 </div>
+                <div class="mb-4">
+                    <label class="form-label small fw-semibold text-muted">Role</label>
+                    <select name="role" class="form-control" required style="border-radius: 0.75rem; border-color: #e2e8f0;">
+                        <option value="user" selected>User</option>
+                        <option value="admin">Admin</option>
+                        <option value="archive_viewer">Archive Viewer</option>
+                    </select>
+                </div>
                 <div class="d-grid mb-4">
                     <button type="submit" class="btn btn-success text-white shadow-sm">Register Now</button>
                 </div>

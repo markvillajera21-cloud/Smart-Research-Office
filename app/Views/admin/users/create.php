@@ -39,8 +39,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="role" class="form-label">Role</label>
-                        <input type="hidden" name="role" value="admin">
-                        <input type="text" class="form-control" value="Administrator" disabled>
+                        <select name="role" class="form-control" required>
+                            <option value="user" selected>User</option>
+                            <option value="admin">Admin</option>
+                            <option value="archive_viewer">Archive Viewer</option>
+                        </select>
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary">Create Role</button>

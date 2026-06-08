@@ -303,6 +303,10 @@ class Researchers extends BaseController
         ];
 
         if ($this->researcherModel->update($id, $data)) {
+            $from = $this->request->getPost('from');
+            if ($from === 'update_status') {
+                return redirect()->to('admin/researchers/update-status')->with('success', 'Researcher profile updated successfully.');
+            }
             return redirect()->to('admin/researchers')->with('success', 'Researcher profile updated successfully.');
         }
 
@@ -706,8 +710,10 @@ class Researchers extends BaseController
 
         if ($search) {
             $query->groupStart()
-                  ->like('researchers.fullname', $search)
+                  ->like('researchers.author', $search)
+                  ->orLike('researchers.surname', $search)
                   ->orLike('researchers.approved_research_title', $search)
+                  ->orLike('researchers.fullname', $search)
                   ->groupEnd();
         }
 

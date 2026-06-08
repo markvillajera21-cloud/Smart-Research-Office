@@ -20,6 +20,7 @@
 
                 <form action="<?= base_url('admin/researchers/update/' . $researcher['id']) ?>" method="post">
                     <?= csrf_field() ?>
+                    <input type="hidden" name="from" value="<?= isset($_GET['from']) ? $_GET['from'] : '' ?>">
 
                     <?php if (!empty($researcher['username'])): ?>
                         <div class="mb-3">
@@ -253,7 +254,7 @@
                     </div>
 
                     <div class="d-flex justify-content-end gap-2">
-                        <a href="<?= base_url('admin/researchers') ?>" class="btn btn-light px-4">Cancel</a>
+                        <a href="<?= isset($_GET['from']) && $_GET['from'] == 'update_status' ? base_url('admin/researchers/update-status') : base_url('admin/researchers') ?>" class="btn btn-light px-4">Cancel</a>
                         <button type="submit" class="btn btn-primary px-4">Update Profile</button>
                     </div>
                 </form>

@@ -17,6 +17,7 @@
             <thead>
                 <tr>
                     <th>Timestamp</th>
+                    <th>Admin</th>
                     <th>User</th>
                     <th>Action</th>
                     <th>Entity</th>
@@ -29,15 +30,17 @@
                     <?php foreach ($logs as $log): ?>
                         <tr>
                             <td class="small text-nowrap">
-                                <?= date('M d, Y H:i:s', strtotime($log['created_at'])) ?>
+                                <?= date('M d, Y h:i:s A', strtotime($log['created_at'])) ?>
                             </td>
                             <td>
-                                <div class="d-flex align-items-center gap-2">
+                                <div class="d-flex align-items-center justify-content-center">
                                     <div class="bg-light rounded-circle d-flex align-items-center justify-content-center" style="width: 30px; height: 30px; font-size: 0.8rem;">
                                         <?= $log['username'] ? strtoupper(substr($log['username'], 0, 1)) : '?' ?>
                                     </div>
-                                    <span class="fw-medium small"><?= $log['username'] ?? 'System/Guest' ?></span>
                                 </div>
+                            </td>
+                            <td>
+                                <span class="fw-medium small"><?= $log['username'] ?? 'System/Guest' ?></span>
                             </td>
                             <td>
                                 <?php
@@ -70,7 +73,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="6" class="text-center py-4 text-muted">No audit logs found.</td>
+                        <td colspan="7" class="text-center py-4 text-muted">No audit logs found.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

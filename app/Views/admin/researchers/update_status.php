@@ -21,7 +21,7 @@
                 <span class="input-group-text bg-white border-0">
                     <i class="bi bi-search text-muted"></i>
                 </span>
-                <input type="text" name="search" class="form-control border-0 ps-0" placeholder="Search by name or title..." value="<?= $search ?? '' ?>">
+                <input type="text" name="search" class="form-control border-0 ps-0" placeholder="Search by author, members or title..." value="<?= $search ?? '' ?>">
             </div>
             <select name="category" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 220px;">
                 <option value="">All Departments</option>
@@ -41,12 +41,12 @@
         <table class="table table-hover align-middle">
             <thead>
                 <tr class="text-uppercase text-muted small">
-                    <th class="fw-semibold">Full Name</th>
+                    <th class="fw-semibold" style="min-width: 150px;">Author</th>
+                    <th class="fw-semibold" style="min-width: 200px;">Members</th>
                     <th class="fw-semibold">Department</th>
                     <th class="fw-semibold">Approved Research Title</th>
                     <th class="fw-semibold">Pre Oral Defense</th>
                     <th class="fw-semibold">Final Defense</th>
-                    <th class="fw-semibold">Current Status</th>
                     <th class="text-end fw-semibold no-print">Remarks</th>
                 </tr>
             </thead>
@@ -54,8 +54,17 @@
                 <?php if (!empty($researchers)): ?>
                     <?php foreach ($researchers as $r): ?>
                         <tr>
-                            <td>
-                                <div class="fw-bold small"><?= $r['fullname'] ?? '<span class="text-muted">N/A</span>' ?></div>
+                            <td style="min-width: 150px; padding-right: 15px;">
+                                <div class="fw-bold small"><?= $r['author'] ?? $r['fullname'] ?? '<span class="text-muted">N/A</span>' ?></div>
+                            </td>
+                            <td style="min-width: 200px; padding-right: 15px;">
+                                <div class="small text-muted">
+                                    <?php if (!empty($r['surname'])): ?>
+                                        <?= nl2br($r['surname']) ?>
+                                    <?php else: ?>
+                                        <span class="text-muted">N/A</span>
+                                    <?php endif; ?>
+                                </div>
                             </td>
                             <td>
                                 <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 small">
@@ -95,29 +104,26 @@
                                     <?php endif; ?>
                                 </div>
                             </td>
-                            <td>
-                                <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 small">
-                                    <?= $r['status_name'] ?? 'Not Set' ?>
-                                </span>
-                            </td>
                             <td class="text-end no-print">
+                                <?php if (session()->get('role') === 'admin'): ?>
                                 <div class="dropdown">
                                     <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="bi bi-three-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
                                         <li><a class="dropdown-item" href="<?= base_url('admin/researchers/create') ?>"><i class="bi bi-plus-lg me-2"></i> Add</a></li>
-                                        <li><a class="dropdown-item" href="<?= base_url('admin/researchers/edit/' . $r['id']) ?>"><i class="bi bi-pencil me-2"></i> Edit</a></li>
+                                        <li><a class="dropdown-item" href="<?= base_url('admin/researchers/edit/' . $r['id'] . '?from=update_status') ?>"><i class="bi bi-pencil me-2"></i> Edit</a></li>
                                         <li><hr class="dropdown-divider"></li>
                                         <li><a class="dropdown-item text-danger" href="<?= base_url('admin/researchers/delete/' . $r['id']) ?>" onclick="return confirm('Are you sure you want to delete this research profile?')"><i class="bi bi-trash me-2"></i> Delete</a></li>
                                     </ul>
                                 </div>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="6" class="text-center py-5 text-muted">
+                        <td colspan="7" class="text-center py-5 text-muted">
                             <i class="bi bi-search fs-1 d-block mb-3"></i>
                             No researchers found matching your criteria.
                         </td>

@@ -78,7 +78,9 @@
                         <div class="p-5 text-center">
                             <i class="bi bi-rocket-takeoff text-muted fs-1 mb-3 d-block"></i>
                             <p class="text-muted">No milestones recorded yet. Start contributing to build your portfolio!</p>
+                            <?php if (session()->get('role') === 'user'): ?>
                             <button class="btn btn-primary btn-sm mt-2">New Contribution</button>
+                            <?php endif; ?>
                         </div>
                     <?php endif; ?>
                 </div>

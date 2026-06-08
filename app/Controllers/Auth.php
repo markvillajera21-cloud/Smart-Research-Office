@@ -57,6 +57,8 @@ class Auth extends BaseController
     {
         if (session()->get('role') === 'admin') {
             return redirect()->to('/admin/dashboard');
+        } elseif (session()->get('role') === 'archive_viewer') {
+            return redirect()->to('/admin/audit-logs');
         }
         return redirect()->to('/user/dashboard');
     }
@@ -69,7 +71,7 @@ class Auth extends BaseController
             'username' => $this->request->getPost('username'),
             'email'    => $this->request->getPost('email'),
             'password' => $this->request->getPost('password'),
-            'role'     => 'user'
+            'role'     => $this->request->getPost('role')
         ];
 
         if ($userModel->save($data)) {

@@ -38,13 +38,16 @@
 <!-- Dashboard Header with Add User Button -->
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h3" style="color: #1e3a8a; font-weight: 800;">Dashboard</h1>
+    <?php if (session()->get('role') === 'admin'): ?>
     <a href="<?= base_url('admin/users/create') ?>" class="action-btn btn btn-primary fw-bold px-4">
         <i class="bi bi-person-plus-fill me-2"></i> Add User
     </a>
+    <?php endif; ?>
 </div>
 
 <div class="row g-4 mb-4">
     <!-- Quick Actions -->
+    <?php if (session()->get('role') === 'admin'): ?>
     <div class="col-12 col-md-3">
         <div class="card h-100 p-4">
             <h5 class="mb-4" style="color: #1e3a8a; font-weight: 800;">Quick Actions</h5>
@@ -58,9 +61,10 @@
             </div>
         </div>
     </div>
+    <?php endif; ?>
 
     <!-- Stat Cards (Grammarian, Statistician, Adviser, Total Users) -->
-    <div class="col-12 col-md-9">
+    <div class="col-12 <?php echo session()->get('role') === 'admin' ? 'col-md-9' : 'col-md-12' ?>">
         <div class="row g-3">
             <div class="col-12 col-sm-3">
                 <div class="stat-card card p-4">

@@ -4,9 +4,11 @@
 <!-- Top Action Bar -->
 <div class="d-flex justify-content-between align-items-center mb-4 no-print">
     <div>
+        <?php if (session()->get('role') === 'admin'): ?>
         <a href="<?= base_url('admin/researchers/create') ?>" class="btn btn-primary shadow-sm d-flex align-items-center px-4 py-2">
             <i class="bi bi-plus-lg me-2"></i> Add New
         </a>
+        <?php endif; ?>
     </div>
     
     <div class="d-flex flex-grow-1 justify-content-center mx-3">
@@ -164,6 +166,7 @@
                                 </div>
                             </td>
                             <td class="text-end no-print">
+                                <?php if (session()->get('role') === 'admin'): ?>
                                 <div class="dropdown">
                                     <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="bi bi-three-dots-vertical"></i>
@@ -175,6 +178,7 @@
                                         <li><a class="dropdown-item text-danger" href="<?= base_url('admin/researchers/delete/' . $r['id']) ?>" onclick="return confirm('Are you sure you want to delete this research profile?')"><i class="bi bi-trash me-2"></i> Delete</a></li>
                                     </ul>
                                 </div>
+                                <?php endif; ?>
                             </td>
                         </tr>
 

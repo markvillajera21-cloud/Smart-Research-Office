@@ -2,14 +2,18 @@
 
 <?= $this->section('content') ?>
 <div class="card p-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
         <div>
             <h5 class="mb-1">Role Management</h5>
             <p class="text-muted small mb-0">Manage system roles and administrators.</p>
         </div>
-        <a href="<?= base_url('admin/users/create') ?>" class="btn btn-primary">
-            <i class="bi bi-person-plus-fill me-2"></i> Add Role
-        </a>
+        <div class="d-flex gap-2 align-items-center flex-wrap">
+            <?php if (session()->get('role') === 'admin'): ?>
+            <a href="<?= base_url('admin/users/create') ?>" class="btn btn-primary">
+                <i class="bi bi-person-plus-fill me-2"></i> Add User
+            </a>
+            <?php endif; ?>
+        </div>
     </div>
 
     <?php if (session()->getFlashdata('success')): ?>
@@ -43,14 +47,28 @@
                             </div>
                         </td>
                         <td>
-                            <span class="badge <?= $user['role'] === 'admin' ? 'bg-danger-subtle text-danger' : 'bg-info-subtle text-info' ?>">
-                                <?= ucfirst($user['role']) ?>
+                            <?php 
+                                $roleBadges = [
+                                    'user' => 'bg-secondary-subtle text-secondary',
+                                    'admin' => 'bg-danger-subtle text-danger',
+                                    'archive_viewer' => 'bg-info-subtle text-info'
+                                ];
+                                $badgeClass = $roleBadges[$user['role']] ?? 'bg-secondary-subtle text-secondary';
+                                $roleNames = [
+                                    'user' => 'User',
+                                    'admin' => 'Admin',
+                                    'archive_viewer' => 'Archive Viewer'
+                                ];
+                            ?>
+                            <span class="badge <?= $badgeClass ?>">
+                                <?= $roleNames[$user['role']] ?? ucfirst($user['role']) ?>
                             </span>
                         </td>
                         <td class="text-muted small">
                             <?= date('M d, Y', strtotime($user['created_at'])) ?>
                         </td>
                         <td class="text-end pe-0">
+                            <?php if (session()->get('role') === 'admin'): ?>
                             <div class="dropdown">
                                 <button class="btn btn-sm btn-light border" type="button" data-bs-toggle="dropdown">
                                     <i class="bi bi-three-dots"></i>
@@ -68,6 +86,7 @@
                                     </li>
                                 </ul>
                             </div>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -75,4 +94,5 @@
         </table>
     </div>
 </div>
+
 <?= $this->endSection() ?>

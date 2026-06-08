@@ -55,4 +55,33 @@ class User extends Model
         }
         return $data;
     }
+
+    public function save($data = null): bool
+    {
+        // Store original validation rules
+        $originalRules = $this->validationRules;
+
+        try {
+            // Check if we're updating or inserting
+            $isUpdate = isset($data['id']) || (is_array($data) && isset($data[0]['id']));
+            
+            if ($isUpdate) {
+                // Get the ID
+                $id = isset($data['id']) ? $data['id'] : $data[0]['id'];
+                
+                // Modify validation rules for update - exclude current record from unique checks
+                $this->validationRules['username'] = "required|alpha_numeric_space|min_length[3]|is_unique[users.username,id,{$id}]";
+                $this->validationRules['email'] = "required|valid_email|is_unique[users.email,id,{$id}]";
+                
+                // Remove password required rule for updates
+                $this->validationRules['password'] = 'permit_empty|min_length[8]';
+            }
+
+            // Call parent save method
+            return parent::save($data);
+        } finally {
+            // Restore original validation rules
+            $this->validationRules = $originalRules;
+        }
+    }
 }
