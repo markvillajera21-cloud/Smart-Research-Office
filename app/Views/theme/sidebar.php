@@ -24,6 +24,11 @@
         </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link <?= (url_is('admin/grammarian*') ? 'active' : '') ?>" href="<?= base_url('admin/dashboard') ?>">
+            <i class="bi bi-translate"></i> Grammarian
+        </a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link <?= (url_is('admin/uploads*') ? 'active' : '') ?>" href="<?= base_url('admin/uploads') ?>">
             <i class="bi bi-cloud-arrow-up"></i> Upload Data
         </a>

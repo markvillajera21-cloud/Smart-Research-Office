@@ -86,14 +86,14 @@
         <h2 class="fw-bold text-center text-dark">Institutional Research Directory</h2>
     </div>
 
-    <div class="table-responsive" style="overflow-x: auto;">
-        <table class="table table-hover align-middle" style="width: 100%;">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
             <thead>
                 <tr class="text-uppercase text-muted small">
                         <th class="fw-semibold" style="min-width: 150px;">Department</th>
                         <th class="fw-semibold" style="min-width: 150px;">Program/Academic Track</th>
                         <th class="fw-semibold" style="min-width: 200px;">Author</th>
-                        <th class="fw-semibold" style="min-width: 250px;">Members</th>
+                        <th class="fw-semibold" style="min-width: 220px;">Members</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Adviser</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Grammarian</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Statisticians</th>
@@ -116,19 +116,19 @@
                                     <?= $r['strand_name'] ?? $r['strand_degree_program'] ?? 'N/A' ?>
                                 </span>
                             </td>
-                            <td>
-                                <div class="fw-bold small" style="word-wrap: normal; overflow-wrap: normal;">
+                            <td style="padding: 12px 16px; line-height: 1.6;">
+                                <div class="fw-bold small">
                                     <?php if (!empty($r['author'])): ?>
-                                        <?= nl2br(esc($r['author'])) ?>
+                                        <?= nl2br(preg_replace('/,\s*/', "\n", esc($r['author']))) ?>
                                     <?php else: ?>
                                         <span class="text-muted">N/A</span>
                                     <?php endif; ?>
                                 </div>
                             </td>
-                            <td>
-                                <div class="fw-bold small" style="word-wrap: normal; overflow-wrap: normal;">
+                            <td style="padding: 12px 16px; line-height: 1.6;">
+                                <div class="fw-bold small">
                                     <?php if (!empty($r['surname'])): ?>
-                                        <?= nl2br(esc($r['surname'])) ?>
+                                        <?= nl2br(preg_replace('/,\s*/', "\n", esc($r['surname']))) ?>
                                     <?php else: ?>
                                         <span class="text-muted">N/A</span>
                                     <?php endif; ?>
@@ -182,7 +182,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="12" class="text-center py-5 text-muted">
+                        <td colspan="10" class="text-center py-5 text-muted">
                             <i class="bi bi-search fs-1 d-block mb-3"></i>
                             No researchers found matching your criteria.
                         </td>
