@@ -55,10 +55,8 @@ class Auth extends BaseController
 
     private function redirectDashboard()
     {
-        if (session()->get('role') === 'admin') {
+        if (session()->get('role') === 'admin' || session()->get('role') === 'archive_viewer') {
             return redirect()->to('/admin/dashboard');
-        } elseif (session()->get('role') === 'archive_viewer') {
-            return redirect()->to('/admin/audit-logs');
         }
         return redirect()->to('/user/dashboard');
     }
