@@ -104,6 +104,9 @@ class Researchers extends BaseController
                   ->like('researchers.fullname', $search)
                   ->orLike('users.username', $search)
                   ->orLike('users.email', $search)
+                  ->orLike('researchers.author', $search)
+                  ->orLike('researchers.surname', $search)
+                  ->orLike('researchers.approved_research_title', $search)
                   ->groupEnd();
         }
 
@@ -616,6 +619,9 @@ class Researchers extends BaseController
                   ->like('researchers.fullname', $search)
                   ->orLike('users.username', $search)
                   ->orLike('users.email', $search)
+                  ->orLike('researchers.author', $search)
+                  ->orLike('researchers.surname', $search)
+                  ->orLike('researchers.approved_research_title', $search)
                   ->groupEnd();
         }
 
@@ -655,6 +661,9 @@ class Researchers extends BaseController
                   ->like('researchers.fullname', $search)
                   ->orLike('users.username', $search)
                   ->orLike('users.email', $search)
+                  ->orLike('researchers.author', $search)
+                  ->orLike('researchers.surname', $search)
+                  ->orLike('researchers.approved_research_title', $search)
                   ->groupEnd();
         }
 

@@ -17,7 +17,7 @@
                 <span class="input-group-text bg-white border-0">
                     <i class="bi bi-search text-muted"></i>
                 </span>
-                <input type="text" name="search" class="form-control border-0 ps-0" placeholder="Search by name, ID, or expertise..." value="<?= $search ?? '' ?>">
+                <input type="text" name="search" class="form-control border-0 ps-0" placeholder="Search by author, members, research title, name, ID, or email..." value="<?= $search ?? '' ?>">
             </div>
             <select name="school_year" class="form-select shadow-sm border rounded" onchange="this.form.submit()" style="width: 150px;">
                 <option value="">School Year</option>
