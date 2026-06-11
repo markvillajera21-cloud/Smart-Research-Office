@@ -9,6 +9,10 @@ use App\Models\User;
 use App\Models\ProjectModel;
 use App\Models\ResearcherModel;
 use App\Models\StatusModel;
+use App\Models\AdviserModel;
+use App\Models\GrammarianModel;
+use App\Models\RemarkModel;
+use App\Models\ResearchTeacherModel;
 
 class Dashboard extends BaseController
 {
@@ -17,16 +21,45 @@ class Dashboard extends BaseController
         $userModel = new User();
         $researcherModel = new ResearcherModel();
         $statusModel = new StatusModel();
+        $adviserModel = new AdviserModel();
+        $grammarianModel = new GrammarianModel();
+        $statisticianModel = new RemarkModel();
+        $researchTeacherModel = new ResearchTeacherModel();
 
         $totalUsers = $userModel->countAll();
         
         $pendingStatus = $statusModel->where('name', 'Pending')->first();
         $pendingReviews = $pendingStatus ? $researcherModel->where('status_id', $pendingStatus['id'])->countAllResults() : 0;
+        
+        // Get counts for all roles
+        $totalResearchTeachers = $researchTeacherModel->countAll();
+        $totalGrammarians = $grammarianModel->countAll();
+        $totalStatisticians = $statisticianModel->countAll();
+        $totalAdvisers = $adviserModel->countAll();
+        
+        // Get total research count
+        $totalResearch = $researcherModel->countAll();
+        
+        // Get approved and published (if statuses exist)
+        $approvedStatus = $statusModel->where('name', 'Approved')->first();
+        $totalApproved = $approvedStatus ? $researcherModel->where('status_id', $approvedStatus['id'])->countAllResults() : 0;
+        
+        $publishedStatus = $statusModel->where('name', 'Published')->first();
+        $totalPublished = $publishedStatus ? $researcherModel->where('status_id', $publishedStatus['id'])->countAllResults() : 0;
 
         $data = [
+            'title' => 'Dashboard',
+            'page_title' => 'Dashboard',
             'totalUsers' => $totalUsers,
             'pendingReviews' => $pendingReviews,
-            'systemHealth' => 98
+            'systemHealth' => 98,
+            'totalResearchTeachers' => $totalResearchTeachers,
+            'totalGrammarians' => $totalGrammarians,
+            'totalStatisticians' => $totalStatisticians,
+            'totalAdvisers' => $totalAdvisers,
+            'totalResearch' => $totalResearch,
+            'totalApproved' => $totalApproved,
+            'totalPublished' => $totalPublished
         ];
 
         return view('admin/dashboard', $data);
@@ -72,5 +105,15 @@ class Dashboard extends BaseController
         ];
         
         return view('admin/settings', $data);
+    }
+
+    public function generatedReports()
+    {
+        $data = [
+            'title' => 'Generated Reports',
+            'page_title' => 'Generated Reports'
+        ];
+        
+        return view('admin/generated-reports', $data);
     }
 }

@@ -344,7 +344,7 @@
             <!-- Main Content -->
             <div class="col-md-9 col-lg-10 p-0">
                 <!-- Top Header -->
-                <nav class="navbar navbar-expand-lg bg-white border-bottom px-4 py-3 sticky-top shadow-sm">
+                <nav class="navbar navbar-expand-lg bg-white border-bottom px-4 py-3 sticky-top shadow-sm <?= ($page_title ?? '') === 'Dashboard' ? 'd-none' : '' ?>">
                     <div class="container-fluid p-0">
                         <h5 class="mb-0 fw-semibold" style="color: var(--text-primary);"><?= $page_title ?? 'Dashboard' ?></h5>
                         <div class="ms-auto d-flex align-items-center">
@@ -367,7 +367,7 @@
                 </nav>
 
                 <!-- Page Content -->
-                <main class="p-4" style="background-color: var(--main-bg);">
+                <main class="<?= ($page_title ?? '') === 'Dashboard' ? 'p-0' : 'p-4' ?>" style="background-color: var(--main-bg);">
                     <?php if (session()->getFlashdata('success')): ?>
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <?= session()->getFlashdata('success') ?>

@@ -19,13 +19,33 @@
         </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link <?= (url_is('admin/researchers/research-teachers') ? 'active' : '') ?>" href="<?= base_url('admin/researchers/research-teachers') ?>">
+            <i class="bi bi-mortarboard-fill"></i> Research Teachers
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <?= (url_is('admin/researchers/grammarians') ? 'active' : '') ?>" href="<?= base_url('admin/researchers/grammarians') ?>">
+            <i class="bi bi-translate"></i> Grammarians
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <?= (url_is('admin/researchers/statisticians') ? 'active' : '') ?>" href="<?= base_url('admin/researchers/statisticians') ?>">
+            <i class="bi bi-bar-chart-fill"></i> Statisticians
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <?= (url_is('admin/researchers/advisers') ? 'active' : '') ?>" href="<?= base_url('admin/researchers/advisers') ?>">
+            <i class="bi bi-chat-right-dots-fill"></i> Advisers
+        </a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link <?= (url_is('admin/researchers/update-status') ? 'active' : '') ?>" href="<?= base_url('admin/researchers/update-status') ?>">
             <i class="bi bi-arrow-repeat"></i> Update Status
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link <?= (url_is('admin/grammarian*') ? 'active' : '') ?>" href="<?= base_url('admin/dashboard') ?>">
-            <i class="bi bi-translate"></i> Grammarian
+        <a class="nav-link <?= (url_is('admin/generated-reports') ? 'active' : '') ?>" href="<?= base_url('admin/generated-reports') ?>">
+            <i class="bi bi-file-earmark-bar-graph"></i> Generated Reports
         </a>
     </li>
     <li class="nav-item">
@@ -58,13 +78,33 @@
         </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link <?= (url_is('admin/researchers/research-teachers') ? 'active' : '') ?>" href="<?= base_url('admin/researchers/research-teachers') ?>">
+            <i class="bi bi-mortarboard-fill"></i> Research Teachers
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <?= (url_is('admin/researchers/grammarians') ? 'active' : '') ?>" href="<?= base_url('admin/researchers/grammarians') ?>">
+            <i class="bi bi-translate"></i> Grammarians
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <?= (url_is('admin/researchers/statisticians') ? 'active' : '') ?>" href="<?= base_url('admin/researchers/statisticians') ?>">
+            <i class="bi bi-bar-chart-fill"></i> Statisticians
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <?= (url_is('admin/researchers/advisers') ? 'active' : '') ?>" href="<?= base_url('admin/researchers/advisers') ?>">
+            <i class="bi bi-chat-right-dots-fill"></i> Advisers
+        </a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link <?= (url_is('admin/researchers/update-status') ? 'active' : '') ?>" href="<?= base_url('admin/researchers/update-status') ?>">
             <i class="bi bi-arrow-repeat"></i> Update Status
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link <?= (url_is('admin/grammarian*') ? 'active' : '') ?>" href="<?= base_url('admin/dashboard') ?>">
-            <i class="bi bi-translate"></i> Grammarian
+        <a class="nav-link <?= (url_is('admin/generated-reports') ? 'active' : '') ?>" href="<?= base_url('admin/generated-reports') ?>">
+            <i class="bi bi-file-earmark-bar-graph"></i> Generated Reports
         </a>
     </li>
     <li class="nav-item">

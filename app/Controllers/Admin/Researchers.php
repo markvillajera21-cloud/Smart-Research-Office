@@ -603,15 +603,51 @@ class Researchers extends BaseController
     {
         $search = $this->request->getGet('search');
         $strand = $this->request->getGet('strand');
+        $schoolYear = $this->request->getGet('school_year');
+        $category = $this->request->getGet('category');
+        $adviser = $this->request->getGet('adviser');
+        $grammarian = $this->request->getGet('grammarian');
+        $statistician = $this->request->getGet('statistician');
+        $researchTeacher = $this->request->getGet('research_teacher');
         
-        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, remarks.name as statistician_name')
+        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, designations.name as designation_name, school_years.name as school_year_name, strands.name as strand_name, advisers.name as adviser_name, grammarians.name as grammarian_name, remarks.name as statistician_name, research_teachers.name as research_teacher_name')
                                      ->join('users', 'users.id = researchers.user_id', 'left')
                                      ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
+                                     ->join('designations', 'designations.id = researchers.designation_id', 'left')
+                                     ->join('school_years', 'school_years.id = researchers.school_year_id', 'left')
+                                     ->join('strands', 'strands.id = researchers.strand_id', 'left')
+                                     ->join('advisers', 'advisers.id = researchers.adviser_id', 'left')
+                                     ->join('grammarians', 'grammarians.id = researchers.grammarian_id', 'left')
                                      ->join('remarks', 'remarks.id = researchers.remark_id', 'left')
+                                     ->join('research_teachers', 'research_teachers.id = researchers.research_teacher_id', 'left')
                                      ->where('research_categories.name', 'High School Department');
 
-        if ($strand && in_array($strand, ['HUMSS', 'STEM', 'ABM'], true)) {
+        if ($strand) {
             $query->where('researchers.strand_degree_program', $strand);
+        }
+
+        if ($schoolYear) {
+            $query->where('researchers.school_year_id', $schoolYear);
+        }
+
+        if ($category) {
+            $query->where('researchers.category_id', $category);
+        }
+
+        if ($adviser) {
+            $query->where('researchers.adviser_id', $adviser);
+        }
+
+        if ($grammarian) {
+            $query->where('researchers.grammarian_id', $grammarian);
+        }
+
+        if ($statistician) {
+            $query->where('researchers.remark_id', $statistician);
+        }
+
+        if ($researchTeacher) {
+            $query->where('researchers.research_teacher_id', $researchTeacher);
         }
 
         if ($search) {
@@ -634,8 +670,20 @@ class Researchers extends BaseController
             'researchers' => $researchers,
             'pager' => $pager,
             'categories' => $this->categoryModel->findAll(),
+            'schoolYears' => $this->schoolYearModel->findAll(),
+            'strands' => $this->strandModel->findAll(),
+            'advisers' => $this->adviserModel->findAll(),
+            'grammarians' => $this->grammarianModel->findAll(),
+            'statisticians' => $this->statisticianModel->findAll(),
+            'researchTeachers' => $this->researchTeacherModel->findAll(),
             'search' => $search,
-            'strand' => $strand
+            'strand' => $strand,
+            'schoolYear' => $schoolYear,
+            'category' => $category,
+            'adviser' => $adviser,
+            'grammarian' => $grammarian,
+            'statistician' => $statistician,
+            'researchTeacher' => $researchTeacher
         ];
 
         return view('admin/researchers/high_school', $data);
@@ -645,15 +693,51 @@ class Researchers extends BaseController
     {
         $search = $this->request->getGet('search');
         $strand = $this->request->getGet('strand');
+        $schoolYear = $this->request->getGet('school_year');
+        $category = $this->request->getGet('category');
+        $adviser = $this->request->getGet('adviser');
+        $grammarian = $this->request->getGet('grammarian');
+        $statistician = $this->request->getGet('statistician');
+        $researchTeacher = $this->request->getGet('research_teacher');
         
-        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, remarks.name as statistician_name')
+        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, designations.name as designation_name, school_years.name as school_year_name, strands.name as strand_name, advisers.name as adviser_name, grammarians.name as grammarian_name, remarks.name as statistician_name, research_teachers.name as research_teacher_name')
                                      ->join('users', 'users.id = researchers.user_id', 'left')
                                      ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
+                                     ->join('designations', 'designations.id = researchers.designation_id', 'left')
+                                     ->join('school_years', 'school_years.id = researchers.school_year_id', 'left')
+                                     ->join('strands', 'strands.id = researchers.strand_id', 'left')
+                                     ->join('advisers', 'advisers.id = researchers.adviser_id', 'left')
+                                     ->join('grammarians', 'grammarians.id = researchers.grammarian_id', 'left')
                                      ->join('remarks', 'remarks.id = researchers.remark_id', 'left')
+                                     ->join('research_teachers', 'research_teachers.id = researchers.research_teacher_id', 'left')
                                      ->where('research_categories.name', 'College Department');
 
-        if ($strand && in_array($strand, ['HUMSS', 'STEM', 'ABM'], true)) {
+        if ($strand) {
             $query->where('researchers.strand_degree_program', $strand);
+        }
+
+        if ($schoolYear) {
+            $query->where('researchers.school_year_id', $schoolYear);
+        }
+
+        if ($category) {
+            $query->where('researchers.category_id', $category);
+        }
+
+        if ($adviser) {
+            $query->where('researchers.adviser_id', $adviser);
+        }
+
+        if ($grammarian) {
+            $query->where('researchers.grammarian_id', $grammarian);
+        }
+
+        if ($statistician) {
+            $query->where('researchers.remark_id', $statistician);
+        }
+
+        if ($researchTeacher) {
+            $query->where('researchers.research_teacher_id', $researchTeacher);
         }
 
         if ($search) {
@@ -676,8 +760,20 @@ class Researchers extends BaseController
             'researchers' => $researchers,
             'pager' => $pager,
             'categories' => $this->categoryModel->findAll(),
+            'schoolYears' => $this->schoolYearModel->findAll(),
+            'strands' => $this->strandModel->findAll(),
+            'advisers' => $this->adviserModel->findAll(),
+            'grammarians' => $this->grammarianModel->findAll(),
+            'statisticians' => $this->statisticianModel->findAll(),
+            'researchTeachers' => $this->researchTeacherModel->findAll(),
             'search' => $search,
-            'strand' => $strand
+            'strand' => $strand,
+            'schoolYear' => $schoolYear,
+            'category' => $category,
+            'adviser' => $adviser,
+            'grammarian' => $grammarian,
+            'statistician' => $statistician,
+            'researchTeacher' => $researchTeacher
         ];
 
         return view('admin/researchers/college', $data);
@@ -753,5 +849,353 @@ class Researchers extends BaseController
         }
 
         return redirect()->back()->with('error', 'Failed to update status.');
+    }
+
+    public function researchTeachers()
+    {
+        $schoolYearFilter = $this->request->getGet('school_year');
+        $categoryFilter = $this->request->getGet('category');
+        $strandFilter = $this->request->getGet('strand');
+        $adviserFilter = $this->request->getGet('adviser');
+        $grammarianFilter = $this->request->getGet('grammarian');
+        $statisticianFilter = $this->request->getGet('statistician');
+        $researchTeacherFilter = $this->request->getGet('research_teacher');
+        $search = $this->request->getGet('search');
+
+        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, designations.name as designation_name, school_years.name as school_year_name, strands.name as strand_name, advisers.name as adviser_name, grammarians.name as grammarian_name, remarks.name as statistician_name, research_teachers.name as research_teacher_name')
+                                     ->join('users', 'users.id = researchers.user_id', 'left')
+                                     ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
+                                     ->join('designations', 'designations.id = researchers.designation_id', 'left')
+                                     ->join('school_years', 'school_years.id = researchers.school_year_id', 'left')
+                                     ->join('strands', 'strands.id = researchers.strand_id', 'left')
+                                     ->join('advisers', 'advisers.id = researchers.adviser_id', 'left')
+                                     ->join('grammarians', 'grammarians.id = researchers.grammarian_id', 'left')
+                                     ->join('remarks', 'remarks.id = researchers.remark_id', 'left')
+                                     ->join('research_teachers', 'research_teachers.id = researchers.research_teacher_id', 'left');
+
+        if ($schoolYearFilter) {
+            $query->where('researchers.school_year_id', $schoolYearFilter);
+        }
+
+        if ($categoryFilter) {
+            $query->where('researchers.category_id', $categoryFilter);
+        }
+
+        if ($strandFilter) {
+            $query->where('researchers.strand_id', $strandFilter);
+        }
+
+        if ($adviserFilter) {
+            $query->where('researchers.adviser_id', $adviserFilter);
+        }
+
+        if ($grammarianFilter) {
+            $query->where('researchers.grammarian_id', $grammarianFilter);
+        }
+
+        if ($statisticianFilter) {
+            $query->where('researchers.remark_id', $statisticianFilter);
+        }
+
+        if ($researchTeacherFilter) {
+            $query->where('researchers.research_teacher_id', $researchTeacherFilter);
+        }
+
+        if ($search) {
+            $query->groupStart()
+                  ->like('researchers.fullname', $search)
+                  ->orLike('users.username', $search)
+                  ->orLike('users.email', $search)
+                  ->orLike('researchers.author', $search)
+                  ->orLike('researchers.surname', $search)
+                  ->orLike('researchers.approved_research_title', $search)
+                  ->groupEnd();
+        }
+
+        $query->orderBy('researchers.created_at', 'DESC');
+
+        $data = [
+            'title' => 'Research Teachers',
+            'page_title' => 'Research by Research Teachers',
+            'researchers' => $query->findAll(),
+            'categories' => $this->categoryModel->findAll(),
+            'schoolYears' => $this->schoolYearModel->findAll(),
+            'advisers' => $this->adviserModel->findAll(),
+            'grammarians' => $this->grammarianModel->findAll(),
+            'statisticians' => $this->statisticianModel->findAll(),
+            'researchTeachers' => $this->researchTeacherModel->findAll(),
+            'strands' => $this->strandModel->findAll(),
+            'schoolYear' => $schoolYearFilter,
+            'category' => $categoryFilter,
+            'strand' => $strandFilter,
+            'adviser' => $adviserFilter,
+            'grammarian' => $grammarianFilter,
+            'statistician' => $statisticianFilter,
+            'researchTeacher' => $researchTeacherFilter,
+            'search' => $search
+        ];
+
+        return view('admin/researchers/research_teachers', $data);
+    }
+
+    public function grammarians()
+    {
+        $schoolYearFilter = $this->request->getGet('school_year');
+        $categoryFilter = $this->request->getGet('category');
+        $strandFilter = $this->request->getGet('strand');
+        $adviserFilter = $this->request->getGet('adviser');
+        $grammarianFilter = $this->request->getGet('grammarian');
+        $statisticianFilter = $this->request->getGet('statistician');
+        $researchTeacherFilter = $this->request->getGet('research_teacher');
+        $search = $this->request->getGet('search');
+
+        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, designations.name as designation_name, school_years.name as school_year_name, strands.name as strand_name, advisers.name as adviser_name, grammarians.name as grammarian_name, remarks.name as statistician_name, research_teachers.name as research_teacher_name')
+                                     ->join('users', 'users.id = researchers.user_id', 'left')
+                                     ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
+                                     ->join('designations', 'designations.id = researchers.designation_id', 'left')
+                                     ->join('school_years', 'school_years.id = researchers.school_year_id', 'left')
+                                     ->join('strands', 'strands.id = researchers.strand_id', 'left')
+                                     ->join('advisers', 'advisers.id = researchers.adviser_id', 'left')
+                                     ->join('grammarians', 'grammarians.id = researchers.grammarian_id', 'left')
+                                     ->join('remarks', 'remarks.id = researchers.remark_id', 'left')
+                                     ->join('research_teachers', 'research_teachers.id = researchers.research_teacher_id', 'left');
+
+        if ($schoolYearFilter) {
+            $query->where('researchers.school_year_id', $schoolYearFilter);
+        }
+
+        if ($categoryFilter) {
+            $query->where('researchers.category_id', $categoryFilter);
+        }
+
+        if ($strandFilter) {
+            $query->where('researchers.strand_id', $strandFilter);
+        }
+
+        if ($adviserFilter) {
+            $query->where('researchers.adviser_id', $adviserFilter);
+        }
+
+        if ($grammarianFilter) {
+            $query->where('researchers.grammarian_id', $grammarianFilter);
+        }
+
+        if ($statisticianFilter) {
+            $query->where('researchers.remark_id', $statisticianFilter);
+        }
+
+        if ($researchTeacherFilter) {
+            $query->where('researchers.research_teacher_id', $researchTeacherFilter);
+        }
+
+        if ($search) {
+            $query->groupStart()
+                  ->like('researchers.fullname', $search)
+                  ->orLike('users.username', $search)
+                  ->orLike('users.email', $search)
+                  ->orLike('researchers.author', $search)
+                  ->orLike('researchers.surname', $search)
+                  ->orLike('researchers.approved_research_title', $search)
+                  ->groupEnd();
+        }
+
+        $query->orderBy('researchers.created_at', 'DESC');
+
+        $data = [
+            'title' => 'Grammarians',
+            'page_title' => 'Research by Grammarians',
+            'researchers' => $query->findAll(),
+            'categories' => $this->categoryModel->findAll(),
+            'schoolYears' => $this->schoolYearModel->findAll(),
+            'advisers' => $this->adviserModel->findAll(),
+            'grammarians' => $this->grammarianModel->findAll(),
+            'statisticians' => $this->statisticianModel->findAll(),
+            'researchTeachers' => $this->researchTeacherModel->findAll(),
+            'strands' => $this->strandModel->findAll(),
+            'schoolYear' => $schoolYearFilter,
+            'category' => $categoryFilter,
+            'strand' => $strandFilter,
+            'adviser' => $adviserFilter,
+            'grammarian' => $grammarianFilter,
+            'statistician' => $statisticianFilter,
+            'researchTeacher' => $researchTeacherFilter,
+            'search' => $search
+        ];
+
+        return view('admin/researchers/grammarians_list', $data);
+    }
+
+    public function statisticians()
+    {
+        $schoolYearFilter = $this->request->getGet('school_year');
+        $categoryFilter = $this->request->getGet('category');
+        $strandFilter = $this->request->getGet('strand');
+        $adviserFilter = $this->request->getGet('adviser');
+        $grammarianFilter = $this->request->getGet('grammarian');
+        $statisticianFilter = $this->request->getGet('statistician');
+        $researchTeacherFilter = $this->request->getGet('research_teacher');
+        $search = $this->request->getGet('search');
+
+        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, designations.name as designation_name, school_years.name as school_year_name, strands.name as strand_name, advisers.name as adviser_name, grammarians.name as grammarian_name, remarks.name as statistician_name, research_teachers.name as research_teacher_name')
+                                     ->join('users', 'users.id = researchers.user_id', 'left')
+                                     ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
+                                     ->join('designations', 'designations.id = researchers.designation_id', 'left')
+                                     ->join('school_years', 'school_years.id = researchers.school_year_id', 'left')
+                                     ->join('strands', 'strands.id = researchers.strand_id', 'left')
+                                     ->join('advisers', 'advisers.id = researchers.adviser_id', 'left')
+                                     ->join('grammarians', 'grammarians.id = researchers.grammarian_id', 'left')
+                                     ->join('remarks', 'remarks.id = researchers.remark_id', 'left')
+                                     ->join('research_teachers', 'research_teachers.id = researchers.research_teacher_id', 'left');
+
+        if ($schoolYearFilter) {
+            $query->where('researchers.school_year_id', $schoolYearFilter);
+        }
+
+        if ($categoryFilter) {
+            $query->where('researchers.category_id', $categoryFilter);
+        }
+
+        if ($strandFilter) {
+            $query->where('researchers.strand_id', $strandFilter);
+        }
+
+        if ($adviserFilter) {
+            $query->where('researchers.adviser_id', $adviserFilter);
+        }
+
+        if ($grammarianFilter) {
+            $query->where('researchers.grammarian_id', $grammarianFilter);
+        }
+
+        if ($statisticianFilter) {
+            $query->where('researchers.remark_id', $statisticianFilter);
+        }
+
+        if ($researchTeacherFilter) {
+            $query->where('researchers.research_teacher_id', $researchTeacherFilter);
+        }
+
+        if ($search) {
+            $query->groupStart()
+                  ->like('researchers.fullname', $search)
+                  ->orLike('users.username', $search)
+                  ->orLike('users.email', $search)
+                  ->orLike('researchers.author', $search)
+                  ->orLike('researchers.surname', $search)
+                  ->orLike('researchers.approved_research_title', $search)
+                  ->groupEnd();
+        }
+
+        $query->orderBy('researchers.created_at', 'DESC');
+
+        $data = [
+            'title' => 'Statisticians',
+            'page_title' => 'Research by Statisticians',
+            'researchers' => $query->findAll(),
+            'categories' => $this->categoryModel->findAll(),
+            'schoolYears' => $this->schoolYearModel->findAll(),
+            'advisers' => $this->adviserModel->findAll(),
+            'grammarians' => $this->grammarianModel->findAll(),
+            'statisticians' => $this->statisticianModel->findAll(),
+            'researchTeachers' => $this->researchTeacherModel->findAll(),
+            'strands' => $this->strandModel->findAll(),
+            'schoolYear' => $schoolYearFilter,
+            'category' => $categoryFilter,
+            'strand' => $strandFilter,
+            'adviser' => $adviserFilter,
+            'grammarian' => $grammarianFilter,
+            'statistician' => $statisticianFilter,
+            'researchTeacher' => $researchTeacherFilter,
+            'search' => $search
+        ];
+
+        return view('admin/researchers/statisticians_list', $data);
+    }
+
+    public function advisers()
+    {
+        $schoolYearFilter = $this->request->getGet('school_year');
+        $categoryFilter = $this->request->getGet('category');
+        $strandFilter = $this->request->getGet('strand');
+        $adviserFilter = $this->request->getGet('adviser');
+        $grammarianFilter = $this->request->getGet('grammarian');
+        $statisticianFilter = $this->request->getGet('statistician');
+        $researchTeacherFilter = $this->request->getGet('research_teacher');
+        $search = $this->request->getGet('search');
+
+        $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, designations.name as designation_name, school_years.name as school_year_name, strands.name as strand_name, advisers.name as adviser_name, grammarians.name as grammarian_name, remarks.name as statistician_name, research_teachers.name as research_teacher_name')
+                                     ->join('users', 'users.id = researchers.user_id', 'left')
+                                     ->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
+                                     ->join('designations', 'designations.id = researchers.designation_id', 'left')
+                                     ->join('school_years', 'school_years.id = researchers.school_year_id', 'left')
+                                     ->join('strands', 'strands.id = researchers.strand_id', 'left')
+                                     ->join('advisers', 'advisers.id = researchers.adviser_id', 'left')
+                                     ->join('grammarians', 'grammarians.id = researchers.grammarian_id', 'left')
+                                     ->join('remarks', 'remarks.id = researchers.remark_id', 'left')
+                                     ->join('research_teachers', 'research_teachers.id = researchers.research_teacher_id', 'left');
+
+        if ($schoolYearFilter) {
+            $query->where('researchers.school_year_id', $schoolYearFilter);
+        }
+
+        if ($categoryFilter) {
+            $query->where('researchers.category_id', $categoryFilter);
+        }
+
+        if ($strandFilter) {
+            $query->where('researchers.strand_id', $strandFilter);
+        }
+
+        if ($adviserFilter) {
+            $query->where('researchers.adviser_id', $adviserFilter);
+        }
+
+        if ($grammarianFilter) {
+            $query->where('researchers.grammarian_id', $grammarianFilter);
+        }
+
+        if ($statisticianFilter) {
+            $query->where('researchers.remark_id', $statisticianFilter);
+        }
+
+        if ($researchTeacherFilter) {
+            $query->where('researchers.research_teacher_id', $researchTeacherFilter);
+        }
+
+        if ($search) {
+            $query->groupStart()
+                  ->like('researchers.fullname', $search)
+                  ->orLike('users.username', $search)
+                  ->orLike('users.email', $search)
+                  ->orLike('researchers.author', $search)
+                  ->orLike('researchers.surname', $search)
+                  ->orLike('researchers.approved_research_title', $search)
+                  ->groupEnd();
+        }
+
+        $query->orderBy('researchers.created_at', 'DESC');
+
+        $data = [
+            'title' => 'Advisers',
+            'page_title' => 'Research by Advisers',
+            'researchers' => $query->findAll(),
+            'categories' => $this->categoryModel->findAll(),
+            'schoolYears' => $this->schoolYearModel->findAll(),
+            'advisers' => $this->adviserModel->findAll(),
+            'grammarians' => $this->grammarianModel->findAll(),
+            'statisticians' => $this->statisticianModel->findAll(),
+            'researchTeachers' => $this->researchTeacherModel->findAll(),
+            'strands' => $this->strandModel->findAll(),
+            'schoolYear' => $schoolYearFilter,
+            'category' => $categoryFilter,
+            'strand' => $strandFilter,
+            'adviser' => $adviserFilter,
+            'grammarian' => $grammarianFilter,
+            'statistician' => $statisticianFilter,
+            'researchTeacher' => $researchTeacherFilter,
+            'search' => $search
+        ];
+
+        return view('admin/researchers/advisers_list', $data);
     }
 }

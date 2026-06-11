@@ -35,12 +35,17 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
     $routes->get('projects/create', 'Admin\Projects::create');
     $routes->get('uploads', 'Admin\Uploads::index');
     $routes->get('uploads/view/(:any)', 'Admin\Uploads::view/$1');
+    $routes->get('generated-reports', 'Admin\Dashboard::generatedReports');
     
     // Research CRUD - GET only for archive_viewer
     $routes->group('researchers', function ($routes) {
         $routes->get('/', 'Admin\Researchers::index');
         $routes->get('high-school', 'Admin\Researchers::highSchool');
         $routes->get('college', 'Admin\Researchers::college');
+        $routes->get('research-teachers', 'Admin\Researchers::researchTeachers');
+        $routes->get('grammarians', 'Admin\Researchers::grammarians');
+        $routes->get('statisticians', 'Admin\Researchers::statisticians');
+        $routes->get('advisers', 'Admin\Researchers::advisers');
         $routes->get('create', 'Admin\Researchers::create');
         $routes->get('edit/(:num)', 'Admin\Researchers::edit/$1');
         $routes->get('update-status', 'Admin\Researchers::updateStatusPage');

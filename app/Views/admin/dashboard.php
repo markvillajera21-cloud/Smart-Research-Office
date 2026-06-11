@@ -15,14 +15,20 @@
         --accent-purple: #8b5cf6;
     }
     
-    body {
-        background: var(--bg-dark);
+    body, main, .navbar {
+        background: var(--bg-dark) !important;
+    }
+    
+    .navbar {
+        display: none !important;
     }
     
     .dashboard-container {
         max-width: 1400px;
         margin: 0 auto;
         padding: 24px;
+        min-height: 100vh;
+        background: var(--bg-dark);
     }
     
     .dashboard-header {
@@ -63,22 +69,32 @@
         transition: all 0.2s;
     }
     
-    .btn-primary {
+    .btn-primary,
+    a.btn-primary,
+    a.btn-secondary {
         background: var(--accent-blue);
         color: white;
     }
     
-    .btn-primary:hover {
+    a.btn-secondary {
+        background: var(--bg-card);
+        color: var(--text-primary);
+    }
+    
+    .btn-primary:hover,
+    a.btn-primary:hover {
         background: #2563eb;
     }
     
-    .btn-secondary {
+    .btn-secondary,
+    a.btn-secondary {
         background: var(--bg-card);
         color: var(--text-primary);
         border: 1px solid #475569;
     }
     
-    .btn-secondary:hover {
+    .btn-secondary:hover,
+    a.btn-secondary:hover {
         background: var(--bg-card-hover);
     }
     
@@ -103,9 +119,22 @@
         transition: all 0.2s;
     }
     
+    .role-card {
+        cursor: pointer;
+    }
+    
     .role-card:hover {
         background: var(--bg-card-hover);
         transform: translateY(-2px);
+    }
+    
+    .metric-card {
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .metric-card:hover {
+        background: rgba(255,255,255,0.08);
     }
     
     .role-card-header {
@@ -498,6 +527,19 @@
         color: var(--accent-red);
     }
     
+    /* Make all anchor tags inherit text colors */
+    .role-card a, a.role-card,
+    .output-tab a, a.output-tab,
+    .metric-card a, a.metric-card {
+        color: inherit;
+    }
+    
+    /* Ensure output tab links preserve their colors */
+    a.output-tab {
+        color: inherit;
+        text-decoration: none;
+    }
+    
     .analytics-charts {
         display: grid;
         grid-template-columns: 1.5fr 1fr;
@@ -573,84 +615,100 @@
     <!-- Header -->
     <div class="dashboard-header">
         <h1>ROARMS <span>Dashboard</span></h1>
-        <div class="header-actions">
-            <?php if (session()->get('role') === 'admin'): ?>
-                <button class="btn-action btn-secondary">
-                    ➕ Add Researcher
-                </button>
-                <button class="btn-action btn-primary">
-                    ➕ Add Research Teacher
-                </button>
-            <?php else: ?>
-                <button class="btn-action btn-secondary" disabled style="opacity: 0.5; cursor: not-allowed;">
-                    ➕ Add Researcher
-                </button>
-                <button class="btn-action btn-primary" disabled style="opacity: 0.5; cursor: not-allowed;">
-                    ➕ Add Research Teacher
-                </button>
-            <?php endif; ?>
+        <div class="d-flex align-items-center gap-3">
+            <div class="header-actions">
+                <?php if (session()->get('role') === 'admin'): ?>
+                    <a href="<?= base_url('admin/researchers/create') ?>" class="btn-action btn-secondary" style="text-decoration: none;">
+                        ➕ Add Researcher
+                    </a>
+                    <a href="<?= base_url('admin/researchers/research-teachers') ?>" class="btn-action btn-primary" style="text-decoration: none;">
+                        ➕ Add Research Teacher
+                    </a>
+                <?php else: ?>
+                    <button class="btn-action btn-secondary" disabled style="opacity: 0.5; cursor: not-allowed;">
+                        ➕ Add Researcher
+                    </button>
+                    <button class="btn-action btn-primary" disabled style="opacity: 0.5; cursor: not-allowed;">
+                        ➕ Add Research Teacher
+                    </button>
+                <?php endif; ?>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" style="color: var(--text-primary);">
+                    <div class="text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; background: linear-gradient(135deg, #1e3a8a, #1e40af);">
+                        <?= strtoupper(substr(session()->get('username'), 0, 1)) ?>
+                    </div>
+                    <span class="ms-2 fw-semibold text-white d-none d-sm-inline"><?= session()->get('username') ?></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-3">
+                    <li><a class="dropdown-item py-2 px-3" href="<?= base_url('admin/profile') ?>"><i class="bi bi-person me-2" style="color: #1e3a8a;"></i> Profile</a></li>
+                    <li><a class="dropdown-item py-2 px-3" href="<?= base_url('admin/settings') ?>"><i class="bi bi-gear me-2" style="color: #1e3a8a;"></i> Settings</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item py-2 px-3 text-danger" href="<?= base_url('logout') ?>"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+                </ul>
+            </div>
         </div>
     </div>
     
     <div class="main-grid">
         <!-- Left Column - Role Cards -->
-        <div class="left-column">
-            <div class="role-card">
-                <div class="role-card-header">
-                    <div class="role-icon teacher">👨‍🏫</div>
-                    <div class="role-info">
-                        <h3>Research Teacher</h3>
-                        <p>12 Active • 32 Total</p>
-                    </div>
-                </div>
-                <div class="role-stats">
-                    <span class="stat-pill active">Active</span>
-                    <span class="stat-pill">12 On Duty</span>
+    <div class="left-column">
+        <a href="<?= base_url('admin/researchers/research-teachers') ?>" class="role-card" style="text-decoration: none;">
+            <div class="role-card-header">
+                <div class="role-icon teacher">👨‍🏫</div>
+                <div class="role-info">
+                    <h3>Research Teacher</h3>
+                    <p><?= $totalResearchTeachers ?> Total</p>
                 </div>
             </div>
-            
-            <div class="role-card">
-                <div class="role-card-header">
-                    <div class="role-icon grammarian">📝</div>
-                    <div class="role-info">
-                        <h3>Grammarian</h3>
-                        <p>8 Active • 15 Total</p>
-                    </div>
-                </div>
-                <div class="role-stats">
-                    <span class="stat-pill active">Active</span>
-                    <span class="stat-pill">8 Available</span>
+            <div class="role-stats">
+                <span class="stat-pill active">Active</span>
+                <span class="stat-pill"><?= $totalResearchTeachers ?> On Duty</span>
+            </div>
+        </a>
+        
+        <a href="<?= base_url('admin/researchers/grammarians') ?>" class="role-card" style="text-decoration: none;">
+            <div class="role-card-header">
+                <div class="role-icon grammarian">📝</div>
+                <div class="role-info">
+                    <h3>Grammarian</h3>
+                    <p><?= $totalGrammarians ?> Total</p>
                 </div>
             </div>
-            
-            <div class="role-card">
-                <div class="role-card-header">
-                    <div class="role-icon statistician">📊</div>
-                    <div class="role-info">
-                        <h3>Statistician</h3>
-                        <p>6 Active • 10 Total</p>
-                    </div>
-                </div>
-                <div class="role-stats">
-                    <span class="stat-pill active">Active</span>
-                    <span class="stat-pill">6 Analyzing</span>
+            <div class="role-stats">
+                <span class="stat-pill active">Active</span>
+                <span class="stat-pill"><?= $totalGrammarians ?> Available</span>
+            </div>
+        </a>
+        
+        <a href="<?= base_url('admin/researchers/statisticians') ?>" class="role-card" style="text-decoration: none;">
+            <div class="role-card-header">
+                <div class="role-icon statistician">📊</div>
+                <div class="role-info">
+                    <h3>Statistician</h3>
+                    <p><?= $totalStatisticians ?> Total</p>
                 </div>
             </div>
-            
-            <div class="role-card">
-                <div class="role-card-header">
-                    <div class="role-icon adviser">💬</div>
-                    <div class="role-info">
-                        <h3>Adviser</h3>
-                        <p>10 Active • 25 Total</p>
-                    </div>
-                </div>
-                <div class="role-stats">
-                    <span class="stat-pill">2 Idle</span>
-                    <span class="stat-pill active">10 Consulting</span>
+            <div class="role-stats">
+                <span class="stat-pill active">Active</span>
+                <span class="stat-pill"><?= $totalStatisticians ?> Analyzing</span>
+            </div>
+        </a>
+        
+        <a href="<?= base_url('admin/researchers/advisers') ?>" class="role-card" style="text-decoration: none;">
+            <div class="role-card-header">
+                <div class="role-icon adviser">💬</div>
+                <div class="role-info">
+                    <h3>Adviser</h3>
+                    <p><?= $totalAdvisers ?> Total</p>
                 </div>
             </div>
-        </div>
+            <div class="role-stats">
+                <span class="stat-pill active">Consulting</span>
+                <span class="stat-pill"><?= $totalAdvisers ?> On Duty</span>
+            </div>
+        </a>
+    </div>
         
         <!-- Right Column -->
         <div class="right-column">
@@ -658,9 +716,9 @@
             <div class="research-output">
                 <h2>Research Output (2026)</h2>
                 <div class="output-tabs">
-                    <div class="output-tab active">All Research</div>
-                    <div class="output-tab">High School</div>
-                    <div class="output-tab">College</div>
+                    <a href="<?= base_url('admin/researchers') ?>" class="output-tab active" style="text-decoration: none;">All Research</a>
+                    <a href="<?= base_url('admin/researchers/high-school') ?>" class="output-tab" style="text-decoration: none;">High School</a>
+                    <a href="<?= base_url('admin/researchers/college') ?>" class="output-tab" style="text-decoration: none;">College</a>
                     <div class="output-tab">S.Y 2025-2026</div>
                 </div>
                 <div class="output-grid">
@@ -678,26 +736,26 @@
                 <h2>📈 Analytics Overview</h2>
                 
                 <div class="analytics-metrics">
-                    <div class="metric-card">
-                        <div class="value">120</div>
+                    <a href="<?= base_url('admin/researchers') ?>" class="metric-card" style="text-decoration: none;">
+                        <div class="value"><?= $totalResearch ?></div>
                         <div class="label">Total Research</div>
                         <div class="change up">+12% from last month</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="value">85</div>
+                    </a>
+                    <a href="<?= base_url('admin/researchers') ?>" class="metric-card" style="text-decoration: none;">
+                        <div class="value"><?= $totalApproved ?></div>
                         <div class="label">Approved</div>
                         <div class="change up">+8% from last month</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="value">68</div>
+                    </a>
+                    <a href="<?= base_url('admin/researchers') ?>" class="metric-card" style="text-decoration: none;">
+                        <div class="value"><?= $totalPublished ?></div>
                         <div class="label">Published</div>
                         <div class="change up">+15% from last month</div>
-                    </div>
-                    <div class="metric-card">
+                    </a>
+                    <a href="<?= base_url('admin/researchers') ?>" class="metric-card" style="text-decoration: none;">
                         <div class="value">4.2</div>
                         <div class="label">Avg. Rating</div>
                         <div class="change up">+0.3 from last month</div>
-                    </div>
+                    </a>
                 </div>
                 
                 <div class="analytics-charts">

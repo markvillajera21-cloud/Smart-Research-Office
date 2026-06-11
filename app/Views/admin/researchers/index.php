@@ -94,8 +94,8 @@
                 <tr class="text-uppercase text-muted small">
                         <th class="fw-semibold" style="min-width: 150px;">Department</th>
                         <th class="fw-semibold" style="min-width: 150px;">Program/Academic Track</th>
-                        <th class="fw-semibold" style="min-width: 200px;">Author</th>
-                        <th class="fw-semibold" style="min-width: 220px;">Members</th>
+                        <th class="fw-semibold" style="min-width: 250px;">Author</th>
+                        <th class="fw-semibold" style="min-width: 300px; padding-left: 30px;">Members</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Adviser</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Grammarian</th>
                         <th class="fw-semibold" style="white-space: nowrap;">Statisticians</th>
@@ -118,7 +118,7 @@
                                     <?= $r['strand_name'] ?? $r['strand_degree_program'] ?? 'N/A' ?>
                                 </span>
                             </td>
-                            <td style="padding: 12px 16px; line-height: 1.6;">
+                            <td style="padding: 20px 24px; line-height: 2; min-width: 250px;">
                                 <div class="fw-bold small">
                                     <?php if (!empty($r['author'])): ?>
                                         <?= nl2br(preg_replace('/,\s*/', "\n", esc($r['author']))) ?>
@@ -127,7 +127,7 @@
                                     <?php endif; ?>
                                 </div>
                             </td>
-                            <td style="padding: 12px 16px; line-height: 1.6;">
+                            <td style="padding: 20px 24px 20px 54px; line-height: 2; min-width: 300px;">
                                 <div class="fw-bold small">
                                     <?php if (!empty($r['surname'])): ?>
                                         <?= nl2br(preg_replace('/,\s*/', "\n", esc($r['surname']))) ?>

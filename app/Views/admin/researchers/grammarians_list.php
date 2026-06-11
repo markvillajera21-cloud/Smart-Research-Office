@@ -1,7 +1,6 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
-<!-- Top Action Bar -->
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
         <?php if (session()->get('role') === 'admin'): ?>
@@ -12,12 +11,12 @@
     </div>
     
     <div class="d-flex flex-wrap gap-2 align-items-center">
-        <form action="<?= base_url('admin/researchers/high-school') ?>" method="get" class="d-flex flex-wrap gap-2 align-items-center">
+        <form action="<?= base_url('admin/researchers/grammarians') ?>" method="get" class="d-flex flex-wrap gap-2 align-items-center">
             <!-- School Year -->
             <select name="school_year" class="form-select shadow-sm" style="width: 160px;" onchange="this.form.submit()">
                 <option value="">All School Year</option>
                 <?php foreach ($schoolYears as $sy): ?>
-                    <option value="<?= $sy['id'] ?>" <?= ($schoolYear ?? '') === $sy['id'] ? 'selected' : '' ?>><?= $sy['name'] ?></option>
+                    <option value="<?= $sy['id'] ?>" <?= ($schoolYear ?? '') == $sy['id'] ? 'selected' : '' ?>><?= $sy['name'] ?></option>
                 <?php endforeach; ?>
             </select>
             
@@ -25,7 +24,7 @@
             <select name="category" class="form-select shadow-sm" style="width: 160px;" onchange="this.form.submit()">
                 <option value="">All Department</option>
                 <?php foreach ($categories as $cat): ?>
-                    <option value="<?= $cat['id'] ?>" <?= ($category ?? '') === $cat['id'] ? 'selected' : '' ?>><?= $cat['name'] ?></option>
+                    <option value="<?= $cat['id'] ?>" <?= ($category ?? '') == $cat['id'] ? 'selected' : '' ?>><?= $cat['name'] ?></option>
                 <?php endforeach; ?>
             </select>
             
@@ -33,7 +32,7 @@
             <select name="strand" class="form-select shadow-sm" style="width: 200px;" onchange="this.form.submit()">
                 <option value="">All Program/Academic Track</option>
                 <?php foreach ($strands as $s): ?>
-                    <option value="<?= $s['name'] ?>" <?= ($strand ?? '') === $s['name'] ? 'selected' : '' ?>><?= $s['name'] ?></option>
+                    <option value="<?= $s['id'] ?>" <?= ($strand ?? '') == $s['id'] ? 'selected' : '' ?>><?= $s['name'] ?></option>
                 <?php endforeach; ?>
             </select>
             
@@ -41,7 +40,7 @@
             <select name="adviser" class="form-select shadow-sm" style="width: 160px;" onchange="this.form.submit()">
                 <option value="">All Adviser</option>
                 <?php foreach ($advisers as $a): ?>
-                    <option value="<?= $a['id'] ?>" <?= ($adviser ?? '') === $a['id'] ? 'selected' : '' ?>><?= $a['name'] ?></option>
+                    <option value="<?= $a['id'] ?>" <?= ($adviser ?? '') == $a['id'] ? 'selected' : '' ?>><?= $a['name'] ?></option>
                 <?php endforeach; ?>
             </select>
             
@@ -49,7 +48,7 @@
             <select name="grammarian" class="form-select shadow-sm" style="width: 160px;" onchange="this.form.submit()">
                 <option value="">All Grammarian</option>
                 <?php foreach ($grammarians as $g): ?>
-                    <option value="<?= $g['id'] ?>" <?= ($grammarian ?? '') === $g['id'] ? 'selected' : '' ?>><?= $g['name'] ?></option>
+                    <option value="<?= $g['id'] ?>" <?= ($grammarian ?? '') == $g['id'] ? 'selected' : '' ?>><?= $g['name'] ?></option>
                 <?php endforeach; ?>
             </select>
             
@@ -57,7 +56,7 @@
             <select name="statistician" class="form-select shadow-sm" style="width: 160px;" onchange="this.form.submit()">
                 <option value="">All Statistician</option>
                 <?php foreach ($statisticians as $st): ?>
-                    <option value="<?= $st['id'] ?>" <?= ($statistician ?? '') === $st['id'] ? 'selected' : '' ?>><?= $st['name'] ?></option>
+                    <option value="<?= $st['id'] ?>" <?= ($statistician ?? '') == $st['id'] ? 'selected' : '' ?>><?= $st['name'] ?></option>
                 <?php endforeach; ?>
             </select>
             
@@ -65,7 +64,7 @@
             <select name="research_teacher" class="form-select shadow-sm" style="width: 180px;" onchange="this.form.submit()">
                 <option value="">All Research Teacher</option>
                 <?php foreach ($researchTeachers as $rt): ?>
-                    <option value="<?= $rt['id'] ?>" <?= ($researchTeacher ?? '') === $rt['id'] ? 'selected' : '' ?>><?= $rt['name'] ?></option>
+                    <option value="<?= $rt['id'] ?>" <?= ($researchTeacher ?? '') == $rt['id'] ? 'selected' : '' ?>><?= $rt['name'] ?></option>
                 <?php endforeach; ?>
             </select>
             
@@ -78,7 +77,7 @@
             </div>
             
             <?php if (($search ?? '') || ($strand ?? '') || ($schoolYear ?? '') || ($category ?? '') || ($adviser ?? '') || ($grammarian ?? '') || ($statistician ?? '') || ($researchTeacher ?? '')): ?>
-                <a href="<?= base_url('admin/researchers/high-school') ?>" class="btn btn-light border shadow-sm d-flex align-items-center" title="Clear Filters">
+                <a href="<?= base_url('admin/researchers/grammarians') ?>" class="btn btn-light border shadow-sm d-flex align-items-center" title="Clear Filters">
                     <i class="bi bi-x-lg"></i>
                 </a>
             <?php endif; ?>
@@ -90,29 +89,28 @@
 </div>
 
 <div class="card border-0 shadow-sm p-4">
-    <!-- Directory Header -->
     <div class="mb-4">
-        <h4 class="mb-1 fw-bold text-dark">High School Department</h4>
-        <p class="text-muted mb-0">Manage high school department researchers.</p>
+        <h4 class="mb-1 fw-bold text-dark">Research by Grammarians</h4>
+        <p class="text-muted mb-0">Manage and filter research by grammarians</p>
     </div>
 
     <div class="table-responsive">
         <table class="table table-hover align-middle">
             <thead>
                 <tr class="text-uppercase text-muted small">
-                        <th class="fw-semibold">Approved Research Title</th>
-                        <th class="fw-semibold">Program/Academic Track</th>
-                        <th class="fw-semibold" style="min-width: 250px;">Author</th>
-                        <th class="fw-semibold" style="min-width: 300px; padding-left: 30px;">Members</th>
-                        <th class="fw-semibold">School Year</th>
-                        <th class="fw-semibold">Adviser</th>
-                        <th class="fw-semibold">Grammarian</th>
-                        <th class="fw-semibold">Statistician</th>
-                        <th class="fw-semibold">Research Teacher</th>
-                        <?php if (session()->get('role') === 'admin'): ?>
-                        <th class="text-end fw-semibold no-print" style="width: 100px;">Actions</th>
-                        <?php endif; ?>
-                    </tr>
+                    <th class="fw-semibold">Approved Research Title</th>
+                    <th class="fw-semibold">Program/Academic Track</th>
+                    <th class="fw-semibold" style="min-width: 250px;">Author</th>
+                    <th class="fw-semibold" style="min-width: 300px; padding-left: 30px;">Members</th>
+                    <th class="fw-semibold">School Year</th>
+                    <th class="fw-semibold">Adviser</th>
+                    <th class="fw-semibold">Grammarian</th>
+                    <th class="fw-semibold">Statistician</th>
+                    <th class="fw-semibold">Research Teacher</th>
+                    <?php if (session()->get('role') === 'admin'): ?>
+                    <th class="text-end fw-semibold no-print" style="width: 100px;">Actions</th>
+                    <?php endif; ?>
+                </tr>
             </thead>
             <tbody>
                 <?php if (!empty($researchers)): ?>
@@ -181,7 +179,7 @@
                                         <li><a class="dropdown-item" href="<?= base_url('admin/researchers/create') ?>"><i class="bi bi-plus-lg me-2"></i> Add</a></li>
                                         <li><a class="dropdown-item" href="<?= base_url('admin/researchers/edit/' . $r['id']) ?>"><i class="bi bi-pencil me-2"></i> Edit</a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item text-danger" href="<?= base_url('admin/researchers/delete/' . $r['id']) ?>" onclick="return confirm('Are you sure you want to delete this researcher profile?')"><i class="bi bi-trash me-2"></i> Delete</a></li>
+                                        <li><a class="dropdown-item text-danger" href="<?= base_url('admin/researchers/delete/' . $r['id']) ?>" onclick="return confirm('Are you sure you want to delete this research profile?')"><i class="bi bi-trash me-2"></i> Delete</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -192,18 +190,12 @@
                     <tr>
                         <td colspan="<?= (session()->get('role') === 'admin') ? 10 : 9 ?>" class="text-center py-5 text-muted">
                             <i class="bi bi-search fs-1 d-block mb-3"></i>
-                            No researchers found in High School Department.
+                            No researchers found matching your criteria.
                         </td>
                     </tr>
                 <?php endif; ?>
             </tbody>
         </table>
-        
-        <?php if ($pager): ?>
-            <div class="d-flex justify-content-center mt-4">
-                <?= $pager->links('highSchool', 'default_full') ?>
-            </div>
-        <?php endif; ?>
     </div>
 </div>
 <?= $this->endSection() ?>
