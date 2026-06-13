@@ -651,7 +651,7 @@
     </div>
     
     <div class="main-grid">
-        <!-- Left Column - Role Cards -->
+        <!-- Left Column - Role Cards + Status Overview -->
     <div class="left-column">
         <a href="<?= base_url('admin/researchers/research-teachers') ?>" class="role-card" style="text-decoration: none;">
             <div class="role-card-header">
@@ -708,6 +708,37 @@
                 <span class="stat-pill"><?= $totalAdvisers ?> On Duty</span>
             </div>
         </a>
+        
+        <!-- Status Overview -->
+        <div class="status-overview" style="background: var(--bg-card); border-radius: 12px; padding: 16px; border: 1px solid #334155;">
+            <h2>Status Overview</h2>
+            <div class="chart-container">
+                <div class="donut-chart">
+                    <canvas id="donutChart"></canvas>
+                    <div class="donut-center">
+                        <div class="number">43</div>
+                        <div class="label">Total</div>
+                    </div>
+                </div>
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <div class="legend-dot completed"></div>
+                        <div class="legend-label">Completed</div>
+                        <div class="legend-value">25</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot ongoing"></div>
+                        <div class="legend-label">Ongoing</div>
+                        <div class="legend-value">12</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot pending"></div>
+                        <div class="legend-label">Pending</div>
+                        <div class="legend-value">6</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
         
         <!-- Right Column -->
@@ -803,105 +834,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Bottom Section -->
-            <div class="bottom-section">
-                <!-- Status Overview -->
-                <div class="status-overview">
-                    <h2>Status Overview</h2>
-                    <div class="chart-container">
-                        <div class="donut-chart">
-                            <canvas id="donutChart"></canvas>
-                            <div class="donut-center">
-                                <div class="number">43</div>
-                                <div class="label">Total</div>
-                            </div>
-                        </div>
-                        <div class="chart-legend">
-                            <div class="legend-item">
-                                <div class="legend-dot completed"></div>
-                                <div class="legend-label">Completed</div>
-                                <div class="legend-value">25</div>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-dot ongoing"></div>
-                                <div class="legend-label">Ongoing</div>
-                                <div class="legend-value">12</div>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-dot pending"></div>
-                                <div class="legend-label">Pending</div>
-                                <div class="legend-value">6</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Calendar -->
-                <div class="calendar-section">
-                    <div class="calendar-header">
-                        <h2>June 2026</h2>
-                        <div class="calendar-nav">
-                            <button>‹</button>
-                            <button>›</button>
-                        </div>
-                    </div>
-                    <div class="calendar-grid">
-                        <div class="calendar-day-name">S</div>
-                        <div class="calendar-day-name">M</div>
-                        <div class="calendar-day-name">T</div>
-                        <div class="calendar-day-name">W</div>
-                        <div class="calendar-day-name">T</div>
-                        <div class="calendar-day-name">F</div>
-                        <div class="calendar-day-name">S</div>
-                        
-                        <!-- Calendar Days -->
-                        <div class="calendar-day"></div>
-                        <div class="calendar-day">1</div>
-                        <div class="calendar-day">2</div>
-                        <div class="calendar-day">3</div>
-                        <div class="calendar-day">4</div>
-                        <div class="calendar-day">5</div>
-                        <div class="calendar-day">6</div>
-                        
-                        <div class="calendar-day">7</div>
-                        <div class="calendar-day">8</div>
-                        <div class="calendar-day">9</div>
-                        <div class="calendar-day">10</div>
-                        <div class="calendar-day">11</div>
-                        <div class="calendar-day">12</div>
-                        <div class="calendar-day">13</div>
-                        
-                        <div class="calendar-day">14</div>
-                        <div class="calendar-day">15</div>
-                        <div class="calendar-day">16</div>
-                        <div class="calendar-day">17</div>
-                        <div class="calendar-day">18</div>
-                        <div class="calendar-day">19</div>
-                        <div class="calendar-day">20</div>
-                        
-                        <div class="calendar-day">21</div>
-                        <div class="calendar-day">22</div>
-                        <div class="calendar-day">23</div>
-                        <div class="calendar-day today">24</div>
-                        <div class="calendar-day">25</div>
-                        <div class="calendar-day">26</div>
-                        <div class="calendar-day">27</div>
-                        
-                        <div class="calendar-day">28</div>
-                        <div class="calendar-day event">29</div>
-                        <div class="calendar-day">30</div>
-                        <div class="calendar-day"></div>
-                        <div class="calendar-day"></div>
-                        <div class="calendar-day"></div>
-                        <div class="calendar-day"></div>
-                    </div>
-                    <div class="calendar-footer">
-                        <div class="calendar-dot"></div>
-                        <p>June 29 - S.Y. 2026-2027</p>
                     </div>
                 </div>
             </div>
