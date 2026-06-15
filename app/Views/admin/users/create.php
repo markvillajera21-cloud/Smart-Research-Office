@@ -40,9 +40,9 @@
                     <div class="mb-3">
                         <label for="role" class="form-label">Role</label>
                         <select name="role" class="form-control" required>
-                            <option value="user" selected>User</option>
                             <option value="admin">Admin</option>
-                            <option value="archive_viewer">Archive Viewer</option>
+                            <option value="teacher_archive_viewer">Teacher Archive Viewer</option>
+                            <option value="student_archive_viewer">Student Archive Viewer</option>
                         </select>
                     </div>
                     <div class="d-grid">

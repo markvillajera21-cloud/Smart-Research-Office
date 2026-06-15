@@ -58,7 +58,7 @@
             <i class="bi bi-clock-history"></i> Audit Trail
         </a>
     </li>
-    <?php elseif (session()->get('role') === 'archive_viewer'): ?>
+    <?php elseif (session()->get('role') === 'teacher_archive_viewer' || session()->get('role') === 'student_archive_viewer'): ?>
     <li class="nav-item">
         <a class="nav-link <?= (url_is('admin/dashboard') ? 'active' : '') ?>" href="<?= base_url('admin/dashboard') ?>">
             <i class="bi bi-grid-1x2-fill"></i> Overview

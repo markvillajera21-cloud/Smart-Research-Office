@@ -7,13 +7,7 @@
             <h5 class="mb-1">Role Management</h5>
             <p class="text-muted small mb-0">Manage system roles and administrators.</p>
         </div>
-        <div class="d-flex gap-2 align-items-center flex-wrap">
-            <?php if (session()->get('role') === 'admin'): ?>
-            <a href="<?= base_url('admin/users/create') ?>" class="btn btn-primary">
-                <i class="bi bi-person-plus-fill me-2"></i> Add User
-            </a>
-            <?php endif; ?>
-        </div>
+
     </div>
 
     <?php if (session()->getFlashdata('success')): ?>
@@ -49,15 +43,15 @@
                         <td>
                             <?php 
                                 $roleBadges = [
-                                    'user' => 'bg-secondary-subtle text-secondary',
                                     'admin' => 'bg-danger-subtle text-danger',
-                                    'archive_viewer' => 'bg-info-subtle text-info'
+                                    'teacher_archive_viewer' => 'bg-primary-subtle text-primary',
+                                    'student_archive_viewer' => 'bg-success-subtle text-success'
                                 ];
                                 $badgeClass = $roleBadges[$user['role']] ?? 'bg-secondary-subtle text-secondary';
                                 $roleNames = [
-                                    'user' => 'User',
                                     'admin' => 'Admin',
-                                    'archive_viewer' => 'Archive Viewer'
+                                    'teacher_archive_viewer' => 'Teacher Archive Viewer',
+                                    'student_archive_viewer' => 'Student Archive Viewer'
                                 ];
                             ?>
                             <span class="badge <?= $badgeClass ?>">
