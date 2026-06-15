@@ -42,7 +42,7 @@
                         <select name="role" class="form-control" required>
                             <option value="admin">Admin</option>
                             <option value="teacher_archive_viewer">Teacher Archive Viewer</option>
-                            <option value="student_archive_viewer">Student Archive Viewer</option>
+                            <option value="researcher_archive_viewer">Researcher Archive Viewer</option>
                         </select>
                     </div>
                     <div class="d-grid">

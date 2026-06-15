@@ -41,7 +41,7 @@
                         <select name="role" class="form-control" required>
                             <option value="admin" <?= (old('role', $user['role']) == 'admin') ? 'selected' : '' ?>>Admin</option>
                             <option value="teacher_archive_viewer" <?= (old('role', $user['role']) == 'teacher_archive_viewer') ? 'selected' : '' ?>>Teacher Archive Viewer</option>
-                            <option value="student_archive_viewer" <?= (old('role', $user['role']) == 'student_archive_viewer') ? 'selected' : '' ?>>Student Archive Viewer</option>
+                            <option value="researcher_archive_viewer" <?= (old('role', $user['role']) == 'researcher_archive_viewer') ? 'selected' : '' ?>>Researcher Archive Viewer</option>
                         </select>
                     </div>
                     <div class="d-grid">

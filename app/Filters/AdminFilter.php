@@ -25,7 +25,7 @@ class AdminFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        $allowedRoles = ['admin', 'teacher_archive_viewer', 'student_archive_viewer'];
+        $allowedRoles = ['admin', 'teacher_archive_viewer', 'researcher_archive_viewer'];
         if (!in_array(session()->get('role'), $allowedRoles)) {
             return redirect()->to('/user/dashboard')->with('error', 'Unauthorized access');
         }

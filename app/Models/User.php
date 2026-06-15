@@ -31,7 +31,7 @@ class User extends Model
         'username' => 'required|alpha_numeric_space|min_length[3]|is_unique[users.username]',
         'email'    => 'required|valid_email|is_unique[users.email]',
         'password' => 'required|min_length[8]',
-        'role'     => 'in_list[admin,teacher_archive_viewer,student_archive_viewer]'
+        'role'     => 'in_list[admin,teacher_archive_viewer,researcher_archive_viewer]'
     ];
     protected $validationMessages   = [
         'username' => [

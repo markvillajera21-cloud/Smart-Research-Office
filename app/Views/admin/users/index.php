@@ -45,13 +45,13 @@
                                 $roleBadges = [
                                     'admin' => 'bg-danger-subtle text-danger',
                                     'teacher_archive_viewer' => 'bg-primary-subtle text-primary',
-                                    'student_archive_viewer' => 'bg-success-subtle text-success'
+                                    'researcher_archive_viewer' => 'bg-success-subtle text-success'
                                 ];
                                 $badgeClass = $roleBadges[$user['role']] ?? 'bg-secondary-subtle text-secondary';
                                 $roleNames = [
                                     'admin' => 'Admin',
                                     'teacher_archive_viewer' => 'Teacher Archive Viewer',
-                                    'student_archive_viewer' => 'Student Archive Viewer'
+                                    'researcher_archive_viewer' => 'Researcher Archive Viewer'
                                 ];
                             ?>
                             <span class="badge <?= $badgeClass ?>">
