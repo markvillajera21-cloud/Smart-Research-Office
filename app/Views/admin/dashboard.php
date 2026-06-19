@@ -619,14 +619,14 @@
             <div class="header-actions">
                 <?php if (session()->get('role') === 'admin'): ?>
                     <a href="<?= base_url('admin/researchers/create') ?>" class="btn-action btn-secondary" style="text-decoration: none;">
-                        ➕ Add Researcher
+                        ➕ Add Research
                     </a>
                     <a href="<?= base_url('admin/researchers/research-teachers') ?>" class="btn-action btn-primary" style="text-decoration: none;">
                         ➕ Add Research Teacher
                     </a>
                 <?php else: ?>
                     <button class="btn-action btn-secondary" disabled style="opacity: 0.5; cursor: not-allowed;">
-                        ➕ Add Researcher
+                        ➕ Add Research
                     </button>
                     <button class="btn-action btn-primary" disabled style="opacity: 0.5; cursor: not-allowed;">
                         ➕ Add Research Teacher
@@ -799,38 +799,20 @@
                         <div class="department-stats">
                             <div class="dept-item">
                                 <div class="dept-item-header">
-                                    <span>STEM</span>
-                                    <span>45</span>
+                                    <span>High School Department</span>
+                                    <span><?= $totalHighSchool ?></span>
                                 </div>
                                 <div class="dept-bar">
-                                    <div class="dept-bar-fill" style="width: 90%;"></div>
+                                    <div class="dept-bar-fill" style="width: <?= $totalResearch > 0 ? ($totalHighSchool / $totalResearch) * 100 : 0 ?>%;"></div>
                                 </div>
                             </div>
                             <div class="dept-item">
                                 <div class="dept-item-header">
-                                    <span>ABM</span>
-                                    <span>32</span>
+                                    <span>College Department</span>
+                                    <span><?= $totalCollege ?></span>
                                 </div>
                                 <div class="dept-bar">
-                                    <div class="dept-bar-fill" style="width: 70%;"></div>
-                                </div>
-                            </div>
-                            <div class="dept-item">
-                                <div class="dept-item-header">
-                                    <span>HUMSS</span>
-                                    <span>28</span>
-                                </div>
-                                <div class="dept-bar">
-                                    <div class="dept-bar-fill" style="width: 60%;"></div>
-                                </div>
-                            </div>
-                            <div class="dept-item">
-                                <div class="dept-item-header">
-                                    <span>TVL</span>
-                                    <span>15</span>
-                                </div>
-                                <div class="dept-bar">
-                                    <div class="dept-bar-fill" style="width: 35%;"></div>
+                                    <div class="dept-bar-fill" style="width: <?= $totalResearch > 0 ? ($totalCollege / $totalResearch) * 100 : 0 ?>%;"></div>
                                 </div>
                             </div>
                         </div>

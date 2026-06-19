@@ -1,5 +1,22 @@
-<?= $this->extend('layouts/main') ?>
+<?php
+/**
+ * @var array $research // Change this variable name to match whatever variable that file uses!
+ * @var array $user // Add this if the file also uses $user
+ * @function old(string $key, mixed $default = null): mixed
+ * @function base_url(string $uri = ''): string // Add this if it uses base_url() too
+ * @function site_url(string $uri = ''): string // Add this if it uses site_url() too
+ */
+?>
 
+
+
+
+
+
+
+
+
+<?= $this->extend('layouts/main') ?>
 <?= $this->section('content') ?>
 <div class="row justify-content-center">
     <div class="col-md-8">

@@ -8,6 +8,7 @@ use App\Models\AuditLogModel;
 use App\Models\User;
 use App\Models\ProjectModel;
 use App\Models\ResearcherModel;
+use App\Models\ResearchCategoryModel;
 use App\Models\StatusModel;
 use App\Models\AdviserModel;
 use App\Models\GrammarianModel;
@@ -46,6 +47,14 @@ class Dashboard extends BaseController
         
         $publishedStatus = $statusModel->where('name', 'Published')->first();
         $totalPublished = $publishedStatus ? $researcherModel->where('status_id', $publishedStatus['id'])->countAllResults() : 0;
+        
+        // Get department counts (High School and College)
+        $totalHighSchool = $researcherModel->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
+                                           ->where('research_categories.name', 'High School Department')
+                                           ->countAllResults();
+        $totalCollege = $researcherModel->join('research_categories', 'research_categories.id = researchers.category_id', 'left')
+                                       ->where('research_categories.name', 'College Department')
+                                       ->countAllResults();
 
         $data = [
             'title' => 'Dashboard',
@@ -59,7 +68,9 @@ class Dashboard extends BaseController
             'totalAdvisers' => $totalAdvisers,
             'totalResearch' => $totalResearch,
             'totalApproved' => $totalApproved,
-            'totalPublished' => $totalPublished
+            'totalPublished' => $totalPublished,
+            'totalHighSchool' => $totalHighSchool,
+            'totalCollege' => $totalCollege
         ];
 
         return view('admin/dashboard', $data);

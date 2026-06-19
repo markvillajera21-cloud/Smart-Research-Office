@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var array $user
+ * @function old(string $key, mixed $default = null): mixed
+ */
+?>
+
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
