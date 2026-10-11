@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\AuditLogModel;
 
 class Uploads extends BaseController
 {
@@ -82,6 +83,13 @@ class Uploads extends BaseController
         $newName = $safeBase . '_' . date('Ymd_His') . '.' . $ext;
         $file->move($uploadDir, $newName, true);
 
+        AuditLogModel::log('FILE_UPLOAD', 'uploads', null, [
+            'name' => $newName,
+            'original_name' => $file->getClientName(),
+            'size' => $file->getSize(),
+            'extension' => $ext,
+        ]);
+
         return redirect()->to('admin/uploads')->with('success', 'File uploaded: ' . $newName);
     }
 
@@ -109,6 +117,8 @@ class Uploads extends BaseController
         if (! @unlink($path)) {
             return redirect()->back()->with('error', 'Failed to delete file.');
         }
+
+        AuditLogModel::log('FILE_DELETE', 'uploads', null, ['name' => $name]);
 
         return redirect()->to('admin/uploads')->with('success', 'File deleted.');
     }

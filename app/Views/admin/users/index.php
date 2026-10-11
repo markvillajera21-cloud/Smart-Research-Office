@@ -7,7 +7,11 @@
             <h5 class="mb-1">Role Management</h5>
             <p class="text-muted small mb-0">Manage system roles and administrators.</p>
         </div>
-
+        <?php if (can_manage_users()): ?>
+            <a href="<?= base_url('admin/users/create') ?>" class="btn btn-primary shadow-sm d-flex align-items-center px-3 py-2">
+                <i class="bi bi-plus-lg me-2"></i> Create New User
+            </a>
+        <?php endif; ?>
     </div>
 
     <?php if (session()->getFlashdata('success')): ?>
@@ -22,6 +26,7 @@
                 <tr>
                     <th class="ps-0">User Info</th>
                     <th>Role</th>
+                    <th>Department</th>
                     <th>Created</th>
                     <th class="text-end pe-0">Actions</th>
                 </tr>
@@ -43,26 +48,26 @@
                         <td>
                             <?php 
                                 $roleBadges = [
-                                    'admin' => 'bg-danger-subtle text-danger',
-                                    'teacher_archive_viewer' => 'bg-primary-subtle text-primary',
-                                    'researcher_archive_viewer' => 'bg-success-subtle text-success'
+                                    'admin' => 'bg-danger-subtle text-danger border border-danger border-opacity-25',
+                                    'sub_admin' => 'bg-indigo-subtle text-dark border border-primary border-opacity-25',
+                                    'coordinator' => 'bg-primary-subtle text-primary',
+                                    'director' => 'bg-primary-subtle text-primary',
+                                    'research_staff' => 'bg-info-subtle text-info',
+                                    'teacher' => 'bg-warning-subtle text-warning',
+                                    'student' => 'bg-success-subtle text-success',
                                 ];
-                                $badgeClass = $roleBadges[$user['role']] ?? 'bg-secondary-subtle text-secondary';
-                                $roleNames = [
-                                    'admin' => 'Admin',
-                                    'teacher_archive_viewer' => 'Teacher Archive Viewer',
-                                    'researcher_archive_viewer' => 'Researcher Archive Viewer'
-                                ];
+                                $badgeClass = $roleBadges[\Config\Roles::normalize($user['role'])] ?? 'bg-secondary-subtle text-secondary';
                             ?>
-                            <span class="badge <?= $badgeClass ?>">
-                                <?= $roleNames[$user['role']] ?? ucfirst($user['role']) ?>
+                            <span class="badge <?= $badgeClass ?> px-2 py-1">
+                                <?= esc(role_label($user['role'])) ?>
                             </span>
                         </td>
+                        <td><span class="badge bg-light text-dark"><?= esc(ucwords(str_replace('-', ' ', $user['department'] ?? 'Unassigned'))) ?></span></td>
                         <td class="text-muted small">
                             <?= date('M d, Y', strtotime($user['created_at'])) ?>
                         </td>
                         <td class="text-end pe-0">
-                            <?php if (session()->get('role') === 'admin'): ?>
+                            <?php if (can_manage_users()): ?>
                             <div class="dropdown">
                                 <button class="btn btn-sm btn-light border" type="button" data-bs-toggle="dropdown">
                                     <i class="bi bi-three-dots"></i>

@@ -1,14 +1,50 @@
-<?= $this->extend('layouts/main') ?>
+<?php
+/**
+ * @var array $research // Change this variable name to match whatever variable that file uses!
+ * @var array $user // Add this if the file also uses $user
+ * @function old(string $key, mixed $default = null): mixed
+ * @function base_url(string $uri = ''): string // Add this if it uses base_url() too
+ * @function site_url(string $uri = ''): string // Add this if it uses site_url() too
+ */
 
+// Initialize researcher array if not set (for create mode)
+if (!isset($researcher)) {
+    $researcher = [
+        'author' => '',
+        'school_year_id' => '',
+        'category_id' => '',
+        'approved_research_title' => '',
+        'approved_date' => '',
+        'pre_oral_defense_date' => '',
+        'final_defense_date' => '',
+        'final_defense_status_id' => '',
+        'adviser_id' => '',
+        'grammarian_id' => '',
+        'remark_id' => '',
+        'research_teacher_id' => '',
+        'abstract' => '',
+        'remarks' => ''
+    ];
+}
+?>
+
+
+
+
+
+
+
+
+
+<?= $this->extend('layouts/main') ?>
 <?= $this->section('content') ?>
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card shadow-sm">
             <div class="card-header bg-white py-3">
-                <h5 class="mb-0 fw-bold">Create Research Profile</h5>
+                <h5 class="mb-0 fw-bold">Add New Research Profile</h5>
             </div>
             <div class="card-body p-4">
-
                 <?php if (session()->getFlashdata('errors')): ?>
                     <div class="alert alert-danger">
                         <ul class="mb-0">
@@ -25,7 +61,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label class="form-label">Author</label>
-                            <textarea name="author" class="form-control" rows="3" placeholder="Enter each author on a new line"><?= old('author') ?></textarea>
+                            <textarea name="author" class="form-control" rows="3" placeholder="Enter each author on a new line"><?= old('author', isset($researcher['author']) ? preg_replace('/,\s*/', "\n", $researcher['author']) : '') ?></textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -34,6 +70,7 @@
                             <textarea name="surname" class="form-control" rows="5" placeholder="Enter each member on a new line" required><?= old('surname') ?></textarea>
                         </div>
                     </div>
+
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -64,7 +101,7 @@
                             <select name="school_year_id" id="school_year_id" class="form-select">
                                 <option value="">Select School Year</option>
                                 <?php foreach ($schoolYears as $sy): ?>
-                                    <option value="<?= $sy['id'] ?>" <?= old('school_year_id') == $sy['id'] ? 'selected' : '' ?>><?= $sy['name'] ?></option>
+                                    <option value="<?= $sy['id'] ?>" <?= old('school_year_id', $researcher['school_year_id'] ?? '') == $sy['id'] ? 'selected' : '' ?>><?= $sy['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -83,7 +120,7 @@
                             <select name="category_id" id="category_id" class="form-select" required>
                                 <option value="">Select Department</option>
                                 <?php foreach ($categories as $cat): ?>
-                                    <option value="<?= $cat['id'] ?>" <?= old('category_id') == $cat['id'] ? 'selected' : '' ?>><?= $cat['name'] ?></option>
+                                    <option value="<?= $cat['id'] ?>" <?= old('category_id', $researcher['category_id'] ?? '') == $cat['id'] ? 'selected' : '' ?>><?= $cat['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -107,18 +144,18 @@
 
                     <div class="mb-3">
                         <label class="form-label">Approved Research Title</label>
-                        <textarea name="approved_research_title" class="form-control" rows="3" placeholder="Enter the approved research title"><?= old('approved_research_title') ?></textarea>
+                        <textarea name="approved_research_title" class="form-control" rows="3" placeholder="Enter the approved research title"><?= old('approved_research_title', $researcher['approved_research_title'] ?? '') ?></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Approved Date</label>
-                        <input type="date" name="approved_date" class="form-control" value="<?= old('approved_date') ?>">
+                        <input type="date" name="approved_date" class="form-control" value="<?= old('approved_date', $researcher['approved_date'] ?? '') ?>">
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Pre Oral Defense Date</label>
-                            <input type="date" name="pre_oral_defense_date" class="form-control" value="<?= old('pre_oral_defense_date') ?>">
+                            <input type="date" name="pre_oral_defense_date" class="form-control" value="<?= old('pre_oral_defense_date', $researcher['pre_oral_defense_date'] ?? '') ?>">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label d-flex justify-content-between align-items-center">
@@ -141,7 +178,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Final Defense Date</label>
-                            <input type="date" name="final_defense_date" class="form-control" value="<?= old('final_defense_date') ?>">
+                            <input type="date" name="final_defense_date" class="form-control" value="<?= old('final_defense_date', $researcher['final_defense_date'] ?? '') ?>">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label d-flex justify-content-between align-items-center">
@@ -155,7 +192,7 @@
                             <select name="final_defense_status_id" class="form-select">
                                 <option value="">Select Status</option>
                                 <?php foreach ($defenseStatuses as $ds): ?>
-                                    <option value="<?= $ds['id'] ?>" <?= old('final_defense_status_id') == $ds['id'] ? 'selected' : '' ?>><?= $ds['name'] ?></option>
+                                    <option value="<?= $ds['id'] ?>" <?= old('final_defense_status_id', $researcher['final_defense_status_id'] ?? '') == $ds['id'] ? 'selected' : '' ?>><?= $ds['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -174,7 +211,7 @@
                             <select name="adviser_id" id="adviser_id" class="form-select">
                                 <option value="">Select Adviser</option>
                                 <?php foreach ($advisers as $a): ?>
-                                    <option value="<?= $a['id'] ?>" <?= old('adviser_id') == $a['id'] ? 'selected' : '' ?>><?= $a['name'] ?></option>
+                                    <option value="<?= $a['id'] ?>" <?= old('adviser_id', $researcher['adviser_id'] ?? '') == $a['id'] ? 'selected' : '' ?>><?= $a['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -190,7 +227,7 @@
                             <select name="grammarian_id" id="grammarian_id" class="form-select">
                                 <option value="">Select Grammarian</option>
                                 <?php foreach ($grammarians as $g): ?>
-                                    <option value="<?= $g['id'] ?>" <?= old('grammarian_id') == $g['id'] ? 'selected' : '' ?>><?= $g['name'] ?></option>
+                                    <option value="<?= $g['id'] ?>" <?= old('grammarian_id', $researcher['grammarian_id'] ?? '') == $g['id'] ? 'selected' : '' ?>><?= $g['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -209,7 +246,7 @@
                             <select name="remark_id" id="remark_id" class="form-select">
                                 <option value="">Select Statisticians</option>
                                 <?php foreach ($statisticians as $r): ?>
-                                    <option value="<?= $r['id'] ?>" <?= old('remark_id') == $r['id'] ? 'selected' : '' ?>><?= $r['name'] ?></option>
+                                    <option value="<?= $r['id'] ?>" <?= old('remark_id', $researcher['remark_id'] ?? '') == $r['id'] ? 'selected' : '' ?>><?= $r['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -225,7 +262,7 @@
                             <select name="research_teacher_id" id="research_teacher_id" class="form-select">
                                 <option value="">Select Research Teacher</option>
                                 <?php foreach ($researchTeachers as $rt): ?>
-                                    <option value="<?= $rt['id'] ?>" <?= old('research_teacher_id') == $rt['id'] ? 'selected' : '' ?>><?= $rt['name'] ?></option>
+                                    <option value="<?= $rt['id'] ?>" <?= old('research_teacher_id', $researcher['research_teacher_id'] ?? '') == $rt['id'] ? 'selected' : '' ?>><?= $rt['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -234,7 +271,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Abstract</label>
-                            <textarea name="abstract" class="form-control" rows="3" placeholder="Enter the abstract"><?= old('abstract') ?></textarea>
+                            <textarea name="abstract" class="form-control" rows="3" placeholder="Enter the abstract"><?= old('abstract', $researcher['abstract'] ?? '') ?></textarea>
                         </div>
                     </div>
 
@@ -242,7 +279,7 @@
 
                     <div class="mb-4">
                         <label class="form-label">Remarks</label>
-                        <textarea name="remarks" class="form-control" rows="3"><?= old('remarks') ?></textarea>
+                        <textarea name="remarks" class="form-control" rows="3"><?= old('remarks', $researcher['remarks'] ?? '') ?></textarea>
                     </div>
 
                     <div class="d-flex justify-content-end gap-2">
@@ -399,6 +436,7 @@
     </div>
 </div>
 
+<!-- Strand Modal -->
 <div class="modal fade" id="addStrandModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
@@ -924,7 +962,7 @@ function editEntity(type, id, currentName) {
         selectIds = [type === 'researchTeacher' ? 'research_teacher_id' : (type === 'statistician' ? 'remark_id' : type + '_id')];
     }
     
-    console.log('Editing entity:', { type, apiType, id, currentName, newName });
+    console.log('Editing entity:', { type, apiType, id, currentName, newName, selectIds });
     
     fetch('<?= base_url('admin/researchers/edit-') ?>' + apiType, {
         method: 'POST',
@@ -997,7 +1035,7 @@ function deleteEntity(type, id) {
         selectIds = [type === 'researchTeacher' ? 'research_teacher_id' : (type === 'statistician' ? 'remark_id' : type + '_id')];
     }
     
-    console.log('Deleting entity:', { type, apiType, id });
+    console.log('Deleting entity:', { type, apiType, id, selectIds });
     
     fetch('<?= base_url('admin/researchers/delete-') ?>' + apiType + '/' + id, {
         method: 'POST',

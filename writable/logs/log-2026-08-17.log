@@ -1,0 +1,1030 @@
+DEBUG - 2026-08-17 02:59:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 02:59:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 02:59:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:00:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:00:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:00:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:11:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-17 03:11:53 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'smart_research_...', 3306, '', 0)
+#1 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#4 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
+#5 C:\xampp\htdocs\reseavh-office\app\Models\ResearchScheduleModel.php(39): CodeIgniter\Database\BaseConnection->tableExists('research_schedu...')
+#6 C:\xampp\htdocs\reseavh-office\app\Models\ResearchScheduleModel.php(47): App\Models\ResearchScheduleModel->tableExists('research_schedu...')
+#7 C:\xampp\htdocs\reseavh-office\app\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', NULL)
+#8 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+#9 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+#10 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\reseavh-office\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\reseavh-office\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\reseavh-office\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\xampp\htdocs\reseavh-office\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#3 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
+#4 C:\xampp\htdocs\reseavh-office\app\Models\ResearchScheduleModel.php(39): CodeIgniter\Database\BaseConnection->tableExists('research_schedu...')
+#5 C:\xampp\htdocs\reseavh-office\app\Models\ResearchScheduleModel.php(47): App\Models\ResearchScheduleModel->tableExists('research_schedu...')
+#6 C:\xampp\htdocs\reseavh-office\app\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', NULL)
+#7 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+#8 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+#9 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\reseavh-office\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\reseavh-office\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\reseavh-office\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\xampp\htdocs\reseavh-office\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+ERROR - 2026-08-17 03:11:57 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'smart_research_...', 3306, '', 0)
+#1 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\reseavh-office\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\reseavh-office\system\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\reseavh-office\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\reseavh-office\app\Models\User.php(103): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\reseavh-office\app\Controllers\Admin\Scheduling.php(49): App\Models\User->getStudents()
+#8 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+#9 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+#10 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\reseavh-office\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\reseavh-office\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\reseavh-office\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\xampp\htdocs\reseavh-office\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\reseavh-office\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\reseavh-office\system\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\reseavh-office\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\reseavh-office\app\Models\User.php(103): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\reseavh-office\app\Controllers\Admin\Scheduling.php(49): App\Models\User->getStudents()
+#7 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+#8 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+#9 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\reseavh-office\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\reseavh-office\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\reseavh-office\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\xampp\htdocs\reseavh-office\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2026-08-17 03:11:57 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: admin/scheduling]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+WHERE `role` = :role:
+ORDER BY `username` ASC', [...], false)
+ 3 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\User.php(103): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\Admin\Scheduling.php(49): App\Models\User->getStudents()
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 03:11:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-17 03:12:01 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'smart_research_...', 3306, '', 0)
+#1 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#4 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
+#5 C:\xampp\htdocs\reseavh-office\app\Models\ResearchScheduleModel.php(39): CodeIgniter\Database\BaseConnection->tableExists('research_schedu...')
+#6 C:\xampp\htdocs\reseavh-office\app\Models\ResearchScheduleModel.php(47): App\Models\ResearchScheduleModel->tableExists('research_schedu...')
+#7 C:\xampp\htdocs\reseavh-office\app\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', NULL)
+#8 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+#9 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+#10 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\reseavh-office\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\reseavh-office\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\reseavh-office\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\xampp\htdocs\reseavh-office\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#3 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
+#4 C:\xampp\htdocs\reseavh-office\app\Models\ResearchScheduleModel.php(39): CodeIgniter\Database\BaseConnection->tableExists('research_schedu...')
+#5 C:\xampp\htdocs\reseavh-office\app\Models\ResearchScheduleModel.php(47): App\Models\ResearchScheduleModel->tableExists('research_schedu...')
+#6 C:\xampp\htdocs\reseavh-office\app\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', NULL)
+#7 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+#8 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+#9 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\reseavh-office\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\reseavh-office\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\reseavh-office\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\xampp\htdocs\reseavh-office\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+ERROR - 2026-08-17 03:12:05 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'smart_research_...', 3306, '', 0)
+#1 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\reseavh-office\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\reseavh-office\system\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\reseavh-office\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\reseavh-office\app\Models\User.php(103): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\reseavh-office\app\Controllers\Admin\Scheduling.php(49): App\Models\User->getStudents()
+#8 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+#9 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+#10 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\reseavh-office\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\reseavh-office\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\reseavh-office\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\xampp\htdocs\reseavh-office\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\reseavh-office\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\reseavh-office\system\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\reseavh-office\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\reseavh-office\app\Models\User.php(103): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\reseavh-office\app\Controllers\Admin\Scheduling.php(49): App\Models\User->getStudents()
+#7 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+#8 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+#9 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\reseavh-office\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\reseavh-office\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\reseavh-office\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\xampp\htdocs\reseavh-office\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2026-08-17 03:12:05 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: admin/scheduling]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+WHERE `role` = :role:
+ORDER BY `username` ASC', [...], false)
+ 3 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\User.php(103): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\Admin\Scheduling.php(49): App\Models\User->getStudents()
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 03:12:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-17 03:12:10 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'smart_research_...', 3306, '', 0)
+#1 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#4 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
+#5 C:\xampp\htdocs\reseavh-office\app\Models\ResearchScheduleModel.php(39): CodeIgniter\Database\BaseConnection->tableExists('research_schedu...')
+#6 C:\xampp\htdocs\reseavh-office\app\Models\ResearchScheduleModel.php(47): App\Models\ResearchScheduleModel->tableExists('research_schedu...')
+#7 C:\xampp\htdocs\reseavh-office\app\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', NULL)
+#8 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+#9 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+#10 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\reseavh-office\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\reseavh-office\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\reseavh-office\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\xampp\htdocs\reseavh-office\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#3 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
+#4 C:\xampp\htdocs\reseavh-office\app\Models\ResearchScheduleModel.php(39): CodeIgniter\Database\BaseConnection->tableExists('research_schedu...')
+#5 C:\xampp\htdocs\reseavh-office\app\Models\ResearchScheduleModel.php(47): App\Models\ResearchScheduleModel->tableExists('research_schedu...')
+#6 C:\xampp\htdocs\reseavh-office\app\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', NULL)
+#7 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+#8 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+#9 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\reseavh-office\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\reseavh-office\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\reseavh-office\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\xampp\htdocs\reseavh-office\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+ERROR - 2026-08-17 03:12:14 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'smart_research_...', 3306, '', 0)
+#1 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\reseavh-office\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\reseavh-office\system\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\reseavh-office\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\reseavh-office\app\Models\User.php(103): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\reseavh-office\app\Controllers\Admin\Scheduling.php(49): App\Models\User->getStudents()
+#8 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+#9 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+#10 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\reseavh-office\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\reseavh-office\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\reseavh-office\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\xampp\htdocs\reseavh-office\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\reseavh-office\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\reseavh-office\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\reseavh-office\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\reseavh-office\system\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\reseavh-office\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\reseavh-office\app\Models\User.php(103): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\reseavh-office\app\Controllers\Admin\Scheduling.php(49): App\Models\User->getStudents()
+#7 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+#8 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+#9 C:\xampp\htdocs\reseavh-office\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\reseavh-office\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\reseavh-office\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\reseavh-office\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\xampp\htdocs\reseavh-office\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2026-08-17 03:12:14 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: admin/scheduling]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+WHERE `role` = :role:
+ORDER BY `username` ASC', [...], false)
+ 3 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\User.php(103): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\Admin\Scheduling.php(49): App\Models\User->getStudents()
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 03:17:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:17:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:17:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:25:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:29:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:33:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:34:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-17 03:34:24 --> Unknown column 'updated_at' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 03:34:24\', NULL, \'2026-08-17 03:34:24\', \'2026-08-17 03:34:24\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 03:34:24\', NULL, \'2026-08-17 03:34:24\', \'2026-08-17 03:34:24\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 03:34:24\', NULL, \'2026-08-17 03:34:24\', \'2026-08-17 03:34:24\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:, :created_at:, :updated_at:)', [...], false)
+ 5 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 9 APPPATH\Controllers\Admin\Reports.php(116): App\Models\ResearchReportModel->logReport('completion', [...])
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateCompletionReport()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 03:34:24 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'updated_at' in 'field list'
+[Method: GET, Route: admin/reports/completion]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:, :created_at:, :updated_at:)', [...], false)
+ 2 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 5 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 6 APPPATH\Controllers\Admin\Reports.php(116): App\Models\ResearchReportModel->logReport('completion', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateCompletionReport()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 03:34:24 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'updated_at' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 03:34:24\', NULL, \'2026-08-17 03:34:24\', \'2026-08-17 03:34:24\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 03:34:24\', NULL, \'2026-08-17 03:34:24\', \'2026-08-17 03:34:24\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:, :created_at:, :updated_at:)', [...], false)
+ 4 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 7 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 8 APPPATH\Controllers\Admin\Reports.php(116): App\Models\ResearchReportModel->logReport('completion', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateCompletionReport()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 03:34:24 --> [Caused by] mysqli_sql_exception: Unknown column 'updated_at' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 03:34:24\', NULL, \'2026-08-17 03:34:24\', \'2026-08-17 03:34:24\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 03:34:24\', NULL, \'2026-08-17 03:34:24\', \'2026-08-17 03:34:24\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 03:34:24\', NULL, \'2026-08-17 03:34:24\', \'2026-08-17 03:34:24\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:, :created_at:, :updated_at:)', [...], false)
+ 5 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 9 APPPATH\Controllers\Admin\Reports.php(116): App\Models\ResearchReportModel->logReport('completion', [...])
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateCompletionReport()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 03:34:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:34:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:34:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:35:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:35:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:35:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:35:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:35:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:35:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:36:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:36:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:36:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:36:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:36:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:36:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:38:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:38:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:39:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-08-17 03:39:30 --> ErrorException: Undefined variable $researcher
+[Method: GET, Route: admin/researchers/create]
+in APPPATH\Views\admin\researchers\create.php on line 84.
+ 1 APPPATH\Views\admin\researchers\create.php(84): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $researcher', 'C:\\xampp\\htdocs\\reseavh-office\\app\\Views\\admin\\researchers\\create.php', 84)
+ 2 SYSTEMPATH\View\View.php(240): include('C:\\xampp\\htdocs\\reseavh-office\\app\\Views\\admin\\researchers\\create.php')
+ 3 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('admin/researchers/create', [], true)
+ 5 APPPATH\Controllers\Admin\Researchers.php(157): view('admin/researchers/create', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Researchers->create()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Researchers))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 03:41:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-08-17 03:41:21 --> ErrorException: Undefined array key "school_year_id"
+[Method: GET, Route: admin/researchers/create]
+in APPPATH\Views\admin\researchers\create.php on line 89.
+ 1 APPPATH\Views\admin\researchers\create.php(89): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "school_year_id"', 'C:\\xampp\\htdocs\\reseavh-office\\app\\Views\\admin\\researchers\\create.php', 89)
+ 2 SYSTEMPATH\View\View.php(240): include('C:\\xampp\\htdocs\\reseavh-office\\app\\Views\\admin\\researchers\\create.php')
+ 3 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('admin/researchers/create', [], true)
+ 5 APPPATH\Controllers\Admin\Researchers.php(157): view('admin/researchers/create', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Researchers->create()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Researchers))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 03:41:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-08-17 03:41:25 --> ErrorException: Undefined array key "school_year_id"
+[Method: GET, Route: admin/researchers/create]
+in APPPATH\Views\admin\researchers\create.php on line 89.
+ 1 APPPATH\Views\admin\researchers\create.php(89): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "school_year_id"', 'C:\\xampp\\htdocs\\reseavh-office\\app\\Views\\admin\\researchers\\create.php', 89)
+ 2 SYSTEMPATH\View\View.php(240): include('C:\\xampp\\htdocs\\reseavh-office\\app\\Views\\admin\\researchers\\create.php')
+ 3 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('admin/researchers/create', [], true)
+ 5 APPPATH\Controllers\Admin\Researchers.php(157): view('admin/researchers/create', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Researchers->create()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Researchers))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 03:44:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:46:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:46:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:46:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:47:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:47:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:47:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:49:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:49:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:52:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:56:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 03:59:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 04:03:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 04:04:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 04:04:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 04:04:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 04:04:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 04:04:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 04:08:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 04:13:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:32:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:32:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:32:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:32:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:32:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:32:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:32:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:33:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-08-17 12:33:11 --> ErrorException: Undefined variable $preOralSummary
+[Method: GET, Route: admin/monitoring/pre-oral-summary]
+in APPPATH\Views\admin\monitoring\pre_oral_summary.php on line 22.
+ 1 APPPATH\Views\admin\monitoring\pre_oral_summary.php(22): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $preOralSummary', 'C:\\xampp\\htdocs\\reseavh-office\\app\\Views\\admin\\monitoring\\pre_oral_summary.php', 22)
+ 2 SYSTEMPATH\View\View.php(240): include('C:\\xampp\\htdocs\\reseavh-office\\app\\Views\\admin\\monitoring\\pre_oral_summary.php')
+ 3 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('admin/monitoring/pre_oral_summary', [], true)
+ 5 APPPATH\Controllers\Admin\Monitoring.php(170): view('admin/monitoring/pre_oral_summary', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Monitoring->preOralSummary()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Monitoring))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 12:36:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:36:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-08-17 12:36:25 --> TypeError: Illegal offset type
+[Method: GET, Route: admin/evaluations]
+in SYSTEMPATH\Database\BaseBuilder.php on line 764.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(738): CodeIgniter\Database\BaseBuilder->whereHaving('QBWhere', Object(Closure), null, 'OR ', null)
+ 2 SYSTEMPATH\Model.php(759): CodeIgniter\Database\BaseBuilder->orWhere(Object(Closure))
+ 3 APPPATH\Controllers\Admin\Evaluations.php(71): CodeIgniter\Model->__call('orWhere', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Evaluations->index()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Evaluations))
+ 6 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 12:36:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:37:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:37:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:37:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-08-17 12:37:21 --> TypeError: Illegal offset type
+[Method: GET, Route: admin/evaluations]
+in SYSTEMPATH\Database\BaseBuilder.php on line 764.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(738): CodeIgniter\Database\BaseBuilder->whereHaving('QBWhere', Object(Closure), null, 'OR ', null)
+ 2 SYSTEMPATH\Model.php(759): CodeIgniter\Database\BaseBuilder->orWhere(Object(Closure))
+ 3 APPPATH\Controllers\Admin\Evaluations.php(71): CodeIgniter\Model->__call('orWhere', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Evaluations->index()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Evaluations))
+ 6 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 12:41:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:51:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:51:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:52:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:52:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:52:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:52:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:56:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:56:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:59:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:59:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:59:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:59:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 12:59:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:00:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:00:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:00:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:08:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:08:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:08:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:08:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:08:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:08:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:08:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:08:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:08:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:09:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:09:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:09:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:09:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-17 13:09:24 --> Unknown column 'updated_at' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:09:24\', NULL, \'2026-08-17 13:09:24\', \'2026-08-17 13:09:24\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:09:24\', NULL, \'2026-08-17 13:09:24\', \'2026-08-17 13:09:24\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:09:24\', NULL, \'2026-08-17 13:09:24\', \'2026-08-17 13:09:24\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:, :created_at:, :updated_at:)', [...], false)
+ 5 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 9 APPPATH\Controllers\Admin\Reports.php(56): App\Models\ResearchReportModel->logReport('schedule', [...])
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateScheduleReport()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:09:24 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'updated_at' in 'field list'
+[Method: GET, Route: admin/reports/schedule]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:, :created_at:, :updated_at:)', [...], false)
+ 2 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 5 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 6 APPPATH\Controllers\Admin\Reports.php(56): App\Models\ResearchReportModel->logReport('schedule', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateScheduleReport()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:09:24 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'updated_at' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:09:24\', NULL, \'2026-08-17 13:09:24\', \'2026-08-17 13:09:24\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:09:24\', NULL, \'2026-08-17 13:09:24\', \'2026-08-17 13:09:24\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:, :created_at:, :updated_at:)', [...], false)
+ 4 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 7 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 8 APPPATH\Controllers\Admin\Reports.php(56): App\Models\ResearchReportModel->logReport('schedule', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateScheduleReport()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:09:24 --> [Caused by] mysqli_sql_exception: Unknown column 'updated_at' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:09:24\', NULL, \'2026-08-17 13:09:24\', \'2026-08-17 13:09:24\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:09:24\', NULL, \'2026-08-17 13:09:24\', \'2026-08-17 13:09:24\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:09:24\', NULL, \'2026-08-17 13:09:24\', \'2026-08-17 13:09:24\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`, `created_at`, `updated_at`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:, :created_at:, :updated_at:)', [...], false)
+ 5 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 9 APPPATH\Controllers\Admin\Reports.php(56): App\Models\ResearchReportModel->logReport('schedule', [...])
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateScheduleReport()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 13:12:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-17 13:12:26 --> Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:12:26\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:12:26\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:12:26\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 5 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 9 APPPATH\Controllers\Admin\Reports.php(56): App\Models\ResearchReportModel->logReport('schedule', [...])
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateScheduleReport()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:12:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'generated_by' cannot be null
+[Method: GET, Route: admin/reports/schedule]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 2 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 5 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 6 APPPATH\Controllers\Admin\Reports.php(56): App\Models\ResearchReportModel->logReport('schedule', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateScheduleReport()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:12:26 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:12:26\', NULL)')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:12:26\', NULL)')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 4 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 7 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 8 APPPATH\Controllers\Admin\Reports.php(56): App\Models\ResearchReportModel->logReport('schedule', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateScheduleReport()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:12:26 --> [Caused by] mysqli_sql_exception: Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:12:26\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:12:26\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:12:26\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 5 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 9 APPPATH\Controllers\Admin\Reports.php(56): App\Models\ResearchReportModel->logReport('schedule', [...])
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateScheduleReport()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 13:12:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-17 13:12:30 --> Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:12:30\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:12:30\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:12:30\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 5 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 9 APPPATH\Controllers\Admin\Reports.php(56): App\Models\ResearchReportModel->logReport('schedule', [...])
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateScheduleReport()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:12:30 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'generated_by' cannot be null
+[Method: GET, Route: admin/reports/schedule]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 2 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 5 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 6 APPPATH\Controllers\Admin\Reports.php(56): App\Models\ResearchReportModel->logReport('schedule', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateScheduleReport()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:12:30 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:12:30\', NULL)')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:12:30\', NULL)')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 4 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 7 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 8 APPPATH\Controllers\Admin\Reports.php(56): App\Models\ResearchReportModel->logReport('schedule', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateScheduleReport()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:12:30 --> [Caused by] mysqli_sql_exception: Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:12:30\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:12:30\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:12:30\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 5 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 9 APPPATH\Controllers\Admin\Reports.php(56): App\Models\ResearchReportModel->logReport('schedule', [...])
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateScheduleReport()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 13:12:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:13:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-17 13:13:05 --> Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:13:05\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:13:05\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:13:05\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 5 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 9 APPPATH\Controllers\Admin\Reports.php(56): App\Models\ResearchReportModel->logReport('schedule', [...])
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateScheduleReport()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:13:05 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'generated_by' cannot be null
+[Method: GET, Route: admin/reports/schedule]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 2 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 5 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 6 APPPATH\Controllers\Admin\Reports.php(56): App\Models\ResearchReportModel->logReport('schedule', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateScheduleReport()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:13:05 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:13:05\', NULL)')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:13:05\', NULL)')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 4 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 7 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 8 APPPATH\Controllers\Admin\Reports.php(56): App\Models\ResearchReportModel->logReport('schedule', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateScheduleReport()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:13:05 --> [Caused by] mysqli_sql_exception: Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:13:05\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:13:05\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'schedule\', \'{\\"start_date\\":\\"2026-08-01\\",\\"end_date\\":\\"2026-08-31\\",\\"type\\":null}\', NULL, \'2026-08-17 13:13:05\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 5 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 9 APPPATH\Controllers\Admin\Reports.php(56): App\Models\ResearchReportModel->logReport('schedule', [...])
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateScheduleReport()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 13:13:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-17 13:13:10 --> Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'status\', \'{\\"strand_id\\":null,\\"category_id\\":null}\', NULL, \'2026-08-17 13:13:10\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'status\', \'{\\"strand_id\\":null,\\"category_id\\":null}\', NULL, \'2026-08-17 13:13:10\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'status\', \'{\\"strand_id\\":null,\\"category_id\\":null}\', NULL, \'2026-08-17 13:13:10\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 5 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 9 APPPATH\Controllers\Admin\Reports.php(88): App\Models\ResearchReportModel->logReport('status', [...])
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateStatusReport()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:13:10 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'generated_by' cannot be null
+[Method: GET, Route: admin/reports/status]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 2 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 5 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 6 APPPATH\Controllers\Admin\Reports.php(88): App\Models\ResearchReportModel->logReport('status', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateStatusReport()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:13:10 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'status\', \'{\\"strand_id\\":null,\\"category_id\\":null}\', NULL, \'2026-08-17 13:13:10\', NULL)')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'status\', \'{\\"strand_id\\":null,\\"category_id\\":null}\', NULL, \'2026-08-17 13:13:10\', NULL)')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 4 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 7 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 8 APPPATH\Controllers\Admin\Reports.php(88): App\Models\ResearchReportModel->logReport('status', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateStatusReport()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:13:10 --> [Caused by] mysqli_sql_exception: Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'status\', \'{\\"strand_id\\":null,\\"category_id\\":null}\', NULL, \'2026-08-17 13:13:10\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'status\', \'{\\"strand_id\\":null,\\"category_id\\":null}\', NULL, \'2026-08-17 13:13:10\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'status\', \'{\\"strand_id\\":null,\\"category_id\\":null}\', NULL, \'2026-08-17 13:13:10\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 5 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 9 APPPATH\Controllers\Admin\Reports.php(88): App\Models\ResearchReportModel->logReport('status', [...])
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateStatusReport()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 13:13:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-17 13:13:15 --> Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 13:13:15\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 13:13:15\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 13:13:15\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 5 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 9 APPPATH\Controllers\Admin\Reports.php(116): App\Models\ResearchReportModel->logReport('completion', [...])
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateCompletionReport()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:13:15 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'generated_by' cannot be null
+[Method: GET, Route: admin/reports/completion]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 2 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 5 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 6 APPPATH\Controllers\Admin\Reports.php(116): App\Models\ResearchReportModel->logReport('completion', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateCompletionReport()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:13:15 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 13:13:15\', NULL)')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 13:13:15\', NULL)')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 4 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 7 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 8 APPPATH\Controllers\Admin\Reports.php(116): App\Models\ResearchReportModel->logReport('completion', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateCompletionReport()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:13:15 --> [Caused by] mysqli_sql_exception: Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 13:13:15\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 13:13:15\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 13:13:15\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 5 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 9 APPPATH\Controllers\Admin\Reports.php(116): App\Models\ResearchReportModel->logReport('completion', [...])
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateCompletionReport()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 13:13:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:13:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:13:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:14:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-17 13:14:17 --> Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 13:14:17\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 13:14:17\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 13:14:17\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 5 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 9 APPPATH\Controllers\Admin\Reports.php(116): App\Models\ResearchReportModel->logReport('completion', [...])
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateCompletionReport()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:14:17 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'generated_by' cannot be null
+[Method: GET, Route: admin/reports/completion]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 2 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 5 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 6 APPPATH\Controllers\Admin\Reports.php(116): App\Models\ResearchReportModel->logReport('completion', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateCompletionReport()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:14:17 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 13:14:17\', NULL)')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 13:14:17\', NULL)')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 4 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 7 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 8 APPPATH\Controllers\Admin\Reports.php(116): App\Models\ResearchReportModel->logReport('completion', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateCompletionReport()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-17 13:14:18 --> [Caused by] mysqli_sql_exception: Column 'generated_by' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 13:14:17\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 13:14:17\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (\'completion\', \'{\\"school_year\\":null}\', NULL, \'2026-08-17 13:14:17\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `research_reports` (`report_type`, `report_params`, `generated_by`, `generated_at`, `file_path`) VALUES (:report_type:, :report_params:, :generated_by:, :generated_at:, :file_path:)', [...], false)
+ 5 SYSTEMPATH\Model.php(355): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(668): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Models\ResearchReportModel.php(51): CodeIgniter\Model->insert([...])
+ 9 APPPATH\Controllers\Admin\Reports.php(116): App\Models\ResearchReportModel->logReport('completion', [...])
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Reports->generateCompletionReport()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reports))
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-17 13:17:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:17:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:17:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:17:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:17:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-17 13:17:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

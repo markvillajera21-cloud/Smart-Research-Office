@@ -37,6 +37,11 @@ class Filters extends BaseFilters
         'auth'          => \App\Filters\AuthFilter::class,
         'admin'         => \App\Filters\AdminFilter::class,
         'adminonly'     => \App\Filters\AdminOnlyFilter::class,
+        'subadmin'      => \App\Filters\SubAdminFilter::class,
+        'instructor'    => \App\Filters\InstructorFilter::class,
+        'teacher'       => \App\Filters\TeacherFilter::class,
+        'student'       => \App\Filters\StudentFilter::class,
+        'studentaccess' => \App\Filters\StudentAccessFilter::class,
     ];
 
     /**
@@ -75,6 +80,7 @@ class Filters extends BaseFilters
      */
     public array $globals = [
         'before' => [
+            'studentaccess', // Block students from accessing admin/teacher routes
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',

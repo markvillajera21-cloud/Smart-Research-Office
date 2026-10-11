@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Research Office Archiving Records Management System</title>
+    <title>Login - Research Management System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -87,17 +87,17 @@
         <div class="login-header">
             <div class="logo-wrapper">
                 <div class="logo-icon">
-                     <img src="<?= base_url('images/logo.png') ?>" alt="ROARMS logo" style="width:150px;height:150px;">
+                     <img src="<?= base_url('images/logo.png') ?>" alt="RMS logo" style="width:150px;height:150px;">
                 </div>
             </div>
-            <h3 class="fw-bold mb-2">Research Office Archiving Records Management System</h3>
+            <h3 class="fw-bold mb-2">Research Management System</h3>
             <p class="opacity-75 mb-0 small"></p>
         </div>
         
         <div class="login-body">
             <div class="mb-4">
                 <h4 class="fw-bold text-dark mb-1">Welcome Back</h4>
-                <p class="text-muted small">Enter your Credentials to Access your Office.</p>
+                <p class="text-muted small">Select your role, then enter your Student ID / Login ID and password.</p>
             </div>
 
             <?php if (session()->getFlashdata('error')): ?>
@@ -115,9 +115,18 @@
             <form action="<?= base_url('login') ?>" method="post">
                 <?= csrf_field() ?>
                 <div class="mb-3">
-                    <label class="form-label small fw-semibold text-muted">Email Address</label>
+                    <label class="form-label small fw-semibold text-muted">Role</label>
+                    <select name="role" class="form-select" required style="border-radius: 0.75rem; border-color: #e2e8f0;">
+                        <option value="">Select your role</option>
+                        <?php foreach (\Config\Roles::LOGIN_CHOICES as $value => $label): ?>
+                            <option value="<?= esc($value) ?>" <?= old('role') === $value ? 'selected' : '' ?>><?= esc($label) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label small fw-semibold text-muted">Student ID / Login ID</label>
                     <div class="input-group">
-                        <input type="email" name="email" id="email" class="form-control has-toggle" placeholder="" required>
+                        <input type="text" name="email" id="email" class="form-control has-toggle" value="<?= esc(old('email')) ?>" placeholder="Student ID, username, or email" required autocomplete="username">
                         <span class="input-group-text" onclick="clearInput('email')">
                             <i class="bi bi-x-circle"></i>
                         </span>
@@ -134,14 +143,22 @@
                         </span>
                     </div>
                     <a href="<?= base_url('forgot-password') ?>" class="small text-decoration-none">Forgot Password?</a>
-                    </div>
                 </div>
                 <div class="d-grid mb-4">
                     <button type="submit" class="btn btn-primary shadow-sm">Log In</button>
                 </div>
                 <div class="text-center">
-                    <span class="text-muted small">New to ROARMS?</span>
+                    <span class="text-muted small">New to RMS?</span>
                     <a href="<?= base_url('register') ?>" class="small text-decoration-none fw-semibold">Create Account</a>
+                </div>
+                <div class="border-top mt-4 pt-3">
+                    <p class="text-muted text-center small mb-2">Department portals</p>
+                    <div class="d-flex justify-content-center gap-2 flex-wrap">
+                        <a href="<?= base_url('cmat/login') ?>" class="btn btn-sm btn-outline-secondary">CMAT</a>
+                        <a href="<?= base_url('ceas/login') ?>" class="btn btn-sm btn-outline-secondary">CEAS</a>
+                        <a href="<?= base_url('coc/login') ?>" class="btn btn-sm btn-outline-secondary">COC</a>
+                        <a href="<?= base_url('senior-high/login') ?>" class="btn btn-sm btn-outline-secondary">Senior High</a>
+                    </div>
                 </div>
             </form>
         </div>

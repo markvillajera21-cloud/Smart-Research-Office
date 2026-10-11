@@ -12,7 +12,7 @@ class User extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['username', 'email', 'password', 'role'];
+    protected $allowedFields    = ['username', 'email', 'password', 'role', 'department', 'assigned_instructor_id', 'login_attempts', 'lockout_until'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -31,7 +31,7 @@ class User extends Model
         'username' => 'required|alpha_numeric_space|min_length[3]|is_unique[users.username]',
         'email'    => 'required|valid_email|is_unique[users.email]',
         'password' => 'required|min_length[8]',
-        'role'     => 'in_list[admin,teacher_archive_viewer,researcher_archive_viewer]'
+        'role'     => 'in_list[admin,coordinator,director,research_staff,teacher,student,sub_admin,instructor,teacher_archive_viewer,researcher_archive_viewer]'
     ];
     protected $validationMessages   = [
         'username' => [
@@ -84,5 +84,38 @@ class User extends Model
             // Restore original validation rules
             $this->validationRules = $originalRules;
         }
+    }
+
+    public function getInstructors()
+    {
+        return $this->whereIn('role', ['teacher', 'instructor', 'admin'])
+                    ->orderBy('username', 'ASC')
+                    ->findAll();
+    }
+
+    public function getStudents($instructorId = null)
+    {
+        $this->where('role', 'student');
+        if ($instructorId) {
+            $this->where('assigned_instructor_id', $instructorId);
+        }
+        return $this->orderBy('username', 'ASC')->findAll();
+    }
+
+    public function getStudentsByRole($role)
+    {
+        return $this->where('role', $role)
+                    ->orderBy('username', 'ASC')
+                    ->findAll();
+    }
+
+    public function getAssignedStudents($instructorId)
+    {
+        return $this->select('users.*, u2.username as instructor_name')
+                    ->join('users u2', 'u2.id = users.assigned_instructor_id', 'left')
+                    ->where('users.role', 'student')
+                    ->where('users.assigned_instructor_id', $instructorId)
+                    ->orderBy('users.username', 'ASC')
+                    ->findAll();
     }
 }

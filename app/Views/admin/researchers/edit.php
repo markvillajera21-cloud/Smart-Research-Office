@@ -8,14 +8,6 @@
  */
 ?>
 
-
-
-
-
-
-
-
-
 <?= $this->extend('layouts/main') ?>
 <?= $this->section('content') ?>
 <div class="row justify-content-center">
@@ -256,11 +248,26 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Abstract</label>
-                            <textarea name="abstract" class="form-control" rows="3" placeholder="Enter the abstract"><?= old('abstract', $researcher['abstract'] ?? '') ?></textarea>
+                    <!-- Abstract Submission & Requirement Section -->
+                    <div class="card bg-light border-0 p-3 mb-4 rounded-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
+                            <label class="form-label fw-bold mb-0 text-primary"><i class="bi bi-file-earmark-text me-1"></i> Research Abstract Submission</label>
+                            <?php 
+                            $hasAbstract = !empty(trim((string)($researcher['abstract'] ?? '')));
+                            $finalDefensePassed = (int)($researcher['final_defense_status_id'] ?? 0) === 2;
+                            ?>
+                            <?php if ($hasAbstract): ?>
+                                <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Abstract Submitted</span>
+                            <?php elseif ($finalDefensePassed): ?>
+                                <span class="badge bg-warning text-dark"><i class="bi bi-exclamation-triangle-fill me-1"></i> Abstract Required (Final Defense Passed)</span>
+                            <?php else: ?>
+                                <span class="badge bg-secondary">Pending Final Defense / Submission</span>
+                            <?php endif; ?>
                         </div>
+                        <div class="alert alert-info py-2 px-3 mb-2 small border-0">
+                            <i class="bi bi-info-circle me-1"></i> <strong>Requirement:</strong> Researchers must submit an approved abstract after passing the Final Defense before this research project can be marked as fully completed.
+                        </div>
+                        <textarea name="abstract" class="form-control" rows="5" placeholder="Enter or paste the approved research abstract here..."><?= old('abstract', $researcher['abstract'] ?? '') ?></textarea>
                     </div>
 
 

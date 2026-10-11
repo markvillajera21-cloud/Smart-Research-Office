@@ -3,55 +3,68 @@
 <?= $this->section('content') ?>
 <style>
     :root {
-        --bg-dark: #0f172a;
-        --bg-card: #1e293b;
-        --bg-card-hover: #334155;
-        --text-primary: #f8fafc;
-        --text-secondary: #94a3b8;
-        --accent-blue: #3b82f6;
-        --accent-green: #22c55e;
-        --accent-yellow: #eab308;
-        --accent-red: #ef4444;
-        --accent-purple: #8b5cf6;
+        --primary-blue: #3b82f6;
+        --primary-dark: #1e40af;
+        --success-green: #10b981;
+        --warning-orange: #f59e0b;
+        --danger-red: #ef4444;
+        --light-bg: #f3f4f6;
+        --card-bg: #ffffff;
+        --border-gray: #e5e7eb;
+        --text-dark: #1f2937;
+        --text-light: #6b7280;
     }
     
-    body, main, .navbar {
-        background: var(--bg-dark) !important;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body, html {
+        background: var(--light-bg);
+        color: var(--text-dark);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
     
     .navbar {
         display: none !important;
     }
     
+    main {
+        background: var(--light-bg) !important;
+    }
+    
     .dashboard-container {
         max-width: 1400px;
         margin: 0 auto;
-        padding: 24px;
-        min-height: 100vh;
-        background: var(--bg-dark);
+        padding: 30px 20px;
+        background: var(--light-bg);
     }
     
+    /* Header */
     .dashboard-header {
+        background: var(--card-bg);
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 28px;
-        padding-bottom: 16px;
-        border-bottom: 1px solid #334155;
+        flex-wrap: wrap;
+        gap: 20px;
     }
     
     .dashboard-header h1 {
-        font-size: 1.5rem;
+        font-size: 28px;
         font-weight: 700;
-        color: var(--text-primary);
+        color: var(--text-dark);
         margin: 0;
-        display: flex;
-        align-items: center;
-        gap: 10px;
     }
     
     .dashboard-header h1 span {
-        color: var(--accent-blue);
+        color: var(--primary-blue);
     }
     
     .header-actions {
@@ -61,352 +74,260 @@
     
     .btn-action {
         padding: 10px 20px;
-        border-radius: 8px;
         border: none;
-        font-size: 0.85rem;
+        border-radius: 6px;
+        font-size: 13px;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.2s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+    
+    .btn-secondary {
+        background: var(--light-bg);
+        color: var(--text-dark);
+        border: 1px solid var(--border-gray);
+    }
+    
+    .btn-secondary:hover {
+        background: #f9fafb;
     }
     
     .btn-primary,
-    a.btn-primary,
-    a.btn-secondary {
-        background: var(--accent-blue);
+    a.btn-primary {
+        background: var(--primary-blue);
         color: white;
+        text-decoration: none;
     }
     
-    a.btn-secondary {
-        background: var(--bg-card);
-        color: var(--text-primary);
-    }
-    
-    .btn-primary:hover,
-    a.btn-primary:hover {
+    .btn-primary:hover {
         background: #2563eb;
     }
     
-    .btn-secondary,
-    a.btn-secondary {
-        background: var(--bg-card);
-        color: var(--text-primary);
-        border: 1px solid #475569;
-    }
-    
-    .btn-secondary:hover,
-    a.btn-secondary:hover {
-        background: var(--bg-card-hover);
-    }
-    
-    .main-grid {
+    /* Top Stats Grid */
+    .stats-row {
         display: grid;
-        grid-template-columns: 320px 1fr;
-        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
     }
     
-    /* Left Column - Role Cards */
-    .left-column {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
+    @media (max-width: 1024px) {
+        .stats-row {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
     
-    .role-card {
-        background: var(--bg-card);
-        border-radius: 12px;
-        padding: 16px;
-        border: 1px solid #334155;
-        transition: all 0.2s;
+    @media (max-width: 640px) {
+        .stats-row {
+            grid-template-columns: 1fr;
+        }
     }
     
-    .role-card {
+    .stat-box {
+        background: var(--card-bg);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s;
+        position: relative;
         cursor: pointer;
     }
     
-    .role-card:hover {
-        background: var(--bg-card-hover);
+    .stat-box:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         transform: translateY(-2px);
     }
     
-    .metric-card {
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-    
-    .metric-card:hover {
-        background: rgba(255,255,255,0.08);
-    }
-    
-    .role-card-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 12px;
-    }
-    
-    .role-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-    }
-    
-    .role-icon.teacher {
-        background: rgba(59, 130, 246, 0.2);
-        color: var(--accent-blue);
-    }
-    
-    .role-icon.grammarian {
-        background: rgba(34, 197, 94, 0.2);
-        color: var(--accent-green);
-    }
-    
-    .role-icon.statistician {
-        background: rgba(234, 179, 8, 0.2);
-        color: var(--accent-yellow);
-    }
-    
-    .role-icon.adviser {
-        background: rgba(239, 68, 68, 0.2);
-        color: var(--accent-red);
-    }
-    
-    .role-info h3 {
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin: 0 0 2px 0;
-    }
-    
-    .role-info p {
-        font-size: 0.75rem;
-        color: var(--text-secondary);
-        margin: 0;
-    }
-    
-    .role-stats {
-        display: flex;
-        gap: 8px;
-        margin-top: 12px;
-    }
-    
-    .stat-pill {
-        background: rgba(255,255,255,0.05);
-        padding: 4px 10px;
-        border-radius: 20px;
-        font-size: 0.7rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-    }
-    
-    .stat-pill.active {
-        background: rgba(34, 197, 94, 0.15);
-        color: var(--accent-green);
-    }
-    
-    /* Right Column */
-    .right-column {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-    }
-    
-    /* Research Output Section */
-    .research-output {
-        background: var(--bg-card);
-        border-radius: 12px;
-        padding: 20px;
-        border: 1px solid #334155;
-    }
-    
-    .research-output h2 {
-        font-size: 1rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin: 0 0 16px 0;
-    }
-    
-    .output-tabs {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 20px;
-    }
-    
-    .output-tab {
-        padding: 8px 16px;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-    
-    .output-tab.active {
-        background: var(--accent-blue);
-        color: white;
-    }
-    
-    .output-tab:not(.active) {
-        background: rgba(255,255,255,0.05);
-        color: var(--text-secondary);
-    }
-    
-    .output-grid {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-    }
-    
-    .output-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-    }
-    
-    .output-dot.pending { background: var(--accent-yellow); }
-    .output-dot.approved { background: var(--accent-green); }
-    .output-dot.rejected { background: var(--accent-red); }
-    
-    .output-label {
-        font-size: 0.75rem;
-        color: var(--text-secondary);
-        margin-right: 16px;
-    }
-    
-    /* Bottom Section - Chart & Calendar */
-    .bottom-section {
-        display: grid;
-        grid-template-columns: 1fr 320px;
-        gap: 24px;
-    }
-    
-    /* Status Overview */
-    .status-overview {
-        background: var(--bg-card);
-        border-radius: 12px;
-        padding: 20px;
-        border: 1px solid #334155;
-    }
-    
-    .status-overview h2 {
-        font-size: 1rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin: 0 0 20px 0;
-    }
-    
-    .chart-container {
-        display: flex;
-        align-items: center;
-        gap: 32px;
-    }
-    
-    .donut-chart {
-        width: 140px;
-        height: 140px;
+    .stat-box a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
         position: relative;
     }
     
-    .donut-center {
+    /* Small Tooltip Popup */
+    .stat-report {
+        display: none;
         position: absolute;
-        top: 50%;
+        bottom: -10px;
         left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
+        transform: translateX(-50%) translateY(100%);
+        background: var(--text-dark);
+        color: white;
+        padding: 12px 15px;
+        border-radius: 6px;
+        font-size: 11px;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        white-space: nowrap;
+        min-width: 180px;
     }
     
-    .donut-center .number {
-        font-size: 1.8rem;
-        font-weight: 800;
-        color: var(--text-primary);
+    .stat-box:hover .stat-report {
+        display: block;
+        animation: fadeIn 0.2s ease;
     }
     
-    .donut-center .label {
-        font-size: 0.75rem;
-        color: var(--text-secondary);
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateX(-50%) translateY(95%);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(-50%) translateY(100%);
+        }
     }
     
-    .chart-legend {
+    .report-title {
+        font-weight: 700;
+        font-size: 11px;
+        margin-bottom: 6px;
+        display: block;
+    }
+    
+    .report-items {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 4px;
     }
     
-    .legend-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .legend-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-    }
-    
-    .legend-dot.completed { background: var(--accent-green); }
-    .legend-dot.ongoing { background: var(--accent-blue); }
-    .legend-dot.pending { background: var(--accent-yellow); }
-    
-    .legend-label {
-        font-size: 0.8rem;
-        color: var(--text-secondary);
-    }
-    
-    .legend-value {
-        font-size: 0.85rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin-left: auto;
-    }
-    
-    /* Calendar */
-    .calendar-section {
-        background: var(--bg-card);
-        border-radius: 12px;
-        padding: 20px;
-        border: 1px solid #334155;
-    }
-    
-    .calendar-header {
+    .report-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 16px;
+        font-size: 10px;
+        gap: 8px;
     }
     
-    .calendar-header h2 {
-        font-size: 1rem;
+    .report-label {
+        color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .report-value {
         font-weight: 700;
-        color: var(--text-primary);
-        margin: 0;
+        color: #60a5fa;
+    }
+    
+    .stat-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        background: rgba(59, 130, 246, 0.1);
+    }
+    
+    .stat-icon.green {
+        background: rgba(16, 185, 129, 0.1);
+    }
+    
+    .stat-icon.orange {
+        background: rgba(245, 158, 11, 0.1);
+    }
+    
+    .stat-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-light);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .stat-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 10px;
+    }
+    
+    .stat-value {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--text-dark);
+    }
+    
+    .stat-description {
+        font-size: 12px;
+        color: var(--text-light);
+    }
+    
+    /* Main Content Grid */
+    .main-content {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+    
+    @media (max-width: 1200px) {
+        .main-content {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .content-card {
+        background: var(--card-bg);
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+    
+    .content-card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--text-dark);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .chart-container {
+        height: 250px;
+        position: relative;
+        margin-bottom: 20px;
+    }
+    
+    /* Calendar */
+    .calendar-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
     
     .calendar-nav {
         display: flex;
-        gap: 8px;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
     }
     
     .calendar-nav button {
-        width: 30px;
-        height: 30px;
-        border-radius: 6px;
-        border: none;
-        background: rgba(255,255,255,0.05);
-        color: var(--text-primary);
+        background: var(--light-bg);
+        border: 1px solid var(--border-gray);
+        padding: 6px 12px;
+        border-radius: 4px;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.9rem;
+        font-size: 12px;
         transition: all 0.2s;
     }
     
     .calendar-nav button:hover {
-        background: var(--bg-card-hover);
+        background: #f9fafb;
     }
     
     .calendar-grid {
@@ -415,508 +336,827 @@
         gap: 6px;
     }
     
-    .calendar-day-name {
-        font-size: 0.7rem;
-        color: var(--text-secondary);
+    .calendar-day-header {
         text-align: center;
         font-weight: 600;
-        padding: 6px 0;
+        font-size: 11px;
+        color: var(--text-light);
+        padding: 8px 0;
+        text-transform: uppercase;
     }
     
     .calendar-day {
-        font-size: 0.8rem;
-        color: var(--text-secondary);
         text-align: center;
-        padding: 8px 0;
-        border-radius: 6px;
-        font-weight: 500;
+        padding: 8px;
+        border-radius: 4px;
+        font-size: 12px;
         cursor: pointer;
         transition: all 0.2s;
+        background: var(--light-bg);
     }
     
     .calendar-day:hover {
-        background: var(--bg-card-hover);
+        background: #e5e7eb;
     }
     
     .calendar-day.today {
-        background: var(--accent-blue);
+        background: var(--primary-blue);
         color: white;
-        font-weight: 700;
+        font-weight: 600;
     }
     
     .calendar-day.event {
-        background: var(--accent-purple);
+        background: var(--primary-blue);
         color: white;
-        font-weight: 700;
+    }
+    
+    .calendar-day.empty {
+        background: transparent;
+        cursor: default;
     }
     
     .calendar-footer {
-        margin-top: 16px;
-        padding-top: 12px;
-        border-top: 1px solid #334155;
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        padding-top: 15px;
+        border-top: 1px solid var(--border-gray);
+        font-size: 12px;
+        color: var(--text-light);
     }
     
-    .calendar-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: var(--accent-purple);
-    }
-    
-    .calendar-footer p {
-        font-size: 0.75rem;
-        color: var(--text-secondary);
-        margin: 0;
-    }
-    
-    /* Analytics Section */
-    .analytics-section {
-        background: var(--bg-card);
-        border-radius: 12px;
-        padding: 20px;
-        border: 1px solid #334155;
-    }
-    
-    .analytics-section h2 {
-        font-size: 1rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin: 0 0 20px 0;
-    }
-    
-    .analytics-metrics {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
-        margin-bottom: 20px;
-    }
-    
-    .metric-card {
-        background: rgba(255,255,255,0.03);
-        border-radius: 10px;
-        padding: 14px;
-        border: 1px solid rgba(255,255,255,0.05);
-    }
-    
-    .metric-card .value {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: var(--text-primary);
-        margin-bottom: 4px;
-    }
-    
-    .metric-card .label {
-        font-size: 0.75rem;
-        color: var(--text-secondary);
-        margin-bottom: 6px;
-    }
-    
-    .metric-card .change {
-        font-size: 0.7rem;
-        font-weight: 600;
-    }
-    
-    .metric-card .change.up {
-        color: var(--accent-green);
-    }
-    
-    .metric-card .change.down {
-        color: var(--accent-red);
-    }
-    
-    /* Make all anchor tags inherit text colors */
-    .role-card a, a.role-card,
-    .output-tab a, a.output-tab,
-    .metric-card a, a.metric-card {
-        color: inherit;
-    }
-    
-    /* Ensure output tab links preserve their colors */
-    a.output-tab {
-        color: inherit;
-        text-decoration: none;
-    }
-    
-    .analytics-charts {
-        display: grid;
-        grid-template-columns: 1.5fr 1fr;
-        gap: 16px;
-    }
-    
-    .line-chart-box {
-        background: rgba(255,255,255,0.03);
-        border-radius: 10px;
-        padding: 16px;
-        border: 1px solid rgba(255,255,255,0.05);
-    }
-    
-    .line-chart-box h3,
-    .bar-chart-box h3 {
-        font-size: 0.8rem;
-        color: var(--text-secondary);
-        margin: 0 0 12px 0;
-        font-weight: 600;
-    }
-    
-    .bar-chart-box {
-        background: rgba(255,255,255,0.03);
-        border-radius: 10px;
-        padding: 16px;
-        border: 1px solid rgba(255,255,255,0.05);
-    }
-    
-    .department-stats {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .dept-item {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-    }
-    
-    .dept-item-header {
+    .calendar-header-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-size: 0.75rem;
+        margin-bottom: 15px;
     }
     
-    .dept-item-header span:first-child {
-        color: var(--text-primary);
+    .calendar-modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(17, 24, 39, 0.45);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 20px;
+    }
+    
+    .calendar-modal-overlay.show {
+        display: flex;
+    }
+    
+    .calendar-modal {
+        width: min(100%, 420px);
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+        padding: 22px;
+    }
+    
+    .calendar-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+    }
+    
+    .calendar-modal-header h3 {
+        margin: 0;
+        font-size: 20px;
+        color: var(--text-dark);
+    }
+    
+    .calendar-modal-close {
+        border: none;
+        background: transparent;
+        font-size: 26px;
+        line-height: 1;
+        cursor: pointer;
+        color: var(--text-light);
+    }
+    
+    .schedule-form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+    
+    .schedule-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .schedule-field label {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text-dark);
+    }
+    
+    .schedule-field input,
+    .schedule-field textarea {
+        width: 100%;
+        border: 1px solid var(--border-gray);
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-size: 14px;
+        background: #fff;
+        color: var(--text-dark);
+    }
+    
+    .schedule-field textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+    
+    .schedule-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 8px;
+    }
+    
+    .schedule-cancel,
+    .schedule-submit {
+        border: none;
+        border-radius: 8px;
+        padding: 10px 16px;
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer;
+    }
+    
+    .schedule-cancel {
+        background: var(--light-bg);
+        color: var(--text-dark);
+        border: 1px solid var(--border-gray);
+    }
+    
+    .schedule-submit {
+        background: var(--primary-blue);
+        color: white;
+    }
+    
+    .schedule-submit:hover {
+        background: var(--primary-dark);
+    }
+    
+    .calendar-header-left {
+        font-weight: 600;
+        font-size: 14px;
+    }
+    
+    .calendar-header-right {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+    
+    .btn-add-schedule {
+        background: var(--primary-blue);
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    
+    .btn-add-schedule:hover {
+        background: var(--primary-dark);
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    }
+    
+    .btn-add-schedule:active {
+        transform: scale(0.98);
+    }
+    
+    /* Data Table */
+    .table-wrapper {
+        background: var(--card-bg);
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        margin-bottom: 30px;
+        overflow-x: auto;
+    }
+    
+    .table-wrapper h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--text-dark);
+    }
+    
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .data-table thead {
+        background: var(--light-bg);
+        border-bottom: 2px solid var(--border-gray);
+    }
+    
+    .data-table th {
+        padding: 12px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 12px;
+        color: var(--text-light);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .data-table tbody tr {
+        border-bottom: 1px solid var(--border-gray);
+        transition: all 0.2s;
+    }
+    
+    .data-table tbody tr:hover {
+        background: var(--light-bg);
+    }
+    
+    .data-table td {
+        padding: 12px;
+        font-size: 13px;
+        color: var(--text-dark);
+    }
+    
+    .data-table td.light {
+        color: var(--text-light);
+    }
+    
+    .badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 11px;
         font-weight: 600;
     }
     
-    .dept-item-header span:last-child {
-        color: var(--text-secondary);
-        font-weight: 600;
+    .badge.pending {
+        background: rgba(245, 158, 11, 0.1);
+        color: var(--warning-orange);
     }
     
-    .dept-bar {
-        height: 8px;
-        background: rgba(255,255,255,0.1);
-        border-radius: 4px;
-        overflow: hidden;
+    .badge.approved {
+        background: rgba(16, 185, 129, 0.1);
+        color: var(--success-green);
     }
     
-    .dept-bar-fill {
-        height: 100%;
-        border-radius: 4px;
-        background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    .badge.published {
+        background: rgba(59, 130, 246, 0.1);
+        color: var(--primary-blue);
+    }
+    
+    /* Bottom Stats */
+    .bottom-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+    
+    .bottom-stat-item {
+        background: var(--card-bg);
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+    
+    .bottom-stat-item a {
+        text-decoration: none;
+        color: inherit;
+    }
+    
+    .bottom-stat-value {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 5px;
+    }
+    
+    .bottom-stat-label {
+        font-size: 12px;
+        color: var(--text-light);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 </style>
 
 <div class="dashboard-container">
     <!-- Header -->
     <div class="dashboard-header">
-        <h1>ROARMS <span>Dashboard</span></h1>
-        <div class="d-flex align-items-center gap-3">
-            <div class="header-actions">
-                <?php if (session()->get('role') === 'admin'): ?>
-                    <a href="<?= base_url('admin/researchers/create') ?>" class="btn-action btn-secondary" style="text-decoration: none;">
-                        ➕ Add Research
-                    </a>
-                    <a href="<?= base_url('admin/researchers/research-teachers') ?>" class="btn-action btn-primary" style="text-decoration: none;">
-                        ➕ Add Research Teacher
-                    </a>
-                <?php else: ?>
-                    <button class="btn-action btn-secondary" disabled style="opacity: 0.5; cursor: not-allowed;">
-                        ➕ Add Research
-                    </button>
-                    <button class="btn-action btn-primary" disabled style="opacity: 0.5; cursor: not-allowed;">
-                        ➕ Add Research Teacher
-                    </button>
-                <?php endif; ?>
-            </div>
-            <div class="dropdown">
-                <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" style="color: var(--text-primary);">
-                    <div class="text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; background: linear-gradient(135deg, #1e3a8a, #1e40af);">
-                        <?= strtoupper(substr(session()->get('username'), 0, 1)) ?>
-                    </div>
-                    <span class="ms-2 fw-semibold text-white d-none d-sm-inline"><?= session()->get('username') ?></span>
+        <h1>RMS <span>Dashboard</span></h1>
+        <div class="header-actions">
+            <?php if (is_research_office()): ?>
+                <a href="<?= base_url('admin/researchers/create') ?>" class="btn-action btn-secondary">
+                    ➕ Add Research
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-3">
-                    <li><a class="dropdown-item py-2 px-3" href="<?= base_url('admin/profile') ?>"><i class="bi bi-person me-2" style="color: #1e3a8a;"></i> Profile</a></li>
-                    <li><a class="dropdown-item py-2 px-3" href="<?= base_url('admin/settings') ?>"><i class="bi bi-gear me-2" style="color: #1e3a8a;"></i> Settings</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item py-2 px-3 text-danger" href="<?= base_url('logout') ?>"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
-                </ul>
+                <a href="<?= base_url('admin/researchers/research-teachers') ?>" class="btn-action btn-primary">
+                    ➕ Add Research Teacher
+                </a>
+            <?php else: ?>
+                <button class="btn-action btn-secondary" disabled style="opacity: 0.6;">
+                    ➕ Add Research
+                </button>
+                <button class="btn-action btn-primary" disabled style="opacity: 0.6;">
+                    ➕ Add Research Teacher
+                </button>
+            <?php endif; ?>
+        </div>
+    </div>
+    
+    <!-- Top Stats Row -->
+    <div class="stats-row">
+        <div class="stat-box">
+            <a href="<?= base_url('admin/researchers') ?>" style="text-decoration: none; color: inherit;">
+                <div class="stat-header">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-title">Statistics</div>
+                </div>
+                <div class="stat-details">
+                    <div>
+                        <div class="stat-value"><?= $totalResearch ?></div>
+                        <div class="stat-description">Total Research</div>
+                    </div>
+                </div>
+            </a>
+            <div class="stat-report">
+                <div class="report-title">📊 Research Report</div>
+                <div class="report-items">
+                    <div class="report-item">
+                        <span class="report-label">Total Research:</span>
+                        <span class="report-value"><?= $totalResearch ?></span>
+                    </div>
+                    <div class="report-item">
+                        <span class="report-label">Approved:</span>
+                        <span class="report-value"><?= $totalApproved ?></span>
+                    </div>
+                    <div class="report-item">
+                        <span class="report-label">Published:</span>
+                        <span class="report-value"><?= $totalPublished ?></span>
+                    </div>
+                    <div class="report-item">
+                        <span class="report-label">Pending:</span>
+                        <span class="report-value"><?= $pendingReviews ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stat-box">
+            <a href="<?= base_url('admin/researchers') ?>" style="text-decoration: none; color: inherit;">
+                <div class="stat-header">
+                    <div class="stat-icon orange">📋</div>
+                    <div class="stat-title">Research Output</div>
+                </div>
+                <div class="stat-details">
+                    <div>
+                        <div class="stat-value"><?= $totalApproved ?></div>
+                        <div class="stat-description">Approved</div>
+                    </div>
+                </div>
+            </a>
+            <div class="stat-report">
+                <div class="report-title">📋 Output Results</div>
+                <div class="report-items">
+                    <div class="report-item">
+                        <span class="report-label">Approved:</span>
+                        <span class="report-value"><?= $totalApproved ?></span>
+                    </div>
+                    <div class="report-item">
+                        <span class="report-label">Published:</span>
+                        <span class="report-value"><?= $totalPublished ?></span>
+                    </div>
+                    <div class="report-item">
+                        <span class="report-label">High School Dept:</span>
+                        <span class="report-value"><?= $totalHighSchool ?></span>
+                    </div>
+                    <div class="report-item">
+                        <span class="report-label">College Dept:</span>
+                        <span class="report-value"><?= $totalCollege ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stat-box">
+            <a href="<?= base_url('admin/researchers/advisers') ?>" style="text-decoration: none; color: inherit;">
+                <div class="stat-header">
+                    <div class="stat-icon green">💬</div>
+                    <div class="stat-title">Adviser</div>
+                </div>
+                <div class="stat-details">
+                    <div>
+                        <div class="stat-value"><?= $totalAdvisers ?></div>
+                        <div class="stat-description">On Duty</div>
+                    </div>
+                </div>
+            </a>
+            <div class="stat-report">
+                <div class="report-title">💬 Adviser Report</div>
+                <div class="report-items">
+                    <div class="report-item">
+                        <span class="report-label">Total Advisers:</span>
+                        <span class="report-value"><?= $totalAdvisers ?></span>
+                    </div>
+                    <div class="report-item">
+                        <span class="report-label">Grammarians:</span>
+                        <span class="report-value"><?= $totalGrammarians ?></span>
+                    </div>
+                    <div class="report-item">
+                        <span class="report-label">Statisticians:</span>
+                        <span class="report-value"><?= $totalStatisticians ?></span>
+                    </div>
+                    <div class="report-item">
+                        <span class="report-label">Research Teachers:</span>
+                        <span class="report-value"><?= $totalResearchTeachers ?></span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     
-    <div class="main-grid">
-        <!-- Left Column - Role Cards + Status Overview -->
-    <div class="left-column">
-        <a href="<?= base_url('admin/researchers/research-teachers') ?>" class="role-card" style="text-decoration: none;">
-            <div class="role-card-header">
-                <div class="role-icon teacher">👨‍🏫</div>
-                <div class="role-info">
-                    <h3>Research Teacher</h3>
-                    <p><?= $totalResearchTeachers ?> Total</p>
-                </div>
-            </div>
-            <div class="role-stats">
-                <span class="stat-pill active">Active</span>
-                <span class="stat-pill"><?= $totalResearchTeachers ?> On Duty</span>
-            </div>
-        </a>
-        
-        <a href="<?= base_url('admin/researchers/grammarians') ?>" class="role-card" style="text-decoration: none;">
-            <div class="role-card-header">
-                <div class="role-icon grammarian">📝</div>
-                <div class="role-info">
-                    <h3>Grammarian</h3>
-                    <p><?= $totalGrammarians ?> Total</p>
-                </div>
-            </div>
-            <div class="role-stats">
-                <span class="stat-pill active">Active</span>
-                <span class="stat-pill"><?= $totalGrammarians ?> Available</span>
-            </div>
-        </a>
-        
-        <a href="<?= base_url('admin/researchers/statisticians') ?>" class="role-card" style="text-decoration: none;">
-            <div class="role-card-header">
-                <div class="role-icon statistician">📊</div>
-                <div class="role-info">
-                    <h3>Statistician</h3>
-                    <p><?= $totalStatisticians ?> Total</p>
-                </div>
-            </div>
-            <div class="role-stats">
-                <span class="stat-pill active">Active</span>
-                <span class="stat-pill"><?= $totalStatisticians ?> Analyzing</span>
-            </div>
-        </a>
-        
-        <a href="<?= base_url('admin/researchers/advisers') ?>" class="role-card" style="text-decoration: none;">
-            <div class="role-card-header">
-                <div class="role-icon adviser">💬</div>
-                <div class="role-info">
-                    <h3>Adviser</h3>
-                    <p><?= $totalAdvisers ?> Total</p>
-                </div>
-            </div>
-            <div class="role-stats">
-                <span class="stat-pill active">Consulting</span>
-                <span class="stat-pill"><?= $totalAdvisers ?> On Duty</span>
-            </div>
-        </a>
-        
-        <!-- Status Overview -->
-        <div class="status-overview" style="background: var(--bg-card); border-radius: 12px; padding: 16px; border: 1px solid #334155;">
-            <h2>Status Overview</h2>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Analytics Chart -->
+        <div class="content-card">
+            <h2>📈 Analytics</h2>
             <div class="chart-container">
-                <div class="donut-chart">
-                    <canvas id="donutChart"></canvas>
-                    <div class="donut-center">
-                        <div class="number">43</div>
-                        <div class="label">Total</div>
+                <canvas id="analyticsChart"></canvas>
+            </div>
+            <p style="font-size: 12px; color: var(--text-light); margin: 0;">
+                Research submissions and approvals over time
+            </p>
+        </div>
+        
+        <!-- Calendar -->
+        <div class="content-card">
+            <h2>📅 Calendar</h2>
+            <div class="calendar-wrapper">
+                <div class="calendar-header-row">
+                    <span class="calendar-header-left" id="calendarMonthLabel">August 2026</span>
+                    <div class="calendar-header-right">
+                        <button class="btn-action btn-secondary" id="prevMonthBtn" type="button" aria-label="Previous month">&lt;</button>
+                        <button class="btn-action btn-secondary" id="nextMonthBtn" type="button" aria-label="Next month">&gt;</button>
+                        <button class="btn-add-schedule" id="addScheduleBtn" type="button">+ Add Schedule</button>
                     </div>
                 </div>
-                <div class="chart-legend">
-                    <div class="legend-item">
-                        <div class="legend-dot completed"></div>
-                        <div class="legend-label">Completed</div>
-                        <div class="legend-value">25</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-dot ongoing"></div>
-                        <div class="legend-label">Ongoing</div>
-                        <div class="legend-value">12</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-dot pending"></div>
-                        <div class="legend-label">Pending</div>
-                        <div class="legend-value">6</div>
-                    </div>
+                <div class="calendar-grid" id="calendarGrid">
+                    <div class="calendar-day-header">Sun</div>
+                    <div class="calendar-day-header">Mon</div>
+                    <div class="calendar-day-header">Tue</div>
+                    <div class="calendar-day-header">Wed</div>
+                    <div class="calendar-day-header">Thu</div>
+                    <div class="calendar-day-header">Fri</div>
+                    <div class="calendar-day-header">Sat</div>
+                </div>
+                <div class="calendar-footer">
+                    <span id="eventCountText">● 3 events scheduled for this month</span>
                 </div>
             </div>
         </div>
     </div>
-        
-        <!-- Right Column -->
-        <div class="right-column">
-            <!-- Research Output Section -->
-            <div class="research-output">
-                <h2>Research Output (2026)</h2>
-                <div class="output-tabs">
-                    <a href="<?= base_url('admin/researchers') ?>" class="output-tab active" style="text-decoration: none;">All Research</a>
-                    <a href="<?= base_url('admin/researchers/high-school') ?>" class="output-tab" style="text-decoration: none;">High School</a>
-                    <a href="<?= base_url('admin/researchers/college') ?>" class="output-tab" style="text-decoration: none;">College</a>
-                    <div class="output-tab">S.Y 2025-2026</div>
-                </div>
-                <div class="output-grid">
-                    <div class="output-dot pending"></div>
-                    <div class="output-label">Pending</div>
-                    <div class="output-dot approved"></div>
-                    <div class="output-label">Approved</div>
-                    <div class="output-dot rejected"></div>
-                    <div class="output-label">Rejected</div>
-                </div>
+
+    <div class="calendar-modal-overlay" id="scheduleModal">
+        <div class="calendar-modal" role="dialog" aria-modal="true" aria-labelledby="scheduleModalTitle">
+            <div class="calendar-modal-header">
+                <h3 id="scheduleModalTitle">Add Schedule</h3>
+                <button class="calendar-modal-close" type="button" aria-label="Close" id="closeScheduleModal">&times;</button>
             </div>
-            
-            <!-- Analytics Section -->
-            <div class="analytics-section">
-                <h2>📈 Analytics Overview</h2>
-                
-                <div class="analytics-metrics">
-                    <a href="<?= base_url('admin/researchers') ?>" class="metric-card" style="text-decoration: none;">
-                        <div class="value"><?= $totalResearch ?></div>
-                        <div class="label">Total Research</div>
-                        <div class="change up">+12% from last month</div>
-                    </a>
-                    <a href="<?= base_url('admin/researchers') ?>" class="metric-card" style="text-decoration: none;">
-                        <div class="value"><?= $totalApproved ?></div>
-                        <div class="label">Approved</div>
-                        <div class="change up">+8% from last month</div>
-                    </a>
-                    <a href="<?= base_url('admin/researchers') ?>" class="metric-card" style="text-decoration: none;">
-                        <div class="value"><?= $totalPublished ?></div>
-                        <div class="label">Published</div>
-                        <div class="change up">+15% from last month</div>
-                    </a>
-                    <a href="<?= base_url('admin/researchers') ?>" class="metric-card" style="text-decoration: none;">
-                        <div class="value">4.2</div>
-                        <div class="label">Avg. Rating</div>
-                        <div class="change up">+0.3 from last month</div>
-                    </a>
+            <form class="schedule-form" id="scheduleForm">
+                <div class="schedule-field">
+                    <label for="scheduleTitle">Schedule Title</label>
+                    <input id="scheduleTitle" name="title" type="text" placeholder="e.g. Thesis Defense" required>
                 </div>
-                
-                <div class="analytics-charts">
-                    <div class="line-chart-box">
-                        <h3>Research Trends (Jan - Dec 2026)</h3>
-                        <canvas id="trendsLineChart"></canvas>
-                    </div>
-                    <div class="bar-chart-box">
-                        <h3>Department Performance</h3>
-                        <div class="department-stats">
-                            <div class="dept-item">
-                                <div class="dept-item-header">
-                                    <span>High School Department</span>
-                                    <span><?= $totalHighSchool ?></span>
-                                </div>
-                                <div class="dept-bar">
-                                    <div class="dept-bar-fill" style="width: <?= $totalResearch > 0 ? ($totalHighSchool / $totalResearch) * 100 : 0 ?>%;"></div>
-                                </div>
-                            </div>
-                            <div class="dept-item">
-                                <div class="dept-item-header">
-                                    <span>College Department</span>
-                                    <span><?= $totalCollege ?></span>
-                                </div>
-                                <div class="dept-bar">
-                                    <div class="dept-bar-fill" style="width: <?= $totalResearch > 0 ? ($totalCollege / $totalResearch) * 100 : 0 ?>%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="schedule-field">
+                    <label for="scheduleDate">Date</label>
+                    <input id="scheduleDate" name="date" type="date" required>
                 </div>
-            </div>
+                <div class="schedule-field">
+                    <label for="scheduleNotes">Notes</label>
+                    <textarea id="scheduleNotes" name="notes" placeholder="Add description or notes"></textarea>
+                </div>
+                <div class="schedule-actions">
+                    <button class="schedule-cancel" type="button" id="cancelScheduleBtn">Cancel</button>
+                    <button class="schedule-submit" type="submit">Save Schedule</button>
+                </div>
+            </form>
         </div>
+    </div>
+    
+    <!-- Data Table -->
+    <div class="table-wrapper">
+        <h2>📋 Top Table</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Research Title</th>
+                    <th>Author</th>
+                    <th>Status</th>
+                    <th>Date Submitted</th>
+                    <th>Department</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Advanced Machine Learning Techniques</td>
+                    <td class="light">John Doe</td>
+                    <td><span class="badge approved">Approved</span></td>
+                    <td class="light">2026-08-15</td>
+                    <td class="light">College</td>
+                    <td><a href="#" style="color: var(--primary-blue); font-weight: 600; text-decoration: none;">View</a></td>
+                </tr>
+                <tr>
+                    <td>Environmental Impact Study</td>
+                    <td class="light">Jane Smith</td>
+                    <td><span class="badge pending">Pending</span></td>
+                    <td class="light">2026-08-14</td>
+                    <td class="light">High School</td>
+                    <td><a href="#" style="color: var(--primary-blue); font-weight: 600; text-decoration: none;">View</a></td>
+                </tr>
+                <tr>
+                    <td>Digital Transformation in Education</td>
+                    <td class="light">Bob Johnson</td>
+                    <td><span class="badge published">Published</span></td>
+                    <td class="light">2026-08-12</td>
+                    <td class="light">College</td>
+                    <td><a href="#" style="color: var(--primary-blue); font-weight: 600; text-decoration: none;">View</a></td>
+                </tr>
+                <tr>
+                    <td>Social Media Analysis</td>
+                    <td class="light">Alice Brown</td>
+                    <td><span class="badge pending">Pending</span></td>
+                    <td class="light">2026-08-11</td>
+                    <td class="light">College</td>
+                    <td><a href="#" style="color: var(--primary-blue); font-weight: 600; text-decoration: none;">View</a></td>
+                </tr>
+                <tr>
+                    <td>Renewable Energy Solutions</td>
+                    <td class="light">Charlie Wilson</td>
+                    <td><span class="badge approved">Approved</span></td>
+                    <td class="light">2026-08-10</td>
+                    <td class="light">High School</td>
+                    <td><a href="#" style="color: var(--primary-blue); font-weight: 600; text-decoration: none;">View</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Bottom Stats -->
+    <h2 style="font-size: 18px; font-weight: 700; margin-bottom: 20px; color: var(--text-dark);">Key Metrics</h2>
+    <div class="bottom-stats">
+        <a href="<?= base_url('admin/researchers/research-teachers') ?>" class="bottom-stat-item" style="text-decoration: none; color: inherit;">
+            <div class="bottom-stat-value">👨‍🏫</div>
+            <div class="bottom-stat-label">Research Teachers</div>
+            <div style="font-size: 20px; font-weight: 700; color: var(--text-dark); margin-top: 8px;"><?= $totalResearchTeachers ?></div>
+        </a>
+        
+        <a href="<?= base_url('admin/researchers/grammarians') ?>" class="bottom-stat-item" style="text-decoration: none; color: inherit;">
+            <div class="bottom-stat-value">📝</div>
+            <div class="bottom-stat-label">Grammarians</div>
+            <div style="font-size: 20px; font-weight: 700; color: var(--text-dark); margin-top: 8px;"><?= $totalGrammarians ?></div>
+        </a>
+        
+        <a href="<?= base_url('admin/researchers/statisticians') ?>" class="bottom-stat-item" style="text-decoration: none; color: inherit;">
+            <div class="bottom-stat-value">📊</div>
+            <div class="bottom-stat-label">Statisticians</div>
+            <div style="font-size: 20px; font-weight: 700; color: var(--text-dark); margin-top: 8px;"><?= $totalStatisticians ?></div>
+        </a>
+        
+        <a href="<?= base_url('admin/researchers') ?>" class="bottom-stat-item" style="text-decoration: none; color: inherit;">
+            <div class="bottom-stat-value">📋</div>
+            <div class="bottom-stat-label">Published</div>
+            <div style="font-size: 20px; font-weight: 700; color: var(--text-dark); margin-top: 8px;"><?= $totalPublished ?></div>
+        </a>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
-    // Donut Chart
-    const donutCtx = document.getElementById('donutChart').getContext('2d');
-    new Chart(donutCtx, {
-        type: 'doughnut',
-        data: {
-            datasets: [{
-                data: [25, 12, 6],
-                backgroundColor: [
-                    '#22c55e',
-                    '#3b82f6',
-                    '#eab308'
-                ],
-                borderWidth: 0,
-                cutout: '70%'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            plugins: {
-                legend: { display: false },
-                tooltip: { enabled: true }
-            }
+    document.addEventListener('DOMContentLoaded', function () {
+        const scheduleModal = document.getElementById('scheduleModal');
+        const addScheduleBtn = document.getElementById('addScheduleBtn');
+        const closeScheduleModal = document.getElementById('closeScheduleModal');
+        const cancelScheduleBtn = document.getElementById('cancelScheduleBtn');
+        const scheduleForm = document.getElementById('scheduleForm');
+        const scheduleDate = document.getElementById('scheduleDate');
+        const eventCountText = document.getElementById('eventCountText');
+        const calendarGrid = document.getElementById('calendarGrid');
+        const calendarMonthLabel = document.getElementById('calendarMonthLabel');
+        const prevMonthBtn = document.getElementById('prevMonthBtn');
+        const nextMonthBtn = document.getElementById('nextMonthBtn');
+
+        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'];
+
+        const now = new Date();
+        let viewYear = now.getFullYear();
+        let viewMonth = now.getMonth();
+
+        function getSchedules() {
+            return JSON.parse(localStorage.getItem('dashboardSchedules') || '[]');
         }
-    });
-    
-    // Trends Line Chart
-    const trendsLineCtx = document.getElementById('trendsLineChart').getContext('2d');
-    new Chart(trendsLineCtx, {
-        type: 'line',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            datasets: [
-                {
-                    label: 'Submitted',
-                    data: [8, 12, 10, 15, 18, 16, 20, 19, 22, 25, 23, 28],
-                    borderColor: '#3b82f6',
-                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.4,
-                    pointRadius: 4,
-                    pointHoverRadius: 6
-                },
-                {
-                    label: 'Approved',
-                    data: [6, 10, 8, 12, 15, 13, 17, 16, 19, 21, 20, 24],
-                    borderColor: '#22c55e',
-                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.4,
-                    pointRadius: 4,
-                    pointHoverRadius: 6
+
+        function getMonthSchedules() {
+            return getSchedules().filter(function (s) {
+                const d = new Date(s.date);
+                return !isNaN(d) && d.getFullYear() === viewYear && d.getMonth() === viewMonth;
+            });
+        }
+
+        function renderCalendar() {
+            calendarMonthLabel.textContent = monthNames[viewMonth] + ' ' + viewYear;
+
+            const dayCells = calendarGrid.querySelectorAll('.calendar-day');
+            dayCells.forEach(function (el) { el.remove(); });
+
+            const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+            const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+            const today = new Date();
+
+            for (let i = 0; i < firstDay; i++) {
+                const empty = document.createElement('div');
+                empty.className = 'calendar-day empty';
+                calendarGrid.appendChild(empty);
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const cell = document.createElement('div');
+                cell.className = 'calendar-day';
+                cell.textContent = day;
+                const dateStr = viewYear + '-' +
+                    String(viewMonth + 1).padStart(2, '0') + '-' +
+                    String(day).padStart(2, '0');
+                cell.setAttribute('data-date', dateStr);
+
+                if (viewYear === today.getFullYear() &&
+                    viewMonth === today.getMonth() &&
+                    day === today.getDate()) {
+                    cell.classList.add('today');
                 }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            plugins: {
-                legend: {
-                    labels: {
-                        color: '#94a3b8',
-                        font: { size: 11 },
-                        usePointStyle: true,
-                        pointStyle: 'circle'
+
+                calendarGrid.appendChild(cell);
+            }
+
+            highlightScheduledDays();
+            updateEventCount();
+        }
+
+        function openScheduleModal() {
+            if (!scheduleDate.value) {
+                scheduleDate.value = new Date().toISOString().split('T')[0];
+            }
+            scheduleModal.classList.add('show');
+        }
+
+        function closeScheduleModalFn() {
+            scheduleModal.classList.remove('show');
+            scheduleForm.reset();
+        }
+
+        function updateEventCount() {
+            const count = getMonthSchedules().length;
+            const label = count === 1 ? ' event scheduled for this month' : ' events scheduled for this month';
+            eventCountText.textContent = '● ' + count + label;
+        }
+
+        function highlightScheduledDays() {
+            const dayEls = document.querySelectorAll('.calendar-day');
+            dayEls.forEach(function (dayEl) {
+                dayEl.classList.remove('event');
+                dayEl.title = '';
+            });
+
+            getMonthSchedules().forEach(function (schedule) {
+                const matchingDay = document.querySelector('.calendar-day[data-date="' + schedule.date + '"]');
+                if (matchingDay) {
+                    matchingDay.classList.add('event');
+                    matchingDay.title = schedule.title;
+                }
+            });
+        }
+
+        prevMonthBtn.addEventListener('click', function () {
+            viewMonth--;
+            if (viewMonth < 0) {
+                viewMonth = 11;
+                viewYear--;
+            }
+            renderCalendar();
+        });
+
+        nextMonthBtn.addEventListener('click', function () {
+            viewMonth++;
+            if (viewMonth > 11) {
+                viewMonth = 0;
+                viewYear++;
+            }
+            renderCalendar();
+        });
+
+        addScheduleBtn.addEventListener('click', openScheduleModal);
+        closeScheduleModal.addEventListener('click', closeScheduleModalFn);
+        cancelScheduleBtn.addEventListener('click', closeScheduleModalFn);
+        scheduleModal.addEventListener('click', function (event) {
+            if (event.target === scheduleModal) {
+                closeScheduleModalFn();
+            }
+        });
+
+        scheduleForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const title = document.getElementById('scheduleTitle').value.trim();
+            const date = document.getElementById('scheduleDate').value;
+            const notes = document.getElementById('scheduleNotes').value.trim();
+
+            if (!title || !date) {
+                return;
+            }
+
+            const saved = getSchedules();
+            saved.push({
+                title: title,
+                date: date,
+                notes: notes
+            });
+
+            localStorage.setItem('dashboardSchedules', JSON.stringify(saved));
+            closeScheduleModalFn();
+
+            const d = new Date(date);
+            if (!isNaN(d)) {
+                viewYear = d.getFullYear();
+                viewMonth = d.getMonth();
+            }
+            renderCalendar();
+        });
+
+        renderCalendar();
+
+        // Analytics Chart
+        const analyticsCtx = document.getElementById('analyticsChart').getContext('2d');
+        new Chart(analyticsCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                datasets: [
+                    {
+                        label: 'Submitted',
+                        data: [12, 19, 15, 25, 22, 30, 28, 35],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#3b82f6'
+                    },
+                    {
+                        label: 'Approved',
+                        data: [8, 14, 10, 18, 16, 24, 20, 28],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#10b981'
                     }
-                }
+                ]
             },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        color: 'rgba(255,255,255,0.05)'
-                    },
-                    ticks: {
-                        color: '#94a3b8',
-                        font: { size: 10 }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#6b7280',
+                            font: { size: 12 }
+                        }
                     }
                 },
-                x: {
-                    grid: {
-                        display: false
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#e5e7eb' },
+                        ticks: { color: '#6b7280' }
                     },
-                    ticks: {
-                        color: '#94a3b8',
-                        font: { size: 10 }
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#6b7280' }
                     }
                 }
             }
-        }
+        });
     });
 </script>
 <?= $this->endSection() ?>

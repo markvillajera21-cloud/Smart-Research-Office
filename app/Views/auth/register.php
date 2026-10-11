@@ -87,7 +87,7 @@
                     <i class="bi bi-person-plus-fill"></i>
                 </div>
             </div>
-            <h3 class="fw-bold mb-2">Join ROARMS</h3>
+            <h3 class="fw-bold mb-2">Join RMS</h3>
             <p class="opacity-75 mb-0 small">Create your research account</p>
         </div>
         
@@ -110,7 +110,7 @@
             <form action="<?= base_url('register') ?>" method="post">
                 <?= csrf_field() ?>
                 <div class="mb-3">
-                    <label class="form-label small fw-semibold text-muted">Username</label>
+                    <label class="form-label small fw-semibold text-muted">Student ID / Login ID</label>
                     <div class="input-group">
                         <input type="text" name="username" id="username" class="form-control has-toggle" value="<?= old('username') ?>" placeholder="" required>
                         <span class="input-group-text" onclick="clearInput('username')">
@@ -137,12 +137,7 @@
                     </div>
                 </div>
                 <div class="mb-4">
-                    <label class="form-label small fw-semibold text-muted">Role</label>
-                    <select name="role" class="form-control" required style="border-radius: 0.75rem; border-color: #e2e8f0;">
-                        <option value="admin">Admin</option>
-                        <option value="teacher_archive_viewer">Teacher Archive Viewer</option>
-                        <option value="researcher_archive_viewer">Researcher Archive Viewer</option>
-                    </select>
+                    <p class="small text-muted mb-0">New accounts are created as Student accounts. Staff roles are assigned by the research office.</p>
                 </div>
                 <div class="d-grid mb-4">
                     <button type="submit" class="btn btn-success text-white shadow-sm">Register Now</button>
@@ -150,6 +145,15 @@
                 <div class="text-center">
                     <span class="text-muted small">Already have an account?</span>
                     <a href="<?= base_url('login') ?>" class="small text-decoration-none fw-semibold">Sign In</a>
+                </div>
+                <div class="border-top mt-4 pt-3">
+                    <p class="text-muted text-center small mb-2">Department portals</p>
+                    <div class="d-flex justify-content-center gap-2 flex-wrap">
+                        <a href="<?= base_url('cmat/login') ?>" class="btn btn-sm btn-outline-secondary">CMAT</a>
+                        <a href="<?= base_url('ceas/login') ?>" class="btn btn-sm btn-outline-secondary">CEAS</a>
+                        <a href="<?= base_url('coc/login') ?>" class="btn btn-sm btn-outline-secondary">COC</a>
+                        <a href="<?= base_url('senior-high/login') ?>" class="btn btn-sm btn-outline-secondary">Senior High</a>
+                    </div>
                 </div>
             </form>
         </div>

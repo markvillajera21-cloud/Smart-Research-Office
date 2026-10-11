@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\AuditLogModel;
 use App\Models\ProjectModel;
 
 class Projects extends BaseController
@@ -62,6 +63,7 @@ class Projects extends BaseController
         ];
 
         if ($this->projectModel->insert($data)) {
+            AuditLogModel::log('PROJECT_CREATE', 'projects', $this->projectModel->getInsertID(), $data);
             return redirect()->to('admin/projects')->with('success', 'Project created successfully.');
         }
 

@@ -4,7 +4,7 @@
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="fw-bold"><?= $page_title ?></h4>
-    <?php if (session()->get('role') === 'admin'): ?>
+    <?php if (is_research_office()): ?>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
             <i class="bi bi-plus-lg me-2"></i> Add New
         </button>
@@ -35,7 +35,7 @@
                 <tr class="text-uppercase text-muted small">
                     <th class="fw-semibold" style="min-width: 300px;">Name</th>
                     <th class="fw-semibold" style="width: 150px;">Created At</th>
-                    <?php if (session()->get('role') === 'admin'): ?>
+                    <?php if (is_research_office()): ?>
                         <th class="fw-semibold text-end" style="width: 150px;">Actions</th>
                     <?php endif; ?>
                 </tr>
@@ -52,7 +52,7 @@
                                     <?= date('M d, Y H:i', strtotime($item['created_at'])) ?>
                                 </span>
                             </td>
-                            <?php if (session()->get('role') === 'admin'): ?>
+                            <?php if (is_research_office()): ?>
                                 <td class="text-end">
                                     <div class="dropdown">
                                         <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -74,7 +74,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="<?= (session()->get('role') === 'admin') ? 3 : 2 ?>" class="text-center py-5 text-muted">
+                        <td colspan="<?= (is_research_office()) ? 3 : 2 ?>" class="text-center py-5 text-muted">
                             <i class="bi bi-search fs-1 d-block mb-3"></i>
                             No <?= strtolower($entity_name) ?>s found.
                         </td>

@@ -41,13 +41,33 @@
             background: var(--sidebar-bg);
             border-right: none;
             min-height: 100vh;
+            max-height: 100vh;
             display: flex;
             flex-direction: column;
             transition: all 0.3s;
             box-shadow: 4px 0 20px rgba(15, 23, 42, 0.15);
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.35) transparent;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.28);
+            border-radius: 10px;
+        }
+
+        .nav-item {
+            width: 100%;
         }
 
         .nav-link {
+            position: relative;
+            z-index: 1;
             color: var(--sidebar-text);
             font-weight: 600;
             padding: 0.875rem 1.25rem;
@@ -55,20 +75,83 @@
             margin: 0.25rem 1rem;
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+            text-align: center;
+            gap: 10px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            width: calc(100% - 2rem);
+            min-height: 48px;
+            white-space: normal;
+            line-height: 1.25;
+        }
+
+        .nav-link i {
+            flex-shrink: 0;
         }
 
         .nav-link:hover {
             color: white;
             background-color: rgba(251, 191, 36, 0.15);
-            transform: translateX(4px);
+            transform: none;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
         }
 
         .nav-link.active {
             background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
             color: #0f172a;
-            box-shadow: 0 8px 24px rgba(251, 191, 36, 0.4);
+            box-shadow: 0 8px 24px rgba(251, 191, 36, 0.3);
+            transform: none;
+            z-index: 2;
+        }
+
+        .sidebar-section-title {
+            width: 100%;
+            text-align: center;
+            letter-spacing: 0.1em;
+            color: rgba(226, 232, 240, 0.6);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .sidebar-dropdown-toggle {
+            width: 100%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            letter-spacing: 0.1em;
+            color: rgba(226, 232, 240, 0.6);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            margin: 1rem 0 0.5rem;
+            transition: color 0.2s ease;
+        }
+
+        .sidebar-dropdown-toggle:hover {
+            color: rgba(226, 232, 240, 0.95);
+        }
+
+        .sidebar-dropdown-toggle i.chevron {
+            transition: transform 0.3s ease;
+            font-size: 0.7rem;
+        }
+
+        .sidebar-dropdown-toggle[aria-expanded="true"] i.chevron {
+            transform: rotate(180deg);
+        }
+
+        .sidebar-collapse .nav-link {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
         }
 
         .navbar-brand {
@@ -334,8 +417,7 @@
             <div class="col-md-3 col-lg-2 p-0 sidebar d-none d-md-block sticky-top">
                 <div class="p-4 border-bottom mb-4" style="border-color: rgba(250, 204, 21, 0.2);">
                         <a class="navbar-brand fs-4" href="<?= base_url() ?>" style="color: var(--sidebar-text);">
-                        <style="color: var(--accent-color);">
-                        <img src="<?= base_url('images/logo.png') ?>" alt="ROARMS logo" style="width:42px;height:42px;"> ROARMS
+                        <img src="<?= base_url('images/logo.png') ?>" alt="RMS logo" style="width:42px;height:42px;"> RMS
                     </a>
                 </div>
                 <?= view('theme/sidebar') ?>
@@ -356,8 +438,8 @@
                                     <span class="d-none d-sm-inline fw-semibold"><?= session()->get('username') ?></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-3">
-                                    <li><a class="dropdown-item py-2 px-3" href="<?= base_url(session()->get('role') === 'admin' ? 'admin/profile' : 'user/profile') ?>"><i class="bi bi-person me-2" style="color: var(--primary-color);"></i> Profile</a></li>
-                                    <li><a class="dropdown-item py-2 px-3" href="<?= base_url(session()->get('role') === 'admin' ? 'admin/settings' : 'user/settings') ?>"><i class="bi bi-gear me-2" style="color: var(--primary-color);"></i> Settings</a></li>
+                                    <li><a class="dropdown-item py-2 px-3" href="<?= base_url(is_research_office() ? 'admin/profile' : (is_student() ? 'student/dashboard' : 'user/profile')) ?>"><i class="bi bi-person me-2" style="color: var(--primary-color);"></i> Profile</a></li>
+                                    <li><a class="dropdown-item py-2 px-3" href="<?= base_url(is_research_office() ? 'admin/settings' : 'user/settings') ?>"><i class="bi bi-gear me-2" style="color: var(--primary-color);"></i> Settings</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item py-2 px-3 text-danger" href="<?= base_url('logout') ?>"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
                                 </ul>
@@ -389,5 +471,34 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebar = document.querySelector('.sidebar');
+            if (!sidebar) return;
+
+            const scrollKey = 'roarmsSidebarScroll';
+
+            const restoreScroll = () => {
+                const saved = sessionStorage.getItem(scrollKey);
+                if (saved !== null) {
+                    const value = parseInt(saved, 10);
+                    if (!isNaN(value)) {
+                        sidebar.scrollTop = value;
+                    }
+                }
+            };
+
+            const saveScroll = () => {
+                sessionStorage.setItem(scrollKey, String(sidebar.scrollTop));
+            };
+
+            restoreScroll();
+
+            sidebar.addEventListener('scroll', saveScroll, { passive: true });
+            document.querySelectorAll('.sidebar a.nav-link').forEach(function (link) {
+                link.addEventListener('click', saveScroll);
+            });
+        });
+    </script>
 </body>
 </html>

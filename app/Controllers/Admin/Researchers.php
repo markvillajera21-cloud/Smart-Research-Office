@@ -15,6 +15,7 @@ use App\Models\GrammarianModel;
 use App\Models\RemarkModel;
 use App\Models\AbstractModel;
 use App\Models\ResearchTeacherModel;
+use App\Models\AuditLogModel;
 
 class Researchers extends BaseController
 {
@@ -27,10 +28,9 @@ class Researchers extends BaseController
     protected $statusModel;
     protected $adviserModel;
     protected $grammarianModel;
-    protected $statisticianModel;
-    protected $abstractModel;
     protected $researchTeacherModel;
     protected $defenseStatusModel;
+    protected $expertModel;
 
     public function __construct()
     {
@@ -47,6 +47,24 @@ class Researchers extends BaseController
         $this->abstractModel = new AbstractModel();
         $this->researchTeacherModel = new ResearchTeacherModel();
         $this->defenseStatusModel = new \App\Models\DefenseStatusModel();
+        $this->expertModel = new \App\Models\ExpertModel();
+    }
+
+    protected function getSelectableExperts(string $role, $fallbackModel): array
+    {
+        if ($this->expertModel->poolReady()) {
+            $experts = $this->expertModel->getSelectable($role);
+            if (!empty($experts)) {
+                return array_map(function($e) {
+                    return [
+                        'id'        => $e['legacy_id'] ?: $e['id'],
+                        'name'      => $e['name'],
+                        'is_active' => $e['is_active'] ?? 1,
+                    ];
+                }, $experts);
+            }
+        }
+        return $fallbackModel->orderBy('name', 'ASC')->findAll();
     }
 
     public function index()
@@ -58,7 +76,8 @@ class Researchers extends BaseController
         $grammarianFilter = $this->request->getGet('grammarian');
         $statisticianFilter = $this->request->getGet('statistician');
         $researchTeacherFilter = $this->request->getGet('research_teacher');
-        $search = $this->request->getGet('search');
+        $search = trim((string) ($this->request->getGet('search') ?? ''));
+        $studentSearch = trim((string) ($this->request->getGet('student_search') ?? ''));
         
         $query = $this->researcherModel->select('researchers.*, users.username, users.email, research_categories.name as category_name, designations.name as designation_name, school_years.name as school_year_name, strands.name as strand_name, advisers.name as adviser_name, grammarians.name as grammarian_name, remarks.name as statistician_name, research_teachers.name as research_teacher_name')
                                      ->join('users', 'users.id = researchers.user_id', 'left')
@@ -99,7 +118,18 @@ class Researchers extends BaseController
             $query->where('researchers.research_teacher_id', $researchTeacherFilter);
         }
 
-        if ($search) {
+        if (!empty($studentSearch)) {
+            $query->groupStart()
+                  ->like('users.username', $studentSearch)
+                  ->orLike('researchers.fullname', $studentSearch)
+                  ->orLike('researchers.author', $studentSearch)
+                  ->orLike('researchers.surname', $studentSearch)
+                  ->orLike('researchers.first_name', $studentSearch)
+                  ->orLike('users.email', $studentSearch)
+                  ->groupEnd();
+        }
+
+        if (!empty($search)) {
             $query->groupStart()
                   ->like('researchers.fullname', $search)
                   ->orLike('users.username', $search)
@@ -130,7 +160,8 @@ class Researchers extends BaseController
             'selectedGrammarian' => $grammarianFilter,
             'selectedStatistician' => $statisticianFilter,
             'selectedResearchTeacher' => $researchTeacherFilter,
-            'search' => $search
+            'search' => $search,
+            'studentSearch' => $studentSearch,
         ];
 
         return view('admin/researchers/index', $data);
@@ -146,9 +177,9 @@ class Researchers extends BaseController
             'schoolYears' => $this->schoolYearModel->orderBy('name', 'ASC')->findAll(),
             'strands' => $this->strandModel->orderBy('name', 'ASC')->findAll(),
             'statuses' => $this->statusModel->orderBy('name', 'ASC')->findAll(),
-            'advisers' => $this->adviserModel->orderBy('name', 'ASC')->findAll(),
-            'grammarians' => $this->grammarianModel->orderBy('name', 'ASC')->findAll(),
-            'statisticians' => $this->statisticianModel->orderBy('name', 'ASC')->findAll(),
+            'advisers' => $this->getSelectableExperts(\App\Models\ExpertModel::ROLE_ADVISER, $this->adviserModel),
+            'grammarians' => $this->getSelectableExperts(\App\Models\ExpertModel::ROLE_GRAMMARIAN, $this->grammarianModel),
+            'statisticians' => $this->getSelectableExperts(\App\Models\ExpertModel::ROLE_STATISTICIAN, $this->statisticianModel),
             'researchTeachers' => $this->researchTeacherModel->orderBy('name', 'ASC')->findAll(),
             'abstracts' => $this->abstractModel->orderBy('name', 'ASC')->findAll(),
             'defenseStatuses' => $this->defenseStatusModel->orderBy('name', 'ASC')->findAll(),
@@ -211,6 +242,13 @@ class Researchers extends BaseController
         ];
 
         if ($this->researcherModel->insert($data)) {
+            $newId = $this->researcherModel->getInsertID();
+            AuditLogModel::log('RESEARCHER_CREATE', 'researchers', $newId, [
+                'fullname' => $data['fullname'],
+                'approved_research_title' => $data['approved_research_title'] ?? null,
+                'category_id' => $data['category_id'],
+                'strand_id' => $data['strand_id'] ?? null,
+            ]);
             return redirect()->to('admin/researchers')->with('success', 'Researcher profile created successfully.');
         }
 
@@ -236,9 +274,9 @@ class Researchers extends BaseController
             'schoolYears' => $this->schoolYearModel->orderBy('name', 'ASC')->findAll(),
             'strands' => $this->strandModel->orderBy('name', 'ASC')->findAll(),
             'statuses' => $this->statusModel->orderBy('name', 'ASC')->findAll(),
-            'advisers' => $this->adviserModel->orderBy('name', 'ASC')->findAll(),
-            'grammarians' => $this->grammarianModel->orderBy('name', 'ASC')->findAll(),
-            'statisticians' => $this->statisticianModel->orderBy('name', 'ASC')->findAll(),
+            'advisers' => $this->getSelectableExperts(\App\Models\ExpertModel::ROLE_ADVISER, $this->adviserModel),
+            'grammarians' => $this->getSelectableExperts(\App\Models\ExpertModel::ROLE_GRAMMARIAN, $this->grammarianModel),
+            'statisticians' => $this->getSelectableExperts(\App\Models\ExpertModel::ROLE_STATISTICIAN, $this->statisticianModel),
             'researchTeachers' => $this->researchTeacherModel->orderBy('name', 'ASC')->findAll(),
             'abstracts' => $this->abstractModel->orderBy('name', 'ASC')->findAll(),
             'defenseStatuses' => $this->defenseStatusModel->orderBy('name', 'ASC')->findAll(),
@@ -305,7 +343,24 @@ class Researchers extends BaseController
             'status'                    => $this->request->getPost('status') ?? 'active'
         ];
 
+        // Abstract Requirement: Prevent marking as completed without submitted abstract
+        $statusId = $data['status_id'] ?? null;
+        $statusObj = $statusId ? $this->statusModel->find($statusId) : null;
+        $statusName = strtolower($statusObj['name'] ?? '');
+        if ((str_contains($statusName, 'complete') && !str_contains($statusName, 'not')) || ($data['status'] === 'completed')) {
+            if (empty(trim((string)($data['abstract'] ?? '')))) {
+                return redirect()->back()->withInput()->with('error', 'Cannot mark research as completed. An approved abstract must be submitted after passing the Final Defense before the research project can be marked as completed.');
+            }
+        }
+
         if ($this->researcherModel->update($id, $data)) {
+            AuditLogModel::log('RESEARCHER_UPDATE', 'researchers', $id, [
+                'fullname' => $data['fullname'],
+                'approved_research_title' => $data['approved_research_title'] ?? null,
+                'category_id' => $data['category_id'],
+                'strand_id' => $data['strand_id'] ?? null,
+                'status' => $data['status'],
+            ]);
             $from = $this->request->getPost('from');
             if ($from === 'update_status') {
                 return redirect()->to('admin/researchers/update-status')->with('success', 'Researcher profile updated successfully.');
@@ -496,6 +551,20 @@ class Researchers extends BaseController
         return $this->deleteEntity($this->abstractModel, $id);
     }
 
+    private function tableNameFromModel(object $model): string
+    {
+        if (method_exists($model, 'getTable')) {
+            return (string) $model->getTable();
+        }
+        $tbl = $model->table ?? null;
+        if (is_string($tbl) && $tbl !== '') {
+            return $tbl;
+        }
+        $cls = (new \ReflectionClass($model))->getShortName();
+        $cls = preg_replace('/Model$/', '', $cls);
+        return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $cls));
+    }
+
     private function addEntity($model)
     {
         $name = $this->request->getPost('name');
@@ -515,6 +584,9 @@ class Researchers extends BaseController
 
         $id = $model->insert(['name' => $name]);
         if ($id) {
+            $table = $this->tableNameFromModel($model);
+            AuditLogModel::log('MASTERLIST_ADD', $table, $id, ['name' => $name]);
+
             if ($this->request->isAJAX()) {
                 return $this->response->setJSON([
                     'success' => true,
@@ -560,6 +632,9 @@ class Researchers extends BaseController
         }
 
         if ($model->update($id, ['name' => $name])) {
+            $table = $this->tableNameFromModel($model);
+            AuditLogModel::log('MASTERLIST_EDIT', $table, $id, ['name' => $name]);
+
             if ($this->request->isAJAX()) {
                 return $this->response->setJSON([
                     'success' => true,
@@ -578,7 +653,11 @@ class Researchers extends BaseController
 
     private function deleteEntity($model, $id)
     {
+        $existing = $model->find($id);
         if ($model->delete($id)) {
+            $table = $this->tableNameFromModel($model);
+            AuditLogModel::log('MASTERLIST_DELETE', $table, $id, $existing ?? ['id' => $id]);
+
             if ($this->request->isAJAX()) {
                 return $this->response->setJSON(['success' => true]);
             }
@@ -593,7 +672,9 @@ class Researchers extends BaseController
 
     public function delete($id)
     {
+        $existing = $this->researcherModel->find($id);
         if ($this->researcherModel->delete($id)) {
+            AuditLogModel::log('RESEARCHER_DELETE', 'researchers', $id, $existing ?? ['id' => $id]);
             return redirect()->to('admin/researchers')->with('success', 'Researcher profile deleted successfully.');
         }
         return redirect()->to('admin/researchers')->with('error', 'Failed to delete researcher profile.');
@@ -844,11 +925,83 @@ class Researchers extends BaseController
 
         $statusId = $this->request->getPost('status_id');
 
+        // Abstract Requirement Check: Prevent marking as completed without submitted abstract
+        $statusObj = $statusId ? $this->statusModel->find($statusId) : null;
+        $statusName = strtolower($statusObj['name'] ?? '');
+        if (str_contains($statusName, 'complete') && !str_contains($statusName, 'not')) {
+            if (empty(trim((string)($researcher['abstract'] ?? '')))) {
+                return redirect()->to('admin/researchers/update-status')->with('error', 'Cannot mark research as completed. An approved abstract must be submitted after passing the Final Defense before the research project can be completed.');
+            }
+        }
+
         if ($this->researcherModel->update($id, ['status_id' => $statusId])) {
+            AuditLogModel::log('RESEARCHER_STATUS_UPDATE', 'researchers', $id, [
+                'status_id' => $statusId,
+                'status_name' => $statusObj['name'] ?? 'N/A',
+            ]);
             return redirect()->to('admin/researchers/update-status')->with('success', 'Status updated successfully.');
         }
 
         return redirect()->back()->with('error', 'Failed to update status.');
+    }
+
+    public function submitAbstract($id)
+    {
+        $researcher = $this->researcherModel->find($id);
+        if (!$researcher) {
+            return redirect()->back()->with('error', 'Researcher record not found.');
+        }
+
+        $abstractText = trim((string) $this->request->getPost('abstract'));
+        if (empty($abstractText)) {
+            return redirect()->back()->with('error', 'Abstract content cannot be empty.');
+        }
+
+        $this->researcherModel->update($id, ['abstract' => $abstractText]);
+
+        // Sync with research_titles if matched by researcher_id
+        if (class_exists(\App\Models\ResearchTitleModel::class)) {
+            $titleModel = new \App\Models\ResearchTitleModel();
+            $matchedTitle = $titleModel->where('researcher_id', $id)->first();
+            if ($matchedTitle) {
+                $titleModel->update($matchedTitle['id'], ['abstract' => $abstractText]);
+            }
+        }
+
+        AuditLogModel::log('RESEARCH_ABSTRACT_SUBMIT', 'researchers', $id, [
+            'researcher_id' => $id,
+            'fullname'      => $researcher['fullname'] ?? '',
+            'title'         => $researcher['approved_research_title'] ?? '',
+        ]);
+
+        return redirect()->back()->with('success', 'Research abstract submitted and saved successfully.');
+    }
+
+    public function ajaxGetAbstract($id)
+    {
+        if (!$this->request->isAJAX()) {
+            return $this->response->setStatusCode(403);
+        }
+
+        $query = $this->researcherModel->select('researchers.*, defense_statuses.name as final_defense_status_name')
+            ->join('defense_statuses', 'defense_statuses.id = researchers.final_defense_status_id', 'left')
+            ->where('researchers.id', $id)
+            ->first();
+
+        if (!$query) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Record not found']);
+        }
+
+        return $this->response->setJSON([
+            'status'               => 'success',
+            'id'                   => $query['id'],
+            'fullname'             => $query['fullname'] ?: ($query['surname'] . ', ' . $query['first_name']),
+            'title'                => $query['approved_research_title'] ?? '',
+            'final_defense_date'   => $query['final_defense_date'] ? date('M d, Y', strtotime($query['final_defense_date'])) : 'Not yet scheduled',
+            'final_defense_status' => $query['final_defense_status_name'] ?? 'Pending',
+            'abstract'             => $query['abstract'] ?? '',
+            'has_abstract'         => !empty(trim($query['abstract'] ?? '')),
+        ]);
     }
 
     public function researchTeachers()
@@ -1197,5 +1350,43 @@ class Researchers extends BaseController
         ];
 
         return view('admin/researchers/advisers_list', $data);
+    }
+
+    public function assignTeacher($id)
+    {
+        $researcher = $this->researcherModel->find($id);
+        if (!$researcher) {
+            return redirect()->to('admin/researchers')->with('error', 'Researcher record not found.');
+        }
+
+        $teacherId = $this->request->getPost('research_teacher_id') ?: null;
+        $this->researcherModel->update($id, ['research_teacher_id' => $teacherId]);
+
+        // Keep associated user account assigned instructor in sync
+        if (!empty($researcher['user_id']) && $teacherId) {
+            (new \App\Models\User())->update($researcher['user_id'], ['assigned_instructor_id' => $teacherId]);
+        }
+
+        // Keep associated research_titles in sync
+        (new \App\Models\ResearchTitleModel())
+            ->where('researcher_id', $id)
+            ->set(['instructor_id' => $teacherId])
+            ->update();
+
+        $teacherName = 'Unassigned';
+        if ($teacherId) {
+            $t = $this->researchTeacherModel->find($teacherId);
+            $teacherName = $t['name'] ?? "Instructor #{$teacherId}";
+        }
+
+        AuditLogModel::log('ASSIGN_RESEARCH_TEACHER', 'researchers', $id, [
+            'researcher_id'       => $id,
+            'researcher_name'     => $researcher['fullname'] ?? $researcher['author'],
+            'research_teacher_id' => $teacherId,
+            'teacher_name'        => $teacherName,
+            'assigned_by'         => session()->get('username') ?? 'Admin',
+        ]);
+
+        return redirect()->to('admin/researchers')->with('success', 'Teacher/Research Instructor assigned successfully to ' . esc($researcher['fullname'] ?? $researcher['author']) . '.');
     }
 }

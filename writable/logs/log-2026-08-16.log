@@ -1,0 +1,1034 @@
+DEBUG - 2026-08-16 04:56:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 04:56:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 04:56:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 07:24:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 07:24:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 07:24:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 07:24:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-16 07:24:59 --> Table 'smart_research_office.research_schedules' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= :schedule_date:
+AND `schedule_date` <= :schedule_date.1:
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', [...], false)
+ 5 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\ResearchScheduleModel.php(47): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', null)
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 07:24:59 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'smart_research_office.research_schedules' doesn't exist
+[Method: GET, Route: admin/scheduling]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= :schedule_date:
+AND `schedule_date` <= :schedule_date.1:
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', [...], false)
+ 2 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\ResearchScheduleModel.php(47): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', null)
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 07:24:59 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'smart_research_office.research_schedules' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= :schedule_date:
+AND `schedule_date` <= :schedule_date.1:
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', [...], false)
+ 4 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\ResearchScheduleModel.php(47): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', null)
+ 8 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+10 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 07:24:59 --> [Caused by] mysqli_sql_exception: Table 'smart_research_office.research_schedules' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= :schedule_date:
+AND `schedule_date` <= :schedule_date.1:
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', [...], false)
+ 5 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\ResearchScheduleModel.php(47): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', null)
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-16 07:58:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 07:58:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 07:58:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-16 07:58:28 --> Table 'smart_research_office.research_schedules' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= :schedule_date:
+AND `schedule_date` <= :schedule_date.1:
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', [...], false)
+ 5 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\ResearchScheduleModel.php(47): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Scheduling.php(64): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31')
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->calendar()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 07:58:28 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'smart_research_office.research_schedules' doesn't exist
+[Method: GET, Route: admin/scheduling/calendar]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= :schedule_date:
+AND `schedule_date` <= :schedule_date.1:
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', [...], false)
+ 2 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\ResearchScheduleModel.php(47): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\Scheduling.php(64): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31')
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->calendar()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 07:58:28 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'smart_research_office.research_schedules' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= :schedule_date:
+AND `schedule_date` <= :schedule_date.1:
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', [...], false)
+ 4 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\ResearchScheduleModel.php(47): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Admin\Scheduling.php(64): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31')
+ 8 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->calendar()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+10 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 07:58:28 --> [Caused by] mysqli_sql_exception: Table 'smart_research_office.research_schedules' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= :schedule_date:
+AND `schedule_date` <= :schedule_date.1:
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', [...], false)
+ 5 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\ResearchScheduleModel.php(47): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Scheduling.php(64): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31')
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->calendar()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-16 07:58:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-16 07:58:38 --> Table 'smart_research_office.research_titles' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\ResearchTitleModel.php(68): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\ResearchTitles.php(42): App\Models\ResearchTitleModel->getWithDetails(null, null, null)
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\ResearchTitles->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ResearchTitles))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 07:58:39 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'smart_research_office.research_titles' doesn't exist
+[Method: GET, Route: admin/research-titles]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\ResearchTitleModel.php(68): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\ResearchTitles.php(42): App\Models\ResearchTitleModel->getWithDetails(null, null, null)
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\ResearchTitles->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ResearchTitles))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 07:58:39 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'smart_research_office.research_titles' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC', [], false)
+ 4 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\ResearchTitleModel.php(68): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Admin\ResearchTitles.php(42): App\Models\ResearchTitleModel->getWithDetails(null, null, null)
+ 8 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\ResearchTitles->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ResearchTitles))
+10 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 07:58:39 --> [Caused by] mysqli_sql_exception: Table 'smart_research_office.research_titles' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\ResearchTitleModel.php(68): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\ResearchTitles.php(42): App\Models\ResearchTitleModel->getWithDetails(null, null, null)
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\ResearchTitles->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ResearchTitles))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-16 07:58:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 07:59:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 07:59:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-16 07:59:15 --> Table 'smart_research_office.research_titles' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\ResearchTitleModel.php(68): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\ResearchTitles.php(42): App\Models\ResearchTitleModel->getWithDetails(null, null, null)
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\ResearchTitles->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ResearchTitles))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 07:59:15 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'smart_research_office.research_titles' doesn't exist
+[Method: GET, Route: admin/research-titles]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\ResearchTitleModel.php(68): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\ResearchTitles.php(42): App\Models\ResearchTitleModel->getWithDetails(null, null, null)
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\ResearchTitles->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ResearchTitles))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 07:59:15 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'smart_research_office.research_titles' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC', [], false)
+ 4 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\ResearchTitleModel.php(68): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Admin\ResearchTitles.php(42): App\Models\ResearchTitleModel->getWithDetails(null, null, null)
+ 8 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\ResearchTitles->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ResearchTitles))
+10 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 07:59:15 --> [Caused by] mysqli_sql_exception: Table 'smart_research_office.research_titles' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_titles`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`, `strands`.`name` as `strand_name`, `research_categories`.`name` as `category_name`, `school_years`.`name` as `school_year_name`
+FROM `research_titles`
+LEFT JOIN `users` ON `users`.`id` = `research_titles`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_titles`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_titles`.`researcher_id`
+LEFT JOIN `strands` ON `strands`.`id` = `research_titles`.`strand_id`
+LEFT JOIN `research_categories` ON `research_categories`.`id` = `research_titles`.`category_id`
+LEFT JOIN `school_years` ON `school_years`.`id` = `research_titles`.`school_year_id`
+ORDER BY `research_titles`.`created_at` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\ResearchTitleModel.php(68): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\ResearchTitles.php(42): App\Models\ResearchTitleModel->getWithDetails(null, null, null)
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\ResearchTitles->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ResearchTitles))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-16 08:08:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 08:08:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 08:08:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-16 08:08:54 --> Table 'smart_research_office.research_evaluations' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `research_evaluations`
+WHERE `result` = \'passed\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `research_evaluations`
+WHERE `result` = \'passed\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `research_evaluations`
+WHERE `result` = \'passed\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `research_evaluations`
+WHERE `result` = :result:', [...], false)
+ 5 SYSTEMPATH\Model.php(523): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 APPPATH\Models\ResearchEvaluationModel.php(56): CodeIgniter\Model->countAllResults(false)
+ 7 APPPATH\Controllers\Admin\Monitoring.php(149): App\Models\ResearchEvaluationModel->getSummaryStats()
+ 8 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Monitoring->preOralSummary()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Monitoring))
+10 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 08:08:54 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'smart_research_office.research_evaluations' doesn't exist
+[Method: GET, Route: admin/monitoring/pre-oral-summary]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `research_evaluations`
+WHERE `result` = :result:', [...], false)
+ 2 SYSTEMPATH\Model.php(523): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 3 APPPATH\Models\ResearchEvaluationModel.php(56): CodeIgniter\Model->countAllResults(false)
+ 4 APPPATH\Controllers\Admin\Monitoring.php(149): App\Models\ResearchEvaluationModel->getSummaryStats()
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Monitoring->preOralSummary()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Monitoring))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 08:08:54 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'smart_research_office.research_evaluations' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `research_evaluations`
+WHERE `result` = \'passed\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `research_evaluations`
+WHERE `result` = \'passed\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `research_evaluations`
+WHERE `result` = :result:', [...], false)
+ 4 SYSTEMPATH\Model.php(523): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 5 APPPATH\Models\ResearchEvaluationModel.php(56): CodeIgniter\Model->countAllResults(false)
+ 6 APPPATH\Controllers\Admin\Monitoring.php(149): App\Models\ResearchEvaluationModel->getSummaryStats()
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Monitoring->preOralSummary()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Monitoring))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 08:08:54 --> [Caused by] mysqli_sql_exception: Table 'smart_research_office.research_evaluations' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `research_evaluations`
+WHERE `result` = \'passed\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `research_evaluations`
+WHERE `result` = \'passed\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `research_evaluations`
+WHERE `result` = \'passed\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `research_evaluations`
+WHERE `result` = :result:', [...], false)
+ 5 SYSTEMPATH\Model.php(523): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 APPPATH\Models\ResearchEvaluationModel.php(56): CodeIgniter\Model->countAllResults(false)
+ 7 APPPATH\Controllers\Admin\Monitoring.php(149): App\Models\ResearchEvaluationModel->getSummaryStats()
+ 8 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Monitoring->preOralSummary()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Monitoring))
+10 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-16 11:46:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 11:46:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 11:46:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 11:46:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-16 11:46:43 --> Table 'smart_research_office.research_schedules' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= :schedule_date:
+AND `schedule_date` <= :schedule_date.1:
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', [...], false)
+ 5 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\ResearchScheduleModel.php(47): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', null)
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 11:46:43 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'smart_research_office.research_schedules' doesn't exist
+[Method: GET, Route: admin/scheduling]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= :schedule_date:
+AND `schedule_date` <= :schedule_date.1:
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', [...], false)
+ 2 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\ResearchScheduleModel.php(47): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', null)
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 11:46:43 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'smart_research_office.research_schedules' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= :schedule_date:
+AND `schedule_date` <= :schedule_date.1:
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', [...], false)
+ 4 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\ResearchScheduleModel.php(47): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', null)
+ 8 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+10 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 11:46:43 --> [Caused by] mysqli_sql_exception: Table 'smart_research_office.research_schedules' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= :schedule_date:
+AND `schedule_date` <= :schedule_date.1:
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', [...], false)
+ 5 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\ResearchScheduleModel.php(47): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', null)
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-16 11:56:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 11:56:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 11:57:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-16 11:57:02 --> Table 'smart_research_office.research_schedules' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= :schedule_date:
+AND `schedule_date` <= :schedule_date.1:
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', [...], false)
+ 5 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\ResearchScheduleModel.php(47): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', null)
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 11:57:02 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'smart_research_office.research_schedules' doesn't exist
+[Method: GET, Route: admin/scheduling]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= :schedule_date:
+AND `schedule_date` <= :schedule_date.1:
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', [...], false)
+ 2 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\ResearchScheduleModel.php(47): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', null)
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 11:57:02 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'smart_research_office.research_schedules' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= :schedule_date:
+AND `schedule_date` <= :schedule_date.1:
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', [...], false)
+ 4 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\ResearchScheduleModel.php(47): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', null)
+ 8 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+10 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+CRITICAL - 2026-08-16 11:57:02 --> [Caused by] mysqli_sql_exception: Table 'smart_research_office.research_schedules' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= \'2026-08-01\'
+AND `schedule_date` <= \'2026-08-31\'
+ORDER BY `schedule_date` ASC, `schedule_time` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `research_schedules`.*, `users`.`username` as `student_name`, `u2`.`username` as `instructor_name`, `researchers`.`fullname` as `researcher_name`
+FROM `research_schedules`
+LEFT JOIN `users` ON `users`.`id` = `research_schedules`.`student_id`
+LEFT JOIN `users` `u2` ON `u2`.`id` = `research_schedules`.`instructor_id`
+LEFT JOIN `researchers` ON `researchers`.`id` = `research_schedules`.`researcher_id`
+WHERE `schedule_date` >= :schedule_date:
+AND `schedule_date` <= :schedule_date.1:
+ORDER BY `schedule_date` ASC, `schedule_time` ASC', [...], false)
+ 5 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\ResearchScheduleModel.php(47): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Scheduling.php(32): App\Models\ResearchScheduleModel->getByDateRange('2026-08-01', '2026-08-31', null)
+ 9 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Admin\Scheduling->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Scheduling))
+11 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\reseavh-office\\public\\index.php')
+DEBUG - 2026-08-16 12:33:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 12:33:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 12:33:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 12:33:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 12:33:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 12:33:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-16 12:42:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

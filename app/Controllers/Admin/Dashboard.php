@@ -112,10 +112,41 @@ class Dashboard extends BaseController
 
         $data = [
             'title' => 'Settings',
-            'page_title' => 'Settings'
+            'page_title' => 'Settings',
+            'formAction' => base_url('admin/settings'),
         ];
-        
+
         return view('admin/settings', $data);
+    }
+
+    public function doSettings()
+    {
+        $userModel = new User();
+        $userId = (int) session()->get('user_id');
+        $user = $userModel->find($userId);
+        if (! $user) {
+            return redirect()->to('/logout');
+        }
+
+        $newPassword = (string) $this->request->getPost('new_password');
+        $confirmPassword = (string) $this->request->getPost('confirm_password');
+        $currentPassword = (string) $this->request->getPost('current_password');
+
+        if ($newPassword !== '' || $confirmPassword !== '') {
+            if ($currentPassword === '' || ! password_verify($currentPassword, $user['password'])) {
+                return redirect()->back()->withInput()->with('error', 'Current password is incorrect.');
+            }
+            if (strlen($newPassword) < 8) {
+                return redirect()->back()->withInput()->with('error', 'New password must be at least 8 characters.');
+            }
+            if ($newPassword !== $confirmPassword) {
+                return redirect()->back()->withInput()->with('error', 'New passwords do not match.');
+            }
+            $userModel->update($userId, ['password' => $newPassword]);
+            AuditLogModel::log('PASSWORD_CHANGE', 'users', $userId, ['via' => 'admin_settings']);
+        }
+
+        return redirect()->back()->with('success', 'Settings saved successfully.');
     }
 
     public function generatedReports()
