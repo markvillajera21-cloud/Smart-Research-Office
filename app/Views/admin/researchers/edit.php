@@ -56,10 +56,9 @@
                         <div class="col-md-6 mb-3">
                             <label class="form-label d-flex justify-content-between align-items-center">
                                 Designation
-                                <div class="d-flex gap-1">
-                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addDesignationModal" title="Manage">
-                                        <i class="bi bi-gear"></i>
-                                    </button>
+                                <div class="input-group input-group-sm" style="width: 160px;">
+                                    <input type="text" class="form-control" placeholder="Search..." readonly style="cursor:pointer;" onclick="this.nextElementSibling.click()">
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addDesignationModal" title="Manage"><i class="bi bi-search"></i></button>
                                 </div>
                             </label>
                             <select name="designation_id" id="designation_id" class="form-select">
@@ -72,10 +71,9 @@
                         <div class="col-md-6 mb-3">
                             <label class="form-label d-flex justify-content-between align-items-center">
                                 School Year
-                                <div class="d-flex gap-1">
-                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addSchoolYearModal" title="Manage">
-                                        <i class="bi bi-gear"></i>
-                                    </button>
+                                <div class="input-group input-group-sm" style="width: 160px;">
+                                    <input type="text" class="form-control" placeholder="Search..." readonly style="cursor:pointer;" onclick="this.nextElementSibling.click()">
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addSchoolYearModal" title="Manage"><i class="bi bi-search"></i></button>
                                 </div>
                             </label>
                             <select name="school_year_id" id="school_year_id" class="form-select">
@@ -91,10 +89,9 @@
                         <div class="col-md-6 mb-3">
                             <label class="form-label d-flex justify-content-between align-items-center">
                                 Department
-                                <div class="d-flex gap-1">
-                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addCategoryModal" title="Manage">
-                                        <i class="bi bi-gear"></i>
-                                    </button>
+                                <div class="input-group input-group-sm" style="width: 160px;">
+                                    <input type="text" class="form-control" placeholder="Search..." readonly style="cursor:pointer;" onclick="this.nextElementSibling.click()">
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal" title="Manage"><i class="bi bi-search"></i></button>
                                 </div>
                             </label>
                             <select name="category_id" id="category_id" class="form-select" required>
@@ -107,10 +104,9 @@
                         <div class="col-md-6 mb-3">
                             <label class="form-label d-flex justify-content-between align-items-center">
                                 Program/Academic Track
-                                <div class="d-flex gap-1">
-                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addStrandModal" title="Manage">
-                                        <i class="bi bi-gear"></i>
-                                    </button>
+                                <div class="input-group input-group-sm" style="width: 160px;">
+                                    <input type="text" class="form-control" placeholder="Search..." readonly style="cursor:pointer;" onclick="this.nextElementSibling.click()">
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addStrandModal" title="Manage"><i class="bi bi-search"></i></button>
                                 </div>
                             </label>
                             <select name="strand_id" id="strand_id" class="form-select">
@@ -140,10 +136,9 @@
                         <div class="col-md-6 mb-3">
                             <label class="form-label d-flex justify-content-between align-items-center">
                                 Pre Oral Defense Status
-                                <div class="d-flex gap-1">
-                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addDefenseStatusModal" title="Manage">
-                                        <i class="bi bi-gear"></i>
-                                    </button>
+                                <div class="input-group input-group-sm" style="width: 160px;">
+                                    <input type="text" class="form-control" placeholder="Search..." readonly style="cursor:pointer;" onclick="this.nextElementSibling.click()">
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addDefenseStatusModal" title="Manage"><i class="bi bi-search"></i></button>
                                 </div>
                             </label>
                             <select name="pre_oral_defense_status_id" class="form-select">
@@ -163,10 +158,9 @@
                         <div class="col-md-6 mb-3">
                             <label class="form-label d-flex justify-content-between align-items-center">
                                 Final Defense Status
-                                <div class="d-flex gap-1">
-                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addDefenseStatusModal" title="Manage">
-                                        <i class="bi bi-gear"></i>
-                                    </button>
+                                <div class="input-group input-group-sm" style="width: 160px;">
+                                    <input type="text" class="form-control" placeholder="Search..." readonly style="cursor:pointer;" onclick="this.nextElementSibling.click()">
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addDefenseStatusModal" title="Manage"><i class="bi bi-search"></i></button>
                                 </div>
                             </label>
                             <select name="final_defense_status_id" class="form-select">
@@ -182,10 +176,9 @@
                         <div class="col-md-6 mb-3">
                             <label class="form-label d-flex justify-content-between align-items-center">
                                 Adviser
-                                <div class="d-flex gap-1">
-                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addAdviserModal" title="Manage">
-                                        <i class="bi bi-gear"></i>
-                                    </button>
+                                <div class="input-group input-group-sm" style="width: 160px;">
+                                    <input type="text" class="form-control" placeholder="Search..." readonly style="cursor:pointer;" onclick="this.nextElementSibling.click()">
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addAdviserModal" title="Manage"><i class="bi bi-search"></i></button>
                                 </div>
                             </label>
                             <select name="adviser_id" id="adviser_id" class="form-select">
@@ -198,10 +191,9 @@
                         <div class="col-md-6 mb-3">
                             <label class="form-label d-flex justify-content-between align-items-center">
                                 Grammarian
-                                <div class="d-flex gap-1">
-                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addGrammarianModal" title="Manage">
-                                        <i class="bi bi-gear"></i>
-                                    </button>
+                                <div class="input-group input-group-sm" style="width: 160px;">
+                                    <input type="text" class="form-control" placeholder="Search..." readonly style="cursor:pointer;" onclick="this.nextElementSibling.click()">
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addGrammarianModal" title="Manage"><i class="bi bi-search"></i></button>
                                 </div>
                             </label>
                             <select name="grammarian_id" id="grammarian_id" class="form-select">
@@ -217,10 +209,9 @@
                         <div class="col-md-6 mb-3">
                             <label class="form-label d-flex justify-content-between align-items-center">
                                 Statisticians
-                                <div class="d-flex gap-1">
-                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addStatisticianModal" title="Manage">
-                                        <i class="bi bi-gear"></i>
-                                    </button>
+                                <div class="input-group input-group-sm" style="width: 160px;">
+                                    <input type="text" class="form-control" placeholder="Search..." readonly style="cursor:pointer;" onclick="this.nextElementSibling.click()">
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addStatisticianModal" title="Manage"><i class="bi bi-search"></i></button>
                                 </div>
                             </label>
                             <select name="remark_id" id="remark_id" class="form-select">
@@ -233,10 +224,9 @@
                         <div class="col-md-6 mb-3">
                             <label class="form-label d-flex justify-content-between align-items-center">
                                 Research Teacher
-                                <div class="d-flex gap-1">
-                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addResearchTeacherModal" title="Manage">
-                                        <i class="bi bi-gear"></i>
-                                    </button>
+                                <div class="input-group input-group-sm" style="width: 160px;">
+                                    <input type="text" class="form-control" placeholder="Search..." readonly style="cursor:pointer;" onclick="this.nextElementSibling.click()">
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addResearchTeacherModal" title="Manage"><i class="bi bi-search"></i></button>
                                 </div>
                             </label>
                             <select name="research_teacher_id" id="research_teacher_id" class="form-select">
