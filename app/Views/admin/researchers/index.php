@@ -154,15 +154,17 @@
                                 </span>
                             </td>
                             <td style="padding: 16px 20px; line-height: 1.6; min-width: 250px;">
-                                <div class="fw-bold small text-dark">
-                                    <?php if (!empty($r['fullname'])): ?>
-                                        <?= esc($r['fullname']) ?>
-                                    <?php elseif (!empty($r['author'])): ?>
-                                        <?= nl2br(preg_replace('/,\s*/', "\n", esc($r['author']))) ?>
-                                    <?php else: ?>
-                                        <span class="text-muted">N/A</span>
-                                    <?php endif; ?>
-                                </div>
+                                <a href="<?= base_url('admin/researchers/edit/' . $r['id']) ?>" class="text-decoration-none" title="Click to access profile">
+                                    <div class="fw-bold small text-primary">
+                                        <?php if (!empty($r['author'])): ?>
+                                            <?= nl2br(preg_replace('/,\s*/', "\n", esc($r['author']))) ?>
+                                        <?php elseif (!empty($r['fullname'])): ?>
+                                            <?= esc($r['fullname']) ?>
+                                        <?php else: ?>
+                                            <span class="text-muted">N/A</span>
+                                        <?php endif; ?>
+                                    </div>
+                                </a>
                                 <?php if (!empty($r['username'])): ?>
                                     <div class="mt-1">
                                         <span class="badge bg-light text-primary border text-xs" title="Student ID / Login ID">

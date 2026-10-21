@@ -293,12 +293,17 @@
                                 </div>
 
                                 <div id="panelMemberListContainer" class="overflow-auto border rounded p-2 bg-light bg-opacity-25" style="max-height: 140px;">
-                                    <?php if (empty($panelExaminers)): ?>
+                                    <?php 
+                                    $excludedPanelNames = ['admin', 'admin1111', 'agravante', 'avery21'];
+                                    $filteredPanelExaminers = array_filter($panelExaminers, function($pnl) use ($excludedPanelNames) {
+                                        return !in_array(strtolower(trim($pnl['name'] ?? '')), $excludedPanelNames, true);
+                                    });
+                                    if (empty($filteredPanelExaminers)): ?>
                                         <div class="text-muted small text-center py-2">No Registered Panel Members Available</div>
                                     <?php else: ?>
                                         <?php 
                                         $selectedPanelsArr = array_map('intval', (array)($selectedPanelIds ?? []));
-                                        foreach ($panelExaminers as $pnl): 
+                                        foreach ($filteredPanelExaminers as $pnl): 
                                             $isPnlChecked = in_array((int)$pnl['id'], $selectedPanelsArr, true);
                                         ?>
                                             <div class="form-check py-1 panel-member-item" data-name="<?= esc(strtolower($pnl['name']), 'attr') ?>">

@@ -41,7 +41,7 @@
         <table class="table table-hover align-middle">
             <thead>
                 <tr class="text-uppercase text-muted small">
-                    <th class="fw-semibold" style="min-width: 150px;">Author</th>
+                    <th class="fw-semibold" style="min-width: 200px;">Author</th>
                     <th class="fw-semibold" style="min-width: 200px;">Members</th>
                     <th class="fw-semibold">Department</th>
                     <th class="fw-semibold">Approved Research Title</th>
@@ -54,8 +54,18 @@
                 <?php if (!empty($researchers)): ?>
                     <?php foreach ($researchers as $r): ?>
                         <tr>
-                            <td style="min-width: 150px; padding-right: 15px;">
-                                <div class="fw-bold small"><?= $r['author'] ?? $r['fullname'] ?? '<span class="text-muted">N/A</span>' ?></div>
+                            <td style="min-width: 200px; padding: 12px 15px; line-height: 1.6;">
+                                <a href="<?= base_url('admin/researchers/edit/' . $r['id'] . '?from=update_status') ?>" class="text-decoration-none" title="Click to access profile">
+                                    <div class="fw-bold small text-primary">
+                                        <?php if (!empty($r['author'])): ?>
+                                            <?= nl2br(preg_replace('/,\s*/', "\n", esc($r['author']))) ?>
+                                        <?php elseif (!empty($r['fullname'])): ?>
+                                            <?= esc($r['fullname']) ?>
+                                        <?php else: ?>
+                                            <span class="text-muted">N/A</span>
+                                        <?php endif; ?>
+                                    </div>
+                                </a>
                             </td>
                             <td style="min-width: 200px; padding-right: 15px;">
                                 <div class="small text-muted">

@@ -131,32 +131,64 @@
 document.querySelectorAll('.view-event-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const id = btn.dataset.id;
-        fetch('<?= base_url('admin/scheduling/ajax-event/') ?>' + id, {headers:{'X-Requested-With':'XMLHttpRequest'}})
+        fetch('<?= base_url('admin/scheduling/event/') ?>' + id, {headers:{'X-Requested-With':'XMLHttpRequest'}})
             .then(r => r.json())
             .then(data => {
                 if (!data) return;
                 const typeLabel = {title_hearing: 'Title Hearing', pre_oral: 'Pre-Oral Defense', final_defense: 'Final Defense'};
+                const typeBadgeClass = {
+                    title_hearing: 'bg-info-subtle text-info',
+                    pre_oral: 'bg-warning-subtle text-warning',
+                    final_defense: 'bg-success-subtle text-success'
+                };
+                
+                const displayDate = data.schedule_date ? new Date(data.schedule_date).toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'}) : 'N/A';
+                const displayName = data.researcher_name || data.student_name || 'N/A';
+                
                 document.getElementById('viewEventBody').innerHTML = `
                     <div class="d-flex justify-content-between align-items-start mb-3">
                         <div>
-                            <h5 class="mb-0">${data.schedule_title || 'Schedule'}</h5>
-                            <span class="badge bg-info-subtle text-info mt-1">${typeLabel[data.schedule_type] || data.schedule_type}</span>
+                            <h5 class="mb-0 fw-bold">${data.schedule_title || 'Schedule Details'}</h5>
+                            <span class="badge ${typeBadgeClass[data.schedule_type] || 'bg-secondary-subtle text-secondary'} mt-1">${typeLabel[data.schedule_type] || data.schedule_type}</span>
                         </div>
                         <button class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
-                    <div class="row g-2 small mb-4">
-                        <div class="col-6"><div class="text-muted">Date</div><div class="fw-semibold">${new Date(data.schedule_date).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}</div></div>
-                        <div class="col-6"><div class="text-muted">Time</div><div class="fw-semibold">${data.schedule_time || 'N/A'}</div></div>
-                        <div class="col-12"><div class="text-muted">Venue</div><div class="fw-semibold">${data.venue || 'N/A'}</div></div>
-                        <div class="col-6"><div class="text-muted">Student</div><div class="fw-semibold">${data.student_name || 'N/A'}</div></div>
-                        <div class="col-6"><div class="text-muted">Instructor</div><div class="fw-semibold">${data.instructor_name || 'N/A'}</div></div>
+                    <div class="row g-3 small mb-4">
+                        <div class="col-6">
+                            <div class="text-muted small text-uppercase fw-semibold" style="font-size: 10px;">Date</div>
+                            <div class="fw-bold text-dark">${displayDate}</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-muted small text-uppercase fw-semibold" style="font-size: 10px;">Time</div>
+                            <div class="fw-bold text-dark">${data.schedule_time || 'N/A'}</div>
+                        </div>
+                        <div class="col-12">
+                            <div class="text-muted small text-uppercase fw-semibold" style="font-size: 10px;">Venue</div>
+                            <div class="fw-bold text-dark">${data.venue || 'N/A'}</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-muted small text-uppercase fw-semibold" style="font-size: 10px;">Student / Researcher</div>
+                            <div class="fw-bold text-dark">${displayName}</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-muted small text-uppercase fw-semibold" style="font-size: 10px;">Instructor</div>
+                            <div class="fw-bold text-dark">${data.instructor_name || 'N/A'}</div>
+                        </div>
+                        <div class="col-12">
+                            <div class="text-muted small text-uppercase fw-semibold" style="font-size: 10px;">Panelists / Guidance Committee</div>
+                            <div class="fw-bold text-dark">${data.panelists || 'N/A'}</div>
+                        </div>
                     </div>
-                    <div class="d-flex gap-2 justify-content-end">
-                        <a href="<?= base_url('admin/scheduling/edit/') ?>${data.id}" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil me-1"></i> Edit</a>
-                        <button class="btn btn-light border btn-sm" data-bs-dismiss="modal">Close</button>
+                    <div class="d-flex gap-2 justify-content-end border-top pt-3">
+                        <a href="<?= base_url('admin/scheduling/edit/') ?>${data.id}" class="btn btn-primary btn-sm px-3"><i class="bi bi-pencil me-1"></i> Edit</a>
+                        <button class="btn btn-light border btn-sm px-3" data-bs-dismiss="modal">Close</button>
                     </div>
                 `;
                 new bootstrap.Modal(document.getElementById('viewEventModal')).show();
+            })
+            .catch(err => {
+                console.error('Error fetching event details:', err);
+                alert('Could not load schedule details. Please try again.');
             });
     });
 });

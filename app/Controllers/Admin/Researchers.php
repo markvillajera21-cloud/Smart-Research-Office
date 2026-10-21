@@ -204,14 +204,10 @@ class Researchers extends BaseController
         // Use first member as fullname for display
         $fullname = trim(explode("\n", $members)[0]) ?? 'Member';
 
-        $strandId = $this->request->getPost('strand_id');
-        $strandName = null;
-        if ($strandId) {
-            $strand = $this->strandModel->find($strandId);
-            if ($strand) {
-                $strandName = $strand['name'];
-            }
-        }
+        $strandValue = $this->request->getPost('strand_id');
+        $strand = $this->resolveStrandId($strandValue);
+        $strandId = $strand['id'];
+        $strandName = $strand['name'];
 
         $data = [
             'fullname'                  => $fullname,
@@ -306,14 +302,10 @@ class Researchers extends BaseController
         // Use first member as fullname for display
         $fullname = trim(explode("\n", $members)[0]) ?? 'Member';
 
-        $strandId = $this->request->getPost('strand_id');
-        $strandName = null;
-        if ($strandId) {
-            $strand = $this->strandModel->find($strandId);
-            if ($strand) {
-                $strandName = $strand['name'];
-            }
-        }
+        $strandValue = $this->request->getPost('strand_id');
+        $strand = $this->resolveStrandId($strandValue);
+        $strandId = $strand['id'];
+        $strandName = $strand['name'];
 
         $data = [
             'fullname'                  => $fullname,
@@ -563,6 +555,24 @@ class Researchers extends BaseController
         $cls = (new \ReflectionClass($model))->getShortName();
         $cls = preg_replace('/Model$/', '', $cls);
         return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $cls));
+    }
+
+    private function resolveStrandId($value): ?array
+    {
+        if (empty($value)) {
+            return ['id' => null, 'name' => null];
+        }
+        if (is_numeric($value)) {
+            $strand = $this->strandModel->find((int) $value);
+            return $strand ? ['id' => (int) $value, 'name' => $strand['name']] : ['id' => null, 'name' => null];
+        }
+        $name = trim((string) $value);
+        $existing = $this->strandModel->where('name', $name)->first();
+        if ($existing) {
+            return ['id' => (int) $existing['id'], 'name' => $existing['name']];
+        }
+        $this->strandModel->insert(['name' => $name]);
+        return ['id' => (int) $this->strandModel->getInsertID(), 'name' => $name];
     }
 
     private function addEntity($model)

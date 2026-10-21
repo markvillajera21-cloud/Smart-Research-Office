@@ -121,16 +121,16 @@ if (!isset($researcher)) {
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-6 mb-3" id="courseOfferedWrap" style="display:none;">
                             <label class="form-label d-flex justify-content-between align-items-center">
-                                Program/Academic Track
+                                Course Offered
                                 <div class="input-group input-group-sm" style="width: 160px;">
                                     <input type="text" class="form-control" placeholder="Search..." readonly style="cursor:pointer;" onclick="this.nextElementSibling.click()">
                                     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addStrandModal" title="Manage"><i class="bi bi-search"></i></button>
                                 </div>
                             </label>
                             <select name="strand_id" id="strand_id" class="form-select">
-                                <option value="">Select Program/Academic Track</option>
+                                <option value="">Select Course Offered</option>
                                 <?php foreach ($strands as $s): ?>
                                     <option value="<?= $s['id'] ?>" <?= old('strand_id') == $s['id'] ? 'selected' : '' ?>><?= $s['name'] ?></option>
                                 <?php endforeach; ?>
@@ -139,13 +139,38 @@ if (!isset($researcher)) {
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Approved Research Title</label>
-                        <textarea name="approved_research_title" class="form-control" rows="3" placeholder="Enter the approved research title"><?= old('approved_research_title', $researcher['approved_research_title'] ?? '') ?></textarea>
+                        <label class="form-label">Research Title</label>
+                        <div class="row g-2">
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" id="title_1" class="form-control" placeholder="Title 1" value="">
+                                    <label for="title_1">Title 1</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" id="title_2" class="form-control" placeholder="Title 2" value="">
+                                    <label for="title_2">Title 2</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" id="title_3" class="form-control" placeholder="Title 3" value="">
+                                    <label for="title_3">Title 3</label>
+                                </div>
+                            </div>
+                        </div>
+                        <textarea name="approved_research_title" id="approved_research_title" class="form-control d-none" rows="1"></textarea>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Approved Date</label>
-                        <input type="date" name="approved_date" class="form-control" value="<?= old('approved_date', $researcher['approved_date'] ?? '') ?>">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="collapse" data-bs-target="#approvedDateWrap" aria-expanded="false" aria-controls="approvedDateWrap">
+                            <i class="bi bi-calendar3"></i> Set Approved Date
+                        </button>
+                        <div class="collapse mt-2" id="approvedDateWrap">
+                            <label class="form-label">Approved Date</label>
+                            <input type="date" name="approved_date" class="form-control" value="<?= old('approved_date', $researcher['approved_date'] ?? '') ?>">
+                        </div>
                     </div>
 
                     <div class="row">
@@ -153,42 +178,12 @@ if (!isset($researcher)) {
                             <label class="form-label">Pre Oral Defense Date</label>
                             <input type="date" name="pre_oral_defense_date" class="form-control" value="<?= old('pre_oral_defense_date', $researcher['pre_oral_defense_date'] ?? '') ?>">
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label d-flex justify-content-between align-items-center">
-                                Pre Oral Defense Status
-                                <div class="input-group input-group-sm" style="width: 160px;">
-                                    <input type="text" class="form-control" placeholder="Search..." readonly style="cursor:pointer;" onclick="this.nextElementSibling.click()">
-                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addDefenseStatusModal" title="Manage"><i class="bi bi-search"></i></button>
-                                </div>
-                            </label>
-                            <select name="pre_oral_defense_status_id" class="form-select">
-                                <option value="">Select Status</option>
-                                <?php foreach ($defenseStatuses as $ds): ?>
-                                    <option value="<?= $ds['id'] ?>" <?= old('pre_oral_defense_status_id') == $ds['id'] ? 'selected' : '' ?>><?= $ds['name'] ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Final Defense Date</label>
                             <input type="date" name="final_defense_date" class="form-control" value="<?= old('final_defense_date', $researcher['final_defense_date'] ?? '') ?>">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label d-flex justify-content-between align-items-center">
-                                Final Defense Status
-                                <div class="input-group input-group-sm" style="width: 160px;">
-                                    <input type="text" class="form-control" placeholder="Search..." readonly style="cursor:pointer;" onclick="this.nextElementSibling.click()">
-                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addDefenseStatusModal" title="Manage"><i class="bi bi-search"></i></button>
-                                </div>
-                            </label>
-                            <select name="final_defense_status_id" class="form-select">
-                                <option value="">Select Status</option>
-                                <?php foreach ($defenseStatuses as $ds): ?>
-                                    <option value="<?= $ds['id'] ?>" <?= old('final_defense_status_id', $researcher['final_defense_status_id'] ?? '') == $ds['id'] ? 'selected' : '' ?>><?= $ds['name'] ?></option>
-                                <?php endforeach; ?>
-                            </select>
                         </div>
                     </div>
 
@@ -256,20 +251,6 @@ if (!isset($researcher)) {
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Abstract</label>
-                            <textarea name="abstract" class="form-control" rows="3" placeholder="Enter the abstract"><?= old('abstract', $researcher['abstract'] ?? '') ?></textarea>
-                        </div>
-                    </div>
-
-
-
-                    <div class="mb-4">
-                        <label class="form-label">Remarks</label>
-                        <textarea name="remarks" class="form-control" rows="3"><?= old('remarks', $researcher['remarks'] ?? '') ?></textarea>
                     </div>
 
                     <div class="d-flex justify-content-end gap-2">
@@ -767,6 +748,62 @@ if (!isset($researcher)) {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Manage functionality initialized');
+
+    const form = document.querySelector('form[action$="admin/researchers/store"]');
+    if (form) {
+        form.addEventListener('submit', function() {
+            const t1 = (document.getElementById('title_1')?.value || '').trim();
+            const t2 = (document.getElementById('title_2')?.value || '').trim();
+            const t3 = (document.getElementById('title_3')?.value || '').trim();
+            const combined = [t1, t2, t3].filter(Boolean).join('\n');
+            const target = document.getElementById('approved_research_title');
+            if (target) target.value = combined;
+        });
+    }
+
+    const categorySelect = document.getElementById('category_id');
+    const courseOfferedWrap = document.getElementById('courseOfferedWrap');
+    const strandSelect = document.getElementById('strand_id');
+    const departmentCourses = {
+        'CEAS': ['BEED', 'BSED', 'BSED-English', 'BSED-Filipino', 'BSED-Math', 'BSED-Science', 'BSED-Values', 'BECED', 'BPED', 'BS Psych', 'AB Philo'],
+        'CMAT': ['BSA', 'BSMA', 'BSAIS', 'BSBA-FM', 'BSBA-MM', 'BSIT', 'BSTM']
+    };
+    if (categorySelect && courseOfferedWrap && strandSelect) {
+        const defaultStrandOptions = Array.from(strandSelect.options).map(o => ({ value: o.value, text: o.text }));
+        const populateCourses = (deptName) => {
+            const courses = departmentCourses[deptName];
+            strandSelect.innerHTML = '';
+            const placeholder = document.createElement('option');
+            placeholder.value = '';
+            placeholder.textContent = 'Select Course Offered';
+            strandSelect.appendChild(placeholder);
+            if (courses) {
+                courses.forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c;
+                    opt.textContent = c;
+                    strandSelect.appendChild(opt);
+                });
+            } else {
+                defaultStrandOptions.forEach(o => {
+                    const opt = document.createElement('option');
+                    opt.value = o.value;
+                    opt.textContent = o.text;
+                    strandSelect.appendChild(opt);
+                });
+            }
+        };
+        const toggleCourseOffered = () => {
+            const hasDept = !!categorySelect.value;
+            courseOfferedWrap.style.display = hasDept ? 'block' : 'none';
+            if (hasDept) {
+                const deptName = categorySelect.options[categorySelect.selectedIndex]?.textContent?.trim() || '';
+                populateCourses(deptName);
+            }
+        };
+        categorySelect.addEventListener('change', toggleCourseOffered);
+        toggleCourseOffered();
+    }
     
     // Attach save button listeners
     const saveButtons = [
